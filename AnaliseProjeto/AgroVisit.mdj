@@ -8680,7 +8680,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGHBUFgPCckUsE="
 							},
-							"name": "StateMachineFinancas",
+							"name": "StateMachineConta",
 							"ownedViews": [
 								{
 									"_type": "UMLPseudostateView",
@@ -8947,7 +8947,7 @@
 												"$ref": "AAAAAAGJUhHD5C9TAVY="
 											},
 											"edgePosition": 1,
-											"text": "Criou financa"
+											"text": "Criou conta"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -9910,7 +9910,7 @@
 											"_parent": {
 												"$ref": "AAAAAAGJUhHD5C9SDWg="
 											},
-											"name": "Criou financa"
+											"name": "Criou conta"
 										}
 									]
 								},
@@ -27240,7 +27240,7 @@
 											"font": "Arial;13;0",
 											"left": -171,
 											"top": -435,
-											"width": 108.6591796875,
+											"width": 119.2216796875,
 											"height": 13,
 											"text": "-cpf: Char",
 											"horizontalAlignment": 0
@@ -27257,7 +27257,7 @@
 											"font": "Arial;13;0",
 											"left": -171,
 											"top": -420,
-											"width": 108.6591796875,
+											"width": 119.2216796875,
 											"height": 13,
 											"text": "-nome: Char",
 											"horizontalAlignment": 0
@@ -27274,7 +27274,7 @@
 											"font": "Arial;13;0",
 											"left": -171,
 											"top": -405,
-											"width": 108.6591796875,
+											"width": 119.2216796875,
 											"height": 13,
 											"text": "-dataNascimento: int",
 											"horizontalAlignment": 0
@@ -27291,7 +27291,7 @@
 											"font": "Arial;13;0",
 											"left": -171,
 											"top": -390,
-											"width": 108.6591796875,
+											"width": 119.2216796875,
 											"height": 13,
 											"text": "-cidade: Char",
 											"horizontalAlignment": 0
@@ -27308,7 +27308,7 @@
 											"font": "Arial;13;0",
 											"left": -171,
 											"top": -375,
-											"width": 108.6591796875,
+											"width": 119.2216796875,
 											"height": 13,
 											"text": "-estado: Char",
 											"horizontalAlignment": 0
@@ -27325,7 +27325,7 @@
 											"font": "Arial;13;0",
 											"left": -171,
 											"top": -360,
-											"width": 108.6591796875,
+											"width": 119.2216796875,
 											"height": 13,
 											"text": "-bairro: Char",
 											"horizontalAlignment": 0
@@ -27342,7 +27342,7 @@
 											"font": "Arial;13;0",
 											"left": -171,
 											"top": -345,
-											"width": 108.6591796875,
+											"width": 119.2216796875,
 											"height": 13,
 											"text": "-rua: Char",
 											"horizontalAlignment": 0
@@ -27359,7 +27359,7 @@
 											"font": "Arial;13;0",
 											"left": -171,
 											"top": -330,
-											"width": 108.6591796875,
+											"width": 119.2216796875,
 											"height": 13,
 											"text": "-numeroCasa: int",
 											"horizontalAlignment": 0
@@ -27376,7 +27376,7 @@
 											"font": "Arial;13;0",
 											"left": -171,
 											"top": -315,
-											"width": 108.6591796875,
+											"width": 119.2216796875,
 											"height": 13,
 											"text": "-telefone: Char",
 											"horizontalAlignment": 0
@@ -27386,7 +27386,7 @@
 									"font": "Arial;13;0",
 									"left": -176,
 									"top": -440,
-									"width": 118.6591796875,
+									"width": 129.2216796875,
 									"height": 143
 								},
 								{
@@ -30716,7 +30716,7 @@
 											"top": 166,
 											"width": 194.0986328125,
 											"height": 13,
-											"text": "TelaManterPlanosDeAssinatura"
+											"text": "TelaManterPlanoDeAssinatura"
 										},
 										{
 											"_type": "LabelView",
@@ -31424,7 +31424,7 @@
 											"top": 438,
 											"width": 117.00634765625,
 											"height": 13,
-											"text": "ControladorPlanos"
+											"text": "ControladorPlano"
 										},
 										{
 											"_type": "LabelView",
@@ -31675,7 +31675,7 @@
 											"top": 743,
 											"width": 123.55712890625,
 											"height": 13,
-											"text": "PersistenciaPlanos"
+											"text": "PersistenciaPlano"
 										},
 										{
 											"_type": "LabelView",
@@ -31906,7 +31906,7 @@
 											"top": 614,
 											"width": 43.341796875,
 											"height": 13,
-											"text": "Planos"
+											"text": "Plano"
 										},
 										{
 											"_type": "LabelView",
@@ -34030,7 +34030,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFFxnG7qRNvP5M="
 					},
-					"name": "TelaManterPlanosDeAssinatura",
+					"name": "TelaManterPlanoDeAssinatura",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -34883,7 +34883,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFFxnG7qRNvP5M="
 					},
-					"name": "ControladorPlanos",
+					"name": "ControladorPlano",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -36237,7 +36237,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFFxnG7qRNvP5M="
 					},
-					"name": "Planos",
+					"name": "Plano",
 					"stereotype": {
 						"$ref": "AAAAAAFFJsYgDTM+Z6E="
 					},
@@ -38981,9 +38981,9 @@
 										"$ref": "AAAAAAGJncM7avvDznY="
 									},
 									"font": "Arial;13;0",
-									"left": 716,
+									"left": 715,
 									"top": 116,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -50388,7 +50388,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFFxnG7qRNvP5M="
 					},
-					"name": "PersistenciaPlanos",
+					"name": "PersistenciaPlano",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -88615,7 +88615,7 @@
 											"top": 319,
 											"width": 123.55712890625,
 											"height": 13,
-											"text": "PersistenciaPlanos"
+											"text": "PersistenciaPlano"
 										},
 										{
 											"_type": "LabelView",
@@ -93964,7 +93964,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFFxnG7qRNvP5M="
 					},
-					"name": "CollaborationManterPlanosAssinatura",
+					"name": "CollaborationManterPlanoAssinatura",
 					"ownedElements": [
 						{
 							"_type": "UMLInteraction",
@@ -114147,9 +114147,9 @@
 										"$ref": "AAAAAAGJncM7avvDznY="
 									},
 									"font": "Arial;13;0",
-									"left": 162,
+									"left": 161,
 									"top": 243,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
