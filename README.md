@@ -1,5 +1,5 @@
 <div align="center">
-<img src="logo.png" width="40%"><br><br>
+<img src="Codigo\AgroVisitWeb\logoA.png" width="40%"><br><br>
 
 <p>Trazendo eficiência e praticidade para sua visita técnica</p>  
   
@@ -24,7 +24,7 @@
 
   <h2 id="solucao">2. A Solução :sparkles:</h2>
 
-<img src="image.jpeg" width="100%"><br><br>
+<img src="Codigo\AgroVisitWeb\imagem.jpeg" width="100%"><br><br>
   
   <p>Na tentiva de solucionar esse problema criamos o <a href="https://github.com/marcosdosea/Agrovisit" >AgroVisit</a>. </p>
   <p>O AgroVisit é um software de gerenciamento de visitas técnicas para pequenos e médios agrônomos que visa facilitar o registro de informações sobre propriedades rurais, culturas, serviços prestados e projetos realizados, contribuindo para a tomada de decisões estratégicas e aumento da produtividade agrícola.</p>
