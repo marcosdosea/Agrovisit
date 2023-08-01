@@ -91,6 +91,3 @@
     </td>
    </tr>
 </table>
-=======
-# Agrovisit
-Sistema para Gestão de Projetos em Agronomia
