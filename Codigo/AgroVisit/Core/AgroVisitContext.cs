@@ -17,7 +17,7 @@ public partial class AgroVisitContext : DbContext
 
     public virtual DbSet<Cliente> Clientes { get; set; }
 
-    public virtual DbSet<Contum> Conta { get; set; }
+    public virtual DbSet<Conta> Conta { get; set; }
 
     public virtual DbSet<Cultura> Culturas { get; set; }
 
@@ -33,7 +33,7 @@ public partial class AgroVisitContext : DbContext
 
     public virtual DbSet<Solo> Solos { get; set; }
 
-    public virtual DbSet<Visitum> Visita { get; set; }
+    public virtual DbSet<Visita> Visita { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -121,7 +121,7 @@ public partial class AgroVisitContext : DbContext
                 .HasConstraintName("fkClienteEngenheiro Agronomo1");
         });
 
-        modelBuilder.Entity<Contum>(entity =>
+        modelBuilder.Entity<Conta>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
@@ -382,7 +382,7 @@ public partial class AgroVisitContext : DbContext
                 .HasColumnName("nome");
         });
 
-        modelBuilder.Entity<Visitum>(entity =>
+        modelBuilder.Entity<Visita>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 

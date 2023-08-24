@@ -20,7 +20,7 @@ public partial class Projeto
 
     public uint IdPropriedade { get; set; }
 
-    public virtual ICollection<Contum> Conta { get; set; } = new List<Contum>();
+    public virtual ICollection<Conta> Conta { get; set; } = new List<Conta>();
 
     public virtual Propriedade IdPropriedadeNavigation { get; set; } = null!;
 

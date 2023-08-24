@@ -68,5 +68,5 @@ public partial class Propriedade
 
     public virtual ICollection<Projeto> Projetos { get; set; } = new List<Projeto>();
 
-    public virtual ICollection<Visitum> Visita { get; set; } = new List<Visitum>();
+    public virtual ICollection<Visita> Visita { get; set; } = new List<Visita>();
 }

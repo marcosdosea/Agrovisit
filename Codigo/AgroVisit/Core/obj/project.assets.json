@@ -2617,19 +2617,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Faculdade\\.nuget\\packages\\": {}
+    "C:\\Users\\202000060782\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
+      "projectUniqueName": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
-      "packagesPath": "C:\\Users\\Faculdade\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\obj\\",
+      "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
+      "packagesPath": "C:\\Users\\202000060782\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Faculdade\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\202000060782\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2692,7 +2697,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,6 +1,6 @@
 ﻿namespace Core;
 
-public partial class Contum
+public partial class Conta
 {
     public uint Id { get; set; }
 
@@ -16,5 +16,5 @@ public partial class Contum
 
     public virtual Projeto IdProjetoNavigation { get; set; } = null!;
 
-    public virtual Visitum IdVisitaNavigation { get; set; } = null!;
+    public virtual Visita IdVisitaNavigation { get; set; } = null!;
 }
