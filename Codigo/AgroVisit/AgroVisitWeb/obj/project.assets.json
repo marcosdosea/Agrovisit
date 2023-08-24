@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\202000060782\\.nuget\\packages\\": {}
+    "C:\\Users\\Faculdade\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
+      "projectUniqueName": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
       "projectName": "AgroVisitWeb",
-      "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
-      "packagesPath": "C:\\Users\\202000060782\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisit\\AgroVisitWeb\\obj\\",
+      "projectPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
+      "packagesPath": "C:\\Users\\Faculdade\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\202000060782\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Faculdade\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
