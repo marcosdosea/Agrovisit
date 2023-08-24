@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroVisitWeb", "AgroVisitWeb\AgroVisitWeb.csproj", "{D262E62F-049A-4513-B953-D68CACCD1055}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{A68E4352-D7DD-44E9-97AC-E1AFF5F87513}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D262E62F-049A-4513-B953-D68CACCD1055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D262E62F-049A-4513-B953-D68CACCD1055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D262E62F-049A-4513-B953-D68CACCD1055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D262E62F-049A-4513-B953-D68CACCD1055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A68E4352-D7DD-44E9-97AC-E1AFF5F87513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A68E4352-D7DD-44E9-97AC-E1AFF5F87513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A68E4352-D7DD-44E9-97AC-E1AFF5F87513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A68E4352-D7DD-44E9-97AC-E1AFF5F87513}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54C71146-CCEA-4D07-9AF6-A8A86C381F95}
+	EndGlobalSection
+EndGlobal
