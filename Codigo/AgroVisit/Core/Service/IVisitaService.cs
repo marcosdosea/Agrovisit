@@ -14,6 +14,7 @@ namespace Core.Service
         public void Delete(int id);
         public Visita Get(int id);
         public IEnumerable<Visita> GetAll();
-        public IEnumerable<VisitaDTO> GetByNome(string nome);
+        public IEnumerable<VisitaDTO> GetAllByDate(DateTime data);
+        public IEnumerable<VisitaDTO> GetAllByStatus(String status);
     }
 }

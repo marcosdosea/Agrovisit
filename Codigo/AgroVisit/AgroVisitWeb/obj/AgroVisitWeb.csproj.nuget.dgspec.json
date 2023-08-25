@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\Documents\\GitHub\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {}
+    "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\Documents\\GitHub\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {
+    "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Documents\\GitHub\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
+        "projectUniqueName": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
         "projectName": "AgroVisitWeb",
-        "projectPath": "C:\\Users\\Dell\\Documents\\GitHub\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Documents\\GitHub\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\obj\\",
+        "projectPath": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
+        "packagesPath": "C:\\Users\\202100104960\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\202100104960\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

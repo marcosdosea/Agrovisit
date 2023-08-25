@@ -14,6 +14,5 @@ namespace Core.Service
         public void Delete(int id);
         public Intervencao Get(int id);
         public IEnumerable<Intervencao> GetAll();
-        public IEnumerable<IntervencaoDTO> GetByNome(string nome);
     }
 }

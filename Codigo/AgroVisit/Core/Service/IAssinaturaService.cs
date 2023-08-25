@@ -14,6 +14,7 @@ namespace Core.Service
         public void Delete(int id);
         public Assinatura Get(int id);
         public IEnumerable<Assinatura> GetAll();
-        public IEnumerable<AssinaturaDTO> GetByNome(string nome);
+        public IEnumerable<AssinaturaDTO> GetAllByPlano(string plano);
+        public IEnumerable<AssinaturaDTO> GetAllByStatus(string status);
     }
 }

@@ -14,6 +14,5 @@ namespace Core.Service
         public void Delete(int id);
         public Plano Get(int id);
         public IEnumerable<Plano> GetAll();
-        public IEnumerable<PlanoDTO> GetByNome(string nome);
     }
 }

@@ -15,5 +15,6 @@ namespace Core.Service
         public Propriedade Get(int id);
         public IEnumerable<Propriedade> GetAll();
         public IEnumerable<PropriedadeDTO> GetByNome(string nome);
+
     }
 }

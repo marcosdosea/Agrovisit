@@ -15,5 +15,7 @@ namespace Core.Service
         public Projeto Get(int id);
         public IEnumerable<Projeto> GetAll();
         public IEnumerable<ProjetoDTO> GetByNome(string nome);
+        public IEnumerable<ProjetoDTO> GetByData(DateTime data);
+        public IEnumerable<ProjetoDTO> GetByStatus(string status);
     }
 }
