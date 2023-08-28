@@ -8,24 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\202100104960\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Bruna Keila\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
+      "projectUniqueName": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
       "projectName": "AgroVisitWeb",
-      "projectPath": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
-      "packagesPath": "C:\\Users\\202100104960\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\obj\\",
+      "projectPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
+      "packagesPath": "C:\\Users\\Bruna Keila\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\202100104960\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Bruna Keila\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -33,6 +28,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -69,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

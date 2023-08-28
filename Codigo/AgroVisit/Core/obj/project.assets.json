@@ -2617,24 +2617,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\202100104960\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Bruna Keila\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
+      "projectUniqueName": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
-      "packagesPath": "C:\\Users\\202100104960\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\obj\\",
+      "projectPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
+      "packagesPath": "C:\\Users\\Bruna Keila\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\202100104960\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Bruna Keila\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2697,7 +2692,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
