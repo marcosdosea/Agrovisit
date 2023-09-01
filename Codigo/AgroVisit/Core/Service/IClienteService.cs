@@ -9,7 +9,7 @@ namespace Core.Service
 {
     public interface IClienteService
     {
-        public int Create(Cliente cliente);
+        public uint Create(Cliente cliente);
         public void Edit(Cliente cliente);
         public void Delete(int id);
         public Cliente Get(int id);
