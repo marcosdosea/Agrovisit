@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {}
+    "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
+    "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
+        "projectUniqueName": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\Bruna Keila\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\obj\\",
+        "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\202000060782\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Bruna Keila\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\202000060782\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +43,14 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
