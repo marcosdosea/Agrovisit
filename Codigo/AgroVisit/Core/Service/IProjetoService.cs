@@ -9,13 +9,15 @@ namespace Core.Service
 {
     public interface IProjetoService
     {
-        public int Create(Projeto projeto);
+        public uint Create(Projeto projeto);
         public void Edit(Projeto projeto);
         public void Delete(int id);
         public Projeto Get(int id);
         public IEnumerable<Projeto> GetAll();
-        public IEnumerable<ProjetoDTO> GetByNome(string nome);
+        public IEnumerable<Projeto> GetByNome(string nome);
         public IEnumerable<ProjetoDTO> GetByData(DateTime data);
         public IEnumerable<ProjetoDTO> GetByStatus(string status);
+        public IEnumerable<Intervencao> GetAllIntervencaos();
+        public IEnumerable<Conta> GetAllConta();
     }
 }
