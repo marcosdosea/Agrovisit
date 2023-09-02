@@ -2617,19 +2617,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Faculdade\\.nuget\\packages\\": {}
+    "C:\\Users\\Dell\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
+      "projectUniqueName": "C:\\Users\\Dell\\Documents\\GitHub\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
-      "packagesPath": "C:\\Users\\Faculdade\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\obj\\",
+      "projectPath": "C:\\Users\\Dell\\Documents\\GitHub\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
+      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Dell\\Documents\\GitHub\\Agrovisit\\Codigo\\AgroVisit\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Faculdade\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
