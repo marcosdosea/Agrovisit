@@ -7,7 +7,7 @@ namespace Service
     /// <summary>
     /// Manter dados dos clientes no banco de dados
     /// </summary>
-    internal class ClienteService : IClienteService
+    public class ClienteService : IClienteService
     {
         private readonly AgroVisitContext _context;
 
