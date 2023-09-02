@@ -66,27 +66,37 @@ namespace Service
         }
         public IEnumerable<Projeto> GetAll()
         {
-            return _context.Projetos;
+            return _context.Projetos.AsNoTracking();
         }
         /// <summary>
         /// Obter projetos pela data
         /// </summary>
         /// <param name="data"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <returns> projeto </returns>
         public IEnumerable<ProjetoDTO> GetByData(DateTime data)
         {
-            throw new NotImplementedException();
+            var query = from projeto in _context.Projetos
+                        where projeto.DataPrevista == data
+                        orderby projeto.DataPrevista
+                        select projeto;
+            return (IEnumerable<ProjetoDTO>)query.AsNoTracking();
         }
+        /// <summary>
+        /// Obter projetos pelo status
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns> projeto </returns>
         public IEnumerable<ProjetoDTO> GetByStatus(string status)
         {
             return (IEnumerable<ProjetoDTO>)_context.Projetos.Where(
                projeto => projeto.Status.StartsWith(status)).AsNoTracking();
         }
+        
         public IEnumerable<Intervencao> GetAllIntervencaos()
         {
             return _context.Intervencaos;
         }
+
         public IEnumerable<Conta> GetAllConta()
         {
             return _context.Conta;
