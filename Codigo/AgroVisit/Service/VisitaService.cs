@@ -30,7 +30,7 @@ namespace Service
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            var visita = _context.Visita.Find(id);
+            var visita = _context.Visitas.Find(id);
             if (visita == null) return;
 
             _context.Remove(visita);
@@ -52,7 +52,7 @@ namespace Service
         /// <returns>Cliente</returns>
         public Visita Get(int id)
         {
-            return _context.Visita.Find(id);
+            return _context.Visitas.Find(id);
         }
         /// <summary>
         /// Obtém todas as visitas da base de dados
@@ -60,7 +60,7 @@ namespace Service
         /// <returns>Dados de todas as visitas</returns>
         public IEnumerable<Visita> GetAll()
         {
-            return _context.Visita.AsNoTracking();
+            return _context.Visitas.AsNoTracking();
         }
         /// <summary>
         /// Obtém todas as visitas de uma data
@@ -69,7 +69,7 @@ namespace Service
         /// <returns>Todas as visitas de uma data</returns>
         public IEnumerable<VisitaDTO> GetAllByDate(DateTime data)
         {
-            var query = from VisitaDTO in _context.Visita
+            var query = from VisitaDTO in _context.Visitas
                         where VisitaDTO.DataHora.Equals(data)
                         select new VisitaDTO
                         {
@@ -84,7 +84,7 @@ namespace Service
 
         public IEnumerable<Visita> GetAllByStatus(string status)
         {
-            var query = from Visita in _context.Visita
+            var query = from Visita in _context.Visitas
                         where Visita.Status.Equals(status)
                         select Visita;
 
