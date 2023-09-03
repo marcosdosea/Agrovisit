@@ -12,6 +12,7 @@ namespace AgroVisitWeb.Models
         [StringLength(50)]
         public string Nome { get; set; } = null!;
 
+        [Display(Name = "Valor")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         public float Valor { get; set; }
 
@@ -37,7 +38,6 @@ namespace AgroVisitWeb.Models
         public byte[]? Anexo { get; set; }
 
         [Display(Name = "Status")]
-        [StringLength(2)]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         public string Status { get; set; } = null!;
 
