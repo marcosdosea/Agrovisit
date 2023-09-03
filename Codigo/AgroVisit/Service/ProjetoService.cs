@@ -49,21 +49,26 @@ namespace Service
         /// <summary>
         /// Obter dados de um projeto
         /// </summary>
-        /// <param name="id">id</param>
+        /// <param name="id"></param>
+        /// <returns> Dados de um projeto </returns>
         public Projeto Get(int id)
         {
             return _context.Projetos.Find(id);
         }
         /// <summary>
-        /// Obter dados de todos os projetos
+        /// Obter projetos pelo nome
         /// </summary>
-        /// <returns></returns>
-        /// 
-        public IEnumerable<Projeto> GetByNome(string nome)
+        /// <param name="nome"></param>
+        /// <returns> Projetos pelo nome </returns>
+        public IEnumerable<ProjetoDTO> GetByNome(string nome)
         {
-            return _context.Projetos.Where(
+            return (IEnumerable<ProjetoDTO>)_context.Projetos.Where(
                 projeto => projeto.Nome.StartsWith(nome)).AsNoTracking();
         }
+        /// <summary>
+        /// Obter todos os projetos
+        /// </summary>
+        /// <returns> Todos os projetos </returns>
         public IEnumerable<Projeto> GetAll()
         {
             return _context.Projetos.AsNoTracking();
@@ -72,11 +77,11 @@ namespace Service
         /// Obter projetos pela data
         /// </summary>
         /// <param name="data"></param>
-        /// <returns> projeto </returns>
+        /// <returns> Projetos ordenados pela data prevista </returns>
         public IEnumerable<ProjetoDTO> GetByData(DateTime data)
         {
             var query = from projeto in _context.Projetos
-                        where projeto.DataPrevista == data
+                        where projeto.DataPrevista.Equals(data)
                         orderby projeto.DataPrevista
                         select projeto;
             return (IEnumerable<ProjetoDTO>)query.AsNoTracking();
@@ -85,21 +90,27 @@ namespace Service
         /// Obter projetos pelo status
         /// </summary>
         /// <param name="status"></param>
-        /// <returns> projeto </returns>
+        /// <returns> Projeto de acordo com seu status </returns>
         public IEnumerable<ProjetoDTO> GetByStatus(string status)
         {
             return (IEnumerable<ProjetoDTO>)_context.Projetos.Where(
                projeto => projeto.Status.StartsWith(status)).AsNoTracking();
         }
-        
-        public IEnumerable<Intervencao> GetAllIntervencaos()
+        /// <summary>
+        /// Obter as intervenções de um projeto
+        /// </summary>
+        /// <returns> As intervenções de um projeto </returns>
+        public IEnumerable<IntervencaoDTO> GetAllIntervencaos()
         {
-            return _context.Intervencaos;
+            return (IEnumerable<IntervencaoDTO>)_context.Intervencaos;
         }
-
-        public IEnumerable<Conta> GetAllConta()
+        /// <summary>
+        /// Obter as contas de um projeto
+        /// </summary>
+        /// <returns> As contas de um projeto </returns>
+        public IEnumerable<ContaDTO> GetAllConta()
         {
-            return _context.Conta;
+            return (IEnumerable<ContaDTO>)_context.Conta;
         }
     }
 }
