@@ -8,7 +8,7 @@ namespace AgroVisitWeb.Mappers
     {
         public VisitaProfile() 
         {
-            CreateMap<VisitaModel, Visita>().ReverseMap();
+            CreateMap<VisitaViewModel, Visita>().ReverseMap();
         }
     }
 }

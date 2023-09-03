@@ -22,7 +22,7 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Index()
         {
             var listaVisitas = _visitaService.GetAll();
-            var listaVisitasModel = _mapper.Map<List<VisitaModel>>(listaVisitas);
+            var listaVisitasModel = _mapper.Map<List<VisitaViewModel>>(listaVisitas);
             return View(listaVisitasModel);
         }
 
@@ -30,7 +30,7 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Details(int id)
         {
             Visita visita = _visitaService.Get(id);
-            VisitaModel visitaModel = _mapper.Map<VisitaModel>(visita);
+            VisitaViewModel visitaModel = _mapper.Map<VisitaViewModel>(visita);
             return View(visitaModel);
         }
 
@@ -43,7 +43,7 @@ namespace AgroVisitWeb.Controllers
         // POST: VisitaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(VisitaModel visitaModel)
+        public ActionResult Create(VisitaViewModel visitaModel)
         {
             if (ModelState.IsValid)
             {
@@ -57,14 +57,14 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Edit(int id)
         {
             Visita visita = _visitaService.Get(id);
-            VisitaModel visitaModel = _mapper.Map<VisitaModel>(visita);
+            VisitaViewModel visitaModel = _mapper.Map<VisitaViewModel>(visita);
             return View(visitaModel);
         }
 
         // POST: VisitaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, VisitaModel visitaModel)
+        public ActionResult Edit(int id, VisitaViewModel visitaModel)
         {
             if (ModelState.IsValid)
             {
@@ -78,14 +78,14 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Delete(int id)
         {
             Visita visita = _visitaService.Get(id);
-            VisitaModel visitaModel = _mapper.Map<VisitaModel>(visita);
+            VisitaViewModel visitaModel = _mapper.Map<VisitaViewModel>(visita);
             return View(visitaModel);
         }
 
         // POST: VisitaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, VisitaModel visitaModel)
+        public ActionResult Delete(int id, VisitaViewModel visitaModel)
         {
             _visitaService.Delete(id);
             return RedirectToAction(nameof(Index));           

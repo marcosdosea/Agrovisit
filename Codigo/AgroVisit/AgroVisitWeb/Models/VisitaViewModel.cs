@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AgroVisitWeb.Models
 {
-    public class VisitaModel
+    public class VisitaViewModel
     {
         public uint Id { get; set; }
 
@@ -14,9 +14,11 @@ namespace AgroVisitWeb.Models
         [DataType(DataType.Date, ErrorMessage = "É necessário escolher uma data válida.")]
         [Required(ErrorMessage = "Campo obrigatório")]        
         public DateTime DataHora { get; set; }
-
+	
+		[Required(ErrorMessage = "Campo obrigatório")]
         public string Status { get; set; } = null!;
 
+		[Required(ErrorMessage = "Campo obrigatório")]
         public uint IdPropriedade { get; set; }
     }
 }
