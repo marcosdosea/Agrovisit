@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {}
+    "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {
+    "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
+        "projectUniqueName": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
         "projectName": "AgroVisitWeb",
-        "projectPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
-        "packagesPath": "C:\\Users\\thaly\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\obj\\",
+        "projectPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
+        "packagesPath": "C:\\Users\\Faculdade\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\thaly\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Faculdade\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj"
+              "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj"
               },
-              "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
-                "projectPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj"
+              "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
+                "projectPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj"
               }
             }
           }
@@ -47,6 +47,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -77,17 +81,17 @@
         }
       }
     },
-    "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
+    "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\thaly\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\obj\\",
+        "projectPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\Faculdade\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\thaly\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Faculdade\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -154,17 +158,17 @@
         }
       }
     },
-    "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
+    "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
+        "projectUniqueName": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\thaly\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\obj\\",
+        "projectPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\Faculdade\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\thaly\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Faculdade\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -178,8 +182,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj"
+              "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj"
               }
             }
           }
