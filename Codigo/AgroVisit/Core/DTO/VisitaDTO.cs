@@ -1,19 +1,15 @@
-﻿namespace Core.DTO
+﻿using System.ComponentModel;
+
+namespace Core.DTO
 {
     public partial class VisitaDTO
     {
         public uint Id { get; set; }
-
+        [DisplayName("Observações:")]
         public string? Observacoes { get; set; }
-
+        [DisplayName("Data e horário:")]
         public DateTime DataHora { get; set; }
 
         public string Status { get; set; } = null!;
-
-        public uint IdPropriedade { get; set; }
-
-        public virtual ICollection<ContaDTO> Conta { get; set; } = new List<ContaDTO>();
-
-        public virtual Propriedade IdPropriedadeNavigation { get; set; } = null!;
     }
 }
