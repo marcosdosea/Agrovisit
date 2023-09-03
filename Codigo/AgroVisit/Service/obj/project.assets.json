@@ -2634,19 +2634,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thaly\\.nuget\\packages\\": {}
+    "C:\\Users\\Faculdade\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
+      "projectUniqueName": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
       "projectName": "Service",
-      "projectPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
-      "packagesPath": "C:\\Users\\thaly\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\obj\\",
+      "projectPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
+      "packagesPath": "C:\\Users\\Faculdade\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\thaly\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Faculdade\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2660,8 +2660,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
-              "projectPath": "C:\\Users\\thaly\\OneDrive\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj"
+            "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
+              "projectPath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj"
             }
           }
         }

@@ -1,13 +1,14 @@
 ﻿using Core;
 using Core.DTO;
 using Core.Service;
+using Microsoft.EntityFrameworkCore;
 
 namespace Service
 {
     /// <summary>
     /// Manter dados dos clientes no banco de dados
     /// </summary>
-    internal class ClienteService : IClienteService
+    public class ClienteService : IClienteService
     {
         private readonly AgroVisitContext _context;
 
@@ -19,7 +20,7 @@ namespace Service
         /// Insere cliente na base de dados
         /// </summary>
         /// <param name="cliente"></param>
-        /// <returns>Id cliente</returns>
+        /// <returns>Id do cliente cliente criado</returns>
         public uint Create(Cliente cliente)
         {
             _context.Add(cliente);
@@ -61,21 +62,21 @@ namespace Service
         /// <summary>
         /// Obtém todos os clientes da base de dados
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Todos os clientes</returns>
         public IEnumerable<Cliente> GetAll()
         {
-            return _context.Clientes;
+            return _context.Clientes.AsNoTracking();
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="nome"></param>
-        /// <returns>Cliente</returns>
+        /// <returns>Clientes retornados pelo nome</returns>
         public IEnumerable<ClienteDTO> GetByNome(string nome)
         {
             return (IEnumerable<ClienteDTO>)_context.Clientes.Where(
-                cliente => cliente.Nome.StartsWith(nome));
+                cliente => cliente.Nome.StartsWith(nome)).AsNoTracking();
         }
     }
 }

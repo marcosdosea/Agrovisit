@@ -35,7 +35,7 @@ public partial class AgroVisitContext : DbContext
 
     public virtual DbSet<Solo> Solos { get; set; }
 
-    public virtual DbSet<Visita> Visita { get; set; }
+    public virtual DbSet<Visita> Visitas { get; set; }
 
    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -459,7 +459,7 @@ public partial class AgroVisitContext : DbContext
                 .HasColumnType("enum('A','C')")
                 .HasColumnName("status");
 
-            entity.HasOne(d => d.IdPropriedadeNavigation).WithMany(p => p.Visita)
+            entity.HasOne(d => d.IdPropriedadeNavigation).WithMany(p => p.Visitas)
                 .HasForeignKey(d => d.IdPropriedade)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkVisitaPropriedade");
