@@ -1,14 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "42FSit/LrUjyJht+CDfoi2G9ASzVeCYdzMWkdn2bQXT3BB8UvGy6tKGEm/epuQvDS+mEZque747/nYrwF57U1Q==",
+  "dgSpecHash": "gAUvr2Nd0noMMvbIwPkEsxVmBDvuNUPLrB7wiWwxe+6UZljj7ELFirpGDV1V2vbPe+zrK/iyN0rMl0NEr5jYTA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Faculdade\\OneDrive - ufs.br\\Área de Trabalho\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Faculdade\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Faculdade\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Faculdade\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\Faculdade\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Faculdade\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",
     "C:\\Users\\Faculdade\\.nuget\\packages\\k4os.compression.lz4.streams\\1.3.5\\k4os.compression.lz4.streams.1.3.5.nupkg.sha512",
     "C:\\Users\\Faculdade\\.nuget\\packages\\k4os.hash.xxhash\\1.0.8\\k4os.hash.xxhash.1.0.8.nupkg.sha512",
+    "C:\\Users\\Faculdade\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Faculdade\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.10\\microsoft.entityframeworkcore.7.0.10.nupkg.sha512",
     "C:\\Users\\Faculdade\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.10\\microsoft.entityframeworkcore.abstractions.7.0.10.nupkg.sha512",
     "C:\\Users\\Faculdade\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.10\\microsoft.entityframeworkcore.analyzers.7.0.10.nupkg.sha512",
