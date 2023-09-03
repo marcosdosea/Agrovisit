@@ -49,7 +49,7 @@ namespace Service
         /// Obtém visita da base de dados
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Cliente</returns>
+        /// <returns>Visita</returns>
         public Visita Get(int id)
         {
             return _context.Visitas.Find(id);
