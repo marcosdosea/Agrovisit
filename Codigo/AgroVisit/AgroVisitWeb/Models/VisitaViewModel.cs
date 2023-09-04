@@ -11,7 +11,7 @@ namespace AgroVisitWeb.Models
         public string? Observacoes { get; set; }
 
         [Display(Name = "Data e horário:")]
-        [DataType(DataType.Date, ErrorMessage = "É necessário escolher uma data válida.")]
+        [DataType(DataType.DateTime, ErrorMessage = "É necessário escolher uma data válida.")]
         [Required(ErrorMessage = "Campo obrigatório")]        
         public DateTime DataHora { get; set; }
 	
