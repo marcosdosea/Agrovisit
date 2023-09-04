@@ -14,10 +14,10 @@ namespace Core.Service
         public void Delete(int id);
         public Projeto Get(int id);
         public IEnumerable<Projeto> GetAll();
-        public IEnumerable<Projeto> GetByNome(string nome);
+        public IEnumerable<ProjetoDTO> GetByNome(string nome);
         public IEnumerable<ProjetoDTO> GetByData(DateTime data);
         public IEnumerable<ProjetoDTO> GetByStatus(string status);
-        public IEnumerable<Intervencao> GetAllIntervencaos();
-        public IEnumerable<Conta> GetAllConta();
+        public IEnumerable<IntervencaoDTO> GetAllIntervencoes();
+        public IEnumerable<ContaDTO> GetAllConta();
     }
 }

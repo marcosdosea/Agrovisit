@@ -29,5 +29,5 @@ public partial class Projeto
 
     public virtual Propriedade IdPropriedadeNavigation { get; set; } = null!;
 
-    public virtual ICollection<Intervencao> Intervencaos { get; set; } = new List<Intervencao>();
+    public virtual ICollection<Intervencao> Intervencoes { get; set; } = new List<Intervencao>();
 }

@@ -20,11 +20,5 @@
 
         public uint IdPropriedade { get; set; }
 
-        public virtual ICollection<ContaDTO> Conta { get; set; } = new List<ContaDTO>();
-
-        public virtual PropriedadeDTO IdPropriedadeNavigation { get; set; } = null!;
-
-        public virtual ICollection<Intervencao> Intervencaos { get; set; } = new List<Intervencao>();
     }
-
 }
