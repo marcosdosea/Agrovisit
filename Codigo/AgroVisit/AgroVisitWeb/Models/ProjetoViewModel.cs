@@ -1,10 +1,12 @@
 ﻿using Core;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace AgroVisitWeb.Models
 {
     public class ProjetoViewModel
     {
+        [Key]
         public uint Id { get; set; }
 
         [Display(Name = "Nome do projeto")]
@@ -45,5 +47,6 @@ namespace AgroVisitWeb.Models
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         public uint IdPropriedade { get; set; }
 
+        public SelectList? ListaIntervencoes { get; set; }
     }
 }

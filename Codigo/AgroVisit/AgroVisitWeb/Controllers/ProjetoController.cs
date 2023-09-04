@@ -2,18 +2,23 @@
 using Core;
 using Core.DTO;
 using Core.Service;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AgroVisitWeb.Controllers
 {
     public class ProjetoController : Controller
     {
         private readonly IProjetoService _projetoService;
+        private readonly IIntervencaoService _intervencaoService;
+    
 
-        public ProjetoController (IProjetoService projetoService) 
+        public ProjetoController(IProjetoService projetoService, IIntervencaoService intervencaoService) 
         {
             _projetoService = projetoService;
+            _intervencaoService = intervencaoService;
         }
         // GET: ProjetoController
         public ActionResult Index()
@@ -32,7 +37,13 @@ namespace AgroVisitWeb.Controllers
         // GET: ProjetoController/Create
         public ActionResult Create()
         {
-            return View();
+            ProjetoViewModel projetoModel = new ProjetoViewModel();
+
+            IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
+            
+            projetoModel.ListaIntervencoes = new SelectList(listaIntervencoes, "Id", "Nome", null);
+            
+            return View(projetoModel);
         }
 
         // POST: ProjetoController/Create
@@ -53,8 +64,13 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Edit(int id)
         {
             Projeto projeto = _projetoService.Get(id);
-            ProjetoViewModel projetoViewModel = new ProjetoViewModel();
-            return View(projetoViewModel);
+            ProjetoViewModel projetoModel = new ProjetoViewModel();
+
+            IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
+
+            projetoModel.ListaIntervencoes = new SelectList(listaIntervencoes, "Id", "Nome", null);
+
+            return View(projetoModel);
         }
 
         // POST: ProjetoController/Edit/5

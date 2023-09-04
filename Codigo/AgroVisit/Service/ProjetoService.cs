@@ -100,9 +100,9 @@ namespace Service
         /// Obter as intervenções de um projeto
         /// </summary>
         /// <returns> As intervenções de um projeto </returns>
-        public IEnumerable<IntervencaoDTO> GetAllIntervencaos()
+        public IEnumerable<IntervencaoDTO> GetAllIntervencoes()
         {
-            return (IEnumerable<IntervencaoDTO>)_context.Intervencaos;
+            return (IEnumerable<IntervencaoDTO>)_context.Intervencoes;
         }
         /// <summary>
         /// Obter as contas de um projeto

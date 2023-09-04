@@ -25,7 +25,7 @@ public partial class AgroVisitContext : DbContext
 
     public virtual DbSet<Engenheiroagronomo> Engenheiroagronomos { get; set; }
 
-    public virtual DbSet<Intervencao> Intervencaos { get; set; }
+    public virtual DbSet<Intervencao> Intervencoes { get; set; }
 
     public virtual DbSet<Plano> Planos { get; set; }
 
@@ -245,7 +245,7 @@ public partial class AgroVisitContext : DbContext
                 .HasMaxLength(150)
                 .HasColumnName("tipoProduto");
 
-            entity.HasOne(d => d.IdProjetoNavigation).WithMany(p => p.Intervencaos)
+            entity.HasOne(d => d.IdProjetoNavigation).WithMany(p => p.Intervencoes)
                 .HasForeignKey(d => d.IdProjeto)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkIntervencaoProjeto1");
