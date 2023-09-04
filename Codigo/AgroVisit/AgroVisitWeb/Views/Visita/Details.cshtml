@@ -7,7 +7,6 @@
 <h1>Detalhes de visita</h1>
 
 <div>
-    <h4>VisitaViewModel</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -43,6 +42,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     <a asp-action="Index">Voltar</a>
 </div>
