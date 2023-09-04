@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AgroVisitWeb.Controllers
+namespace AgroVisitWeb.Models
 {
     public class ClienteViewModel
     {
-        [Display(Name = "ID Cliente")]
+
+        [Key]
         public uint Id { get; set; }
 
         [Display(Name = "CPF")]
@@ -19,7 +20,7 @@ namespace AgroVisitWeb.Controllers
 
         [Display(Name = "Data de nascimento")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DataNascimento { get; set; }
 
         [Display(Name = "Cidade")]

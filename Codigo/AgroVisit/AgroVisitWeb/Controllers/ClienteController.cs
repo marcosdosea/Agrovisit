@@ -1,4 +1,5 @@
 ﻿using AgroVisitWeb.Models;
+using AutoMapper;
 using Core;
 using Core.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -8,27 +9,28 @@ namespace AgroVisitWeb.Controllers
     public class ClienteController : Controller
     {
         private readonly IClienteService _clienteService;
-        // criar mappers implementation 
+        private readonly IMapper _mapper;
 
-        public ClienteController(IClienteService clienteService)
+        public ClienteController(IClienteService clienteService, IMapper mapper)
         {
             _clienteService = clienteService;
+            _mapper = mapper;
         }
 
         // GET: ClienteController
         public ActionResult Index()
         {
-            // TODO mappers implementation
             var listaCliente = _clienteService.GetAll();
-            return View(listaCliente);
+            var listaClienteModel = _mapper.Map<List<ClienteViewModel>>(listaCliente);
+            return View(listaClienteModel);
         }
 
         // GET: ClienteController/Details/5
         public ActionResult Details(int id)
         {
-            // TODO mappers implementation
             Cliente cliente = _clienteService.Get(id);
-            return View(cliente);
+            ClienteViewModel clienteModel = _mapper.Map<ClienteViewModel>(cliente);
+            return View(clienteModel);
         }
 
         // GET: ClienteController/Create
@@ -42,10 +44,9 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ClienteViewModel clienteModel)
         {
-            // TODO mappers implementation
             if (ModelState.IsValid)
             {
-                var cliente = new Cliente();
+                var cliente = _mapper.Map<Cliente>(clienteModel);
                 _clienteService.Create(cliente);
             }
             return RedirectToAction(nameof(Index));
@@ -54,21 +55,19 @@ namespace AgroVisitWeb.Controllers
         // GET: ClienteController/Edit/5
         public ActionResult Edit(int id)
         {
-            // TODO mappers implementation
             Cliente cliente = _clienteService.Get(id);
-            ClienteViewModel clienteViewModel = new ClienteViewModel();
-            return View(clienteViewModel);
+            ClienteViewModel clienteModel = _mapper.Map<ClienteViewModel>(cliente);
+            return View(clienteModel);
         }
 
         // POST: ClienteController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, ClienteViewModel clienteModel)
         {
-            // TODO mappers implementation
             if (ModelState.IsValid)
             {
-                var cliente = new Cliente();
+                var cliente = _mapper.Map<Cliente>(clienteModel);
                 _clienteService.Edit(cliente);
             }
             return RedirectToAction(nameof(Index));
@@ -79,14 +78,14 @@ namespace AgroVisitWeb.Controllers
         {
             // TODO mappers implementation
             Cliente cliente = _clienteService.Get(id);
-            ClienteViewModel clienteViewModel = new ClienteViewModel();
-            return View(clienteViewModel);
+            ClienteViewModel clienteModel = _mapper.Map<ClienteViewModel>(cliente);
+            return View(clienteModel);
         }
 
         // POST: ClienteController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, ClienteViewModel clienteViewModel)
         {
             _clienteService.Delete(id);
             return RedirectToAction(nameof(Index));
