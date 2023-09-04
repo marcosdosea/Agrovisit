@@ -30,7 +30,7 @@ namespace AgroVisitWeb.Controllers
         {
             Cliente cliente = _clienteService.Get(id);
             ClienteViewModel clienteModel = _mapper.Map<ClienteViewModel>(cliente);
-            return View(cliente);
+            return View(clienteModel);
         }
 
         // GET: ClienteController/Create
