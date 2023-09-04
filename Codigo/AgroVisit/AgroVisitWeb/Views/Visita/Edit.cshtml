@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdPropriedade" class="control-label"></label>
-                <input asp-for="IdPropriedade" class="form-control" />
+                <select asp-for="IdPropriedade" asp-items="@Model.ListaPropriedades" class="form-control"></select>
                 <span asp-validation-for="IdPropriedade" class="text-danger"></span>
             </div>
             <div class="form-group">

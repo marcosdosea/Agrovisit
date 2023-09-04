@@ -1,12 +1,15 @@
 ﻿using Core;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace AgroVisitWeb.Models
 {
     public class VisitaViewModel
     {
+        [Key]
         public uint Id { get; set; }
 
+        [Display(Name = "Observações:")]
         [StringLength(200)]
         public string? Observacoes { get; set; }
 
@@ -18,7 +21,10 @@ namespace AgroVisitWeb.Models
 		[Required(ErrorMessage = "Campo obrigatório")]
         public string Status { get; set; } = null!;
 
+        [Display(Name = "Propriedade:")]
 		[Required(ErrorMessage = "Campo obrigatório")]
         public uint IdPropriedade { get; set; }
+        [Display(Name = "Propriedade")]
+        public SelectList? ListaPropriedades { get; set; }
     }
 }
