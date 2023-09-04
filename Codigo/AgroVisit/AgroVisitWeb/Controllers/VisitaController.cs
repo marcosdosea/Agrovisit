@@ -2,19 +2,23 @@
 using AutoMapper;
 using Core;
 using Core.Service;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AgroVisitWeb.Controllers
 {
     public class VisitaController : Controller
     {
+        private readonly IPropriedadeService _propriedadeService;
         private readonly IVisitaService _visitaService;
         private readonly IMapper _mapper;
 
-        public VisitaController(IVisitaService visitaService, IMapper mapper)
+        public VisitaController(IVisitaService visitaService, IPropriedadeService propriedadeService, IMapper mapper)
         {
             _visitaService = visitaService;
+            _propriedadeService = propriedadeService;
             _mapper = mapper;
         }
 
@@ -37,7 +41,11 @@ namespace AgroVisitWeb.Controllers
         // GET: VisitaController/Create
         public ActionResult Create()
         {
-            return View();
+            VisitaViewModel visitaModel = new VisitaViewModel();
+            IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
+
+            visitaModel.ListaPropriedades = new SelectList(listaPropriedades, "IdPropriedade", "Nome", null);
+            return View(visitaModel);
         }
 
         // POST: VisitaController/Create
@@ -58,6 +66,9 @@ namespace AgroVisitWeb.Controllers
         {
             Visita visita = _visitaService.Get(id);
             VisitaViewModel visitaModel = _mapper.Map<VisitaViewModel>(visita);
+            IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
+            visitaModel.ListaPropriedades = new SelectList(listaPropriedades, "IdPropriedade", "Nome",
+                listaPropriedades.FirstOrDefault(e => e.Id.Equals(visita.IdPropriedade)));
             return View(visitaModel);
         }
 
