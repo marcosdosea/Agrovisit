@@ -7,7 +7,7 @@ namespace AgroVisitWeb
 {
     public class Program
     {
-        public static void Main(String[] args)
+        public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
