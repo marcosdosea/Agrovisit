@@ -7,18 +7,19 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
+
 namespace AgroVisitWeb.Controllers
 {
     public class ProjetoController : Controller
     {
         private readonly IProjetoService _projetoService;
         private readonly IIntervencaoService _intervencaoService;
-    
 
         public ProjetoController(IProjetoService projetoService, IIntervencaoService intervencaoService) 
         {
             _projetoService = projetoService;
             _intervencaoService = intervencaoService;
+            
         }
         // GET: ProjetoController
         public ActionResult Index()
@@ -31,17 +32,19 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Details(int id)
         {
             Projeto projeto = _projetoService.Get(id);
-            return View(projeto);
+            ProjetoViewModel projetoModel = new ProjetoViewModel();
+
+            IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
+            projetoModel.ListaIntervencoes = new SelectList(listaIntervencoes, "Id", "Nome", 
+                listaIntervencoes.FirstOrDefault(e => e.Id.Equals(projeto.Id)));
+            
+            return View(projetoModel);
         }
 
         // GET: ProjetoController/Create
         public ActionResult Create()
         {
             ProjetoViewModel projetoModel = new ProjetoViewModel();
-
-            IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
-            
-            projetoModel.ListaIntervencoes = new SelectList(listaIntervencoes, "Id", "Nome", null);
             
             return View(projetoModel);
         }
@@ -66,9 +69,6 @@ namespace AgroVisitWeb.Controllers
             Projeto projeto = _projetoService.Get(id);
             ProjetoViewModel projetoModel = new ProjetoViewModel();
 
-            IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
-
-            projetoModel.ListaIntervencoes = new SelectList(listaIntervencoes, "Id", "Nome", null);
 
             return View(projetoModel);
         }
@@ -90,8 +90,8 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Delete(int id)
         {
             Projeto projeto = _projetoService.Get(id);
-            ProjetoViewModel projetoViewModel = new ProjetoViewModel();
-            return View(projetoViewModel);
+            ProjetoViewModel projetoModel = new ProjetoViewModel();
+            return View(projetoModel);
         }
 
         // POST: ProjetoController/Delete/5

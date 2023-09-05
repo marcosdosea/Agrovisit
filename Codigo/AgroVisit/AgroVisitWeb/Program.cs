@@ -13,6 +13,7 @@ namespace AgroVisitWeb
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddTransient<IProjetoService, ProjetoService>();
 
             builder.Services.AddTransient<IClienteService, ClienteService>();
             builder.Services.AddTransient<IPropriedadeService, PropriedadeService>();
