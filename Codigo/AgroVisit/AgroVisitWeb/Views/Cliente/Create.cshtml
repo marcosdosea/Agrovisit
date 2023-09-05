@@ -1,6 +1,11 @@
 ﻿@model AgroVisitWeb.Models.ClienteViewModel
 
-<h4>Adicionar Cliente</h4>
+@{
+    ViewData["Title"] = "Cadastrar Clientes";
+}
+
+<h1>Cadastrar Cliente</h1>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -69,5 +74,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/cep.js"></script>
 }
