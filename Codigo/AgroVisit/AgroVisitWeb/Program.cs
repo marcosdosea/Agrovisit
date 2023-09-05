@@ -7,15 +7,17 @@ namespace AgroVisitWeb
 {
     public class Program
     {
-        public static void Main(String[] args)
+        public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddTransient<IClienteService, ClienteService>();
             builder.Services.AddTransient<IPropriedadeService, PropriedadeService>();
             builder.Services.AddTransient<IVisitaService, VisitaService>();
+
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddDbContext<AgroVisitContext>(

@@ -102,7 +102,7 @@ public partial class AgroVisitContext : DbContext
                 .HasMaxLength(20)
                 .HasColumnName("cidade");
             entity.Property(e => e.Cpf)
-                .HasMaxLength(11)
+                .HasMaxLength(15)
                 .HasColumnName("CPF");
             entity.Property(e => e.DataNascimento)
                 .HasColumnType("date")

@@ -12,7 +12,8 @@ namespace Service
     {
         private readonly AgroVisitContext _context;
 
-        public ClienteService(AgroVisitContext context) {
+        public ClienteService(AgroVisitContext context)
+        {
             _context = context;
         }
 
