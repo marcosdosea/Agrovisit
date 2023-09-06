@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Service;
 using System.ComponentModel;
 
 namespace AgroVisitWeb.Controllers
@@ -15,12 +16,14 @@ namespace AgroVisitWeb.Controllers
     {
         private readonly IProjetoService _projetoService;
         private readonly IIntervencaoService _intervencaoService;
+        private readonly IPropriedadeService _propriedadeService;
         private readonly IMapper _mapper;
 
-        public ProjetoController(IProjetoService projetoService, IIntervencaoService intervencaoService, IMapper mapper)
+        public ProjetoController(IProjetoService projetoService, IIntervencaoService intervencaoService, IPropriedadeService propriedadeService, IMapper mapper)
         {
             _projetoService = projetoService;
             _intervencaoService = intervencaoService;
+            _propriedadeService = propriedadeService;
             _mapper = mapper;
         }
         // GET: ProjetoController
@@ -48,6 +51,9 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Create()
         {
             ProjetoViewModel projetoModel = new ProjetoViewModel();
+            IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
+
+            projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "IdPropriedade", "Nome", null);
 
             return View(projetoModel);
         }
