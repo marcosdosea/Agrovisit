@@ -48,5 +48,6 @@ namespace AgroVisitWeb.Models
         public uint IdPropriedade { get; set; }
 
         public SelectList? ListaIntervencoes { get; set; }
+        public SelectList? ListaPropriedades { get; set; }
     }
 }
