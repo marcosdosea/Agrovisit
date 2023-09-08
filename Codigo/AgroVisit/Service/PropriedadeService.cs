@@ -1,44 +1,120 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core;
+﻿using Core;
 using Core.DTO;
 using Core.Service;
+using Microsoft.EntityFrameworkCore;
 
 namespace Service
 {
+    /// <summary>
+    /// Manter dados da propriedade no banco de dados
+    /// </summary>
     public class PropriedadeService : IPropriedadeService
     {
-        public int Create(Propriedade propriedade)
+        private readonly AgroVisitContext _context;
+
+        public PropriedadeService(AgroVisitContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
+        /// <summary>
+        /// Insere Propriedade no banco de dados
+        /// </summary>
+        /// <param name="propriedade"></param>
+        /// <returns> Id da propriedade </returns>
+        public uint Create(Propriedade propriedade)
+        {
+            _context.Add(propriedade);
+            _context.SaveChanges();
+            return propriedade.Id;
+        }
+
+        /// <summary>
+        /// Remove propriedade do banco de dados
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var _propriedade = _context.Propriedades.Find(id);
+            _context.Remove(_propriedade);
+            _context.SaveChanges();
         }
 
+        /// <summary>
+        /// Altera propriedade do banco de dados
+        /// </summary>
+        /// <param name="propriedade"></param>
         public void Edit(Propriedade propriedade)
         {
-            throw new NotImplementedException();
+            _context.Update(propriedade);
+            _context.SaveChanges();
         }
 
+        /// <summary>
+        /// Obtém propriedade do banco de dado
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Propriedade </returns>
         public Propriedade Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Propriedades.Find(id);
         }
 
+        /// <summary>
+        /// Obtém todas as propriedades do banco de dados
+        /// </summary>
+        /// <returns> Todas as propriedades </returns>
         public IEnumerable<Propriedade> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Propriedades.AsNoTracking();
         }
 
-        public IEnumerable<PropriedadeDTO> GetByNome(string nome)
+        /// <summary>
+        /// Obtém todas os projetos de uma propriedade
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Projetos da propriedade </returns>
+        public IEnumerable<ProjetoDTO> GetAllProjetosByPropriedade(int idPropriedade)
         {
-            throw new NotImplementedException();
+            return (IEnumerable<ProjetoDTO>)_context.Projetos.Find(idPropriedade);
+        }
+
+        /// <summary>
+        /// Obtém todos as visitas de uma propriedade
+        /// </summary>
+        /// <param name="idPropriedade"></param>
+        /// <returns> Visitas da propriedade </returns>
+        public IEnumerable<VisitaDTO> GetAllVisitaByPropriedade(int idPropriedade)
+        {
+            return (IEnumerable<VisitaDTO>)_context.Visitas.Find(idPropriedade);
+        }
+
+        /// <summary>
+        /// Obtém propriedades de um cliente
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <returns> Propriedades do cliente </returns>
+        public IEnumerable<Propriedade> GetByCliente(int idCliente)
+        {
+            var query = from Propriedade in _context.Propriedades
+                        where Propriedade.IdCliente.Equals(idCliente)
+                        select Propriedade;
+
+            return query.AsNoTracking();
+        }
+
+        /// <summary>
+        /// Obtém propriedade por nome
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <returns> Propriedades </returns>
+        public IEnumerable<Propriedade> GetByNome(string nome)
+        {
+            var query = from Propriedade in _context.Propriedades
+                        where Propriedade.Nome.Equals(nome)
+                        select Propriedade;
+
+            return query.AsNoTracking();
         }
     }
 }
