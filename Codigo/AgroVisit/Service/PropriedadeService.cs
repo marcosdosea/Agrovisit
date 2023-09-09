@@ -74,10 +74,10 @@ namespace Service
         /// </summary>
         /// <param name="cliente"></param>
         /// <returns> Propriedades do cliente </returns>
-        public IEnumerable<Propriedade> GetByCliente(int idCliente)
+        public IEnumerable<Propriedade> GetByCliente(string cliente)
         {
             var query = from Propriedade in _context.Propriedades
-                        where Propriedade.IdCliente.Equals(idCliente)
+                        where Propriedade.IdClienteNavigation.Nome.StartsWith(cliente)
                         select Propriedade;
 
             return query.AsNoTracking();
