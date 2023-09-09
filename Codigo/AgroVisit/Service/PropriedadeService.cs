@@ -70,26 +70,6 @@ namespace Service
         }
 
         /// <summary>
-        /// Obtém todas os projetos de uma propriedade
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns> Projetos da propriedade </returns>
-        public IEnumerable<ProjetoDTO> GetAllProjetosByPropriedade(int idPropriedade)
-        {
-            return (IEnumerable<ProjetoDTO>)_context.Projetos.Find(idPropriedade);
-        }
-
-        /// <summary>
-        /// Obtém todos as visitas de uma propriedade
-        /// </summary>
-        /// <param name="idPropriedade"></param>
-        /// <returns> Visitas da propriedade </returns>
-        public IEnumerable<VisitaDTO> GetAllVisitaByPropriedade(int idPropriedade)
-        {
-            return (IEnumerable<VisitaDTO>)_context.Visitas.Find(idPropriedade);
-        }
-
-        /// <summary>
         /// Obtém propriedades de um cliente
         /// </summary>
         /// <param name="cliente"></param>

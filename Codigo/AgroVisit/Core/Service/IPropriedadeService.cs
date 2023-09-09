@@ -11,7 +11,5 @@ namespace Core.Service
         public IEnumerable<Propriedade> GetAll();
         public IEnumerable<Propriedade> GetByCliente(int idCliente);
         public IEnumerable<Propriedade> GetByNome(string nome);
-        public IEnumerable<ProjetoDTO> GetAllProjetosByPropriedade(int idPropriedade);
-        public IEnumerable<VisitaDTO> GetAllVisitaByPropriedade(int idPropriedade);
     }
 }
