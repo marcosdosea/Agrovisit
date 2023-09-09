@@ -77,8 +77,8 @@ namespace Service
         public IEnumerable<Propriedade> GetByCliente(string cliente)
         {
             var query = from Propriedade in _context.Propriedades
-                        where Propriedade.IdClienteNavigation.Nome.StartsWith(cliente)
-                        select Propriedade;
+                       where Propriedade.IdClienteNavigation.Nome.StartsWith(cliente)
+                       select Propriedade;
 
             return query.AsNoTracking();
         }
