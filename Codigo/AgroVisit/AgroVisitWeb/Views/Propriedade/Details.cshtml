@@ -180,6 +180,48 @@
     </dl>
 </div>
 <div>
+    @if (Model.ListaProjetos!=null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListaProjetos.First().Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListaProjetos.First().Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListaProjetos.First().Descricao)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListaProjetos.First().Valor)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListaProjetos)
+                {
+                    <tr>
+                        <th>
+                            @Html.DisplayFor(model => model.ListaProjetos.First().Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.ListaProjetos.First().Status)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.ListaProjetos.First().Descricao)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.ListaProjetos.First().Valor)
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+<div>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     <a asp-action="Index">Voltar</a>
 </div>

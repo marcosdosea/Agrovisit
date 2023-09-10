@@ -122,7 +122,7 @@ namespace Service
             var query = from propriedade in _context.Propriedades
                         join projeto in _context.Projetos on propriedade.Id equals projeto.IdPropriedade
                         select projeto;
-            return query.AsNoTracking();
+            return query.AsNoTracking().ToList();
         }
     }
 }
