@@ -4,6 +4,7 @@ using Core;
 using Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NuGet.Protocol;
 using Service;
 
@@ -12,12 +13,14 @@ namespace AgroVisitWeb.Controllers
     public class PropriedadeController : Controller
     {
         private readonly IPropriedadeService _propriedadeService;
+        private readonly IClienteService _clienteService;
         private readonly IProjetoService _projetoService;
         private readonly IVisitaService _visitaService;
         private readonly IMapper _mapper;
-        public PropriedadeController(IPropriedadeService propriedadeService, IProjetoService projetoService, IVisitaService visitaService, IMapper mapper)
+        public PropriedadeController(IPropriedadeService propriedadeService, IClienteService clienteService, IProjetoService projetoService, IVisitaService visitaService, IMapper mapper)
         {
             _propriedadeService = propriedadeService;
+            _clienteService = clienteService;
             _projetoService = projetoService;
             _visitaService = visitaService;
             _mapper = mapper;
@@ -36,8 +39,8 @@ namespace AgroVisitWeb.Controllers
         {
             Propriedade propriedade = _propriedadeService.Get(id);
             PropriedadeViewModel propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
-            propriedadeModel.listaProjetos = (List<Projeto>?)_projetoService.GetByPropriedade(id);
-            propriedadeModel.listaVisitas = (List<Visita>?)_visitaService.GetByPropriedade(id);
+            propriedadeModel.ListaProjetos = (List<Projeto>?)_projetoService.GetByPropriedade(id);
+            propriedadeModel.ListaVisitas = (List<Visita>?)_visitaService.GetByPropriedade(id);
 
             return View(propriedadeModel);
         }
@@ -46,7 +49,8 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Create()
         {
             PropriedadeViewModel propriedadeModel = new PropriedadeViewModel();
-
+            IEnumerable<Cliente> listaClientes = _clienteService.GetAll();
+            propriedadeModel.ListaClientes = new SelectList(listaClientes, "IdCliente", "Nome", null);
             return View(propriedadeModel);
         }
 

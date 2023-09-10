@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -62,7 +63,8 @@ public partial class PropriedadeViewModel
     public uint IdCliente { get; set; }
     [Display(Name = "Engenheiro agrônomo")]
     public uint IdEngenheiroAgronomo { get; set; }
-    public List<Projeto>? listaProjetos { get; set; }
+    public List<Projeto>? ListaProjetos { get; set; }
 
-    public List<Visita>? listaVisitas { get; set; }
+    public List<Visita>? ListaVisitas { get; set; }
+    public SelectList? ListaClientes { get; set; }
 }
