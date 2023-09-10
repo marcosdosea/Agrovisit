@@ -63,8 +63,8 @@ public partial class PropriedadeViewModel
     public uint IdCliente { get; set; }
     [Display(Name = "Engenheiro agrônomo")]
     public uint IdEngenheiroAgronomo { get; set; }
-    public List<Projeto>? ListaProjetos { get; set; }
+    public IEnumerable<Projeto>? ListaProjetos { get; set; }
 
-    public List<Visita>? ListaVisitas { get; set; }
+    public IEnumerable<Visita>? ListaVisitas { get; set; }
     public SelectList? ListaClientes { get; set; }
 }

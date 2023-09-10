@@ -63,8 +63,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="Georreferenciamento" class="control-label"></label>
-                <input asp-for="Georreferenciamento" class="form-control" />
-                <span asp-validation-for="Georreferenciamento" class="text-danger"></span>
+                <input type="file" name="fileUpload" id="fileUpload" />
+                <input type="submit" value="Enviar" />
+                <!-- input asp-for="Georreferenciamento" class="form-control" /-->
+                <!-- span asp-validation-for="Georreferenciamento" class="text-danger"></!span-->
             </div>
             <div class="form-group">
                 <label asp-for="MatriculaImovel" class="control-label"></label>
@@ -95,8 +97,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="HistoricoProducao" class="control-label"></label>
-                <input asp-for="HistoricoProducao" class="form-control" />
-                <span asp-validation-for="HistoricoProducao" class="text-danger"></span>
+                <input type="file" name="fileUpload" id="fileUpload" />
+                <input type="submit" value="Enviar" />
+                <!--input asp-for="HistoricoProducao" class="form-control" /-->
+                <!--span-- asp-validation-for="HistoricoProducao" class="text-danger"></!--span-->
             </div>
             <div class="form-group">
                 <label asp-for="AreaTotal" class="control-label"></label>
@@ -125,13 +129,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="HistoricoProdAgricola" class="control-label"></label>
+                <input type="file" name="fileUpload" id="fileUpload" />
+                <input type="submit" value="Enviar" />
                 <input asp-for="HistoricoProdAgricola" class="form-control" />
                 <span asp-validation-for="HistoricoProdAgricola" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HistoricoFitossanidade" class="control-label"></label>
-                <input asp-for="HistoricoFitossanidade" class="form-control" />
-                <span asp-validation-for="HistoricoFitossanidade" class="text-danger"></span>
+                <input type="file" name="fileUpload" id="fileUpload" />
+                <input type="submit" value="Enviar" />
+                <!--input asp-for="HistoricoFitossanidade" class="form-control" /-->
+                <!--span asp-validation-for="HistoricoFitossanidade" class="text-danger"></!--span-->
             </div>
             <div class="form-group">
                 <label asp-for="IdSolo" class="control-label"></label>
@@ -145,7 +153,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdCliente" class="control-label"></label>
-                <input asp-for="IdCliente" class="form-control" />
+                <select asp-for="IdCliente" asp-items="@Model.ListaClientes" class="form-control"></select>
                 <span asp-validation-for="IdCliente" class="text-danger"></span>
             </div>
             <div class="form-group">

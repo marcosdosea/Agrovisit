@@ -204,16 +204,44 @@
                 {
                     <tr>
                         <th>
-                            @Html.DisplayFor(model => model.ListaProjetos.First().Nome)
+                            @Html.DisplayFor(modelItem => item.Nome)
                         </th>
                         <th>
-                            @Html.DisplayFor(model => model.ListaProjetos.First().Status)
+                            @Html.DisplayFor(modelItem => item.Status)
                         </th>
                         <th>
-                            @Html.DisplayFor(model => model.ListaProjetos.First().Descricao)
+                            @Html.DisplayFor(modelItem => item.Descricao)
                         </th>
                         <th>
-                            @Html.DisplayFor(model => model.ListaProjetos.First().Valor)
+                            @Html.DisplayFor(modelItem => item.Valor)
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    @if (Model.ListaVisitas != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListaVisitas.First().DataHora)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListaVisitas.First().Status)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListaVisitas)
+                {
+                    <tr>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.DataHora)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.Status)
                         </th>
                     </tr>
                 }
