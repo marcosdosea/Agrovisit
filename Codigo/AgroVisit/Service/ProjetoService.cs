@@ -112,5 +112,17 @@ namespace Service
         {
             return (IEnumerable<ContaDTO>)_context.Conta;
         }
+        /// <summary>
+        /// Obter os projetos de uma propriedade
+        /// </summary>
+        /// <param name="idPropriedade"></param>
+        /// <returns> Projetos de uma propriedade </returns>
+        public IEnumerable<Projeto> GetByPropriedade(uint idPropriedade)
+        {
+            var query = from propriedade in _context.Propriedades
+                        join projeto in _context.Projetos on propriedade.Id equals projeto.IdPropriedade
+                        select projeto;
+            return query.AsNoTracking();
+        }
     }
 }

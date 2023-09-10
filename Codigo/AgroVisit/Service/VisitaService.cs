@@ -81,13 +81,29 @@ namespace Service
 
             return query.AsNoTracking();
         }
-
+        /// <summary>
+        /// Obtém as visitas pelo status
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns>Todas as visitas para um status</returns>
         public IEnumerable<Visita> GetAllByStatus(string status)
         {
             var query = from Visita in _context.Visitas
                         where Visita.Status.Equals(status)
                         select Visita;
 
+            return query.AsNoTracking();
+        }
+        /// <summary>
+        /// Obtém todas as visitas de uma propriedade
+        /// </summary>
+        /// <param name="idPropriedade"></param>
+        /// <returns>Todas as visitas de uma datpropriedade</returns>
+        public IEnumerable<Visita> GetByPropriedade(uint idPropriedade)
+        {
+            var query = from propriedade in _context.Propriedades
+                        join visita in _context.Visitas on propriedade.Id equals visita.IdPropriedade
+                        select visita;
             return query.AsNoTracking();
         }
     }

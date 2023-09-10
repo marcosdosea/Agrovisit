@@ -6,8 +6,8 @@ namespace Core.Service
     {
         public uint Create(Propriedade propriedade);
         public void Edit(Propriedade propriedade);
-        public void Delete(int id);
-        public Propriedade Get(int id);
+        public void Delete(uint id);
+        public Propriedade Get(uint id);
         public IEnumerable<Propriedade> GetAll();
         public IEnumerable<Propriedade> GetByCliente(string cliente);
         public IEnumerable<Propriedade> GetByNome(string nome);

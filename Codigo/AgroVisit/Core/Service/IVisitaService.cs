@@ -12,5 +12,6 @@ namespace Core.Service
         public IEnumerable<Visita> GetAll();
         public IEnumerable<VisitaDTO> GetAllByDate(DateTime data);
         public IEnumerable<Visita> GetAllByStatus(String status);
+        public IEnumerable<Visita> GetByPropriedade(uint idPropriedade);
     }
 }
