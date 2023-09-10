@@ -33,7 +33,7 @@ namespace Service
         /// Remove propriedade do banco de dados
         /// </summary>
         /// <param name="id"></param>
-        public void Delete(int id)
+        public void Delete(uint id)
         {
             var _propriedade = _context.Propriedades.Find(id);
             _context.Remove(_propriedade);
@@ -55,7 +55,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Propriedade </returns>
-        public Propriedade Get(int id)
+        public Propriedade Get(uint id)
         {
             return _context.Propriedades.Find(id);
         }
