@@ -22,9 +22,9 @@ namespace Service
             _context = context;
         }
         /// <summary>
-        /// Inserir Intervenção na base de dados
+        /// Inserir Intervencao na base de dados
         /// </summary>
-        /// <param name="Intervencao">dados da Intervencao</param>
+        /// <param name="intervencao">dados da intervencao</param>
         /// <returns>id</returns>
 
         public uint Create(Intervencao intervencao)
@@ -34,10 +34,9 @@ namespace Service
             return intervencao.Id;
         }
         /// <summary>
-        /// Criar uma nova Intervencao
+        /// Excluir Intervencao da base de dados
         /// </summary>
-        /// <param name="Intervencao"> dados da intervencao</param>
-        /// <returns> id da Intervencao<>/returns>
+        /// <param name="id">id Intervencao excluir</param>
 
         public void Delete(int id)
         {
@@ -48,29 +47,39 @@ namespace Service
         }
 
         /// <summary>
-        /// Excluir Intervencao da base de dados
+        /// Editar Intervencao na base de dados
         /// </summary>
-        /// <param name="id">id intervencao excluir</param>
+        /// <param name="Intervencao"></param>
         public void Edit(Intervencao intervencao)
         {
             _context.Update(intervencao);
             _context.SaveChanges();
         }
         /// <summary>
-        /// Editar Intervencao na base de dados
+        /// Obter dados de uma Intervencao
         /// </summary>
-        /// <param name="Intervencao"></param>
+        /// <param name="id"></param>
+        /// <returns> Dados de uma Intervencao </returns>
 
         public Intervencao Get(int id)
         {
             return _context.Intervencoes.Find(id);
         }
 
+        /// <summary>
+        /// Obter todas as Intervencoes
+        /// </summary>
+        /// <returns> Todos as intervencoes </returns>
         public IEnumerable<Intervencao> GetAll()
         {
             return _context.Intervencoes.AsNoTracking();
         }
 
+        /// <summary>
+        /// Obter Intervencoes pelo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Intervencoes pelo nome </returns>
         public IEnumerable<Intervencao> GetByProjeto(int IdProjeto)
         {
             var query = from Intervencao in _context.Intervencoes
