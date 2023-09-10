@@ -1,12 +1,8 @@
-﻿using AgroVisitWeb.Models;
-using AutoMapper;
+﻿using AutoMapper;
 using Core;
 using Core.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using NuGet.Protocol;
-using Service;
 
 namespace AgroVisitWeb.Controllers
 {
