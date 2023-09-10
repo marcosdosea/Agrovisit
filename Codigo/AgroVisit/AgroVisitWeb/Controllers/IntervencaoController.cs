@@ -16,13 +16,8 @@ namespace AgroVisitWeb.Controllers
     public class IntervencaoController : Controller
     {
         private readonly IIntervencaoService _intervencaoService;
-
         private readonly IMapper _mapper;
-        private object _intervencoesService;
-        private object listaIntervencao;
-        private object _IntervencaoService;
-       
-
+ 
         public IntervencaoController(IIntervencaoService intervencaoService, IMapper mapper)
         {
             _intervencaoService = intervencaoService;
@@ -33,16 +28,10 @@ namespace AgroVisitWeb.Controllers
 
             public ActionResult Index()
         {
-            var listaIntervencoes = _intervencoesService;
-            var listaIntervencoesModel = _mapper.Map<List<IntervencaoViewModel>>(listaIntervencao);
+            var listaIntervencoes = _intervencaoService.GetAll();
+            var listaIntervencoesModel = _mapper.Map<List<IntervencaoViewModel>>(_intervencaoService);
             return View(listaIntervencoesModel);
         }
-
-        public object Get_IntervencaoService()
-        {
-            return _IntervencaoService;
-        }
-
         // GET: IntevencaoController/Details/5
 
         public ActionResult Details(int id, object _IntervencaoService)
@@ -78,7 +67,7 @@ namespace AgroVisitWeb.Controllers
 
         public ActionResult Edit(int id)
         {
-            Intervencao intervencao = (Intervencao)_intervencaoService.GetAll();
+            Intervencao intervencao = (Intervencao)_intervencaoService.Get(id);
             IntervencaoViewModel intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
             return View(intervencaoModel);
         }

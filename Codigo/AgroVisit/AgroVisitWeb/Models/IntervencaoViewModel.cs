@@ -9,26 +9,32 @@ namespace AgroVisitWeb.Models
         [Key]
         public uint Id { get; set; }
 
-        public string Pratica { get; set; } = null!;
+        
         [Display(Name = "Pratica")]
         [Required(ErrorMessage = "Campo obrigatório")]
+        public string Pratica { get; set; } = null!;
 
-        public string? Descricao { get; set; }
+        
         [Display(Name = "Descrição")]
         [StringLength(1000)]
+        public string? Descricao { get; set; }
 
+        [Display(Name = "Data Aplicacao")]
         public DateTime? DataAplicacao { get; set; }
 
+        [Display(Name = "TipoProduto")]
         public String? TipoProduto { get; set; }
 
+        [Display(Name = "AreaTratada")]
         public float? AreaTratada { get; set; }
 
-        public string Status { get; set; } = null!;
-        [Display(Name = "Propriedade")]
+        
+        [Display(Name = "Status")]
         [Required(ErrorMessage = "Campo obrigatório")]
+        public string Status { get; set; } = null!;
+        
+        [Display(Name = "IdProjeto")]
         public uint IdProjeto { get; set; }
-        [Display(Name = "Propriedade")]
-
     }
 }
 
