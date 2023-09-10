@@ -22,4 +22,6 @@ public partial class Intervencao
     public uint IdProjeto { get; set; }
 
     public virtual Projeto IdProjetoNavigation { get; set; } = null!;
+
+   
 }
