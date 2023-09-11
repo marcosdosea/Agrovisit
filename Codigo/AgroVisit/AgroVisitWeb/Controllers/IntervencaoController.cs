@@ -26,15 +26,15 @@ namespace AgroVisitWeb.Controllers
 
         //GET: IntervencaoController
 
-            public ActionResult Index()
+        public ActionResult Index()
         {
             var listaIntervencoes = _intervencaoService.GetAll();
-            var listaIntervencoesModel = _mapper.Map<List<IntervencaoViewModel>>(_intervencaoService);
+            var listaIntervencoesModel = _mapper.Map<List<IntervencaoViewModel>>(listaIntervencoes);
             return View(listaIntervencoesModel);
         }
         // GET: IntevencaoController/Details/5
 
-        public ActionResult Details(int id, object _IntervencaoService)
+        public ActionResult Details(int id)
         {
             Intervencao intervencao = _intervencaoService.Get(id);
             IntervencaoViewModel intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
