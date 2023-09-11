@@ -46,7 +46,7 @@ namespace AgroVisitWeb.Controllers
         {
             PropriedadeViewModel propriedadeModel = new PropriedadeViewModel();
             IEnumerable<Cliente> listaClientes = _clienteService.GetAll();
-            propriedadeModel.ListaClientes = new SelectList(listaClientes, "IdCliente", "Nome", null);
+            propriedadeModel.ListaClientes = new SelectList(listaClientes, "Id", "Nome", null);
             return View(propriedadeModel);
         }
 

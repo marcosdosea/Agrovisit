@@ -44,7 +44,7 @@ namespace AgroVisitWeb.Controllers
             VisitaViewModel visitaModel = new VisitaViewModel();
             IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
 
-            visitaModel.ListaPropriedades = new SelectList(listaPropriedades, "IdPropriedade", "Nome", null);
+            visitaModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);
             return View(visitaModel);
         }
 
@@ -67,7 +67,7 @@ namespace AgroVisitWeb.Controllers
             Visita visita = _visitaService.Get(id);
             VisitaViewModel visitaModel = _mapper.Map<VisitaViewModel>(visita);
             IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
-            visitaModel.ListaPropriedades = new SelectList(listaPropriedades, "IdPropriedade", "Nome",
+            visitaModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome",
                 listaPropriedades.FirstOrDefault(e => e.Id.Equals(visita.IdPropriedade)));
             return View(visitaModel);
         }
