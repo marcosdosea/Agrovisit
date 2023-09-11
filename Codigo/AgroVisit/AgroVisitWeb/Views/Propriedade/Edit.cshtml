@@ -1,20 +1,20 @@
 ﻿@model Core.PropriedadeViewModel
 
 @{
-    ViewData["Title"] = "Cadastrar propriedade";
+    ViewData["Title"] = "Editar propriedade";
 }
 
-<h1>Cadastrar propriedade</h1>
+<h1>Editar propriedade</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data" asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <!-- label asp-for="Id" class="control-label"></!-->
-                <input type="hidden" asp-for="Id" class="form-control" />
-                <!-- span asp-validation-for="Id" class="text-danger"></!span-->
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -63,17 +63,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Georreferenciamento" class="control-label"></label>
-                <input type="file" name="fileUpload" id="fileUpload" />
-                <input type="submit" value="Enviar" />
-                <!-- input asp-for="Georreferenciamento" class="form-control" /-->
-                <!-- span asp-validation-for="Georreferenciamento" class="text-danger"></!span-->
+                <input asp-for="Georreferenciamento" class="form-control" />
+                <span asp-validation-for="Georreferenciamento" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MatriculaImovel" class="control-label"></label>
-                <input type="file" name="fileUpload" id="fileUpload" />
-                <input type="submit" value="Enviar" />
-                <!--<input asp-for="MatriculaImovel" class="form-control" />-->
-                <!--<span asp-validation-for="MatriculaImovel" class="text-danger"></span>-->
+                <input asp-for="MatriculaImovel" class="form-control" />
+                <span asp-validation-for="MatriculaImovel" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NumAnimais" class="control-label"></label>
@@ -97,10 +93,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="HistoricoProducao" class="control-label"></label>
-                <input type="file" name="fileUpload" id="fileUpload" />
-                <input type="submit" value="Enviar" />
-                <!--input asp-for="HistoricoProducao" class="form-control" /-->
-                <!--span-- asp-validation-for="HistoricoProducao" class="text-danger"></!--span-->
+                <input asp-for="HistoricoProducao" class="form-control" />
+                <span asp-validation-for="HistoricoProducao" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AreaTotal" class="control-label"></label>
@@ -129,17 +123,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="HistoricoProdAgricola" class="control-label"></label>
-                <input type="file" name="fileUpload" id="fileUpload" />
-                <input type="submit" value="Enviar" />
                 <input asp-for="HistoricoProdAgricola" class="form-control" />
                 <span asp-validation-for="HistoricoProdAgricola" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HistoricoFitossanidade" class="control-label"></label>
-                <input type="file" name="fileUpload" id="fileUpload" />
-                <input type="submit" value="Enviar" />
-                <!--input asp-for="HistoricoFitossanidade" class="form-control" /-->
-                <!--span asp-validation-for="HistoricoFitossanidade" class="text-danger"></!--span-->
+                <input asp-for="HistoricoFitossanidade" class="form-control" />
+                <span asp-validation-for="HistoricoFitossanidade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdSolo" class="control-label"></label>
@@ -153,7 +143,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdCliente" class="control-label"></label>
-                <select asp-for="IdCliente" asp-items="@Model.ListaClientes" class="form-control"></select>
+                <input asp-for="IdCliente" class="form-control" />
                 <span asp-validation-for="IdCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -162,7 +152,7 @@
                 <span asp-validation-for="IdEngenheiroAgronomo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Concluir" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </form>
     </div>

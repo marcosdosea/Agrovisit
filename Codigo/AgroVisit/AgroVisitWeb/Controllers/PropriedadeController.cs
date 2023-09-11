@@ -35,8 +35,8 @@ namespace AgroVisitWeb.Controllers
         {
             Propriedade propriedade = _propriedadeService.Get(id);
             PropriedadeViewModel propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
-            propriedadeModel.ListaProjetos = (List<Projeto>?)_projetoService.GetByPropriedade(id);
-            propriedadeModel.ListaVisitas = (List<Visita>?)_visitaService.GetByPropriedade(id);
+            propriedadeModel.ListaProjetos = _projetoService.GetByPropriedade(id);
+            propriedadeModel.ListaVisitas = _visitaService.GetByPropriedade(id);
 
             return View(propriedadeModel);
         }
@@ -46,7 +46,7 @@ namespace AgroVisitWeb.Controllers
         {
             PropriedadeViewModel propriedadeModel = new PropriedadeViewModel();
             IEnumerable<Cliente> listaClientes = _clienteService.GetAll();
-            propriedadeModel.ListaClientes = new SelectList(listaClientes, "IdCliente", "Nome", null);
+            propriedadeModel.ListaClientes = new SelectList(listaClientes, "Id", "Nome", null);
             return View(propriedadeModel);
         }
 

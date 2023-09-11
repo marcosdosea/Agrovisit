@@ -53,7 +53,7 @@ namespace AgroVisitWeb.Controllers
             ProjetoViewModel projetoModel = new ProjetoViewModel();
             IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
 
-            projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "IdPropriedade", "Nome", null);
+            projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);
 
             return View(projetoModel);
         }
