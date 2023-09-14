@@ -110,7 +110,7 @@ namespace Service
         /// <returns> As contas de um projeto </returns>
         public IEnumerable<ContaDTO> GetAllConta()
         {
-            return (IEnumerable<ContaDTO>)_context.Conta;
+            return (IEnumerable<ContaDTO>)_context.Contas;
         }
         /// <summary>
         /// Obter os projetos de uma propriedade

@@ -9,11 +9,9 @@ namespace AgroVisitWeb.Models
         [Key]
         public uint Id { get; set; }
 
-        
         [Display(Name = "Pratica")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Pratica { get; set; } = null!;
-
         
         [Display(Name = "Descrição")]
         [StringLength(1000)]
@@ -27,7 +25,6 @@ namespace AgroVisitWeb.Models
 
         [Display(Name = "AreaTratada")]
         public float? AreaTratada { get; set; }
-
         
         [Display(Name = "Status")]
         [Required(ErrorMessage = "Campo obrigatório")]

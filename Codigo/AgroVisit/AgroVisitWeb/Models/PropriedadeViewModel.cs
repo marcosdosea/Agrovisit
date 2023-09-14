@@ -45,10 +45,6 @@ public partial class PropriedadeViewModel
     public float? AreaTotal { get; set; }
     [Display(Name = "Área cultivada")]
     public float? AreaCultivada { get; set; }
-    [Display(Name = "Tipo de solo")]
-    public string? TipoSolo { get; set; }
-    [Display(Name = "Cultura")]
-    public string? Cultura { get; set; }
     [Display(Name = "Comércio ou armazenamento")]
     public string? Comercializacao { get; set; }
     [Display(Name = "Histórico produção agrícola")]

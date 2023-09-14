@@ -43,10 +43,6 @@ public partial class Propriedade
 
     public float? AreaCultivada { get; set; }
 
-    public string? TipoSolo { get; set; }
-
-    public string? Cultura { get; set; }
-
     public string? Comercializacao { get; set; }
 
     public byte[]? HistoricoProdAgricola { get; set; }
