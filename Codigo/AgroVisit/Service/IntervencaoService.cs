@@ -38,7 +38,7 @@ namespace Service
         /// </summary>
         /// <param name="id">id Intervencao excluir</param>
 
-        public void Delete(int id)
+        public void Delete(uint id)
         {
 
             var intervencao = _context.Intervencoes.Find(id);
@@ -61,7 +61,7 @@ namespace Service
         /// <param name="id"></param>
         /// <returns> Dados de uma Intervencao </returns>
 
-        public Intervencao Get(int id)
+        public Intervencao Get(uint id)
         {
             return _context.Intervencoes.Find(id);
         }
@@ -80,7 +80,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Intervencoes pelo nome </returns>
-        public IEnumerable<Intervencao> GetByProjeto(int IdProjeto)
+        public IEnumerable<Intervencao> GetByProjeto(uint IdProjeto)
         {
             var query = from Intervencao in _context.Intervencoes
                 where Intervencao.IdProjeto.Equals(IdProjeto)

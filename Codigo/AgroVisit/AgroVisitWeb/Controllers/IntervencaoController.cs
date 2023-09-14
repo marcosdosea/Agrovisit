@@ -32,7 +32,7 @@ namespace AgroVisitWeb.Controllers
        
         // GET: IntevencaoController/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(uint id)
         {
             Intervencao intervencao = _intervencaoService.Get(id);
             IntervencaoViewModel intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
@@ -67,7 +67,7 @@ namespace AgroVisitWeb.Controllers
 
         // GET: IntervencaoController/Edit/5
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(uint id)
         {
             Intervencao intervencao = (Intervencao)_intervencaoService.Get(id);
             IntervencaoViewModel intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
@@ -77,7 +77,7 @@ namespace AgroVisitWeb.Controllers
         // POST: IntervencaoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IntervencaoViewModel intervencaoModel)
+        public ActionResult Edit(uint id, IntervencaoViewModel intervencaoModel)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: IntervencaoController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(uint id)
         {
             // TODO mappers implementation
             Intervencao intervencao = _intervencaoService.Get(id);
@@ -99,7 +99,7 @@ namespace AgroVisitWeb.Controllers
         // POST: IntervencaoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IntervencaoViewModel intervencaoModel)
+        public ActionResult Delete(uint id, IntervencaoViewModel intervencaoModel)
         {
             _intervencaoService.Delete(id);
             return RedirectToAction(nameof(Index));
