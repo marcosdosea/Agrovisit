@@ -17,21 +17,19 @@ namespace AgroVisitWeb.Controllers
     {
         private readonly IIntervencaoService _intervencaoService;
         private readonly IMapper _mapper;
+        private readonly IProjetoService _projetoService;
  
-        public IntervencaoController(IIntervencaoService intervencaoService, IMapper mapper)
+        public IntervencaoController(IIntervencaoService intervencaoService, IProjetoService projetoService, IMapper mapper)
         {
             _intervencaoService = intervencaoService;
+            _projetoService = projetoService;
             _mapper = mapper;
+            
         }
 
         //GET: IntervencaoController
 
-        public ActionResult Index()
-        {
-            var listaIntervencoes = _intervencaoService.GetAll();
-            var listaIntervencoesModel = _mapper.Map<List<IntervencaoViewModel>>(listaIntervencoes);
-            return View(listaIntervencoesModel);
-        }
+       
         // GET: IntevencaoController/Details/5
 
         public ActionResult Details(int id)
@@ -46,7 +44,11 @@ namespace AgroVisitWeb.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            IntervencaoViewModel intervencaoModel = new IntervencaoViewModel();
+            IEnumerable<Projeto> listaProjeto = _projetoService.GetAll();
+
+            intervencaoModel.ListaProjetos = new SelectList(listaProjeto, "Id", "Nome", null);
+            return View(intervencaoModel);
         }
 
         // POST: IntervencaoController/Create

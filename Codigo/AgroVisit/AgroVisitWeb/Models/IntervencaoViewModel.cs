@@ -9,7 +9,7 @@ namespace AgroVisitWeb.Models
         [Key]
         public uint Id { get; set; }
 
-        [Display(Name = "Pratica")]
+        [Display(Name = "Prática")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Pratica { get; set; } = null!;
         
@@ -17,21 +17,22 @@ namespace AgroVisitWeb.Models
         [StringLength(1000)]
         public string? Descricao { get; set; }
 
-        [Display(Name = "Data Aplicacao")]
+        [Display(Name = "Data Aplicação")]
         public DateTime? DataAplicacao { get; set; }
 
-        [Display(Name = "TipoProduto")]
+        [Display(Name = "Tipo de Produto utilizado")]
         public String? TipoProduto { get; set; }
 
-        [Display(Name = "AreaTratada")]
+        [Display(Name = "Area Tratada")]
         public float? AreaTratada { get; set; }
         
         [Display(Name = "Status")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Status { get; set; } = null!;
         
-        [Display(Name = "IdProjeto")]
+        [Display(Name = "Projeto")]
         public uint IdProjeto { get; set; }
+        public SelectList? ListaProjetos { get; set; }
     }
 }
 
