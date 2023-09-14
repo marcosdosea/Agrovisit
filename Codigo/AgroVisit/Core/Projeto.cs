@@ -22,10 +22,14 @@ public partial class Projeto
     public byte[]? Anexo { get; set; }
 
     public string Status { get; set; } = null!;
-    
+
     public uint IdPropriedade { get; set; }
 
-    public virtual ICollection<Conta> Conta { get; set; } = new List<Conta>();
+    public int? NumeroVisita { get; set; }
+
+    public DateTime? DataConclusao { get; set; }
+
+    public virtual ICollection<Conta> Contas { get; set; } = new List<Conta>();
 
     public virtual Propriedade IdPropriedadeNavigation { get; set; } = null!;
 

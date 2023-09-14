@@ -36,6 +36,9 @@ namespace AgroVisitWeb.Models
         [StringLength (200)]
         public string? Descricao { get; set; }
 
+        [Display(Name = "Número de Visitas")]
+        public int? NumeroVisita { get; set; }
+
         [Display(Name = "Anexo")]
         public byte[]? Anexo { get; set; }
 
