@@ -31,7 +31,7 @@ namespace Service
         /// Excluir projeto da base de dados
         /// </summary>
         /// <param name="id">id projeto excluir</param>
-        public void Delete(int id)
+        public void Delete(uint id)
         {
             var projeto = _context.Projetos.Find(id);
             _context.Remove(projeto);
@@ -51,7 +51,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Dados de um projeto </returns>
-        public Projeto Get(int id)
+        public Projeto Get(uint id)
         {
             return _context.Projetos.Find(id);
         }
@@ -100,17 +100,23 @@ namespace Service
         /// Obter as intervenções de um projeto
         /// </summary>
         /// <returns> As intervenções de um projeto </returns>
-        public IEnumerable<IntervencaoDTO> GetAllIntervencoes()
+        public IEnumerable<IntervencaoDTO> GetAllIntervencoes(uint idPropriedade)
         {
-            return (IEnumerable<IntervencaoDTO>)_context.Intervencoes;
+            var query = from projeto in _context.Projetos
+                        join intervencao in _context.Projetos on projeto.Id equals intervencao.IdPropriedade
+                        select intervencao;
+            return (IEnumerable<IntervencaoDTO>)query.AsNoTracking().ToList();
         }
         /// <summary>
         /// Obter as contas de um projeto
         /// </summary>
         /// <returns> As contas de um projeto </returns>
-        public IEnumerable<ContaDTO> GetAllConta()
+        public IEnumerable<ContaDTO> GetAllConta(uint idPropriedade)
         {
-            return (IEnumerable<ContaDTO>)_context.Contas;
+            var query = from projeto in _context.Projetos
+                        join conta in _context.Projetos on projeto.Id equals conta.IdPropriedade
+                        select conta;
+            return (IEnumerable<ContaDTO>)query.AsNoTracking().ToList();
         }
         /// <summary>
         /// Obter os projetos de uma propriedade

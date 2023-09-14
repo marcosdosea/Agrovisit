@@ -80,7 +80,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Intervencoes pelo nome </returns>
-        public IEnumerable<Intervencao> GetByProjeto(int IdProjeto)
+        public IEnumerable<Intervencao> GetByProjeto(uint IdProjeto)
         {
             var query = from Intervencao in _context.Intervencoes
                 where Intervencao.IdProjeto.Equals(IdProjeto)

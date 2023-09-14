@@ -50,7 +50,13 @@ namespace AgroVisitWeb.Models
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         public uint IdPropriedade { get; set; }
 
-        public SelectList? ListaIntervencoes { get; set; }
+        [Display(Name = "Propriedade")]
         public SelectList? ListaPropriedades { get; set; }
+        
+        [Display(Name = "Conta")]
+        public IEnumerable<Conta>? ListaContas { get; set; }
+
+        [Display(Name = "Intervenções")]
+        public IEnumerable<Intervencao>? ListaIntervencoes { get; set; }
     }
 }
