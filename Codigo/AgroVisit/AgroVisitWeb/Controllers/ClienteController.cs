@@ -9,11 +9,13 @@ namespace AgroVisitWeb.Controllers
     public class ClienteController : Controller
     {
         private readonly IClienteService _clienteService;
+        private readonly IPropriedadeService _propriedadeService;
         private readonly IMapper _mapper;
 
-        public ClienteController(IClienteService clienteService, IMapper mapper)
+        public ClienteController(IClienteService clienteService, IPropriedadeService propriedadeService ,IMapper mapper)
         {
             _clienteService = clienteService;
+            _propriedadeService = propriedadeService;
             _mapper = mapper;
         }
 
@@ -26,10 +28,11 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: ClienteController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(uint id)
         {
             Cliente cliente = _clienteService.Get(id);
             ClienteViewModel clienteModel = _mapper.Map<ClienteViewModel>(cliente);
+            clienteModel.ListaPropriedade = _propriedadeService.GetByCliente(cliente.Nome);
             return View(clienteModel);
         }
 
@@ -53,7 +56,7 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: ClienteController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(uint id)
         {
             Cliente cliente = _clienteService.Get(id);
             ClienteViewModel clienteModel = _mapper.Map<ClienteViewModel>(cliente);
@@ -63,7 +66,7 @@ namespace AgroVisitWeb.Controllers
         // POST: ClienteController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, ClienteViewModel clienteModel)
+        public ActionResult Edit(uint id, ClienteViewModel clienteModel)
         {
             if (ModelState.IsValid)
             {
@@ -74,9 +77,8 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: ClienteController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(uint id)
         {
-            // TODO mappers implementation
             Cliente cliente = _clienteService.Get(id);
             ClienteViewModel clienteModel = _mapper.Map<ClienteViewModel>(cliente);
             return View(clienteModel);
@@ -85,7 +87,7 @@ namespace AgroVisitWeb.Controllers
         // POST: ClienteController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, ClienteViewModel clienteViewModel)
+        public ActionResult Delete(uint id, ClienteViewModel clienteViewModel)
         {
             _clienteService.Delete(id);
             return RedirectToAction(nameof(Index));

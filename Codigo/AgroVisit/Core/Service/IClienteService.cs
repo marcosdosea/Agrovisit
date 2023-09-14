@@ -6,8 +6,8 @@ namespace Core.Service
     {
         public uint Create(Cliente cliente);
         public void Edit(Cliente cliente);
-        public void Delete(int id);
-        public Cliente Get(int id);
+        public void Delete(uint id);
+        public Cliente Get(uint id);
         public IEnumerable<Cliente> GetAll();
         public IEnumerable<ClienteDTO> GetByNome(string nome);
     }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core;
+using System.ComponentModel.DataAnnotations;
 
 namespace AgroVisitWeb.Models
 {
@@ -20,7 +21,7 @@ namespace AgroVisitWeb.Models
 
         [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/mm/dd}", ApplyFormatInEditMode = true)]
         public DateTime? DataNascimento { get; set; }
 
         [Display(Name = "Cidade")]
@@ -48,5 +49,10 @@ namespace AgroVisitWeb.Models
         [StringLength(15)]
         [RegularExpression(@"^(\([1-9]{2}\)|[1-9]{2}) ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$", ErrorMessage = "Número inválido")]
         public string? Telefone { get; set; }
+
+        [Required]
+        public uint IdEngenheiroAgronomo { get; set; }
+
+        public IEnumerable<Propriedade>? ListaPropriedade { get; set; }
     }
 }

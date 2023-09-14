@@ -71,6 +71,46 @@
         </dd>
     </dl>
 </div>
+
+<h2><br>Propriedades</h2>
+
+<div>
+    @if (Model.ListaPropriedade != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListaPropriedade.First().Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListaPropriedade.First().Estado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListaPropriedade.First().Cidade)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListaPropriedade)
+                {
+                    <tr>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.Estado)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.Cidade)
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
 <div>
     @Html.ActionLink("Edit", "Edit", new {  id = Model.Id }) |
     <a asp-action="Index">Voltar</a>
