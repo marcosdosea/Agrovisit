@@ -36,11 +36,14 @@ namespace AgroVisitWeb.Models
         [StringLength (200)]
         public string? Descricao { get; set; }
 
-        [Display(Name = "Número de Visitas")]
+        [Display(Name = "Número de visitas")]
         public int? NumeroVisita { get; set; }
 
         [Display(Name = "Anexo")]
         public byte[]? Anexo { get; set; }
+
+        [Display(Name = "Data de conclusão")]
+        public DateTime DataConclusao { get; set; }
 
         [Display(Name = "Status")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
