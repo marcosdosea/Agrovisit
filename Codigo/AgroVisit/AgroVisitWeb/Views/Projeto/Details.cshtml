@@ -96,11 +96,12 @@
                     <tr>
                         <th>
                             @Html.DisplayFor(modelItem => item.Pratica)
-                        </th>
-                    </tr>
+                            <a href="@Url.Action("Details", "Intervencao", new { id = item.Id })">Detalhes</a>                         
+                        </th>                       
+                    </tr>                   
                 }
             </tbody>
-        </table>
+        </table>       
     }
 </div>
 <div>
