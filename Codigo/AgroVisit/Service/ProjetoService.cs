@@ -34,8 +34,11 @@ namespace Service
         public void Delete(uint id)
         {
             var projeto = _context.Projetos.Find(id);
-            _context.Remove(projeto);
-            _context.SaveChanges();
+            if (projeto != null) 
+            {
+                _context.Remove(projeto);
+                _context.SaveChanges();
+            } 
         }
         /// <summary>
         /// Editar projeto na base de dados
@@ -100,23 +103,25 @@ namespace Service
         /// Obter as intervenções de um projeto
         /// </summary>
         /// <returns> As intervenções de um projeto </returns>
-        public IEnumerable<IntervencaoDTO> GetAllIntervencoes(uint idPropriedade)
+        public IEnumerable<IntervencaoDTO> GetAllIntervencoes(uint id)
         {
-            var query = from projeto in _context.Projetos
-                        join intervencao in _context.Projetos on projeto.Id equals intervencao.IdPropriedade
+            var query = from intervencao in _context.Intervencoes
+                        where intervencao.IdProjeto == id
+                        //join intervencao in _context.Projetos on projeto.Id equals intervencao.IdPropriedade
                         select intervencao;
-            return (IEnumerable<IntervencaoDTO>)query.AsNoTracking().ToList();
+            return (IEnumerable<IntervencaoDTO>)query.AsNoTracking();
         }
         /// <summary>
         /// Obter as contas de um projeto
         /// </summary>
         /// <returns> As contas de um projeto </returns>
-        public IEnumerable<ContaDTO> GetAllConta(uint idPropriedade)
+        public IEnumerable<ContaDTO> GetAllConta(uint id)
         {
-            var query = from projeto in _context.Projetos
-                        join conta in _context.Projetos on projeto.Id equals conta.IdPropriedade
+            var query = from conta in _context.Contas
+                        where conta.IdProjeto == id
+                        //join conta in _context.Projetos on projeto.Id equals conta.IdPropriedade
                         select conta;
-            return (IEnumerable<ContaDTO>)query.AsNoTracking().ToList();
+            return (IEnumerable<ContaDTO>)query.AsNoTracking();
         }
         /// <summary>
         /// Obter os projetos de uma propriedade
@@ -125,10 +130,11 @@ namespace Service
         /// <returns> Projetos de uma propriedade </returns>
         public IEnumerable<Projeto> GetByPropriedade(uint idPropriedade)
         {
-            var query = from propriedade in _context.Propriedades
-                        join projeto in _context.Projetos on propriedade.Id equals projeto.IdPropriedade
+            var query = from projeto in _context.Projetos
+                        where projeto.IdPropriedade == idPropriedade
+                        //join projeto in _context.Projetos on propriedade.Id equals projeto.IdPropriedade
                         select projeto;
-            return query.AsNoTracking().ToList();
+            return query.AsNoTracking();
         }
     }
 }
