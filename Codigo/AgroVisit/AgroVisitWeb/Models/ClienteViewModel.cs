@@ -20,7 +20,7 @@ namespace AgroVisitWeb.Models
         public string Nome { get; set; } = null!;
 
         [Display(Name = "Data de Nascimento")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy/mm/dd}", ApplyFormatInEditMode = true)]
         public DateTime? DataNascimento { get; set; }
 
@@ -50,6 +50,7 @@ namespace AgroVisitWeb.Models
         [RegularExpression(@"^(\([1-9]{2}\)|[1-9]{2}) ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$", ErrorMessage = "Número inválido")]
         public string? Telefone { get; set; }
 
+        [Display(Name ="Agrônomo")]
         [Required]
         public uint IdEngenheiroAgronomo { get; set; }
 
