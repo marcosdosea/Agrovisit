@@ -33,7 +33,7 @@ namespace Service
         /// Remove cliente da base de dados
         /// </summary>
         /// <param name="id"></param>
-        public void Delete(int id)
+        public void Delete(uint id)
         {
             var cliente = _context.Clientes.Find(id);
             _context.Clientes.Remove(cliente);
@@ -55,7 +55,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Cliente</returns>
-        public Cliente Get(int id)
+        public Cliente Get(uint id)
         {
             return _context.Clientes.Find(id);
         }

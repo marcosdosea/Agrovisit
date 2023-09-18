@@ -1,37 +1,73 @@
-﻿@model AgroVisitWeb.Mappers.ClienteProfile
+﻿@model AgroVisitWeb.Models.ClienteViewModel
 
 @{
     ViewData["Title"] = "Deletar Clientes";
 }
 
-<h1>Deletar cliente</h1>
+<h1>Deletar Cliente</h1>
 
 <h3>Tem certeza que deseja realizar esta operação?</h3>
 <div>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProfileName)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProfileName)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AllowNullDestinationValues)
+            @Html.DisplayNameFor(model => model.Cpf)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AllowNullDestinationValues)
+            @Html.DisplayFor(model => model.Cpf)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AllowNullCollections)
+            @Html.DisplayNameFor(model => model.DataNascimento)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AllowNullCollections)
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cidade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cidade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Bairro)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Bairro)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rua)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rua)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumeroCasa)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumeroCasa)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Telefone)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Deletar" class="btn btn-danger" /> |
         <a asp-action="Index">Voltar</a>
     </form>
 </div>
