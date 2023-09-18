@@ -36,11 +36,14 @@ namespace AgroVisitWeb.Models
         [StringLength (200)]
         public string? Descricao { get; set; }
 
-        [Display(Name = "Número de Visitas")]
+        [Display(Name = "Número de visitas")]
         public int? NumeroVisita { get; set; }
 
         [Display(Name = "Anexo")]
         public byte[]? Anexo { get; set; }
+
+        [Display(Name = "Data de conclusão")]
+        public DateTime DataConclusao { get; set; }
 
         [Display(Name = "Status")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
@@ -50,7 +53,13 @@ namespace AgroVisitWeb.Models
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         public uint IdPropriedade { get; set; }
 
-        public SelectList? ListaIntervencoes { get; set; }
+        [Display(Name = "Propriedade")]
         public SelectList? ListaPropriedades { get; set; }
+        
+        [Display(Name = "Conta")]
+        public IEnumerable<Conta>? ListaContas { get; set; }
+
+        [Display(Name = "Intervenções")]
+        public IEnumerable<Intervencao>? ListaIntervencoes { get; set; }
     }
 }

@@ -1,28 +1,25 @@
 ﻿using AgroVisitWeb.Models;
 using AutoMapper;
 using Core;
-using Core.DTO;
 using Core.Service;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Service;
-using System.ComponentModel;
 
 namespace AgroVisitWeb.Controllers
 {
     public class ProjetoController : Controller
     {
         private readonly IProjetoService _projetoService;
+        /*private readonly IContaService _contaService;*/
         private readonly IIntervencaoService _intervencaoService;
         private readonly IPropriedadeService _propriedadeService;
         private readonly IMapper _mapper;
 
-        public ProjetoController(IProjetoService projetoService, IIntervencaoService intervencaoService, IPropriedadeService propriedadeService, IMapper mapper)
+        public ProjetoController(IProjetoService projetoService, IIntervencaoService intervencaoService, /*IContaService contaService,*/ IPropriedadeService propriedadeService, IMapper mapper)
         {
             _projetoService = projetoService;
             _intervencaoService = intervencaoService;
+            //_contaService = contaService;
             _propriedadeService = propriedadeService;
             _mapper = mapper;
         }
@@ -35,14 +32,16 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: ProjetoController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(uint id)
         {
             Projeto projeto = _projetoService.Get(id);
             ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
 
             IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
-            projetoModel.ListaIntervencoes = new SelectList(listaIntervencoes, "Id", "Nome",
-                listaIntervencoes.FirstOrDefault(e => e.Id.Equals(projeto.Id)));
+            projetoModel.ListaIntervencoes = _intervencaoService.GetByProjeto(id);
+
+            /*IEnumerable<Conta> listaContas = _contaService.GetAll();
+            projetoModel.ListaContas = _contaService.GetByProjeto(id);*/
 
             return View(projetoModel);
         }
@@ -52,9 +51,7 @@ namespace AgroVisitWeb.Controllers
         {
             ProjetoViewModel projetoModel = new ProjetoViewModel();
             IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
-
             projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);
-
             return View(projetoModel);
         }
 
@@ -73,19 +70,19 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: ProjetoController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(uint id)
         {
             Projeto projeto = _projetoService.Get(id);
             ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
-
-
+            IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
+            projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);
             return View(projetoModel);
         }
 
         // POST: ProjetoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, ProjetoViewModel projetoModel)
+        public ActionResult Edit(uint id, ProjetoViewModel projetoModel)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +93,7 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: ProjetoController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(uint id)
         {
             Projeto projeto = _projetoService.Get(id);
             ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
@@ -106,7 +103,7 @@ namespace AgroVisitWeb.Controllers
         // POST: ProjetoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, ProjetoViewModel projetoModel)
+        public ActionResult Delete(uint id, ProjetoViewModel projetoModel)
         {
             _projetoService.Delete(id);
             return RedirectToAction(nameof(Index));

@@ -10,12 +10,6 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
         <dd class = "col-sm-10">
@@ -51,6 +45,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Descricao)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumeroVisita)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumeroVisita)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Anexo)
         </dt>
@@ -63,6 +63,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Status)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataConclusao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataConclusao)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IdPropriedade)
         </dt>
@@ -70,6 +76,59 @@
             @Html.DisplayFor(model => model.IdPropriedade)
         </dd>
     </dl>
+</div>
+<div>
+    <br />
+    <h4>Intervenções</h4>
+    @if (Model.ListaIntervencoes != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListaIntervencoes.First().Pratica)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListaIntervencoes)
+                {
+                    <tr>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.Pratica)
+                            <a href="@Url.Action("Details", "Intervencao", new { id = item.Id })">Detalhes</a>                         
+                        </th>                       
+                    </tr>                   
+                }
+            </tbody>
+        </table>       
+    }
+</div>
+<div>
+    <br />
+    <h4>Contas</h4>
+    @if (Model.ListaContas != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListaContas.First().Valor)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListaContas)
+                {
+                    <tr>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.Valor)
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new {  id = Model.Id }) |
