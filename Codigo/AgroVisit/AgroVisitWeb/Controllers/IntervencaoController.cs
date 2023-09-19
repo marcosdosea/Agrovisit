@@ -17,24 +17,22 @@ namespace AgroVisitWeb.Controllers
     {
         private readonly IIntervencaoService _intervencaoService;
         private readonly IMapper _mapper;
+        private readonly IProjetoService _projetoService;
  
-        public IntervencaoController(IIntervencaoService intervencaoService, IMapper mapper)
+        public IntervencaoController(IIntervencaoService intervencaoService, IProjetoService projetoService, IMapper mapper)
         {
             _intervencaoService = intervencaoService;
+            _projetoService = projetoService;
             _mapper = mapper;
+            
         }
 
         //GET: IntervencaoController
 
-        public ActionResult Index()
-        {
-            var listaIntervencoes = _intervencaoService.GetAll();
-            var listaIntervencoesModel = _mapper.Map<List<IntervencaoViewModel>>(listaIntervencoes);
-            return View(listaIntervencoesModel);
-        }
+       
         // GET: IntevencaoController/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(uint id)
         {
             Intervencao intervencao = _intervencaoService.Get(id);
             IntervencaoViewModel intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
@@ -46,7 +44,11 @@ namespace AgroVisitWeb.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            IntervencaoViewModel intervencaoModel = new IntervencaoViewModel();
+            IEnumerable<Projeto> listaProjeto = _projetoService.GetAll();
+
+            intervencaoModel.ListaProjetos = new SelectList(listaProjeto, "Id", "Nome", null);
+            return View(intervencaoModel);
         }
 
         // POST: IntervencaoController/Create
@@ -65,7 +67,7 @@ namespace AgroVisitWeb.Controllers
 
         // GET: IntervencaoController/Edit/5
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(uint id)
         {
             Intervencao intervencao = (Intervencao)_intervencaoService.Get(id);
             IntervencaoViewModel intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
@@ -75,7 +77,7 @@ namespace AgroVisitWeb.Controllers
         // POST: IntervencaoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IntervencaoViewModel intervencaoModel)
+        public ActionResult Edit(uint id, IntervencaoViewModel intervencaoModel)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +88,7 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: IntervencaoController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(uint id)
         {
             // TODO mappers implementation
             Intervencao intervencao = _intervencaoService.Get(id);
@@ -97,7 +99,7 @@ namespace AgroVisitWeb.Controllers
         // POST: IntervencaoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IntervencaoViewModel intervencaoModel)
+        public ActionResult Delete(uint id, IntervencaoViewModel intervencaoModel)
         {
             _intervencaoService.Delete(id);
             return RedirectToAction(nameof(Index));
