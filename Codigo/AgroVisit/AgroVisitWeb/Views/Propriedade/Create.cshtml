@@ -133,12 +133,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdSolo" class="control-label"></label>
-                <input asp-for="IdSolo" class="form-control" />
+                <select asp-for="IdSolo" asp-items="@Model.ListaSolos" class="form-control"></select>
                 <span asp-validation-for="IdSolo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdCultura" class="control-label"></label>
-                <input asp-for="IdCultura" class="form-control" />
+                <select asp-for="IdCultura" asp-items="@Model.ListaCulturas" class="form-control"></select>
                 <span asp-validation-for="IdCultura" class="text-danger"></span>
             </div>
             <div class="form-group">

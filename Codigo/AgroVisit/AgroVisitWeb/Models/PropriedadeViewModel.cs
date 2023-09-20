@@ -51,9 +51,7 @@ public partial class PropriedadeViewModel
     public byte[]? HistoricoProdAgricola { get; set; }
     [Display(Name = "Histórico de fitossanidade")]
     public byte[]? HistoricoFitossanidade { get; set; }
-    [Display(Name = "Solo")]
     public uint IdSolo { get; set; }
-    [Display(Name = "Cultura")]
     public uint IdCultura { get; set; }
     [Display(Name = "Cliente")]
     public uint IdCliente { get; set; }
@@ -63,4 +61,12 @@ public partial class PropriedadeViewModel
 
     public IEnumerable<Visita>? ListaVisitas { get; set; }
     public SelectList? ListaClientes { get; set; }
+    public SelectList? ListaCulturas { get; set; }
+    public SelectList? ListaSolos { get; set; }
+    [Display(Name = "Solo")]
+    public string? NomeSolo { get; set; }
+    [Display(Name = "Cultura")]
+    public string? NomeCultura { get; set; }
+    [Display(Name = "Cliente")]
+    public string? NomeCliente { get; set; }
 }
