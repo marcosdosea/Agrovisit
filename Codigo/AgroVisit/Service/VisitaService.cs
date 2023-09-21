@@ -28,7 +28,7 @@ namespace Service
         /// Remove visita da base de dados
         /// </summary>
         /// <param name="id"></param>
-        public void Delete(int id)
+        public void Delete(uint id)
         {
             var visita = _context.Visitas.Find(id);
             if (visita == null) return;
@@ -50,7 +50,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Visita</returns>
-        public Visita Get(int id)
+        public Visita Get(uint id)
         {
             return _context.Visitas.Find(id);
         }
