@@ -51,7 +51,9 @@ public partial class PropriedadeViewModel
     public byte[]? HistoricoProdAgricola { get; set; }
     [Display(Name = "Histórico de fitossanidade")]
     public byte[]? HistoricoFitossanidade { get; set; }
+    [Display(Name = "Solo")]
     public uint IdSolo { get; set; }
+    [Display(Name = "Cultura")]
     public uint IdCultura { get; set; }
     [Display(Name = "Cliente")]
     public uint IdCliente { get; set; }
