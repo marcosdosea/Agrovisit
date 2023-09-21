@@ -9,6 +9,6 @@ namespace Core.Service
         public void Delete(uint id);
         public Cliente Get(uint id);
         public IEnumerable<Cliente> GetAll();
-        public IEnumerable<ClienteDTO> GetByNome(string nome);
+        public IEnumerable<Cliente> GetByNome(string nome);
     }
 }
