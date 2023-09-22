@@ -55,7 +55,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Cliente</returns>
-        public Cliente Get(uint id)
+        public Cliente? Get(uint id)
         {
             return _context.Clientes.Find(id);
         }
