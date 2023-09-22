@@ -55,7 +55,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Cliente</returns>
-        public Cliente Get(uint id)
+        public Cliente? Get(uint id)
         {
             return _context.Clientes.Find(id);
         }
@@ -74,9 +74,9 @@ namespace Service
         /// </summary>
         /// <param name="nome"></param>
         /// <returns>Clientes retornados pelo nome</returns>
-        public IEnumerable<ClienteDTO> GetByNome(string nome)
+        public IEnumerable<Cliente> GetByNome(string nome)
         {
-            return (IEnumerable<ClienteDTO>)_context.Clientes.Where(
+            return (IEnumerable<Cliente>)_context.Clientes.Where(
                 cliente => cliente.Nome.StartsWith(nome)).AsNoTracking();
         }
     }
