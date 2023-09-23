@@ -12,13 +12,13 @@ namespace Core.Service
         public uint Create(Projeto projeto);
         public void Edit(Projeto projeto);
         public void Delete(uint id);
-        public Projeto Get(uint id);
+        public Projeto? Get(uint id);
         public IEnumerable<Projeto> GetAll();
-        public IEnumerable<ProjetoDTO> GetByNome(string nome);
-        public IEnumerable<ProjetoDTO> GetByData(DateTime data);
-        public IEnumerable<ProjetoDTO> GetByStatus(string status);
+        public IEnumerable<Projeto> GetByNome(string nome);
+        public IEnumerable<Projeto> GetByData(DateTime data);
+        public IEnumerable<Projeto> GetByStatus(string status);
         public IEnumerable<Projeto> GetByPropriedade(uint idPropriedade);
-        public IEnumerable<IntervencaoDTO> GetAllIntervencoes(uint idPropriedade);
-        public IEnumerable<ContaDTO> GetAllConta(uint idPropriedade);
+        public IEnumerable<Intervencao> GetAllIntervencoes(uint idPropriedade);
+        public IEnumerable<Conta> GetAllConta(uint idPropriedade);
     }
 }
