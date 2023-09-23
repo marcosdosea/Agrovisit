@@ -20,3 +20,13 @@ body {
 .navbar-dark {
     --background-color: lightgreen;
 }
+
+h1 h2 h3 h4 h5 h6 h7 h8 h9 {
+    font-family: 'Inter';
+}
+
+ul li {
+    font-size: 20px;
+    font-family: 'Inter';
+    color: #165A15;
+}

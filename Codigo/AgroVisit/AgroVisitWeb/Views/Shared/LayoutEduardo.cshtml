@@ -10,15 +10,19 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-dark fixed-top" style="background-color: rgb(96, 163, 95);">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">AgroVisit</a>
+                <a class="navbar-brand" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="49" height="37" viewBox="0 0 83 79" fill="none">
+                        <path d="M5.16431 70.2003L17.6991 41.3706M56.3064 70.2003L30.2339 12.541L17.6991 41.3706M56.3064 70.2003L17.6991 41.3706M56.3064 70.2003L77.8663 12.541" stroke="white" stroke-width="10" />
+                    </svg>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">AgroVisit</h5>
+                        <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel">AgroVisit</h3>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -48,7 +52,7 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3" style="margin: 75px 0px">
             @RenderBody()
         </main>
     </div>
