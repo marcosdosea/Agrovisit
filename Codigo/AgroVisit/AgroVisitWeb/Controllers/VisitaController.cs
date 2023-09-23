@@ -31,7 +31,7 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: VisitaController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(uint id)
         {
             Visita visita = _visitaService.Get(id);
             VisitaViewModel visitaModel = _mapper.Map<VisitaViewModel>(visita);
@@ -62,7 +62,7 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: VisitaController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(uint id)
         {
             Visita visita = _visitaService.Get(id);
             VisitaViewModel visitaModel = _mapper.Map<VisitaViewModel>(visita);
@@ -75,7 +75,7 @@ namespace AgroVisitWeb.Controllers
         // POST: VisitaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, VisitaViewModel visitaModel)
+        public ActionResult Edit(uint id, VisitaViewModel visitaModel)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: VisitaController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(uint id)
         {
             Visita visita = _visitaService.Get(id);
             VisitaViewModel visitaModel = _mapper.Map<VisitaViewModel>(visita);
@@ -96,7 +96,7 @@ namespace AgroVisitWeb.Controllers
         // POST: VisitaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, VisitaViewModel visitaModel)
+        public ActionResult Delete(uint id, VisitaViewModel visitaModel)
         {
             _visitaService.Delete(id);
             return RedirectToAction(nameof(Index));           
