@@ -54,7 +54,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Dados de um projeto </returns>
-        public Projeto Get(uint id)
+        public Projeto? Get(uint id)
         {
             return _context.Projetos.Find(id);
         }
@@ -63,9 +63,9 @@ namespace Service
         /// </summary>
         /// <param name="nome"></param>
         /// <returns> Projetos pelo nome </returns>
-        public IEnumerable<ProjetoDTO> GetByNome(string nome)
+        public IEnumerable<Projeto> GetByNome(string nome)
         {
-            return (IEnumerable<ProjetoDTO>)_context.Projetos.Where(
+            return _context.Projetos.Where(
                 projeto => projeto.Nome.StartsWith(nome)).AsNoTracking();
         }
         /// <summary>
@@ -81,47 +81,47 @@ namespace Service
         /// </summary>
         /// <param name="data"></param>
         /// <returns> Projetos ordenados pela data prevista </returns>
-        public IEnumerable<ProjetoDTO> GetByData(DateTime data)
+        public IEnumerable<Projeto> GetByData(DateTime data)
         {
             var query = from projeto in _context.Projetos
                         where projeto.DataPrevista.Equals(data)
                         orderby projeto.DataPrevista
                         select projeto;
-            return (IEnumerable<ProjetoDTO>)query.AsNoTracking();
+            return query.AsNoTracking();
         }
         /// <summary>
         /// Obter projetos pelo status
         /// </summary>
         /// <param name="status"></param>
         /// <returns> Projeto de acordo com seu status </returns>
-        public IEnumerable<ProjetoDTO> GetByStatus(string status)
+        public IEnumerable<Projeto> GetByStatus(string status)
         {
-            return (IEnumerable<ProjetoDTO>)_context.Projetos.Where(
+            return _context.Projetos.Where(
                projeto => projeto.Status.StartsWith(status)).AsNoTracking();
         }
         /// <summary>
         /// Obter as intervenções de um projeto
         /// </summary>
         /// <returns> As intervenções de um projeto </returns>
-        public IEnumerable<IntervencaoDTO> GetAllIntervencoes(uint id)
+        public IEnumerable<Intervencao> GetAllIntervencoes(uint id)
         {
             var query = from intervencao in _context.Intervencoes
                         where intervencao.IdProjeto == id
                         //join intervencao in _context.Projetos on projeto.Id equals intervencao.IdPropriedade
                         select intervencao;
-            return (IEnumerable<IntervencaoDTO>)query.AsNoTracking();
+            return query.AsNoTracking();
         }
         /// <summary>
         /// Obter as contas de um projeto
         /// </summary>
         /// <returns> As contas de um projeto </returns>
-        public IEnumerable<ContaDTO> GetAllConta(uint id)
+        public IEnumerable<Conta> GetAllConta(uint id)
         {
             var query = from conta in _context.Contas
                         where conta.IdProjeto == id
                         //join conta in _context.Projetos on projeto.Id equals conta.IdPropriedade
                         select conta;
-            return (IEnumerable<ContaDTO>)query.AsNoTracking();
+            return query.AsNoTracking();
         }
         /// <summary>
         /// Obter os projetos de uma propriedade
