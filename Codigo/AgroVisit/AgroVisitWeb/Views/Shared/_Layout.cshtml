@@ -10,40 +10,53 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-dark fixed-top" style="background-color: rgb(96, 163, 95);">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AgroVisitWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="38" viewBox="0 0 83 79" fill="none">
+                        <path d="M5.16431 70.2003L17.6991 41.3706M56.3064 70.2003L30.2339 12.541L17.6991 41.3706M56.3064 70.2003L17.6991 41.3706M56.3064 70.2003L77.8663 12.541" stroke="white" stroke-width="10" />
+                    </svg>
+                </a>
+                <button style="position:absolute; left: 19px; bottom: -43px;" class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 65 39" fill="none">
+                        <path d="M4.0625 0C1.81884 0 0 1.45507 0 3.25C0 5.04493 1.81884 6.5 4.0625 6.5H60.9375C63.1812 6.5 65 5.04493 65 3.25C65 1.45507 63.1812 0 60.9375 0H4.0625Z" fill="black" />
+                        <path d="M0 19.5C0 17.7051 1.81884 16.25 4.0625 16.25H60.9375C63.1812 16.25 65 17.7051 65 19.5C65 21.2949 63.1812 22.75 60.9375 22.75H4.0625C1.81884 22.75 0 21.2949 0 19.5Z" fill="black" />
+                        <path d="M0 35.75C0 33.9551 1.81884 32.5 4.0625 32.5H60.9375C63.1812 32.5 65 33.9551 65 35.75C65 37.5449 63.1812 39 60.9375 39H4.0625C1.81884 39 0 37.5449 0 35.75Z" fill="black" />
+                    </svg>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Cliente</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Propriedade" asp-action="Index">Propriedade</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Visita" asp-action="Index">Visita</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Projeto" asp-action="Index">Projeto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel">AgroVisit</h3>
+                        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Cliente</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Propriedade" asp-action="Index">Propriedade</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Visita" asp-action="Index">Visita</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Projeto" asp-action="Index">Projeto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3" style="margin: 75px 0px">
             @RenderBody()
         </main>
     </div>

@@ -31,6 +31,7 @@ namespace Service.Tests
 
             _context.AddRange(clientes);
             _context.SaveChanges();
+
             _clienteService = new ClienteService(_context);
         }
 
