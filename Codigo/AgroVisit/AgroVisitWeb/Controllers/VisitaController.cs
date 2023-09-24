@@ -29,6 +29,10 @@ namespace AgroVisitWeb.Controllers
         {
             var listaVisitas = _visitaService.GetAll();
             var listaVisitasModel = _mapper.Map<List<VisitaViewModel>>(listaVisitas);
+            foreach (var item in listaVisitasModel)
+            {
+                item.NomePropriedade = _propriedadeService.Get(item.IdPropriedade).Nome;
+            }
             return View(listaVisitasModel);
         }
 

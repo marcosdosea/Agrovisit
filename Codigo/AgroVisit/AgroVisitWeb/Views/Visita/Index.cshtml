@@ -3,57 +3,26 @@
 @{
     ViewData["Title"] = "Visitas";
 }
+<div class="container py-5">
+    <h1>Visitas</h1>
+    @foreach (var item in Model)
+    {
+        <div class="col-10 card radius-10 border-start border-0 border-5 border-success" style="background-color:#EFEFEF; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); height:min-content">
+            <div class="card-header">Visita: @Html.DisplayFor(modelItem => item.DataHora)</div>
+            <div class="card-body">
+                <h4 class="card-title">Propriedade: @Html.DisplayFor(modelItem => item.NomePropriedade)</h4>
+                <p class="card-text">Objetivo: @Html.DisplayFor(modelItem => item.Observacoes)</p>
+                <div class="row">
+                    <button class="btn btn-outline-success col-4 m-2">@Html.ActionLink("Detalhes", "Details", new { id=item.Id })</button>
+                    <button class="btn btn-danger col-4 m-2">@Html.ActionLink("Excluir", "Delete", new { id = item.Id })</button>
+                </div>
+            </div>
 
-<h1>Visitas</h1>
-
-<p>
-    <a asp-action="Create">Adicionar visitas</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observacoes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataHora)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPropriedade)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observacoes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataHora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPropriedade)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        </div>
+    }
+</div>
+<div>
+    <p>
+        <a clas="btn btn-primary" asp-action="Create">Adicionar visitas</a>
+    </p>
+</div>
