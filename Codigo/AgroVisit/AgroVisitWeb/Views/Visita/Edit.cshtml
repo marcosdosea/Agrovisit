@@ -3,49 +3,47 @@
 @{
     ViewData["Title"] = "Editar visita";
 }
+<div class="container pt-5">
+    <h1>Editar visita</h1>
+</div>
 
-<h1>Editar visita</h1>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Observacoes" class="control-label"></label>
-                <input asp-for="Observacoes" class="form-control" />
-                <span asp-validation-for="Observacoes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataHora" class="control-label"></label>
-                <input asp-for="DataHora" class="form-control" />
-                <span asp-validation-for="DataHora" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdPropriedade" class="control-label"></label>
-                <select asp-for="IdPropriedade" asp-items="@Model.ListaPropriedades" class="form-control"></select>
-                <span asp-validation-for="IdPropriedade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group col-md-6 m-2">
+        <label asp-for="IdPropriedade" class="control-label"></label>
+        <select asp-for="IdPropriedade" asp-items="@Model.ListaPropriedades" class="form-control border border-success"></select>
+        <span asp-validation-for="IdPropriedade" class="text-danger"></span>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Voltar</a>
-</div>
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" class="form-control" />
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6 m-2">
+            <label asp-for="DataHora" class="control-label"></label>
+            <input asp-for="DataHora" class="form-control border border-success" />
+            <span asp-validation-for="DataHora" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4 m-2">
+            <label asp-for="Status" class="control-label"></label>
+            <input asp-for="Status" class="form-control border border-success" />
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-10 m-2">
+        <label asp-for="Observacoes" class="control-label"></label>
+        <textarea asp-for="Observacoes" class="form-control border border-success" rows="4"></textarea>
+        <span asp-validation-for="Observacoes" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <div class="col-8">
+            <a class="btn btn-secondary" asp-action="Index">Voltar</a>
+        </div>
+        <div class="col-4">
+            <button type="submit" value="Save" class="btn btn-success">Concluir</button>
+        </div>
+    </div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

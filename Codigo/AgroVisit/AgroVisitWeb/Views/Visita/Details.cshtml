@@ -4,45 +4,62 @@
     ViewData["Title"] = "Detalhes de visita";
 }
 
-<h1>Detalhes de visita</h1>
+<div class="container p-5">
+    <div class="row">
+        <h1 class="col-10">Detalhes</h1>
+        <a class="btn btn-close col-2" asp-action="Index"></a>
+    </div>
+    <div class="row">
+        <hr />
+        <div class="col-md-6">
+            <strong>
+                @Html.DisplayNameFor(model => model.DataHora)
+            </strong>
+            <p>
+                @Html.DisplayFor(model => model.DataHora)
+            </p>
+        </div>
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.Status)
+            </strong>
+            <p>
+                @if (Model.Status.StartsWith('A'))
+                {
+                    @Html.DisplayName("Agendada")
+                }
+                else
+                {
+                    @Html.DisplayName("Concluida")
+                }
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Observacoes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Observacoes)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataHora)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataHora)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdPropriedade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdPropriedade)
-        </dd>        
-    </dl>
-    
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    <a asp-action="Index">Voltar</a>
+            </p>
+        </div>
+    </div>
+    <div>
+        <dl>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NomePropriedade)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NomePropriedade)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NomeCliente)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NomeCliente)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Observacoes)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Observacoes)
+            </dd>
+        </dl>
+    </div>
+    <div class="row">
+        <button class="btn btn-outline-success col-5 m-2">@Html.ActionLink("Adicionar informação", "Edit", new { id = Model.Id })</button>
+        <button class="btn btn-danger col-4 m-2">@Html.ActionLink("Excluir", "Delete", new { id = Model.Id })</button>
+    </div>
 </div>
