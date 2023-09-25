@@ -4,28 +4,25 @@
     ViewData["Title"] = "Cadastrar Clientes";
 }
 
-<h1>Cadastrar Cliente</h1>
-
-<div>
-    <a class="btn borda-concluir offset-11" id="border" asp-action="Index">Voltar</a>
-</div>
-
-<hr />
-<div class="container p-4">
+<div class="container p-5">
+    <h1>Cadastrar Cliente</h1>
+    <div>
+        <a class="btn btn-success borda-concluir offset-11" id="border" asp-action="Index">Voltar</a>
+    </div><hr />
     <div class="col-md-7">
         <form asp-action="Create" id="border">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group col-8 m-2">
+            <div class="form-group col-10 m-2">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control border border-success" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group col-3 m-2">
+            <div class="form-group col-9 m-2">
                 <label asp-for="Cpf" class="control-label"></label>
                 <input asp-for="Cpf" class="form-control border border-success" />
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
-            <div class="form-group col-3 m-2">
+            <div class="form-group col-6 m-2">
                 <label asp-for="DataNascimento" class="control-label"></label>
                 <input asp-for="DataNascimento" class="form-control border border-success" />
                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
@@ -41,7 +38,7 @@
                     <input asp-for="Bairro" class="form-control border border-success" />
                     <span asp-validation-for="Bairro" class="text-danger"></span>
                 </div>
-                <div class="form-group col-5 m-2">
+                <div class="form-group col-3 m-2">
                     <label asp-for="Estado" class="control-label"></label>
                     <input asp-for="Estado" class="form-control border border-success" />
                     <span asp-validation-for="Estado" class="text-danger"></span>
@@ -64,13 +61,13 @@
                 <input asp-for="Telefone" class="form-control border border-success" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
-            <div class="form-group col-2 m-2">
+            <div class="form-group col-3 m-2">
                 <label asp-for="IdEngenheiroAgronomo" class="control-label"></label>
                 <input asp-for="IdEngenheiroAgronomo" class="form-control border border-success" />
                 <span asp-validation-for="IdEngenheiroAgronomo" class="text-danger"></span>
             </div>
-            <div class="container p-8">
-                <input type="submit" value="Concluir" class="btn btn-primary borda-concluir offset-11" />
+            <div id="border" class="container">
+                <input type="submit" value="Concluir" class="btn btn-success borda-concluir offset-8" />
             </div>
         </form>
     </div>

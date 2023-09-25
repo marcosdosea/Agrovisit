@@ -4,13 +4,11 @@
     ViewData["Title"] = "Detalhes de Cliente";
 }
 
-<h1>Detalhes de cliente</h1>
-<div class="container p-4">
-    <a class="btn borda-concluir offset-11" id="border" asp-action="Index">Voltar</a>
-</div>
-
-
-<div class="container p-4">
+<div class="container pt-5">
+    <div class="row">
+        <h1 class="col-6">Detalhes de cliente</h1>
+        <a class="btn btn-success borda-concluir" id="border" asp-action="Index">Voltar</a>
+    </div>
     <hr />
     <dl class="row">
         <dt class="col-2">
@@ -115,6 +113,6 @@
 </div>
 
 <div class=" container p-4">
-    <a href="@Url.ActionLink("Edit", "Cliente", new {  id = Model.Id })" class="btn borda-concluir nowrap" id="border">Editar</a>
-    <a href="@Url.ActionLink("Delete", "Cliente", new {  id = Model.Id })" class="btn borda-concluir offset-7 nowrap" id="border">Delete</a>
+    <a href="@Url.ActionLink("Edit", "Cliente", new {  id = Model.Id })" class="btn btn-success borda-concluir nowrap" id="border">Editar</a>
+    <a href="@Url.ActionLink("Delete", "Cliente", new {  id = Model.Id })" class="btn btn-danger border-danger offset-7 nowrap" id="border">Delete</a>
 </div>

@@ -4,34 +4,34 @@
 @{
     ViewData["Title"] = "Clientes";
 }
+<div class="container pt-5">
+    <div class="row">
+        <h1>Clientes</h1>
+        <a asp-action="Create">Cadastrar Cliente</a>
+    </div>
 
-<h1>Clientes</h1>
+    <table id="tableCliente" class="table table-striped table-bordered dt-responsive nowrap">
+        <thead>
+            <tr class="table-primary">
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cpf)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cidade)
+                </th>
+                <th>
 
-
-<a asp-action="Create">Cadastrar Cliente</a>
-
-<table id="tableCliente" class="table table-striped table-bordered dt-responsive nowrap">
-    <thead>
-        <tr class="table-primary">
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cpf)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cidade)
-            </th>
-            <th>
-
-            </th>
-        </tr>
-    </thead>
-</table>
-
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
 @section Scripts {
     <script src="~/lib/datatable/js/datatables.min.js"></script>
     <script>

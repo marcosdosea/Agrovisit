@@ -4,10 +4,12 @@
     ViewData["Title"] = "Deletar Clientes";
 }
 
-<h1>Deletar Cliente</h1>
-
-<h3>Tem certeza que deseja realizar esta operação?</h3>
-<<div class="container p-4">
+<div class="container pt-5">
+    <div>
+        <h1 class="col-6">Deletar Cliente</h1>
+        <h3>Tem certeza que deseja realizar esta operação?</h3>
+        <a class="btn btn-success borda-concluir" id="border" asp-action="Index">Voltar</a>
+    </div>
     <hr />
     <dl class="row">
         <dt class="col-2">
@@ -74,7 +76,6 @@
 
 <div>
     <form asp-action="Delete">
-        <input id="border" type="submit" value="Deletar" class="btn btn-danger" /> |
-        <a class="btn borda-concluir" id="border" asp-action="Index">Voltar</a>
+        <input id="border" type="submit" value="Deletar" class="btn btn-danger" />
     </form>
 </div>
