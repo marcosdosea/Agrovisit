@@ -2,6 +2,7 @@
 using AutoMapper;
 using Core;
 using Core.Service;
+using Core.Datatables;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgroVisitWeb.Controllers
@@ -25,6 +26,13 @@ namespace AgroVisitWeb.Controllers
             var listaCliente = _clienteService.GetAll();
             var listaClienteModel = _mapper.Map<List<ClienteViewModel>>(listaCliente);
             return View(listaClienteModel);
+        }
+
+        [HttpPost]
+        public IActionResult GetDataPage(DatatableRequest request)
+        {
+            var response = _clienteService.GetDataPage(request);
+            return Json(response);
         }
 
         // GET: ClienteController/Details/5

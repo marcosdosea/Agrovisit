@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Datatables;
 using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
@@ -78,6 +79,54 @@ namespace Service
         {
             return (IEnumerable<Cliente>)_context.Clientes.Where(
                 cliente => cliente.Nome.StartsWith(nome)).AsNoTracking();
+        }
+
+        /// <summary>
+        /// Retorna uma página de dados
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public DatatableResponse<Cliente> GetDataPage(DatatableRequest request)
+        {
+            var clientes = _context.Clientes.AsNoTracking();
+            // total de registros na tabela
+            var totalRecords = clientes.Count();
+
+            // filtra pelo campos de busca
+            if (request.Search != null && request.Search.GetValueOrDefault("value") != null)
+            {
+                clientes = clientes.Where(cliente => cliente.Id.ToString().Contains(request.Search.GetValueOrDefault("value"))
+                                              || cliente.Nome.ToLower().Contains(request.Search.GetValueOrDefault("value"))
+                                              || cliente.Cidade.ToLower().Contains(request.Search.GetValueOrDefault("value")));
+            }
+
+            // ordenação pelas colunas permitidas
+            if (request.Order != null && request.Order[0].GetValueOrDefault("column").Equals("0"))
+            {
+                if (request.Order[0].GetValueOrDefault("dir").Equals("asc"))
+                    clientes = clientes.OrderBy(cliente => cliente.Nome);
+                else
+                    clientes = clientes.OrderByDescending(cliente => cliente.Nome);
+            }
+            else if (request.Order != null && request.Order[0].GetValueOrDefault("column").Equals("3"))
+            {
+                if (request.Order[0].GetValueOrDefault("dir").Equals("asc"))
+                    clientes = clientes.OrderBy(cliente => cliente.Cidade);
+                else
+                    clientes = clientes.OrderByDescending(cliente => cliente.Cidade);
+            }
+
+            // total de registros filtrados
+            int countRecordsFiltered = clientes.Count();
+            // paginação que será exibida
+            clientes = clientes.Skip(request.Start).Take(request.Length);
+            return new DatatableResponse<Cliente>()
+            {
+                Data = clientes.ToList(),
+                Draw = request.Draw,
+                RecordsFiltered = countRecordsFiltered,
+                RecordsTotal = totalRecords
+            };
         }
     }
 }
