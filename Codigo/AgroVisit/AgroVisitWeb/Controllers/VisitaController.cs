@@ -12,13 +12,15 @@ namespace AgroVisitWeb.Controllers
     public class VisitaController : Controller
     {
         private readonly IPropriedadeService _propriedadeService;
+        private readonly IClienteService _clienteService;
         private readonly IVisitaService _visitaService;
         private readonly IMapper _mapper;
 
-        public VisitaController(IVisitaService visitaService, IPropriedadeService propriedadeService, IMapper mapper)
+        public VisitaController(IVisitaService visitaService, IPropriedadeService propriedadeService, IClienteService clienteService, IMapper mapper)
         {
             _visitaService = visitaService;
             _propriedadeService = propriedadeService;
+            _clienteService = clienteService;
             _mapper = mapper;
         }
 
@@ -27,14 +29,21 @@ namespace AgroVisitWeb.Controllers
         {
             var listaVisitas = _visitaService.GetAll();
             var listaVisitasModel = _mapper.Map<List<VisitaViewModel>>(listaVisitas);
+            foreach (var item in listaVisitasModel)
+            {
+                item.NomePropriedade = _propriedadeService.Get(item.IdPropriedade).Nome;
+            }
             return View(listaVisitasModel);
         }
 
         // GET: VisitaController/Details/5
         public ActionResult Details(uint id)
         {
-            Visita visita = _visitaService.Get(id);
+            Visita visita = _visitaService.Get(id);            
             VisitaViewModel visitaModel = _mapper.Map<VisitaViewModel>(visita);
+            var idCliente = _propriedadeService.Get(visitaModel.IdPropriedade).IdCliente;
+            visitaModel.NomePropriedade = _propriedadeService.Get(visitaModel.IdPropriedade).Nome;
+            visitaModel.NomeCliente = _clienteService.Get(idCliente).Nome;
             return View(visitaModel);
         }
 
