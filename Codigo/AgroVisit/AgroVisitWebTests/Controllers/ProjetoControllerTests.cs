@@ -2,6 +2,7 @@
 using AgroVisitWeb.Models;
 using AutoMapper;
 using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -22,6 +23,7 @@ namespace AgroVisitWeb.Controllers.Tests
             var mockService = new Mock<IProjetoService>();
             var intervencao = new Mock<IIntervencaoService>();
             var propriedade = new Mock<IPropriedadeService>();
+            var cliente = new Mock<IClienteService>();
 
 
             IMapper mapper = new MapperConfiguration(cfg =>
@@ -35,7 +37,22 @@ namespace AgroVisitWeb.Controllers.Tests
                 .Verifiable();
             mockService.Setup(service => service.Create(It.IsAny<Projeto>()))
                 .Verifiable();
-            controller = new ProjetoController(mockService.Object, intervencao.Object, propriedade.Object, mapper);
+
+            propriedade.Setup(service => service.GetAll())
+                .Returns(GetTestsPropriedades());
+            propriedade.Setup(service => service.Get(1))
+                .Returns(GetNewPropriedade());
+            propriedade.Setup(service => service.Create(It.IsAny<Propriedade>()))
+                .Verifiable();
+
+            cliente.Setup(service => service.GetAll())
+                .Returns(GetTestsCliente());
+            cliente.Setup(service => service.Get(1))
+                .Returns(GetNewCliente());
+            cliente.Setup(service => service.Create(It.IsAny<Cliente>()))
+                .Verifiable();
+
+            controller = new ProjetoController(mockService.Object, intervencao.Object, propriedade.Object, cliente.Object, mapper);
         }
 
         [TestMethod()]
@@ -63,13 +80,13 @@ namespace AgroVisitWeb.Controllers.Tests
             ViewResult viewResult = (ViewResult)result;
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(ProjetoViewModel));
             ProjetoViewModel projetoModel = (ProjetoViewModel)viewResult.ViewData.Model;
-            Assert.AreEqual("Projeto adubação", projetoModel.Nome);
+            Assert.AreEqual("Projeto adubação", projetoModel.Nome);// adicionar o restante
+
             Assert.AreEqual(DateTime.Parse("2020-10-20"), projetoModel.DataInicio);
             Assert.AreEqual(DateTime.Parse("2020-11-20"), projetoModel.DataPrevista);
             Assert.AreEqual((uint)5, projetoModel.QuantParcela);
             Assert.AreEqual("EX", projetoModel.Status);
             Assert.AreEqual(1900, projetoModel.Valor);
-            Assert.AreEqual((uint)1, projetoModel.IdPropriedade);
         }
 
         [TestMethod()]
@@ -182,6 +199,8 @@ namespace AgroVisitWeb.Controllers.Tests
             {
                 Id = 4,
                 Nome = "Projeto soja",
+                NomeCliente = "Ana",
+                NomePropriedade = "Fazenda",
                 DataInicio = DateTime.Parse("2021-01-20"),
                 DataPrevista = DateTime.Parse("2021-02-20"),
                 Status = "EX",
@@ -206,12 +225,97 @@ namespace AgroVisitWeb.Controllers.Tests
             };
         }
 
+        private static Propriedade GetNewPropriedade()
+        {
+            return new Propriedade
+            {
+                Id = 1,
+                Nome = "Fazenda",
+                Estado = "SE",
+                Cidade = "Itabaiana",
+                IdCliente = 1,
+                IdEngenheiroAgronomo = 1,
+                IdSolo = 1,
+                IdCultura = 1
+            };
+        }
+
+        private IEnumerable<Propriedade> GetTestsPropriedades()
+        {
+            return new List<Propriedade>
+            {
+                new Propriedade
+                {
+                    Id = 1,
+                    Nome = "Fazenda",
+                    Estado = "SE",
+                    Cidade = "Itabaiana",
+                    IdCliente = 1,
+                    IdEngenheiroAgronomo = 1,
+                    IdSolo = 1,
+                    IdCultura = 1
+                },
+                new Propriedade
+                {
+                    Id = 2,
+                    Nome = "Alegria",
+                    Estado = "SE",
+                    Cidade = "Macambira",
+                    IdCliente = 1,
+                    IdEngenheiroAgronomo = 1,
+                    IdSolo = 1,
+                    IdCultura = 1
+                }
+            };
+        }
+
+        private IEnumerable<Cliente> GetTestsCliente()
+        {
+            return new List<Cliente>
+            {
+                new Cliente
+                {
+                    Id = 1,
+                    Nome = "Ana",
+                    Cpf = "03992849329",
+                    Estado = "SE",
+                    Cidade = "Itabaiana",
+                    IdEngenheiroAgronomo = 1,
+                    
+                },
+                new Cliente
+                {
+                    Id = 2,
+                    Nome = "Joao",
+                    Cpf = "999999999",
+                    Estado = "SE",
+                    Cidade = "Macambira",
+                    IdEngenheiroAgronomo = 1
+                }
+            };
+        }
+
+        private static Cliente GetNewCliente()
+        {
+            return new Cliente
+            {
+                Id = 1,
+                Nome = "Ana",
+                Cpf = "029919238293",
+                Estado = "SE",
+                Cidade = "Itabaiana",
+                IdEngenheiroAgronomo = 1
+            };
+        }
+
         private ProjetoViewModel GetTargetProjetoModel()
         {
             return new ProjetoViewModel
             {
                 Id = 2,
                 Nome = "Projeto de irrigação",
+                NomeCliente = "Ana",
+                NomePropriedade = "Fazenda",
                 DataInicio = DateTime.Parse("2020-01-20"),
                 DataPrevista = DateTime.Parse("2020-02-20"),
                 Status = "EX",
@@ -256,7 +360,7 @@ namespace AgroVisitWeb.Controllers.Tests
                     Status = "EX",
                     QuantParcela = 5,
                     Valor = 500,
-                    IdPropriedade = 2
+                    IdPropriedade = 1
                 },
             };
         }

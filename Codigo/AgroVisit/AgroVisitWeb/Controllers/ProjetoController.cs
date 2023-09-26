@@ -1,6 +1,8 @@
 ﻿using AgroVisitWeb.Models;
 using AutoMapper;
 using Core;
+using Core.Datatables;
+using Core.DTO;
 using Core.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,22 +15,31 @@ namespace AgroVisitWeb.Controllers
         /*private readonly IContaService _contaService;*/
         private readonly IIntervencaoService _intervencaoService;
         private readonly IPropriedadeService _propriedadeService;
+        private readonly IClienteService _clienteService;
         private readonly IMapper _mapper;
 
-        public ProjetoController(IProjetoService projetoService, IIntervencaoService intervencaoService, /*IContaService contaService,*/ IPropriedadeService propriedadeService, IMapper mapper)
+        public ProjetoController(IProjetoService projetoService, IIntervencaoService intervencaoService, /*IContaService contaService,*/ IPropriedadeService propriedadeService, IClienteService clienteService, IMapper mapper)
         {
             _projetoService = projetoService;
             _intervencaoService = intervencaoService;
             //_contaService = contaService;
             _propriedadeService = propriedadeService;
+            _clienteService = clienteService;
             _mapper = mapper;
         }
         // GET: ProjetoController
         public ActionResult Index()
         {
-            var listaProjetos = _projetoService.GetAll();
-            var listaProjetosModel = _mapper.Map<List<ProjetoViewModel>>(listaProjetos);
-            return View(listaProjetosModel);
+            var listaProjetos = _projetoService.GetAllDto();
+            
+            return View(listaProjetos);
+        }
+
+        [HttpPost]
+        public IActionResult GetDataPage(DatatableRequest request)
+        {
+            var response = _projetoService.GetDataPage(request);
+            return Json(response);
         }
 
         // GET: ProjetoController/Details/5
@@ -36,9 +47,15 @@ namespace AgroVisitWeb.Controllers
         {
             Projeto projeto = _projetoService.Get(id);
             ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
-
+            //var listaProjetos = _projetoService. GetDetailsDeleteAll();
+           
             IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
+
+            var propriedade = _propriedadeService.Get(projeto.IdPropriedade);
             projetoModel.ListaIntervencoes = _intervencaoService.GetByProjeto(id);
+            projetoModel.NomeCliente = _clienteService.Get(propriedade.IdCliente).Nome;
+            projetoModel.NomePropriedade = _propriedadeService.Get(projeto.IdPropriedade).Nome;
+            
 
             /*IEnumerable<Conta> listaContas = _contaService.GetAll();
             projetoModel.ListaContas = _contaService.GetByProjeto(id);*/
@@ -95,7 +112,7 @@ namespace AgroVisitWeb.Controllers
         // GET: ProjetoController/Delete/5
         public ActionResult Delete(uint id)
         {
-            Projeto projeto = _projetoService.Get(id);
+            var projeto = _projetoService.Get(id);
             ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
             return View(projetoModel);
         }

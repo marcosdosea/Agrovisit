@@ -14,22 +14,30 @@ namespace AgroVisitWeb.Models
         [StringLength(50)]
         public string Nome { get; set; } = null!;
 
+        [Display(Name = "Cliente")]
+        public string? NomeCliente { get; set; }
+
+        [Display(Name = "Propriedade")]
+        public string? NomePropriedade { get; set; }
+
         [Display(Name = "Valor")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         public float Valor { get; set; }
 
-        [Display(Name = "Parcelas")]
+        [Display(Name = "Quantidade de parcelas")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         public uint QuantParcela { get; set; }
 
         [Display(Name = "Data de inicio")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataInicio { get; set; }
 
         [Display(Name = "Data da parcela")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataPrevista { get; set; }
 
         [Display(Name = "Descrição")]

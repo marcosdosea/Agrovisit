@@ -15,6 +15,7 @@ namespace AgroVisitWeb.Controllers
         private readonly ISoloService _soloService;
         private readonly ICulturaService _culturaService;
         private readonly IMapper _mapper;
+
         public PropriedadeController(IPropriedadeService propriedadeService, ISoloService soloService, ICulturaService culturaService, IClienteService clienteService, IProjetoService projetoService, IVisitaService visitaService, IMapper mapper)
         {
             _propriedadeService = propriedadeService;
