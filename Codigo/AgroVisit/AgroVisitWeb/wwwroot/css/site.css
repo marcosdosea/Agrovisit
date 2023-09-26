@@ -15,6 +15,12 @@ html {
 
 body {
     margin-bottom: 60px;
+
+}
+
+.navbar-dark {
+    --background-color: lightgreen;
+
 }
 
 h1 h2 h3 h4 h5 h6 h7 h8 h9 {

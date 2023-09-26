@@ -20,8 +20,8 @@ namespace AgroVisitWeb.Models
         public string Nome { get; set; } = null!;
 
         [Display(Name = "Data de Nascimento")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy/mm/dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DataNascimento { get; set; }
 
         [Display(Name = "Cidade")]
