@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -162,17 +163,13 @@ namespace Service.Tests
             // Act
             var listaProjeto = _projetoService.GetAll();
             // Assert
-            Assert.IsInstanceOfType(listaProjeto, typeof(IEnumerable<Projeto>));
+            Assert.IsInstanceOfType(listaProjeto, typeof(IEnumerable<ProjetoDTO>));
             Assert.IsNotNull(listaProjeto);
             Assert.AreEqual(3, listaProjeto.Count());
             Assert.AreEqual((uint)1, listaProjeto.First().Id);
             Assert.AreEqual("Projeto adubação", listaProjeto.First().Nome);
             Assert.AreEqual(DateTime.Parse("1917-12-31"), listaProjeto.First().DataInicio);
-            Assert.AreEqual(DateTime.Parse("1918-01-30"), listaProjeto.First().DataPrevista);
             Assert.AreEqual("EX", listaProjeto.First().Status);
-            Assert.AreEqual((uint)5, listaProjeto.First().QuantParcela);
-            Assert.AreEqual((uint)1, listaProjeto.First().IdPropriedade);
-
         }
 
         [TestMethod()]

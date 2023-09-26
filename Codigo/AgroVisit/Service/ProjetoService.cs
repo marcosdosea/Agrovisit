@@ -1,7 +1,9 @@
 ﻿using Core;
+using Core.Datatables;
 using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Markup;
 
 namespace Service
 {
@@ -72,10 +74,52 @@ namespace Service
         /// Obter todos os projetos
         /// </summary>
         /// <returns> Todos os projetos </returns>
+        /// 
+
         public IEnumerable<Projeto> GetAll()
         {
             return _context.Projetos.AsNoTracking();
         }
+
+        public IEnumerable<ProjetoDTO> GetAllDto()
+        {
+            var query = from projetos in _context.Projetos
+                        select new ProjetoDTO
+                        {
+                            Id = projetos.Id,
+                            Nome = projetos.Nome,
+                            DataInicio = projetos.DataInicio,
+                            Status = projetos.Status,
+                            NomeCliente = projetos.IdPropriedadeNavigation.IdClienteNavigation.Nome,
+                            NomePropriedade = projetos.IdPropriedadeNavigation.Nome
+                        };
+            
+            return query.AsNoTracking();
+        }
+        /*public IQueryable<ProjetoAllDto> GetDetailsDeleteAll(uint id)
+        {
+            var query = from projetos in _context.Projetos
+                        where projetos.Id == id
+                        select new ProjetoAllDto
+                        {
+                            Id = projetos.Id,
+                            Nome = projetos.Nome,
+                            DataInicio = projetos.DataInicio,
+                            Status = projetos.Status,
+                            NomeCliente = projetos.IdPropriedadeNavigation.IdClienteNavigation.Nome,
+                            NomePropriedade = projetos.IdPropriedadeNavigation.Nome,
+                            DataPrevista = projetos.DataPrevista,
+                            DataConclusao = projetos.DataConclusao,
+                            Descricao = projetos.Descricao,
+                            Anexo = projetos.Anexo,
+                            NumeroVisita = projetos.NumeroVisita,
+                            Valor = projetos.Valor,
+                            QuantParcela = projetos.QuantParcela,
+                            ListaIntervencoes = projetos.Intervencoes
+                        };
+
+            return query.AsNoTracking();
+        }*/
         /// <summary>
         /// Obter projetos pela data
         /// </summary>
@@ -135,6 +179,64 @@ namespace Service
                         //join projeto in _context.Projetos on propriedade.Id equals projeto.IdPropriedade
                         select projeto;
             return query.AsNoTracking();
+        }
+
+        /// <summary>
+        /// Retorna uma página de dados
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public DatatableResponse<ProjetoDTO> GetDataPage(DatatableRequest request)
+        {
+            var projetos =  from projeto in _context.Projetos
+                            select new ProjetoDTO
+                            {
+                                Id = projeto.Id,
+                                Nome = projeto.Nome, 
+                                DataInicio = projeto.DataInicio,
+                                Status = projeto.Status,
+                                NomeCliente = projeto.IdPropriedadeNavigation.IdClienteNavigation.Nome,
+                                NomePropriedade = projeto.IdPropriedadeNavigation.Nome,
+                                Valor = projeto.Valor
+                            };
+            // total de registros na tabela
+            var totalRecords = projetos.Count();
+
+            // filtra pelo campos de busca
+            if (request.Search != null && request.Search.GetValueOrDefault("value") != null)
+            {
+                projetos = projetos.Where(projeto => projeto.Id.ToString().Contains(request.Search.GetValueOrDefault("value"))
+                                              || projeto.Nome.ToLower().Contains(request.Search.GetValueOrDefault("value")));
+            }
+
+            // ordenação pelas colunas permitidas
+            if (request.Order != null && request.Order[0].GetValueOrDefault("column").Equals("0"))
+            {
+                if (request.Order[0].GetValueOrDefault("dir").Equals("asc"))
+                    projetos = projetos.OrderBy(projeto => projeto.Nome);
+                else
+                    projetos = projetos.OrderByDescending(projeto => projeto.Nome);
+            }
+            else if (request.Order != null && request.Order[0].GetValueOrDefault("column").Equals("3"))
+            {
+                if (request.Order[0].GetValueOrDefault("dir").Equals("asc"))
+                    projetos = projetos.OrderBy(projeto => projeto.DataInicio);
+                else
+                    projetos = projetos.OrderByDescending(projeto => projeto.DataInicio);
+            }
+            
+
+            // total de registros filtrados
+            int countRecordsFiltered = projetos.Count();
+            // paginação que será exibida
+            projetos = projetos.Skip(request.Start).Take(request.Length);
+            return new DatatableResponse<ProjetoDTO>()
+            {
+                Data = projetos.ToList(),
+                Draw = request.Draw,
+                RecordsFiltered = countRecordsFiltered,
+                RecordsTotal = totalRecords
+            };
         }
     }
 }

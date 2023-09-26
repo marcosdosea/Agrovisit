@@ -1,4 +1,6 @@
-﻿namespace Core.DTO
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Core.DTO
 {
     public partial class ProjetoDTO
     {
@@ -6,21 +8,21 @@
 
         public string? Nome { get; set; }
 
-        public float Valor { get; set; }
-
-        public uint QuantParcela { get; set; }
-
+        [Display(Name = "Data de inicio")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{dd/mm/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataInicio { get; set; }
-
-        public DateTime DataPrevista { get; set; }
-
-        public string? Descricao { get; set; }
-
-        public byte[]? Anexo { get; set; }
 
         public string Status { get; set; } = null!;
 
-        public uint IdPropriedade { get; set; }
+        [Display(Name= "Propriedade")]
+        public string? NomePropriedade { get; set; }
+
+        [Display(Name = "Cliente")]
+        public string? NomeCliente {  get; set; }
+
+        [Display(Name = "Valor")]
+        public float Valor {  get; set; }
 
     }
 }

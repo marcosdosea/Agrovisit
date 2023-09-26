@@ -3,72 +3,86 @@
 @{
     ViewData["Title"] = "Deletar projeto";
 }
-
-<h1>Deletar projeto</h1>
-
-<h3>Tem certeza que deseja realizar esta operação?</h3>
-<div>
-    
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Valor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Valor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuantParcela)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuantParcela)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataInicio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataInicio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataPrevista)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataPrevista)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Anexo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Anexo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdPropriedade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdPropriedade)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Voltar</a>
-    </form>
+<div class="card text-center">
+    <div class="card-header">
+        <h3>Deletar projeto</h3>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Tem certeza que deseja realizar esta operação?</h5>
+        <div class ="text-start">
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Status)
+                </dd> 
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.QuantParcela)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.QuantParcela)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.DataPrevista)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DataPrevista)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.DataInicio)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DataInicio)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Valor)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Valor)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.DataConclusao)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DataConclusao)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.NumeroVisita)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NumeroVisita)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Descricao)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Anexo)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Anexo)
+                </dd>
+            </dl>
+        </div>
+        <form asp-action="Delete">
+            <div class="form-group row m-4">
+                <div class="col-md-6">
+                    <a id="border" class="btn borda-concluir btn-success" asp-action="Index">Não</a>
+                </div>
+                <div class="col-md-2 offset-md-3">
+                    <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
