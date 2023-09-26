@@ -26,5 +26,9 @@ namespace AgroVisitWeb.Models
         public uint IdPropriedade { get; set; }
         [Display(Name = "Propriedade")]
         public SelectList? ListaPropriedades { get; set; }
+        [Display(Name = "Propriedade")]
+        public string? NomePropriedade { get; set; }
+        [Display(Name = "Cliente")]
+        public string? NomeCliente { get; set; }
     }
 }

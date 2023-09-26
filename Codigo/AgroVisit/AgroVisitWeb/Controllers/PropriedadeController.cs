@@ -12,13 +12,17 @@ namespace AgroVisitWeb.Controllers
         private readonly IClienteService _clienteService;
         private readonly IProjetoService _projetoService;
         private readonly IVisitaService _visitaService;
+        private readonly ISoloService _soloService;
+        private readonly ICulturaService _culturaService;
         private readonly IMapper _mapper;
-        public PropriedadeController(IPropriedadeService propriedadeService, IClienteService clienteService, IProjetoService projetoService, IVisitaService visitaService, IMapper mapper)
+        public PropriedadeController(IPropriedadeService propriedadeService, ISoloService soloService, ICulturaService culturaService, IClienteService clienteService, IProjetoService projetoService, IVisitaService visitaService, IMapper mapper)
         {
             _propriedadeService = propriedadeService;
             _clienteService = clienteService;
             _projetoService = projetoService;
             _visitaService = visitaService;
+            _soloService = soloService;
+            _culturaService = culturaService;
             _mapper = mapper;
         }
 
@@ -37,6 +41,9 @@ namespace AgroVisitWeb.Controllers
             PropriedadeViewModel propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
             propriedadeModel.ListaProjetos = _projetoService.GetByPropriedade(id);
             propriedadeModel.ListaVisitas = _visitaService.GetByPropriedade(id);
+            propriedadeModel.NomeCultura = _culturaService.Get(propriedadeModel.IdCultura).Nome;
+            propriedadeModel.NomeSolo = _soloService.Get(propriedadeModel.IdSolo).Nome;
+            propriedadeModel.NomeCliente = _clienteService.Get(propriedadeModel.IdCliente).Nome;
 
             return View(propriedadeModel);
         }
@@ -46,7 +53,11 @@ namespace AgroVisitWeb.Controllers
         {
             PropriedadeViewModel propriedadeModel = new PropriedadeViewModel();
             IEnumerable<Cliente> listaClientes = _clienteService.GetAll();
+            IEnumerable<Cultura> listaCulturas = _culturaService.GetAll();
+            IEnumerable<Solo> listaSolos = _soloService.GetAll();
             propriedadeModel.ListaClientes = new SelectList(listaClientes, "Id", "Nome", null);
+            propriedadeModel.ListaCulturas = new SelectList(listaCulturas, "Id", "Nome", null);
+            propriedadeModel.ListaSolos = new SelectList(listaSolos, "Id", "Nome", null);
             return View(propriedadeModel);
         }
 
@@ -68,6 +79,10 @@ namespace AgroVisitWeb.Controllers
         {
             Propriedade propriedade = _propriedadeService.Get(id);
             PropriedadeViewModel propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
+            IEnumerable<Cultura> listaCulturas = _culturaService.GetAll();
+            IEnumerable<Solo> listaSolos = _soloService.GetAll();
+            propriedadeModel.ListaCulturas = new SelectList(listaCulturas, "Id", "Nome", null);
+            propriedadeModel.ListaSolos = new SelectList(listaSolos, "Id", "Nome", null);
 
             return View(propriedadeModel);
         }
@@ -90,7 +105,9 @@ namespace AgroVisitWeb.Controllers
         {
             Propriedade propriedade = _propriedadeService.Get(id);
             PropriedadeViewModel propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
-            
+            propriedadeModel.NomeCultura = _culturaService.Get(propriedadeModel.IdCultura).Nome;
+            propriedadeModel.NomeSolo = _soloService.Get(propriedadeModel.IdSolo).Nome;
+            propriedadeModel.NomeCliente = _clienteService.Get(propriedadeModel.IdCliente).Nome;
             return View(propriedadeModel);
         }
 

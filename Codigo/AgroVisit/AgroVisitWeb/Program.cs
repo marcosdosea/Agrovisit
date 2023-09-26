@@ -20,6 +20,8 @@ namespace AgroVisitWeb
             builder.Services.AddTransient<IClienteService, ClienteService>();
             builder.Services.AddTransient<IPropriedadeService, PropriedadeService>();
             builder.Services.AddTransient<IVisitaService, VisitaService>();
+            builder.Services.AddTransient<ICulturaService, CulturaService>();
+            builder.Services.AddTransient<ISoloService, SoloService>();
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

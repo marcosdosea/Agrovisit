@@ -28,7 +28,7 @@ namespace Service
         /// Remove visita da base de dados
         /// </summary>
         /// <param name="id"></param>
-        public void Delete(int id)
+        public void Delete(uint id)
         {
             var visita = _context.Visitas.Find(id);
             if (visita == null) return;
@@ -50,7 +50,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Visita</returns>
-        public Visita Get(int id)
+        public Visita Get(uint id)
         {
             return _context.Visitas.Find(id);
         }
@@ -101,8 +101,8 @@ namespace Service
         /// <returns>Todas as visitas de uma datpropriedade</returns>
         public IEnumerable<Visita> GetByPropriedade(uint idPropriedade)
         {
-            var query = from propriedade in _context.Propriedades
-                        join visita in _context.Visitas on propriedade.Id equals visita.IdPropriedade
+            var query = from visita in _context.Visitas
+                        where visita.IdPropriedade == idPropriedade
                         select visita;
             return query.AsNoTracking();
         }

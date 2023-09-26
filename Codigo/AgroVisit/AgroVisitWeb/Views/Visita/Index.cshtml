@@ -3,57 +3,42 @@
 @{
     ViewData["Title"] = "Visitas";
 }
-
-<h1>Visitas</h1>
-
-<p>
-    <a asp-action="Create">Adicionar visitas</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observacoes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataHora)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPropriedade)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observacoes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataHora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPropriedade)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container py-5">
+    <h1>Visitas</h1>
+    @foreach (var item in Model)
+    {
+        <div id="border" class="col-10 card radius-5 border-start border-0 border-5 border-success" style=" box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); height:min-content">
+            <div style="border-radius: 24px;" class="card-header">Visita: @Html.DisplayFor(modelItem => item.DataHora)</div>
+            <div class="card-body">
+                <h4 class="card-title">Propriedade: @Html.DisplayFor(modelItem => item.NomePropriedade)</h4>
+                <p class="card-text">Objetivo: @Html.DisplayFor(modelItem => item.Observacoes)</p>
+                <div class="row">
+                    <a id="border" href="@Url.ActionLink("Details", "Visita", new { id = item.Id })" class="btn borda-concluir btn-outline-success col-4 m-2">Detalhes</a>
+                    <a id="border" href="@Url.ActionLink("Delete", "Visita", new { id = item.Id })" class="btn border-danger btn-danger col-4 m-2">Excluir</a>
+                </div>
+            </div>
+        </div>
+        <br />
+    }
+</div>
+<div style="bottom: -30px; left: 1000px; position:relative">
+    <a asp-action="Create">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 99 99" fill="none">
+            <g filter="url(#filter0_d_375_7800)">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8662 13.7733C35.4654 -3.77459 63.9578 -3.73301 81.5058 13.8662C99.0537 31.4654 99.0121 59.9578 81.4129 77.5057C63.8137 95.0537 35.3213 95.0121 17.7734 77.4129C0.225422 59.8137 0.266999 31.3213 17.8662 13.7733ZM71.0867 45.6708C71.0834 47.9302 69.2492 49.7591 66.9898 49.7558L53.7245 49.7364L53.7051 63.0018C53.7018 65.2611 51.8676 67.09 49.6083 67.0867C47.3489 67.0834 45.52 65.2492 45.5233 62.9898L45.5427 49.7245L32.2773 49.7051C30.018 49.7018 28.1891 47.8676 28.1924 45.6082C28.1957 43.3489 30.0299 41.52 32.2893 41.5233L45.5546 41.5427L45.574 28.2773C45.5773 26.018 47.4115 24.1891 49.6709 24.1924C51.9302 24.1957 53.7591 26.0299 53.7558 28.2893L53.7364 41.5546L67.0018 41.574C69.2611 41.5773 71.09 43.4115 71.0867 45.6708Z" fill="#76B375" />
+            </g>
+            <defs>
+                <filter id="filter0_d_375_7800" x="0.639526" y="0.639648" width="98.0001" height="98" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                    <feOffset dy="4" />
+                    <feGaussianBlur stdDeviation="2" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_375_7800" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_375_7800" result="shape" />
+                </filter>
+            </defs>
+        </svg>
+    </a>
+</div>
