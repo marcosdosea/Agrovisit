@@ -48,8 +48,8 @@ namespace AgroVisitWeb.Controllers.Tests
             ViewResult viewResult = (ViewResult)result;
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(IntervencaoViewModel));
             IntervencaoViewModel intervencaoModel = (IntervencaoViewModel)viewResult.ViewData.Model;
-            Assert.AreEqual("Pratica 1", intervencaoModel.Pratica);
-            Assert.AreEqual("Descricao da pratica 1", intervencaoModel.Descricao);
+            Assert.AreEqual("Realizar poda", intervencaoModel.Pratica);
+            Assert.AreEqual("Realizar poda nas plantações", intervencaoModel.Descricao);
         }
 
         [TestMethod()]
@@ -101,8 +101,8 @@ namespace AgroVisitWeb.Controllers.Tests
             ViewResult viewResult = (ViewResult)result;
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(IntervencaoViewModel));
             IntervencaoViewModel autorModel = (IntervencaoViewModel)viewResult.ViewData.Model;
-            Assert.AreEqual("Pratica 1", autorModel.Pratica);
-            Assert.AreEqual("Descricao da pratica 1", autorModel.Descricao);
+            Assert.AreEqual("Realizar poda", autorModel.Pratica);
+            Assert.AreEqual("Realizar poda nas plantações", autorModel.Descricao);
         }
 
         [TestMethod()]
@@ -129,8 +129,8 @@ namespace AgroVisitWeb.Controllers.Tests
             ViewResult viewResult = (ViewResult)result;
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(IntervencaoViewModel));
             IntervencaoViewModel intervencaoModel = (IntervencaoViewModel)viewResult.ViewData.Model;
-            Assert.AreEqual("Pratica 1", intervencaoModel.Pratica);
-            Assert.AreEqual("Descricao da pratica 1", intervencaoModel.Descricao);
+            Assert.AreEqual("Realizar poda", intervencaoModel.Pratica);
+            Assert.AreEqual("Realizar poda nas plantações", intervencaoModel.Descricao);
         }
 
         [TestMethod()]
@@ -151,8 +151,8 @@ namespace AgroVisitWeb.Controllers.Tests
             return new IntervencaoViewModel
             {
                 Id = 4,
-                Pratica = "Pratica 4",
-                Descricao = "Descricao da pratica 1"
+                Pratica = "Aplicação de adubo",
+                Descricao = "Realizar poda nas plantações"
             };
 
         }
@@ -161,8 +161,8 @@ namespace AgroVisitWeb.Controllers.Tests
             return new Intervencao
             {
                 Id = 1,
-                Pratica = "Pratica 1",
-                Descricao = "Descricao da pratica 1"
+                Pratica = "Realizar poda",
+                Descricao = "Realizar poda nas plantações"
             };
         }
 
@@ -171,8 +171,8 @@ namespace AgroVisitWeb.Controllers.Tests
             return new IntervencaoViewModel
             {
                 Id = 2,
-                Pratica = "Pratica 1",
-                Descricao = "Descricao da pratica 1"
+                Pratica = "Realizar poda",
+                Descricao = "Realizar poda nas plantações"
             };
         }
 
@@ -183,20 +183,20 @@ namespace AgroVisitWeb.Controllers.Tests
                 new Intervencao
                 {
                     Id = 1,
-                    Pratica = "Pratica 2",
-                    Descricao = "Descricao da pratica 2"
+                    Pratica = "Realizar irrigação",
+                    Descricao = "Realização da irrigação na plantação"
                 },
                 new Intervencao
                 {
                     Id = 2,
-                    Pratica = "Pratica 1",
-                    Descricao = "Descricao da pratica 1"
+                    Pratica = "Realizar poda",
+                    Descricao = "Realizar poda nas plantações"
                 },
                 new Intervencao
                 {
                     Id = 3,
-                    Pratica = "Pratica 3",
-                    Descricao = "Descricao da pratica 3"
+                    Pratica = "Aplicação de fertilizante",
+                    Descricao = "Realizar aplicação de fertilizante nas plantações"
                 },
             };
         }

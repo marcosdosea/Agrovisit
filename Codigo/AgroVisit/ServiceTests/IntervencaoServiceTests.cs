@@ -34,9 +34,9 @@ namespace Service.Tests
             _context.Database.EnsureCreated();
             var intervencoes = new List<Intervencao>
                 {
-                    new Intervencao { Id = 1, Pratica = "Pratica 1", Descricao = "Descricao da pratica 1", IdProjeto = 1},
-                    new Intervencao { Id = 2, Pratica = "Pratica 2", Descricao = "Descricao da pratica 2",  IdProjeto = 1 },
-                    new Intervencao { Id = 3, Pratica = "Pratica 3", Descricao = "Descricao da pratica 3",  IdProjeto = 1},
+                    new Intervencao { Id = 1, Pratica = "Realizar poda", Descricao = "Realizar poda nas plantações", IdProjeto = 1},
+                    new Intervencao { Id = 2, Pratica = "Realizar irrigação", Descricao = "Realização da irrigação na plantação",  IdProjeto = 1 },
+                    new Intervencao { Id = 3, Pratica = "Aplicação de fertilizante", Descricao = "Realizar aplicação de fertilizante nas plantações",  IdProjeto = 1},
                 };
 
 
@@ -73,12 +73,12 @@ namespace Service.Tests
         public void CreateTest()
         {
             // Act
-            _intervencaoService.Create(new Intervencao() { Id = 4, Pratica = "Pratica 4", Descricao = "Descricao da pratica 4", IdProjeto = 2 });
+            _intervencaoService.Create(new Intervencao() { Id = 4, Pratica = "Aplicação de adubo", Descricao = "realizar adubação em toda a plantação", IdProjeto = 2 });
             // Assert
             Assert.AreEqual(4, _intervencaoService.GetAll().Count());
             var intervencao = _intervencaoService.Get(4);
-            Assert.AreEqual("Pratica 4", intervencao.Pratica);
-            Assert.AreEqual("Descricao da pratica 4", intervencao.Descricao);
+            Assert.AreEqual("Aplicação de adubo", intervencao.Pratica);
+            Assert.AreEqual("realizar adubação em toda a plantação", intervencao.Descricao);
             
 
         }
@@ -99,14 +99,14 @@ namespace Service.Tests
         {
             //Act 
             var intervencao = _intervencaoService.Get(3);
-            intervencao.Pratica = "Pratica 3";
-            intervencao.Descricao = "Descricao da pratica 3";
+            intervencao.Pratica = "Aplicação de fertilizante";
+            intervencao.Descricao = "Realizar aplicação de fertilizante nas plantações";
             _intervencaoService.Edit(intervencao);
             //Assert
             intervencao = _intervencaoService.Get(3);
             Assert.IsNotNull(intervencao);
-            Assert.AreEqual("Pratica 3 NOVO", intervencao.Pratica);
-            Assert.AreEqual("Descricao da pratica 3 NOVO", intervencao.Descricao);
+            Assert.AreEqual("Aplicação de fertilizante NOVO", intervencao.Pratica);
+            Assert.AreEqual("Realizar aplicação de fertilizante nas plantações NOVO", intervencao.Descricao);
         }
 
         [TestMethod()]
@@ -114,8 +114,8 @@ namespace Service.Tests
         {
             var intervencao = _intervencaoService.Get(1);
             Assert.IsNotNull(intervencao);
-            Assert.AreEqual("Pratica 1", intervencao.Pratica);
-            Assert.AreEqual("Descricao da pratica 1", intervencao.Descricao);
+            Assert.AreEqual("Realizar poda", intervencao.Pratica);
+            Assert.AreEqual("Realizar poda nas plantações", intervencao.Descricao);
 
         }
 
@@ -129,7 +129,7 @@ namespace Service.Tests
             Assert.IsNotNull(listaIntervencao);
             Assert.AreEqual(3, listaIntervencao.Count());
             Assert.AreEqual(1, listaIntervencao.First().Id);
-            Assert.AreEqual("Pratica 1", listaIntervencao.First().Pratica);
+            Assert.AreEqual("Realizar poda", listaIntervencao.First().Pratica);
         }
 
         [TestMethod()]
@@ -140,7 +140,7 @@ namespace Service.Tests
             //Assert
             Assert.IsNotNull(intervencoes);
             Assert.AreEqual(3, intervencoes.Count());
-            Assert.AreEqual("Pratica 1", intervencoes.First().Pratica);
+            Assert.AreEqual("Realizar poda", intervencoes.First().Pratica);
         }
     }
 }
