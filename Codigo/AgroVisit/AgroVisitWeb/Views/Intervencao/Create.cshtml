@@ -1,66 +1,109 @@
 ﻿@model AgroVisitWeb.Models.IntervencaoViewModel
 
 @{
-    ViewData["Title"] = "Criar Intervenção";
+    ViewBag.Title = "Criar Intervenção";
 }
 
-<h1>Criar Intervenção</h1>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <!--  <label asp-for="Id" class="control-label"></label> -->
-                <input type="hidden" asp-for="Id" class="form-control" />
-                <!--   <span asp-validation-for="Id" class="text-danger"></span>  -->
+<div class="modal-dialog">
+    <div class="modal-content">
+        @using (Html.BeginForm())
+        {
+            <div class="modal-header">
+                <div class="text-start">
+                    <h4>Criar intervenção</h4>
+                </div>
+                <div class="text-end" style="position:relative">
+                    <a asp-action="Index">
+                        <svg position-sticky" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 58 58" fill="none">
+                            <g filter="url(#filter0_d_370_6135)">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4 25C4 11.1929 15.1929 0 29 0C42.8071 0 54 11.1929 54 25C54 38.8071 42.8071 50 29 50C15.1929 50 4 38.8071 4 25ZM37.4252 16.5748C38.3128 17.4623 38.3128 18.9013 37.4252 19.7889L32.2141 25L37.4252 30.2111C38.3128 31.0987 38.3128 32.5377 37.4252 33.4252C36.5377 34.3128 35.0987 34.3128 34.2111 33.4252L29 28.2141L23.7889 33.4252C22.9013 34.3128 21.4623 34.3128 20.5748 33.4252C19.6872 32.5377 19.6872 31.0987 20.5748 30.2111L25.7859 25L20.5748 19.7889C19.6872 18.9013 19.6872 17.4623 20.5748 16.5748C21.4623 15.6872 22.9013 15.6872 23.7889 16.5748L29 21.7859L34.2111 16.5748C35.0987 15.6872 36.5377 15.6872 37.4252 16.5748Z" fill="#76B375" />
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_370_6135" x="0" y="0" width="58" height="58" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                    <feOffset dy="4" />
+                                    <feGaussianBlur stdDeviation="2" />
+                                    <feComposite in2="hardAlpha" operator="out" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_370_6135" />
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_370_6135" result="shape" />
+                                </filter>
+                            </defs>
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Pratica" class="control-label"></label>
-                <input asp-for="Pratica" class="form-control" />
-                <span asp-validation-for="Pratica" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" />
-                <span asp-validation-for="Descricao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataAplicacao" class="control-label"></label>
-                <input asp-for="DataAplicacao" class="form-control" />
-                <span asp-validation-for="DataAplicacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoProduto" class="control-label"></label>
-                <input asp-for="TipoProduto" class="form-control" />
-                <span asp-validation-for="TipoProduto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AreaTratada" class="control-label"></label>
-                <input asp-for="AreaTratada" class="form-control" />
-                <span asp-validation-for="AreaTratada" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdProjeto" class="control-label"></label>
-                <select asp-for="IdProjeto" asp-items="@Model.ListaProjetos" class="form-control"></select>
-                <span asp-validation-for="IdProjeto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Concluir" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Voltar</a>
-</div>
+            @Html.AntiForgeryToken()
 
+            <div class="modal-body">
+                <form asp-action="Create">
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Pratica, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Pratica, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                                @Html.ValidationMessageFor(model => model.Pratica, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DataAplicacao, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DataAplicacao, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                                @Html.ValidationMessageFor(model => model.DataAplicacao, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TipoProduto, htmlAttributes: new { @class = "control-label col-6" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TipoProduto, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                                @Html.ValidationMessageFor(model => model.TipoProduto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdProjeto, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.IdProjeto, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IdProjeto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="text-end">
+                                <input type="submit" class="btn btn-success borda-concluir" value="Concluir" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        }
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

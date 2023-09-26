@@ -154,14 +154,14 @@
                     <tr>
                         <th>
                             @Html.DisplayFor(modelItem => item.Pratica)
-                            <a href="@Url.Action("Details", "Intervencao", new { id = item.Id })">Detalhes</a>
+                            <a id="border" class="btn btn-success" href="@Url.Action("Details", "Intervencao" , new { id = item.Id })">Detalhes</a>
                         </th>
                     </tr>
                 }
             </tbody>
         </table>
     }
-    <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Create", "Intervencao", new { id = Model.Id })">Adicionar Intervenção</a>
+    <a id="border" class="btn btn-success borda-concluir" data-toggle="modal" href="@Url.ActionLink("Create", "Intervencao")">Adicionar Intervenção</a>
 </div>
 <br />
 <!--<div>
