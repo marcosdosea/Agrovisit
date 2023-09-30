@@ -151,7 +151,6 @@ namespace Service
         {
             var query = from intervencao in _context.Intervencoes
                         where intervencao.IdProjeto == id
-                        //join intervencao in _context.Projetos on projeto.Id equals intervencao.IdPropriedade
                         select intervencao;
             return query.AsNoTracking();
         }
@@ -163,7 +162,6 @@ namespace Service
         {
             var query = from conta in _context.Contas
                         where conta.IdProjeto == id
-                        //join conta in _context.Projetos on projeto.Id equals conta.IdPropriedade
                         select conta;
             return query.AsNoTracking();
         }
@@ -176,7 +174,6 @@ namespace Service
         {
             var query = from projeto in _context.Projetos
                         where projeto.IdPropriedade == idPropriedade
-                        //join projeto in _context.Projetos on propriedade.Id equals projeto.IdPropriedade
                         select projeto;
             return query.AsNoTracking();
         }

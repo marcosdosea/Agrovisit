@@ -30,6 +30,18 @@ namespace Service.Tests
                     new Projeto { Id = 2, Nome = "Projeto de irrigação",DataInicio = DateTime.Parse("2000-12-31"), DataPrevista = DateTime.Parse("2001-01-20"), Valor =  900, Status = "EX", QuantParcela = 5, IdPropriedade = 1},
                     new Projeto { Id = 3, Nome = "Projeto milho", DataInicio = DateTime.Parse("1980-12-31"), DataPrevista = DateTime.Parse("1981-01-20"), Valor =  500, Status = "EX", QuantParcela = 5, IdPropriedade = 2},
                 };
+
+            var propriedade = new List<Propriedade>
+                {
+                    new Propriedade { Id = 1, Nome = "Fazenda alegria", Estado = "SE", Cidade = "Itabaiana", IdCliente = 1, IdCultura = 1, IdSolo = 1, IdEngenheiroAgronomo = 1 },
+                    new Propriedade { Id = 2, Nome = "Fazenda tistreza", Estado = "SE", Cidade = "Campo do Brito", IdCliente = 1, IdCultura = 1, IdSolo = 1, IdEngenheiroAgronomo = 1 }
+                };
+
+            var cliente = new List<Cliente>
+                {
+                    new Cliente { Id = 1, Nome = "Josimar", Cpf = "00000000", Cidade = "Itabaiana", Estado = "SE", IdEngenheiroAgronomo = 1 },
+                };
+
             var intervencoes = new List<Intervencao>
                 {
                     new Intervencao { Id = 1, Pratica = "Aplicar super fosfato",Status = "A", IdProjeto = 1},
@@ -39,6 +51,10 @@ namespace Service.Tests
             _context.AddRange(projetos);
             _context.SaveChanges();
             _context.AddRange(intervencoes);
+            _context.SaveChanges();
+            _context.AddRange(propriedade);
+            _context.SaveChanges();
+            _context.AddRange(cliente);
             _context.SaveChanges();
             _projetoService = new ProjetoService(_context);
         }
@@ -161,7 +177,7 @@ namespace Service.Tests
         public void GetAllTest()
         {
             // Act
-            var listaProjeto = _projetoService.GetAll();
+            var listaProjeto = _projetoService.GetAllDto();
             // Assert
             Assert.IsInstanceOfType(listaProjeto, typeof(IEnumerable<ProjetoDTO>));
             Assert.IsNotNull(listaProjeto);

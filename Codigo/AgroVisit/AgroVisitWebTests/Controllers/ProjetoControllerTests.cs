@@ -63,9 +63,9 @@ namespace AgroVisitWeb.Controllers.Tests
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
-            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<ProjetoViewModel>));
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<ProjetoDTO>));
 
-            List<ProjetoViewModel>? lista = (List<ProjetoViewModel>)viewResult.ViewData.Model;
+            List<ProjetoDTO>? lista = (List<ProjetoDTO>)viewResult.ViewData.Model;
             Assert.AreEqual(3, lista.Count);
         }
 
