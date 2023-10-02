@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWebTests\\AgroVisitWebTests.csproj": {}
+    "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWebTests\\AgroVisitWebTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWebTests\\AgroVisitWebTests.csproj": {
+    "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWebTests\\AgroVisitWebTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWebTests\\AgroVisitWebTests.csproj",
+        "projectUniqueName": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWebTests\\AgroVisitWebTests.csproj",
         "projectName": "AgroVisitWebTests",
-        "projectPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWebTests\\AgroVisitWebTests.csproj",
-        "packagesPath": "C:\\Users\\Bruna Keila\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWebTests\\obj\\",
+        "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWebTests\\AgroVisitWebTests.csproj",
+        "packagesPath": "C:\\Users\\202000060782\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWebTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bruna Keila\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\202000060782\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {
-                "projectPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj"
+              "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {
+                "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj"
               }
             }
           }
@@ -52,6 +52,12 @@
               "target": "Package",
               "version": "[2.2.8, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.1.0, )"
@@ -61,8 +67,10 @@
               "version": "[4.20.69, )"
             },
             "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.2.0, )"
             }
           },
           "imports": [
@@ -81,21 +89,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {
+    "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
+        "projectUniqueName": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
         "projectName": "AgroVisitWeb",
-        "projectPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
-        "packagesPath": "C:\\Users\\Bruna Keila\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\obj\\",
+        "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\AgroVisitWeb.csproj",
+        "packagesPath": "C:\\Users\\202000060782\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\AgroVisitWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bruna Keila\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\202000060782\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -103,18 +111,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj"
+              "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj"
               },
-              "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
-                "projectPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj"
+              "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
+                "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj"
               }
             }
           }
@@ -132,6 +139,20 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.22, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[6.0.22, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -163,21 +184,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
+    "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\Bruna Keila\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\obj\\",
+        "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\202000060782\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bruna Keila\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\202000060782\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -240,21 +261,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
+    "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
+        "projectUniqueName": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\Bruna Keila\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\obj\\",
+        "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\202000060782\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bruna Keila\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\202000060782\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -268,8 +289,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\Bruna Keila\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj"
+              "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Core\\Core.csproj"
               }
             }
           }
@@ -284,6 +305,12 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -307,7 +334,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -58,7 +58,7 @@ namespace AgroVisitWeb.Controllers
                 var projeto = _projetoService.Get(intervencao.IdProjeto);
                 _intervencaoService.Create(intervencao);
             }
-            return RedirectToAction(nameof(Details), projeto);
+            return RedirectToAction(nameof(Details));
         }
 
         // GET: IntervencaoController/Edit/5

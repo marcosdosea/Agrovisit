@@ -19,13 +19,14 @@ namespace AgroVisitWeb.Controllers.Tests
         {
             var mockService = new Mock<IVisitaService>();
             var mockPropriedade = new Mock<IPropriedadeService>();
+            var mockCliente = new Mock<IClienteService>();
             IMapper mapper = new MapperConfiguration(cfg => cfg.AddProfile(new VisitaProfile())).CreateMapper();
 
             mockService.Setup(service => service.GetAll()).Returns(GetTestVisitas());
             mockService.Setup(service => service.Get(1)).Returns(GetTargetVisita());
             mockService.Setup(service => service.Edit(It.IsAny<Visita>())).Verifiable();
             mockService.Setup(service => service.Create(It.IsAny<Visita>())).Verifiable();
-            controller = new VisitaController(mockService.Object, mockPropriedade.Object, mapper);
+            controller = new VisitaController(mockService.Object, mockPropriedade.Object, mockCliente.Object, mapper);
         }
 
         [TestMethod()]

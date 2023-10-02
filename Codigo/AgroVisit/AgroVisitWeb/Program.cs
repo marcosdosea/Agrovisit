@@ -2,6 +2,8 @@ using Core;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 using Service;
+using Microsoft.AspNetCore.Identity;
+using AgroVisitWeb.Areas.Identity.Data;
 
 namespace AgroVisitWeb
 {
@@ -27,7 +29,15 @@ namespace AgroVisitWeb
 
             builder.Services.AddDbContext<AgroVisitContext>(
                 options => options.UseMySQL(builder.Configuration.GetConnectionString("AgroVisitDatabase")));
+
+            builder.Services.AddDbContext<IdentityContext>(
+                options => options.UseMySQL(builder.Configuration.GetConnectionString("AgroVisitDatabase")));
+
+            builder.Services.AddDefaultIdentity<UsuarioIdentity>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<IdentityContext>();
             var app = builder.Build();
+
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -41,6 +51,7 @@ namespace AgroVisitWeb
             app.UseStaticFiles();
 
             app.UseRouting();
+                        app.UseAuthentication();;
 
             app.UseAuthorization();
 
