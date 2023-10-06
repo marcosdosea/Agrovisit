@@ -8290,19 +8290,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\202000060782\\.nuget\\packages\\": {}
+    "C:\\Users\\202100104960\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\ServiceTests\\ServiceTests.csproj",
+      "projectUniqueName": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\ServiceTests\\ServiceTests.csproj",
       "projectName": "ServiceTests",
-      "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\ServiceTests\\ServiceTests.csproj",
-      "packagesPath": "C:\\Users\\202000060782\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\ServiceTests\\obj\\",
+      "projectPath": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\ServiceTests\\ServiceTests.csproj",
+      "packagesPath": "C:\\Users\\202100104960\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\ServiceTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\202000060782\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\202100104960\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8316,8 +8316,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
-              "projectPath": "C:\\Users\\202000060782\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj"
+            "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj": {
+              "projectPath": "C:\\Users\\202100104960\\Desktop\\Agrovisit\\Codigo\\AgroVisit\\Service\\Service.csproj"
             }
           }
         }
