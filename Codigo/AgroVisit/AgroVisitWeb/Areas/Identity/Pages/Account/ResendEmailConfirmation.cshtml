@@ -1,26 +1,28 @@
 ﻿@page
 @model ResendEmailConfirmationModel
+
 @{
-    ViewData["Title"] = "Resend email confirmation";
+    ViewData["Title"] = "Reenviar confirmaçao de Email";
 }
 
-<h1>@ViewData["Title"]</h1>
-<h2>Enter your email.</h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Input.Email" class="form-control" aria-required="true" />
-                <label asp-for="Input.Email" class="form-label"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
-        </form>
+<div class="container p-5 text-center col-7">
+    <h1>@ViewData["Title"]</h1><br />
+    <h2>Insira seu Email</h2>
+    <hr />
+    <div class="row">
+        <div>
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-floating">
+                    <input id="border" asp-for="Input.Email" class="form-control border border-success" aria-required="true" />
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div><br />
+                <button id="border" type="submit" class="col-m-6 btn btn-lg btn-primary borda-concluir">Enviar</button>
+            </form>
+        </div>
     </div>
 </div>
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

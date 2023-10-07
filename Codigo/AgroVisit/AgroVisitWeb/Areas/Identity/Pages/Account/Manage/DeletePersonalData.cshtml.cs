@@ -46,7 +46,8 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage ="Campo obrigatório")]
+            [Display(Name ="Senha")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
         }
@@ -82,7 +83,7 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account.Manage
             {
                 if (!await _userManager.CheckPasswordAsync(user, Input.Password))
                 {
-                    ModelState.AddModelError(string.Empty, "Incorrect password.");
+                    ModelState.AddModelError(string.Empty, "Senha Incorreta.");
                     return Page();
                 }
             }
@@ -91,7 +92,7 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account.Manage
             var userId = await _userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
             {
-                throw new InvalidOperationException($"Unexpected error occurred deleting user.");
+                throw new InvalidOperationException($"Erro inesperado ao deletar conta.");
             }
 
             await _signInManager.SignOutAsync();
