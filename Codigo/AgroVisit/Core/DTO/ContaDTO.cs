@@ -14,7 +14,7 @@
 
         public uint IdVisita { get; set; }
 
-        public virtual ProjetoDTO IdProjetoNavigation { get; set; } = null!;
+        public virtual ProjetoDto IdProjetoNavigation { get; set; } = null!;
 
         public virtual VisitaDTO IdVisitaNavigation { get; set; } = null!;
     }

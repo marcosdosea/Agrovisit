@@ -80,11 +80,14 @@ namespace Service
         {
             return _context.Projetos.AsNoTracking();
         }
-
-        public IEnumerable<ProjetoDTO> GetAllDto()
+        /// <summary>
+        /// Obter todos os projetosDto
+        /// </summary>
+        /// <returns> todos os projetosDto</returns>
+        public IEnumerable<ProjetoDto> GetAllDto()
         {
             var query = from projetos in _context.Projetos
-                        select new ProjetoDTO
+                        select new ProjetoDto
                         {
                             Id = projetos.Id,
                             Nome = projetos.Nome,
@@ -183,10 +186,10 @@ namespace Service
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public DatatableResponse<ProjetoDTO> GetDataPage(DatatableRequest request)
+        public DatatableResponse<ProjetoDto> GetDataPage(DatatableRequest request)
         {
             var projetos =  from projeto in _context.Projetos
-                            select new ProjetoDTO
+                            select new ProjetoDto
                             {
                                 Id = projeto.Id,
                                 Nome = projeto.Nome, 
@@ -227,7 +230,7 @@ namespace Service
             int countRecordsFiltered = projetos.Count();
             // paginação que será exibida
             projetos = projetos.Skip(request.Start).Take(request.Length);
-            return new DatatableResponse<ProjetoDTO>()
+            return new DatatableResponse<ProjetoDto>()
             {
                 Data = projetos.ToList(),
                 Draw = request.Draw,

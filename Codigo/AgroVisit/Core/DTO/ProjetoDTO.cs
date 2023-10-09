@@ -2,7 +2,7 @@
 
 namespace Core.DTO
 {
-    public partial class ProjetoDTO
+    public partial class ProjetoDto
     {
         public uint Id { get; set; }
 

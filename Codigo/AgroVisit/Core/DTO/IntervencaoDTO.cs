@@ -18,6 +18,6 @@
 
         public uint IdProjeto { get; set; }
 
-        public virtual ProjetoDTO IdProjetoNavigation { get; set; } = null!;
+        public virtual ProjetoDto IdProjetoNavigation { get; set; } = null!;
     }
 }

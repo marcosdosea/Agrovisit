@@ -179,7 +179,7 @@ namespace Service.Tests
             // Act
             var listaProjeto = _projetoService.GetAllDto();
             // Assert
-            Assert.IsInstanceOfType(listaProjeto, typeof(IEnumerable<ProjetoDTO>));
+            Assert.IsInstanceOfType(listaProjeto, typeof(IEnumerable<ProjetoDto>));
             Assert.IsNotNull(listaProjeto);
             Assert.AreEqual(3, listaProjeto.Count());
             Assert.AreEqual((uint)1, listaProjeto.First().Id);

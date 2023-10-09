@@ -26,31 +26,20 @@ namespace AgroVisitWeb.Controllers.Tests
             var cliente = new Mock<IClienteService>();
 
 
-            IMapper mapper = new MapperConfiguration(cfg =>
-                cfg.AddProfile(new ProjetoProfile())).CreateMapper();
+            IMapper mapper = new MapperConfiguration(cfg => cfg.AddProfile(new ProjetoProfile())).CreateMapper();
 
-            mockService.Setup(service => service.GetAll())
-                .Returns(GetTestProjetos());
-            mockService.Setup(service => service.Get(1))
-                .Returns(GetTargetProjetos());
-            mockService.Setup(service => service.Edit(It.IsAny<Projeto>()))
-                .Verifiable();
-            mockService.Setup(service => service.Create(It.IsAny<Projeto>()))
-                .Verifiable();
+            mockService.Setup(service => service.GetAllDto()).Returns(GetTestProjetos());
+            mockService.Setup(service => service.Get(1)).Returns(GetTargetProjetos());
+            mockService.Setup(service => service.Edit(It.IsAny<Projeto>())).Verifiable();
+            mockService.Setup(service => service.Create(It.IsAny<Projeto>())).Verifiable();
 
-            propriedade.Setup(service => service.GetAll())
-                .Returns(GetTestsPropriedades());
-            propriedade.Setup(service => service.Get(1))
-                .Returns(GetNewPropriedade());
-            propriedade.Setup(service => service.Create(It.IsAny<Propriedade>()))
-                .Verifiable();
+            propriedade.Setup(service => service.GetAll()).Returns(GetTestsPropriedades());
+            propriedade.Setup(service => service.Get(1)).Returns(GetNewPropriedade());
+            propriedade.Setup(service => service.Create(It.IsAny<Propriedade>())).Verifiable();
 
-            cliente.Setup(service => service.GetAll())
-                .Returns(GetTestsCliente());
-            cliente.Setup(service => service.Get(1))
-                .Returns(GetNewCliente());
-            cliente.Setup(service => service.Create(It.IsAny<Cliente>()))
-                .Verifiable();
+            cliente.Setup(service => service.GetAll()).Returns(GetTestsCliente());
+            cliente.Setup(service => service.Get(1)).Returns(GetNewCliente());
+            cliente.Setup(service => service.Create(It.IsAny<Cliente>())).Verifiable();
 
             controller = new ProjetoController(mockService.Object, intervencao.Object, propriedade.Object, cliente.Object, mapper);
         }
@@ -63,10 +52,10 @@ namespace AgroVisitWeb.Controllers.Tests
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
-            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(List<ProjetoDTO>));
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(IEnumerable<ProjetoDto>));
 
-            List<ProjetoDTO>? lista = (List<ProjetoDTO>)viewResult.ViewData.Model;
-            Assert.AreEqual(3, lista.Count);
+            IEnumerable<ProjetoDto>? lista = (IEnumerable<ProjetoDto>)viewResult.ViewData.Model;
+            Assert.AreEqual(3, lista.Count());
         }
 
         [TestMethod()]
@@ -325,42 +314,39 @@ namespace AgroVisitWeb.Controllers.Tests
             };
         }
 
-        private IEnumerable<Projeto> GetTestProjetos()
+        private IEnumerable<ProjetoDto> GetTestProjetos()
         {
-            return new List<Projeto>
+            return new List<ProjetoDto>
             {
-                new Projeto
+                new ProjetoDto
                 {
                     Id = 1,
                     Nome = "Projeto adubação",
                     DataInicio = DateTime.Parse("2020-10-20"),
-                    DataPrevista = DateTime.Parse("2020-11-20"),
+                    NomeCliente = "Maria",                    
                     Status = "EX",
-                    QuantParcela = 5,
                     Valor = 1900,
-                    IdPropriedade = 1
+                    NomePropriedade = "Fazenda Feliz"
                 },
-                new Projeto
+                new ProjetoDto
                 {
                     Id = 2,
                     Nome = "Projeto de irrigação",
                     DataInicio = DateTime.Parse("2020-01-20"),
-                    DataPrevista = DateTime.Parse("2020-02-20"),
                     Status = "EX",
-                    QuantParcela = 5,
+                    NomeCliente = "João",
                     Valor = 900,
-                    IdPropriedade = 1
+                    NomePropriedade = "Fazenda luz"
                 },
-                new Projeto
+                new ProjetoDto
                 {
                     Id = 3,
                     Nome = "Projeto milho",
                     DataInicio = DateTime.Parse("2021-10-20"),
-                    DataPrevista = DateTime.Parse("2021-11-20"),
+                    NomeCliente = "Jose",
                     Status = "EX",
-                    QuantParcela = 5,
                     Valor = 500,
-                    IdPropriedade = 1
+                    NomePropriedade = "Fazenda"
                 },
             };
         }
