@@ -31,7 +31,7 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Index()
         {
             var listaProjetos = _projetoService.GetAllDto();
-            
+
             return View(listaProjetos);
         }
 
@@ -45,7 +45,7 @@ namespace AgroVisitWeb.Controllers
         // GET: ProjetoController/Details/5
         public ActionResult Details(uint id)
         {
-            Projeto projeto = _projetoService.Get(id);
+            Projeto? projeto = _projetoService.Get(id);
             ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
             //var listaProjetos = _projetoService. GetDetailsDeleteAll();
            
@@ -89,7 +89,7 @@ namespace AgroVisitWeb.Controllers
         // GET: ProjetoController/Edit/5
         public ActionResult Edit(uint id)
         {
-            Projeto projeto = _projetoService.Get(id);
+            Projeto? projeto = _projetoService.Get(id);
             ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
             IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
             projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);

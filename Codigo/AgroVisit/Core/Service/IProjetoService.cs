@@ -10,7 +10,7 @@ namespace Core.Service
         public void Delete(uint id);
         public Projeto? Get(uint id);
         public IEnumerable<Projeto> GetAll();
-        public IEnumerable<ProjetoDTO> GetAllDto();
+        public IEnumerable<ProjetoDto> GetAllDto();
         /*public IQueryable<ProjetoAllDto> GetDetailsDeleteAll(uint id);*/
         public IEnumerable<Projeto> GetByNome(string nome);
         public IEnumerable<Projeto> GetByData(DateTime data);
@@ -18,6 +18,6 @@ namespace Core.Service
         public IEnumerable<Projeto> GetByPropriedade(uint idPropriedade);
         public IEnumerable<Intervencao> GetAllIntervencoes(uint idPropriedade);
         public IEnumerable<Conta> GetAllConta(uint idPropriedade);
-        DatatableResponse<ProjetoDTO> GetDataPage(DatatableRequest request);
+        DatatableResponse<ProjetoDto> GetDataPage(DatatableRequest request);
     }
 }
