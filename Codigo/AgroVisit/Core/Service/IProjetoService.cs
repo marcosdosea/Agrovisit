@@ -11,7 +11,7 @@ namespace Core.Service
         public Projeto? Get(uint id);
         public IEnumerable<Projeto> GetAll();
         public IEnumerable<ProjetoDto> GetAllDto();
-        /*public IQueryable<ProjetoAllDto> GetDetailsDeleteAll(uint id);*/
+        public ProjetoAllDto GetDetailsDeleteAll(uint id);
         public IEnumerable<Projeto> GetByNome(string nome);
         public IEnumerable<Projeto> GetByData(DateTime data);
         public IEnumerable<Projeto> GetByStatus(string status);

@@ -6,23 +6,22 @@ using Core.DTO;
 using Core.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace AgroVisitWeb.Controllers
 {
     public class ProjetoController : Controller
     {
         private readonly IProjetoService _projetoService;
-        /*private readonly IContaService _contaService;*/
         private readonly IIntervencaoService _intervencaoService;
         private readonly IPropriedadeService _propriedadeService;
         private readonly IClienteService _clienteService;
         private readonly IMapper _mapper;
 
-        public ProjetoController(IProjetoService projetoService, IIntervencaoService intervencaoService, /*IContaService contaService,*/ IPropriedadeService propriedadeService, IClienteService clienteService, IMapper mapper)
+        public ProjetoController(IProjetoService projetoService, IIntervencaoService intervencaoService, IPropriedadeService propriedadeService, IClienteService clienteService, IMapper mapper)
         {
             _projetoService = projetoService;
             _intervencaoService = intervencaoService;
-            //_contaService = contaService;
             _propriedadeService = propriedadeService;
             _clienteService = clienteService;
             _mapper = mapper;
@@ -45,22 +44,22 @@ namespace AgroVisitWeb.Controllers
         // GET: ProjetoController/Details/5
         public ActionResult Details(uint id)
         {
-            Projeto? projeto = _projetoService.Get(id);
-            ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
-            //var listaProjetos = _projetoService. GetDetailsDeleteAll();
+            /*Projeto? projeto = _projetoService.Get(id);
+            ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);*/
+            var listaProjetos = _projetoService.GetDetailsDeleteAll(id);
            
-            IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
+            /*IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
 
             var propriedade = _propriedadeService.Get(projeto.IdPropriedade);
             projetoModel.ListaIntervencoes = _intervencaoService.GetByProjeto(id);
             projetoModel.NomeCliente = _clienteService.Get(propriedade.IdCliente).Nome;
-            projetoModel.NomePropriedade = _propriedadeService.Get(projeto.IdPropriedade).Nome;
+            projetoModel.NomePropriedade = _propriedadeService.Get(projeto.IdPropriedade).Nome;*/
             
 
             /*IEnumerable<Conta> listaContas = _contaService.GetAll();
             projetoModel.ListaContas = _contaService.GetByProjeto(id);*/
 
-            return View(projetoModel);
+            return View(listaProjetos);
         }
 
         // GET: ProjetoController/Create
@@ -89,11 +88,11 @@ namespace AgroVisitWeb.Controllers
         // GET: ProjetoController/Edit/5
         public ActionResult Edit(uint id)
         {
-            Projeto? projeto = _projetoService.Get(id);
-            ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
+            var projeto = _projetoService.GetDetailsDeleteAll(id);
+           
             IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
-            projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);
-            return View(projetoModel);
+            projeto.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);
+            return View(projeto);
         }
 
         // POST: ProjetoController/Edit/5
@@ -112,9 +111,9 @@ namespace AgroVisitWeb.Controllers
         // GET: ProjetoController/Delete/5
         public ActionResult Delete(uint id)
         {
-            var projeto = _projetoService.Get(id);
-            ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
-            return View(projetoModel);
+            var projeto = _projetoService.GetDetailsDeleteAll(id);
+            /*ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);*/
+            return View(projeto);
         }
 
         // POST: ProjetoController/Delete/5

@@ -99,7 +99,7 @@ namespace Service
             
             return query.AsNoTracking();
         }
-        /*public IQueryable<ProjetoAllDto> GetDetailsDeleteAll(uint id)
+        public ProjetoAllDto GetDetailsDeleteAll(uint id)
         {
             var query = from projetos in _context.Projetos
                         where projetos.Id == id
@@ -118,11 +118,11 @@ namespace Service
                             NumeroVisita = projetos.NumeroVisita,
                             Valor = projetos.Valor,
                             QuantParcela = projetos.QuantParcela,
-                            ListaIntervencoes = projetos.Intervencoes
+                            Intervencoes = projetos.Intervencoes
                         };
 
-            return query.AsNoTracking();
-        }*/
+            return (ProjetoAllDto)query.AsNoTracking();
+        }
         /// <summary>
         /// Obter projetos pela data
         /// </summary>
