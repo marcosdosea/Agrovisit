@@ -1,8 +1,7 @@
-﻿using Core;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
-namespace AgroVisitWeb.Models
+namespace AgroVisitAPI.Models
 {
     public class ProjetoViewModel
     {
@@ -40,34 +39,14 @@ namespace AgroVisitWeb.Models
         [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataPrevista { get; set; }
 
-        [Display(Name = "Descrição")]
-        [StringLength(200)]
-        public string? Descricao { get; set; }
-
         [Display(Name = "Número de visitas")]
         public int? NumeroVisita { get; set; }
-
-        [Display(Name = "Anexo")]
-        public byte[]? Anexo { get; set; }
-
-        [Display(Name = "Data de conclusão")]
-        public DateTime DataConclusao { get; set; }
 
         [Display(Name = "Status")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         public string Status { get; set; } = null!;
 
         [Display(Name = "Propriedade")]
-        [Required(ErrorMessage = "O campo é obrigatótio.")]
-        public uint IdPropriedade { get; set; }
-
-        [Display(Name = "Propriedade")]
         public SelectList? ListaPropriedades { get; set; }
-
-        [Display(Name = "Conta")]
-        public IEnumerable<Conta>? ListaContas { get; set; }
-
-        [Display(Name = "Intervenções")]
-        public IEnumerable<Intervencao>? ListaIntervencoes { get; set; }
     }
 }

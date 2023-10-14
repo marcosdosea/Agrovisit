@@ -1,9 +1,8 @@
-﻿using AgroVisitWeb.Models;
+﻿using AgroVisitAPI.Models;
 using AutoMapper;
 using Core;
 using Core.Service;
 using Microsoft.AspNetCore.Mvc;
-using Service;
 
 
 namespace AgroVisitAPI.Controllers
@@ -13,17 +12,17 @@ namespace AgroVisitAPI.Controllers
     public class ProjetosController : ControllerBase
     {
         private readonly IProjetoService _projetoService;
-        private readonly IIntervencaoService _intervencaoService;
+        /*private readonly IIntervencaoService _intervencaoService;
         private readonly IPropriedadeService _propriedadeService;
-        private readonly IClienteService _clienteService;
+        private readonly IClienteService _clienteService;*/
         private readonly IMapper _mapper;
 
-        public ProjetosController(IProjetoService projetoService, IIntervencaoService intervencaoService, IPropriedadeService propriedadeService, IClienteService clienteService, IMapper mapper)
+        public ProjetosController(IProjetoService projetoService,/* IIntervencaoService intervencaoService, IPropriedadeService propriedadeService, IClienteService clienteService,*/ IMapper mapper)
         {
             _projetoService = projetoService;
-            _intervencaoService = intervencaoService;
+            /*_intervencaoService = intervencaoService;
             _propriedadeService = propriedadeService;
-            _clienteService = clienteService;
+            _clienteService = clienteService;*/
             _mapper = mapper;
         }
         // GET: api/<ProjetosController>

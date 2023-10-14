@@ -1,8 +1,8 @@
-﻿using AgroVisitWeb.Models;
+﻿using AgroVisitAPI.Models;
 using AutoMapper;
 using Core;
 
-namespace AgroVisitWeb.Mappers
+namespace AgroVisitAPI.Mappers
 {
     public class ProjetoProfile : Profile
     {
