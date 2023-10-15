@@ -26,6 +26,12 @@ namespace AgroVisitWeb.Controllers.Tests
             mockService.Setup(service => service.Get(1)).Returns(GetTargetVisita());
             mockService.Setup(service => service.Edit(It.IsAny<Visita>())).Verifiable();
             mockService.Setup(service => service.Create(It.IsAny<Visita>())).Verifiable();
+
+            mockPropriedade.Setup(service => service.GetAll()).Returns(GetTestPropriedades());
+            mockPropriedade.Setup(service => service.Get(1)).Returns(GetNewPropriedade());
+
+            mockCliente.Setup(service => service.Get(1)).Returns(GetNewCliente());
+
             controller = new VisitaController(mockService.Object, mockPropriedade.Object, mockCliente.Object, mapper);
         }
 
@@ -138,8 +144,8 @@ namespace AgroVisitWeb.Controllers.Tests
                 Id = 1,
                 Observacoes = "Jogar conversa fora",
                 DataHora = DateTime.Parse("2023-11-05"),
-                Status = "A"
-
+                Status = "A",
+                IdPropriedade = 1
             };
         }
 
@@ -152,21 +158,24 @@ namespace AgroVisitWeb.Controllers.Tests
                     Id = 1,
                     Observacoes = "Entregar sementes tratadas",
                     DataHora = DateTime.Parse("2023-09-30"),
-                    Status = "A"
+                    Status = "A",
+                    IdPropriedade = 1
                 },
                 new Visita
                 {
                     Id = 2,
                     Observacoes = "Verificar como está o andamento do projeto",
                     DataHora = DateTime.Parse("2023-08-05"),
-                    Status = "C"
+                    Status = "C",
+                    IdPropriedade = 1
                 },
                 new Visita
                 {
                     Id = 3,
                     Observacoes = "Coletar amostra de solo para análise",
                     DataHora = DateTime.Parse("2023-10-11"),
-                    Status = "A"
+                    Status = "A",
+                    IdPropriedade = 1
                 },
             };
         }
@@ -177,7 +186,8 @@ namespace AgroVisitWeb.Controllers.Tests
                 Id = 4,
                 Observacoes = "Coletar amostra de solo para análise",
                 DataHora = DateTime.Parse("2023-10-05"),
-                Status = "A"
+                Status = "A",
+                IdPropriedade = 1
             };
         }
         private VisitaViewModel GetTargetVisitaModel()
@@ -187,7 +197,67 @@ namespace AgroVisitWeb.Controllers.Tests
                 Id = 2,
                 Observacoes = "Verificar como está o andamento do projeto",
                 DataHora = DateTime.Parse("2023-08-05"),
-                Status = "C"
+                Status = "C",
+                IdPropriedade = 1,
+                NomeCliente = "Janaina Ferreira",
+                NomePropriedade = "Fazenda"
+            };
+        }
+
+        private Propriedade GetNewPropriedade()
+        {
+            return new Propriedade
+            {
+                Id = 1,
+                Nome = "Fazenda",
+                Estado = "SE",
+                Cidade = "Itabaiana",
+                IdCliente = 1,
+                IdEngenheiroAgronomo = 1,
+                IdSolo = 1,
+                IdCultura = 1
+            };
+        }
+
+        private IEnumerable<Propriedade> GetTestPropriedades()
+        {
+            return new List<Propriedade>
+            {
+                new Propriedade
+                {
+                    Id = 1,
+                    Nome = "Fazenda",
+                    Estado = "SE",
+                    Cidade = "Itabaiana",
+                    IdCliente = 1,
+                    IdEngenheiroAgronomo = 1,
+                    IdSolo = 1,
+                    IdCultura = 1
+                },
+                new Propriedade
+                {
+                    Id = 2,
+                    Nome = "Alegria",
+                    Estado = "SE",
+                    Cidade = "Macambira",
+                    IdCliente = 1,
+                    IdEngenheiroAgronomo = 1,
+                    IdSolo = 1,
+                    IdCultura = 1
+                }
+            };
+        }
+
+        private Cliente GetNewCliente()
+        {
+            return new Cliente
+            {
+                Id = 1,
+                Nome = "Janaina Ferreira",
+                Cpf = "01234567891",
+                Estado = "SE",
+                Cidade = "Ribeirópolis",
+                IdEngenheiroAgronomo = 1
             };
         }
     }
