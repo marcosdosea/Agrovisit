@@ -4,9 +4,11 @@ using Core;
 using Core.Service;
 using Core.Datatables;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AgroVisitWeb.Controllers
 {
+    [Authorize(Roles ="Agronomo")]
     public class ClienteController : Controller
     {
         private readonly IClienteService _clienteService;
