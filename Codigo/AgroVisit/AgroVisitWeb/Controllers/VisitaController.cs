@@ -2,13 +2,13 @@
 using AutoMapper;
 using Core;
 using Core.Service;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AgroVisitWeb.Controllers
 {
+    [Authorize(Roles = "Agronomo")]
     public class VisitaController : Controller
     {
         private readonly IPropriedadeService _propriedadeService;
