@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: agrovisit
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	5.7.43-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,7 +29,7 @@ CREATE TABLE `aspnetroles` (
   `ConcurrencyStamp` longtext,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `RoleNameIndex` (`NormalizedName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `aspnetroles` (
 
 LOCK TABLES `aspnetroles` WRITE;
 /*!40000 ALTER TABLE `aspnetroles` DISABLE KEYS */;
+INSERT INTO `aspnetroles` VALUES ('1','Agronomo','Agronomo',NULL),('2','Administrador','Administrador',NULL);
 /*!40000 ALTER TABLE `aspnetroles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 12:40:04
+-- Dump completed on 2023-10-14 15:50:32
