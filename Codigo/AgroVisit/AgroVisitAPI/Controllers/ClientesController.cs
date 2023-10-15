@@ -54,12 +54,13 @@ namespace AgroVisitAPI.Controllers
 
         // PUT api/<ClientesController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] ClienteViewModel clienteModel)
+        public ActionResult Put(uint id, [FromBody] ClienteViewModel clienteModel)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Dados inválidos.");
 
             var cliente = _mapper.Map<Cliente>(clienteModel);
+            cliente.Id = id;
             if (cliente == null)
                 return NotFound();
 

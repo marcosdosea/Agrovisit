@@ -44,22 +44,16 @@ namespace AgroVisitWeb.Controllers
         // GET: ProjetoController/Details/5
         public ActionResult Details(uint id)
         {
-            /*Projeto? projeto = _projetoService.Get(id);
-            ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);*/
-            var listaProjetos = _projetoService.GetDetailsDeleteAll(id);
-           
-            /*IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
+            Projeto? projeto = _projetoService.Get(id);
+            ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
 
+            IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
             var propriedade = _propriedadeService.Get(projeto.IdPropriedade);
             projetoModel.ListaIntervencoes = _intervencaoService.GetByProjeto(id);
             projetoModel.NomeCliente = _clienteService.Get(propriedade.IdCliente).Nome;
-            projetoModel.NomePropriedade = _propriedadeService.Get(projeto.IdPropriedade).Nome;*/
-            
+            projetoModel.NomePropriedade = _propriedadeService.Get(projeto.IdPropriedade).Nome;
 
-            /*IEnumerable<Conta> listaContas = _contaService.GetAll();
-            projetoModel.ListaContas = _contaService.GetByProjeto(id);*/
-
-            return View(listaProjetos);
+            return View(projetoModel);
         }
 
         // GET: ProjetoController/Create
@@ -88,11 +82,12 @@ namespace AgroVisitWeb.Controllers
         // GET: ProjetoController/Edit/5
         public ActionResult Edit(uint id)
         {
-            var projeto = _projetoService.GetDetailsDeleteAll(id);
-           
+            Projeto? projeto = _projetoService.Get(id);
+            ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
             IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
-            projeto.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);
-            return View(projeto);
+            projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);
+
+            return View(projetoModel);
         }
 
         // POST: ProjetoController/Edit/5
@@ -111,9 +106,9 @@ namespace AgroVisitWeb.Controllers
         // GET: ProjetoController/Delete/5
         public ActionResult Delete(uint id)
         {
-            var projeto = _projetoService.GetDetailsDeleteAll(id);
-            /*ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);*/
-            return View(projeto);
+            var projeto = _projetoService.Get(id);
+            ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
+            return View(projetoModel);
         }
 
         // POST: ProjetoController/Delete/5

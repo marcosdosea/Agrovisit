@@ -29,7 +29,7 @@ namespace AgroVisitWeb.Controllers.Tests
             IMapper mapper = new MapperConfiguration(cfg => cfg.AddProfile(new ProjetoProfile())).CreateMapper();
 
             mockService.Setup(service => service.GetAllDto()).Returns(GetTestProjetos());
-            mockService.Setup(service => service.GetDetailsDeleteAll(1)).Returns(GetTargetProjetos());
+            mockService.Setup(service => service.Get(1)).Returns(GetTargetProjetos());
             mockService.Setup(service => service.Edit(It.IsAny<Projeto>())).Verifiable();
             mockService.Setup(service => service.Create(It.IsAny<Projeto>())).Verifiable();
 
@@ -63,19 +63,19 @@ namespace AgroVisitWeb.Controllers.Tests
         {
             // Act
             var result = controller.Details(1);
-
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
-            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(ProjetoAllDto));
-            ProjetoAllDto projeto = (ProjetoAllDto)viewResult.ViewData.Model;
-            Assert.AreEqual("Projeto adubação", projeto.Nome);
-            Assert.AreEqual(DateTime.Parse("2020-10-20"), projeto.DataInicio);
-            Assert.AreEqual(DateTime.Parse("2020-11-20"), projeto.DataPrevista);
-            Assert.AreEqual((uint)5, projeto.QuantParcela);
-            Assert.AreEqual("EX", projeto.Status);
-            Assert.AreEqual(1900, projeto.Valor);
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(ProjetoViewModel));
+            ProjetoViewModel projetoModel = (ProjetoViewModel)viewResult.ViewData.Model;
+            Assert.AreEqual("Projeto adubação", projetoModel.Nome);
+            Assert.AreEqual(DateTime.Parse("2020-10-20"), projetoModel.DataInicio);
+            Assert.AreEqual(DateTime.Parse("2020-11-20"), projetoModel.DataPrevista);
+            Assert.AreEqual((uint)5, projetoModel.QuantParcela);
+            Assert.AreEqual("EX", projetoModel.Status);
+            Assert.AreEqual(1900, projetoModel.Valor);
         }
+
 
         [TestMethod()]
         public void CreateTest_Get_Valido()
@@ -121,19 +121,18 @@ namespace AgroVisitWeb.Controllers.Tests
         {
             // Act
             var result = controller.Edit(1);
-
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
-            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(ProjetoAllDto));
-            ProjetoAllDto projeto = (ProjetoAllDto)viewResult.ViewData.Model;
-            Assert.AreEqual("Projeto adubação", projeto.Nome);
-            Assert.AreEqual(DateTime.Parse("2020-10-20"), projeto.DataInicio);
-            Assert.AreEqual(DateTime.Parse("2020-11-20"), projeto.DataPrevista);
-            Assert.AreEqual("EX", projeto.Status);
-            Assert.AreEqual((uint)5, projeto.QuantParcela);
-            Assert.AreEqual(1900, projeto.Valor);
-            Assert.AreEqual("Fazenda Feliz", projeto.NomePropriedade);
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(ProjetoViewModel));
+            ProjetoViewModel projetoModel = (ProjetoViewModel)viewResult.ViewData.Model;
+            Assert.AreEqual("Projeto adubação", projetoModel.Nome);
+            Assert.AreEqual(DateTime.Parse("2020-10-20"), projetoModel.DataInicio);
+            Assert.AreEqual(DateTime.Parse("2020-11-20"), projetoModel.DataPrevista);
+            Assert.AreEqual("EX", projetoModel.Status);
+            Assert.AreEqual((uint)5, projetoModel.QuantParcela);
+            Assert.AreEqual(1900, projetoModel.Valor);
+            Assert.AreEqual((uint)1, projetoModel.IdPropriedade);
         }
 
         [TestMethod()]
@@ -154,19 +153,18 @@ namespace AgroVisitWeb.Controllers.Tests
         {
             // Act
             var result = controller.Delete(1);
-
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
-            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(ProjetoAllDto));
-            ProjetoAllDto projeto = (ProjetoAllDto)viewResult.ViewData.Model;
-            Assert.AreEqual("Projeto adubação", projeto.Nome);
-            Assert.AreEqual(DateTime.Parse("2020-10-20"), projeto.DataInicio);
-            Assert.AreEqual(DateTime.Parse("2020-11-20"), projeto.DataPrevista);
-            Assert.AreEqual("EX", projeto.Status);
-            Assert.AreEqual((uint)5, projeto.QuantParcela);
-            Assert.AreEqual(1900, projeto.Valor);
-            Assert.AreEqual("Fazenda Feliz", projeto.NomePropriedade);
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(ProjetoViewModel));
+            ProjetoViewModel projetoModel = (ProjetoViewModel)viewResult.ViewData.Model;
+            Assert.AreEqual("Projeto adubação", projetoModel.Nome);
+            Assert.AreEqual(DateTime.Parse("2020-10-20"), projetoModel.DataInicio);
+            Assert.AreEqual(DateTime.Parse("2020-11-20"), projetoModel.DataPrevista);
+            Assert.AreEqual("EX", projetoModel.Status);
+            Assert.AreEqual((uint)5, projetoModel.QuantParcela);
+            Assert.AreEqual(1900, projetoModel.Valor);
+            Assert.AreEqual((uint)1, projetoModel.IdPropriedade);
         }
 
         [TestMethod()]
@@ -198,9 +196,9 @@ namespace AgroVisitWeb.Controllers.Tests
             };
 
         }
-        private ProjetoAllDto GetTargetProjetos()
+        private Projeto GetTargetProjetos()
         {
-            return new ProjetoAllDto
+            return new Projeto
             {
                 Id = 1,
                 Nome = "Projeto adubação",
@@ -209,13 +207,7 @@ namespace AgroVisitWeb.Controllers.Tests
                 Status = "EX",
                 QuantParcela = 5,
                 Valor = 1900,
-                NomePropriedade = "Fazenda Feliz",
-                NomeCliente = "Joao",
-                Descricao = "kioyfttgvhbhbbun",
-                Anexo = null,
-                DataConclusao = DateTime.Parse("2020-12-20"),
-                NumeroVisita = 6,
-                Intervencoes = null
+                IdPropriedade = 1
             };
         }
 

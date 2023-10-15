@@ -18,6 +18,7 @@ namespace Service
         {
             _context = context;
         }
+
         /// <summary>
         /// Inserir projeto na base de dados
         /// </summary>
@@ -29,6 +30,7 @@ namespace Service
             _context.SaveChanges();
             return projeto.Id;
         }
+
         /// <summary>
         /// Excluir projeto da base de dados
         /// </summary>
@@ -42,6 +44,7 @@ namespace Service
                 _context.SaveChanges();
             } 
         }
+
         /// <summary>
         /// Editar projeto na base de dados
         /// </summary>
@@ -51,6 +54,7 @@ namespace Service
             _context.Update(projeto);
             _context.SaveChanges();
         }
+
         /// <summary>
         /// Obter dados de um projeto
         /// </summary>
@@ -101,7 +105,7 @@ namespace Service
         }
         public ProjetoAllDto GetDetailsDeleteAll(uint id)
         {
-            var query = from projetos in _context.Projetos
+            var query = (from projetos in _context.Projetos
                         where projetos.Id == id
                         select new ProjetoAllDto
                         {
@@ -119,10 +123,11 @@ namespace Service
                             Valor = projetos.Valor,
                             QuantParcela = projetos.QuantParcela,
                             Intervencoes = projetos.Intervencoes
-                        };
+                        });
 
-            return (ProjetoAllDto)query.AsNoTracking();
+            return (ProjetoAllDto)query;
         }
+
         /// <summary>
         /// Obter projetos pela data
         /// </summary>
@@ -136,6 +141,7 @@ namespace Service
                         select projeto;
             return query.AsNoTracking();
         }
+
         /// <summary>
         /// Obter projetos pelo status
         /// </summary>
@@ -157,6 +163,7 @@ namespace Service
                         select intervencao;
             return query.AsNoTracking();
         }
+
         /// <summary>
         /// Obter as contas de um projeto
         /// </summary>
@@ -168,6 +175,7 @@ namespace Service
                         select conta;
             return query.AsNoTracking();
         }
+
         /// <summary>
         /// Obter os projetos de uma propriedade
         /// </summary>
