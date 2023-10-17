@@ -32,7 +32,7 @@ namespace AgroVisitWeb.Models
         
         [Display(Name = "Projeto")]
         public uint IdProjeto { get; set; }
-        public SelectList? ListaProjetos { get; set; }
+        
     }
 }
 
