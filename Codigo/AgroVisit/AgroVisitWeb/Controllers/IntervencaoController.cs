@@ -4,10 +4,11 @@ using Core;
 using Core.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AgroVisitWeb.Controllers
 {
-
+    [Authorize(Roles = "Agronomo")]
     public class IntervencaoController : Controller
     {
         private readonly IIntervencaoService _intervencaoService;
