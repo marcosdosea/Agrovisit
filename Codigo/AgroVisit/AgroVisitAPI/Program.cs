@@ -24,6 +24,8 @@ namespace AgroVisitAPI
 
             builder.Services.AddTransient<IVisitaService, VisitaService>();
 
+            builder.Services.AddTransient<IIntervencaoService, IntervencaoService>();
+
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddDbContext<AgroVisitContext>(

@@ -1,23 +1,22 @@
-using Core;
-using Microsoft.AspNetCore.Mvc.Rendering;
+Ôªøusing Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
-namespace AgroVisitWeb.Models
+namespace AgroVisitAPI.Models
 {
     public class IntervencaoViewModel
     {
         [Key]
         public uint Id { get; set; }
 
-        [Display(Name = "Pr·tica")]
-        [Required(ErrorMessage = "Campo obrigatÛrio")]
+        [Display(Name = "Pr√°tica")]
+        [Required(ErrorMessage = "Campo obrigat√≥rio")]
         public string Pratica { get; set; } = null!;
-        
-        [Display(Name = "DescriÁ„o")]
+
+        [Display(Name = "Descri√ß√£o")]
         [StringLength(1000)]
         public string? Descricao { get; set; }
 
-        [Display(Name = "Data AplicaÁ„o")]
+        [Display(Name = "Data Aplica√ß√£o")]
         public DateTime? DataAplicacao { get; set; }
 
         [Display(Name = "Tipo de Produto utilizado")]
@@ -25,16 +24,13 @@ namespace AgroVisitWeb.Models
 
         [Display(Name = "Area Tratada")]
         public float? AreaTratada { get; set; }
-        
+
         [Display(Name = "Status")]
-        [Required(ErrorMessage = "Campo obrigatÛrio")]
+        [Required(ErrorMessage = "Campo obrigat√≥rio")]
         public string Status { get; set; } = null!;
-        
+
         [Display(Name = "Projeto")]
         public uint IdProjeto { get; set; }
-        
+        public SelectList? ListaProjetos { get; set; }
     }
 }
-
-    
-
