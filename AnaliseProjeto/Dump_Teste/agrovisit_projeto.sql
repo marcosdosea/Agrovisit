@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `projeto`
+--
+
+DROP TABLE IF EXISTS `projeto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `projeto` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `valor` float NOT NULL,
+  `quantParcela` int(10) unsigned NOT NULL,
+  `dataInicio` date NOT NULL,
+  `dataPrevista` date NOT NULL,
+  `descricao` varchar(200) DEFAULT NULL,
+  `anexo` blob,
+  `status` enum('EX','C') NOT NULL DEFAULT 'EX',
+  `idPropriedade` int(10) unsigned NOT NULL,
+  `numeroVisita` int(11) DEFAULT NULL,
+  `dataConclusao` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fkProjetoPropriedade1_idx` (`idPropriedade`),
+  CONSTRAINT `fkProjetoPropriedade1` FOREIGN KEY (`idPropriedade`) REFERENCES `propriedade` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `projeto`
 --
 
@@ -34,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-20 15:24:45
+-- Dump completed on 2024-02-20 15:41:57

@@ -16,6 +16,52 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `propriedade`
+--
+
+DROP TABLE IF EXISTS `propriedade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `propriedade` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `estado` varchar(10) NOT NULL,
+  `cidade` varchar(50) NOT NULL,
+  `quantFuncionario` int(11) DEFAULT NULL,
+  `areaReserva` float DEFAULT NULL,
+  `areaPreservar` float DEFAULT NULL,
+  `car` varchar(50) DEFAULT NULL,
+  `ccir` varchar(50) DEFAULT NULL,
+  `itr` varchar(50) DEFAULT NULL,
+  `georreferenciamento` blob,
+  `matriculaImovel` blob,
+  `numAnimais` int(11) DEFAULT NULL,
+  `raca` varchar(50) DEFAULT NULL,
+  `fonteAlimento` varchar(50) DEFAULT NULL,
+  `areaPasto` float DEFAULT NULL,
+  `historicoProducao` blob,
+  `areaTotal` float DEFAULT NULL,
+  `areaCultivada` float DEFAULT NULL,
+  `comercializacao` enum('C','A') DEFAULT NULL,
+  `historicoProdAgricola` blob,
+  `historicoFitossanidade` blob,
+  `idSolo` int(10) unsigned NOT NULL,
+  `idCultura` int(10) unsigned NOT NULL,
+  `idCliente` int(10) unsigned NOT NULL,
+  `idEngenheiroAgronomo` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fkPropriedadeSolo1_idx` (`idSolo`),
+  KEY `fkPropriedadeCultura1_idx` (`idCultura`),
+  KEY `fkPropriedadeCliente1_idx` (`idCliente`),
+  KEY `fkPropriedadeUsuario1_idx` (`idEngenheiroAgronomo`),
+  CONSTRAINT `fkPropriedadeCliente1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fkPropriedadeCultura1` FOREIGN KEY (`idCultura`) REFERENCES `cultura` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fkPropriedadeSolo1` FOREIGN KEY (`idSolo`) REFERENCES `solo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fkPropriedadeUsuario1` FOREIGN KEY (`idEngenheiroAgronomo`) REFERENCES `engenheiroagronomo` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `propriedade`
 --
 
@@ -34,4 +80,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-20 15:24:43
+-- Dump completed on 2024-02-20 15:41:55

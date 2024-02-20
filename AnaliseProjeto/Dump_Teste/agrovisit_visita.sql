@@ -16,12 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `visita`
+--
+
+DROP TABLE IF EXISTS `visita`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `visita` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `observacoes` varchar(200) DEFAULT NULL,
+  `dataHora` datetime NOT NULL,
+  `status` enum('A','C') NOT NULL DEFAULT 'A',
+  `idPropriedade` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fkVisitaPropriedade_idx` (`idPropriedade`),
+  CONSTRAINT `fkVisitaPropriedade` FOREIGN KEY (`idPropriedade`) REFERENCES `propriedade` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `visita`
 --
 
 LOCK TABLES `visita` WRITE;
 /*!40000 ALTER TABLE `visita` DISABLE KEYS */;
-INSERT INTO `visita` VALUES (2,NULL,'2023-12-11 00:00:00','A',1),(3,NULL,'2023-11-10 00:00:00','A',1),(4,NULL,'2023-11-11 00:00:00','A',1),(7,NULL,'2023-11-20 00:00:00','A',1);
+INSERT INTO `visita` VALUES (2,NULL,'2023-11-12 09:00:00','A',1),(3,NULL,'2023-11-10 10:00:00','A',1),(4,NULL,'2023-11-11 15:00:00','A',1),(7,NULL,'2023-11-20 15:00:00','A',1);
 /*!40000 ALTER TABLE `visita` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-20 15:24:43
+-- Dump completed on 2024-02-20 15:41:55

@@ -16,6 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `assinatura`
+--
+
+DROP TABLE IF EXISTS `assinatura`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `assinatura` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `valor` float NOT NULL,
+  `status` enum('A','C') NOT NULL DEFAULT 'A',
+  `data` date NOT NULL,
+  `dataCancelamento` date DEFAULT NULL,
+  `idPlano` int(10) unsigned NOT NULL,
+  `idEngenheiroAgronomo` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fkAssinaturaPlano1_idx` (`idPlano`),
+  KEY `fkAssinaturaUsuario1_idx` (`idEngenheiroAgronomo`),
+  CONSTRAINT `fkAssinaturaPlano1` FOREIGN KEY (`idPlano`) REFERENCES `plano` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `fkAssinaturaUsuario1` FOREIGN KEY (`idEngenheiroAgronomo`) REFERENCES `engenheiroagronomo` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `assinatura`
 --
 
@@ -33,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-20 15:24:43
+-- Dump completed on 2024-02-20 15:41:56
