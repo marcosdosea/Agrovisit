@@ -43,7 +43,7 @@ namespace AgroVisitWeb.Controllers
             IntervencaoViewModel intervencaoModel = new IntervencaoViewModel();
             IEnumerable<Projeto> listaProjeto = _projetoService.GetAll();
 
-            intervencaoModel.ListaProjetos = new SelectList(listaProjeto, "Id", "Nome", null);
+            //intervencaoModel.ListaProjetos = new SelectList(listaProjeto, "Id", "Nome", null);
             return View(intervencaoModel);
         }
 
