@@ -41,7 +41,7 @@
 
   <h3><a href="https://docs.google.com/presentation/d/1zld7rz8qLxVSs_LdbFAfDnjYMaEMUbDK5SWT1kzrnGU/edit?usp=sharing" target="_blank"> Manual do usuário </a></h3>
   
-  <h3><a href="https://www.youtube.com/embed/ggKJx6BY9_c?si=2mkXujnKv0o3t2dc"> Video da ferramenta </a></h3>
+  <h3><a href="https://www.youtube.com/embed/ggKJx6BY9_c?si=2mkXujnKv0o3t2dc"> Vídeo da ferramenta </a></h3>
 
   <h2 id="equipe">5. Equipe :busts_in_silhouette::busts_in_silhouette: :bust_in_silhouette:</h2>
 
