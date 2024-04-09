@@ -39,8 +39,6 @@
   
   <h2 id="video">4. Introdução a ferramenta :woman_technologist:</h2>
 
-  <h3> Manual do usuário </h3>
-
   <h3><a href="https://docs.google.com/presentation/d/1zld7rz8qLxVSs_LdbFAfDnjYMaEMUbDK5SWT1kzrnGU/edit?usp=sharing" target="_blank"> Manual do usuário </a></h3>
   
   <h3><a href="https://www.youtube.com/embed/ggKJx6BY9_c?si=2mkXujnKv0o3t2dc"> Video da ferramenta </a></h3>
