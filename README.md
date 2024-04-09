@@ -12,7 +12,7 @@
     <li><a href="#problema">1. O Problema</a></li>
     <li><a href="#solucao">2. A Solução</a></li>
     <li><a href="#publico">3. Público Alvo</a></li>
-    <li><a href="#video">4. Público Alvo</a></li>
+    <li><a href="#video">4. Introdução a ferramenta</a></li>
     <li><a href="#equipe">5. Equipe</a></li>
   </ul>
 
@@ -41,7 +41,7 @@
 
   <h3> Manual do usuário </h3>
 
-  <a href=https://docs.google.com/presentation/d/1zld7rz8qLxVSs_LdbFAfDnjYMaEMUbDK5SWT1kzrnGU/edit?usp=sharing target="_blank">  
+  <a href=https://docs.google.com/presentation/d/1zld7rz8qLxVSs_LdbFAfDnjYMaEMUbDK5SWT1kzrnGU/edit?usp=sharing target="_blank"> </a>
 
   <h3> Video de apresentação da ferramenta </h3>
 
