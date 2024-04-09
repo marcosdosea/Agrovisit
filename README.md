@@ -12,6 +12,7 @@
     <li><a href="#problema">1. O Problema</a></li>
     <li><a href="#solucao">2. A Solução</a></li>
     <li><a href="#publico">3. Público Alvo</a></li>
+    <li><a href="#video">4. Público Alvo</a></li>
     <li><a href="#equipe">5. Equipe</a></li>
   </ul>
 
@@ -36,6 +37,16 @@
   <p>O software será especialmente útil para profissionais que trabalham de forma autônoma ou em pequenas empresas de consultoria agrícola.</p>
 
   
+  <h2 id="video">4. Introdução a ferramenta :woman_technologist:</h2>
+
+  <h3> Manual do usuário </h3>
+
+  <a href=https://docs.google.com/presentation/d/1zld7rz8qLxVSs_LdbFAfDnjYMaEMUbDK5SWT1kzrnGU/edit?usp=sharing target="_blank">  
+
+  <h3> Video de apresentação da ferramenta </h3>
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/ggKJx6BY9_c?si=2mkXujnKv0o3t2dc" title="AgroVisit" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
   <h2 id="equipe">5. Equipe :busts_in_silhouette::busts_in_silhouette: :bust_in_silhouette:</h2>
 
   <table align="center">
