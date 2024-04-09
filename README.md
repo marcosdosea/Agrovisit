@@ -41,11 +41,11 @@
 
   <h3> Manual do usuário </h3>
 
-  <a href=https://docs.google.com/presentation/d/1zld7rz8qLxVSs_LdbFAfDnjYMaEMUbDK5SWT1kzrnGU/edit?usp=sharing target="_blank"> </a>
-
+  <a href="https://docs.google.com/presentation/d/1zld7rz8qLxVSs_LdbFAfDnjYMaEMUbDK5SWT1kzrnGU/edit?usp=sharing" target="_blank"> Manual </a>
+  
   <h3> Video de apresentação da ferramenta </h3>
-
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/ggKJx6BY9_c?si=2mkXujnKv0o3t2dc" title="AgroVisit" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  
+  <video src="https://www.youtube.com/embed/ggKJx6BY9_c?si=2mkXujnKv0o3t2dc" autoplay></video>
 
   <h2 id="equipe">5. Equipe :busts_in_silhouette::busts_in_silhouette: :bust_in_silhouette:</h2>
 
