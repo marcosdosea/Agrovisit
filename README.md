@@ -39,9 +39,9 @@
   
   <h2 id="video">4. Introdução a ferramenta :woman_technologist:</h2>
 
-  <h3><a href="https://docs.google.com/presentation/d/1zld7rz8qLxVSs_LdbFAfDnjYMaEMUbDK5SWT1kzrnGU/edit?usp=sharing" target=”_blank”> Manual do usuário </a></h3>
+  <h3><a href="https://docs.google.com/presentation/d/1zld7rz8qLxVSs_LdbFAfDnjYMaEMUbDK5SWT1kzrnGU/edit?usp=sharing" target="_blank"> Manual do usuário </a></h3>
   
-  <h3><a href="https://www.youtube.com/watch?v=Lejv0XAyN8c" target=”_blank”> Vídeo da ferramenta </a></h3>
+  <h3><a href="https://www.youtube.com/watch?v=Lejv0XAyN8c" target="_blank"> Vídeo da ferramenta </a></h3>
 
   <h2 id="equipe">5. Equipe :busts_in_silhouette::busts_in_silhouette: :bust_in_silhouette:</h2>
 
