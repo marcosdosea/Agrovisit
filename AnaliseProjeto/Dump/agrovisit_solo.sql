@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: agrovisit
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	5.7.43-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `solo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `solo` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,6 +35,7 @@ CREATE TABLE `solo` (
 
 LOCK TABLES `solo` WRITE;
 /*!40000 ALTER TABLE `solo` DISABLE KEYS */;
+INSERT INTO `solo` VALUES (1,'Vertissolo'),(2,'Plintossolo'),(3,'Chernossolo'),(4,'Neossolo'),(5,'Latossolo'),(6,'Argissolo'),(7,'Gleissolo'),(8,'Luvissolo'),(9,'Nitossolo'),(10,'Organossolo'),(11,'Cambissolo'),(12,'Espodossolo'),(13,'Planossolo');
 /*!40000 ALTER TABLE `solo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -47,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 12:40:04
+-- Dump completed on 2024-11-04 11:55:33

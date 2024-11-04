@@ -27,7 +27,6 @@ namespace AgroVisitWeb.Controllers
 
        
         // GET: IntevencaoController/Details/5
-
         public ActionResult Details(uint id)
         {
             Intervencao intervencao = _intervencaoService.Get(id);
@@ -36,8 +35,6 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: IntervencaoController/Create
-
-
         public ActionResult Create()
         {
             IntervencaoViewModel intervencaoModel = new IntervencaoViewModel();
@@ -48,7 +45,6 @@ namespace AgroVisitWeb.Controllers
         }
 
         // POST: IntervencaoController/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IntervencaoViewModel intervencaoModel)
@@ -56,15 +52,20 @@ namespace AgroVisitWeb.Controllers
             if (ModelState.IsValid)
             {
                 var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
+
                 var projeto = _projetoService.Get(intervencao.IdProjeto);
+
                 _intervencaoService.Create(intervencao);
+
+                return RedirectToAction("Details", "Projeto", new { id = intervencao.IdProjeto });
             }
-            return RedirectToAction(nameof(Details));
+
+            return View(intervencaoModel);
         }
 
-        // GET: IntervencaoController/Edit/5
+            // GET: IntervencaoController/Edit/5
 
-        public ActionResult Edit(uint id)
+            public ActionResult Edit(uint id)
         {
             Intervencao intervencao = (Intervencao)_intervencaoService.Get(id);
             IntervencaoViewModel intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
@@ -80,8 +81,10 @@ namespace AgroVisitWeb.Controllers
             {
                 var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
                 _intervencaoService.Edit(intervencao);
+
+                return RedirectToAction("Details", "Projeto", new { id = intervencao.IdProjeto });
             }
-            return RedirectToAction(nameof(Details), intervencaoModel.Id);
+            return View(intervencaoModel);
         }
 
         // GET: IntervencaoController/Delete/5
@@ -100,7 +103,7 @@ namespace AgroVisitWeb.Controllers
         {
             var projeto = _projetoService.Get(intervencaoModel.IdProjeto);
             _intervencaoService.Delete(id);
-            return RedirectToAction(nameof(Details), projeto);
+            return RedirectToAction("Details", "Projeto", new { id = projeto.Id });
         }
     }
 }

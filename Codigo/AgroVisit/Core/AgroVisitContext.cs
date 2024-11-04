@@ -19,7 +19,7 @@ public partial class AgroVisitContext : DbContext
 
     public virtual DbSet<Cliente> Clientes { get; set; }
 
-    public virtual DbSet<Conta> Contas { get; set; }
+    public virtual DbSet<Conta> Conta { get; set; }
 
     public virtual DbSet<Cultura> Culturas { get; set; }
 
@@ -35,8 +35,11 @@ public partial class AgroVisitContext : DbContext
 
     public virtual DbSet<Solo> Solos { get; set; }
 
-    public virtual DbSet<Visita> Visitas { get; set; }
+    public virtual DbSet<Visita> Visita { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseMySQL("server=localhost;port=3306;user=root;password=root;database=AgroVisit");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -50,15 +53,21 @@ public partial class AgroVisitContext : DbContext
 
             entity.HasIndex(e => e.IdEngenheiroAgronomo, "fkAssinaturaUsuario1_idx");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("id");
             entity.Property(e => e.Data)
                 .HasColumnType("date")
                 .HasColumnName("data");
             entity.Property(e => e.DataCancelamento)
                 .HasColumnType("date")
                 .HasColumnName("dataCancelamento");
-            entity.Property(e => e.IdEngenheiroAgronomo).HasColumnName("idEngenheiroAgronomo");
-            entity.Property(e => e.IdPlano).HasColumnName("idPlano");
+            entity.Property(e => e.IdEngenheiroAgronomo)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idEngenheiroAgronomo");
+            entity.Property(e => e.IdPlano)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idPlano");
             entity.Property(e => e.Status)
                 .HasDefaultValueSql("'A'")
                 .HasColumnType("enum('A','C')")
@@ -67,12 +76,12 @@ public partial class AgroVisitContext : DbContext
 
             entity.HasOne(d => d.IdEngenheiroAgronomoNavigation).WithMany(p => p.Assinaturas)
                 .HasForeignKey(d => d.IdEngenheiroAgronomo)
-                .OnDelete(DeleteBehavior.Restrict)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkAssinaturaUsuario1");
 
             entity.HasOne(d => d.IdPlanoNavigation).WithMany(p => p.Assinaturas)
                 .HasForeignKey(d => d.IdPlano)
-                .OnDelete(DeleteBehavior.Restrict)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkAssinaturaPlano1");
         });
 
@@ -86,7 +95,9 @@ public partial class AgroVisitContext : DbContext
 
             entity.HasIndex(e => e.IdEngenheiroAgronomo, "fkClienteEngenheiro Agronomo1_idx");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("id");
             entity.Property(e => e.Bairro)
                 .HasMaxLength(25)
                 .HasColumnName("bairro");
@@ -102,11 +113,15 @@ public partial class AgroVisitContext : DbContext
             entity.Property(e => e.Estado)
                 .HasMaxLength(2)
                 .HasColumnName("estado");
-            entity.Property(e => e.IdEngenheiroAgronomo).HasColumnName("idEngenheiro Agronomo");
+            entity.Property(e => e.IdEngenheiroAgronomo)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idEngenheiro Agronomo");
             entity.Property(e => e.Nome)
                 .HasMaxLength(50)
                 .HasColumnName("nome");
-            entity.Property(e => e.NumeroCasa).HasColumnName("numeroCasa");
+            entity.Property(e => e.NumeroCasa)
+                .HasColumnType("int(11)")
+                .HasColumnName("numeroCasa");
             entity.Property(e => e.Rua)
                 .HasMaxLength(60)
                 .HasColumnName("rua");
@@ -116,7 +131,6 @@ public partial class AgroVisitContext : DbContext
 
             entity.HasOne(d => d.IdEngenheiroAgronomoNavigation).WithMany(p => p.Clientes)
                 .HasForeignKey(d => d.IdEngenheiroAgronomo)
-                .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fkClienteEngenheiro Agronomo1");
         });
 
@@ -130,26 +144,30 @@ public partial class AgroVisitContext : DbContext
 
             entity.HasIndex(e => e.IdProjeto, "fkFinancasProjeto1_idx");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("id");
             entity.Property(e => e.DataPagamento)
                 .HasColumnType("date")
                 .HasColumnName("dataPagamento");
-            entity.Property(e => e.IdProjeto).HasColumnName("idProjeto");
-            entity.Property(e => e.IdVisita).HasColumnName("idVisita");
+            entity.Property(e => e.IdProjeto)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idProjeto");
+            entity.Property(e => e.IdVisita)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idVisita");
             entity.Property(e => e.Status)
                 .HasDefaultValueSql("'A'")
                 .HasColumnType("enum('A','P')")
                 .HasColumnName("status");
             entity.Property(e => e.Valor).HasColumnName("valor");
 
-            entity.HasOne(d => d.IdProjetoNavigation).WithMany(p => p.Contas)
+            entity.HasOne(d => d.IdProjetoNavigation).WithMany(p => p.Conta)
                 .HasForeignKey(d => d.IdProjeto)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkFinancasProjeto1");
 
-            entity.HasOne(d => d.IdVisitaNavigation).WithMany(p => p.Contas)
+            entity.HasOne(d => d.IdVisitaNavigation).WithMany(p => p.Conta)
                 .HasForeignKey(d => d.IdVisita)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkContaVisita1");
         });
 
@@ -159,7 +177,9 @@ public partial class AgroVisitContext : DbContext
 
             entity.ToTable("cultura");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("id");
             entity.Property(e => e.Nome)
                 .HasMaxLength(50)
                 .HasColumnName("nome");
@@ -173,7 +193,9 @@ public partial class AgroVisitContext : DbContext
 
             entity.HasIndex(e => e.Cpf, "CPF_UNIQUE").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("id");
             entity.Property(e => e.Celular)
                 .HasMaxLength(11)
                 .HasColumnName("celular");
@@ -199,7 +221,9 @@ public partial class AgroVisitContext : DbContext
 
             entity.HasIndex(e => e.IdProjeto, "fkIntervencaoProjeto1_idx");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("id");
             entity.Property(e => e.AreaTratada).HasColumnName("areaTratada");
             entity.Property(e => e.DataAplicacao)
                 .HasColumnType("date")
@@ -207,7 +231,9 @@ public partial class AgroVisitContext : DbContext
             entity.Property(e => e.Descricao)
                 .HasMaxLength(500)
                 .HasColumnName("descricao");
-            entity.Property(e => e.IdProjeto).HasColumnName("idProjeto");
+            entity.Property(e => e.IdProjeto)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idProjeto");
             entity.Property(e => e.Pratica)
                 .HasMaxLength(500)
                 .HasColumnName("pratica");
@@ -221,7 +247,6 @@ public partial class AgroVisitContext : DbContext
 
             entity.HasOne(d => d.IdProjetoNavigation).WithMany(p => p.Intervencoes)
                 .HasForeignKey(d => d.IdProjeto)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkIntervencaoProjeto1");
         });
 
@@ -231,7 +256,9 @@ public partial class AgroVisitContext : DbContext
 
             entity.ToTable("plano");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("id");
             entity.Property(e => e.Nome)
                 .HasMaxLength(50)
                 .HasColumnName("nome");
@@ -244,11 +271,11 @@ public partial class AgroVisitContext : DbContext
 
             entity.ToTable("projeto");
 
-            entity.HasIndex(e => e.DataConclusao, "dataConclusao_UNIQUE").IsUnique();
-
             entity.HasIndex(e => e.IdPropriedade, "fkProjetoPropriedade1_idx");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("id");
             entity.Property(e => e.Anexo)
                 .HasColumnType("blob")
                 .HasColumnName("anexo");
@@ -264,12 +291,18 @@ public partial class AgroVisitContext : DbContext
             entity.Property(e => e.Descricao)
                 .HasMaxLength(200)
                 .HasColumnName("descricao");
-            entity.Property(e => e.IdPropriedade).HasColumnName("idPropriedade");
+            entity.Property(e => e.IdPropriedade)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idPropriedade");
             entity.Property(e => e.Nome)
                 .HasMaxLength(50)
                 .HasColumnName("nome");
-            entity.Property(e => e.NumeroVisita).HasColumnName("numeroVisita");
-            entity.Property(e => e.QuantParcela).HasColumnName("quantParcela");
+            entity.Property(e => e.NumeroVisita)
+                .HasColumnType("int(11)")
+                .HasColumnName("numeroVisita");
+            entity.Property(e => e.QuantParcela)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("quantParcela");
             entity.Property(e => e.Status)
                 .HasDefaultValueSql("'EX'")
                 .HasColumnType("enum('EX','C')")
@@ -278,7 +311,6 @@ public partial class AgroVisitContext : DbContext
 
             entity.HasOne(d => d.IdPropriedadeNavigation).WithMany(p => p.Projetos)
                 .HasForeignKey(d => d.IdPropriedade)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkProjetoPropriedade1");
         });
 
@@ -296,7 +328,9 @@ public partial class AgroVisitContext : DbContext
 
             entity.HasIndex(e => e.IdEngenheiroAgronomo, "fkPropriedadeUsuario1_idx");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("id");
             entity.Property(e => e.AreaCultivada).HasColumnName("areaCultivada");
             entity.Property(e => e.AreaPasto).HasColumnName("areaPasto");
             entity.Property(e => e.AreaPreservar).HasColumnName("areaPreservar");
@@ -332,10 +366,18 @@ public partial class AgroVisitContext : DbContext
             entity.Property(e => e.HistoricoProducao)
                 .HasColumnType("blob")
                 .HasColumnName("historicoProducao");
-            entity.Property(e => e.IdCliente).HasColumnName("idCliente");
-            entity.Property(e => e.IdCultura).HasColumnName("idCultura");
-            entity.Property(e => e.IdEngenheiroAgronomo).HasColumnName("idEngenheiroAgronomo");
-            entity.Property(e => e.IdSolo).HasColumnName("idSolo");
+            entity.Property(e => e.IdCliente)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idCliente");
+            entity.Property(e => e.IdCultura)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idCultura");
+            entity.Property(e => e.IdEngenheiroAgronomo)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idEngenheiroAgronomo");
+            entity.Property(e => e.IdSolo)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idSolo");
             entity.Property(e => e.Itr)
                 .HasMaxLength(50)
                 .HasColumnName("itr");
@@ -345,30 +387,32 @@ public partial class AgroVisitContext : DbContext
             entity.Property(e => e.Nome)
                 .HasMaxLength(50)
                 .HasColumnName("nome");
-            entity.Property(e => e.NumAnimais).HasColumnName("numAnimais");
-            entity.Property(e => e.QuantFuncionario).HasColumnName("quantFuncionario");
+            entity.Property(e => e.NumAnimais)
+                .HasColumnType("int(11)")
+                .HasColumnName("numAnimais");
+            entity.Property(e => e.QuantFuncionario)
+                .HasColumnType("int(11)")
+                .HasColumnName("quantFuncionario");
             entity.Property(e => e.Raca)
                 .HasMaxLength(50)
                 .HasColumnName("raca");
 
             entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Propriedades)
                 .HasForeignKey(d => d.IdCliente)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkPropriedadeCliente1");
 
             entity.HasOne(d => d.IdCulturaNavigation).WithMany(p => p.Propriedades)
                 .HasForeignKey(d => d.IdCultura)
-                .OnDelete(DeleteBehavior.Restrict)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkPropriedadeCultura1");
 
             entity.HasOne(d => d.IdEngenheiroAgronomoNavigation).WithMany(p => p.Propriedades)
                 .HasForeignKey(d => d.IdEngenheiroAgronomo)
-                .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fkPropriedadeUsuario1");
 
             entity.HasOne(d => d.IdSoloNavigation).WithMany(p => p.Propriedades)
                 .HasForeignKey(d => d.IdSolo)
-                .OnDelete(DeleteBehavior.Restrict)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkPropriedadeSolo1");
         });
 
@@ -378,7 +422,9 @@ public partial class AgroVisitContext : DbContext
 
             entity.ToTable("solo");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("id");
             entity.Property(e => e.Nome)
                 .HasMaxLength(50)
                 .HasColumnName("nome");
@@ -392,11 +438,15 @@ public partial class AgroVisitContext : DbContext
 
             entity.HasIndex(e => e.IdPropriedade, "fkVisitaPropriedade_idx");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("id");
             entity.Property(e => e.DataHora)
                 .HasColumnType("datetime")
                 .HasColumnName("dataHora");
-            entity.Property(e => e.IdPropriedade).HasColumnName("idPropriedade");
+            entity.Property(e => e.IdPropriedade)
+                .HasColumnType("int(10) unsigned")
+                .HasColumnName("idPropriedade");
             entity.Property(e => e.Observacoes)
                 .HasMaxLength(200)
                 .HasColumnName("observacoes");
@@ -405,9 +455,8 @@ public partial class AgroVisitContext : DbContext
                 .HasColumnType("enum('A','C')")
                 .HasColumnName("status");
 
-            entity.HasOne(d => d.IdPropriedadeNavigation).WithMany(p => p.Visitas)
+            entity.HasOne(d => d.IdPropriedadeNavigation).WithMany(p => p.Visita)
                 .HasForeignKey(d => d.IdPropriedade)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkVisitaPropriedade");
         });
 

@@ -59,7 +59,7 @@
         <form asp-action="Delete">
             <div class="form-group row m-4">
                 <div class="col-md-4">
-                    <a id="border" class="btn borda-concluir btn-success" asp-action="Index">Não</a>
+                    <a id="border" class="btn borda-concluir btn-success" asp-action="Details" asp-controller="Intervencao" asp-route-id="@Model.Id">Não</a>
                 </div>
                 <div class="col-md-2 offset-md-4">
                     <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim</button>

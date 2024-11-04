@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: agrovisit
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	5.7.43-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `propriedade`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `propriedade` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `estado` varchar(10) NOT NULL,
   `cidade` varchar(50) NOT NULL,
-  `quantFuncionario` int DEFAULT NULL,
+  `quantFuncionario` int(11) DEFAULT NULL,
   `areaReserva` float DEFAULT NULL,
   `areaPreservar` float DEFAULT NULL,
   `car` varchar(50) DEFAULT NULL,
@@ -35,32 +35,30 @@ CREATE TABLE `propriedade` (
   `itr` varchar(50) DEFAULT NULL,
   `georreferenciamento` blob,
   `matriculaImovel` blob,
-  `numAnimais` int DEFAULT NULL,
+  `numAnimais` int(11) DEFAULT NULL,
   `raca` varchar(50) DEFAULT NULL,
   `fonteAlimento` varchar(50) DEFAULT NULL,
   `areaPasto` float DEFAULT NULL,
   `historicoProducao` blob,
   `areaTotal` float DEFAULT NULL,
   `areaCultivada` float DEFAULT NULL,
-  `tipoSolo` varchar(50) DEFAULT NULL,
-  `cultura` varchar(50) DEFAULT NULL,
   `comercializacao` enum('C','A') DEFAULT NULL,
   `historicoProdAgricola` blob,
   `historicoFitossanidade` blob,
-  `idSolo` int unsigned NOT NULL,
-  `idCultura` int unsigned NOT NULL,
-  `idCliente` int unsigned NOT NULL,
-  `idEngenheiroAgronomo` int unsigned NOT NULL,
+  `idSolo` int(10) unsigned NOT NULL,
+  `idCultura` int(10) unsigned NOT NULL,
+  `idCliente` int(10) unsigned NOT NULL,
+  `idEngenheiroAgronomo` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fkPropriedadeSolo1_idx` (`idSolo`),
   KEY `fkPropriedadeCultura1_idx` (`idCultura`),
   KEY `fkPropriedadeCliente1_idx` (`idCliente`),
   KEY `fkPropriedadeUsuario1_idx` (`idEngenheiroAgronomo`),
-  CONSTRAINT `fkPropriedadeCliente1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `fkPropriedadeCultura1` FOREIGN KEY (`idCultura`) REFERENCES `cultura` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `fkPropriedadeSolo1` FOREIGN KEY (`idSolo`) REFERENCES `solo` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `fkPropriedadeUsuario1` FOREIGN KEY (`idEngenheiroAgronomo`) REFERENCES `engenheiroagronomo` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  CONSTRAINT `fkPropriedadeCliente1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fkPropriedadeCultura1` FOREIGN KEY (`idCultura`) REFERENCES `cultura` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fkPropriedadeSolo1` FOREIGN KEY (`idSolo`) REFERENCES `solo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fkPropriedadeUsuario1` FOREIGN KEY (`idEngenheiroAgronomo`) REFERENCES `engenheiroagronomo` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 12:40:04
+-- Dump completed on 2024-11-04 11:55:34

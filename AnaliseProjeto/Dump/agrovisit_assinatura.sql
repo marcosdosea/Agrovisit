@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: agrovisit
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	5.7.43-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,19 +23,19 @@ DROP TABLE IF EXISTS `assinatura`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `assinatura` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `valor` float NOT NULL,
   `status` enum('A','C') NOT NULL DEFAULT 'A',
   `data` date NOT NULL,
   `dataCancelamento` date DEFAULT NULL,
-  `idPlano` int unsigned NOT NULL,
-  `idEngenheiroAgronomo` int unsigned NOT NULL,
+  `idPlano` int(10) unsigned NOT NULL,
+  `idEngenheiroAgronomo` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fkAssinaturaPlano1_idx` (`idPlano`),
   KEY `fkAssinaturaUsuario1_idx` (`idEngenheiroAgronomo`),
-  CONSTRAINT `fkAssinaturaPlano1` FOREIGN KEY (`idPlano`) REFERENCES `plano` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `fkAssinaturaUsuario1` FOREIGN KEY (`idEngenheiroAgronomo`) REFERENCES `engenheiroagronomo` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  CONSTRAINT `fkAssinaturaPlano1` FOREIGN KEY (`idPlano`) REFERENCES `plano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fkAssinaturaUsuario1` FOREIGN KEY (`idEngenheiroAgronomo`) REFERENCES `engenheiroagronomo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 12:40:04
+-- Dump completed on 2024-11-04 11:55:34

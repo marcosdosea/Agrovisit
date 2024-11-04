@@ -40,7 +40,6 @@ namespace Service
 
         public void Delete(uint id)
         {
-
             var intervencao = _context.Intervencoes.Find(id);
             _context.Remove(intervencao);
             _context.SaveChanges();

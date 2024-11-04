@@ -29,7 +29,7 @@ public partial class Projeto
 
     public DateTime? DataConclusao { get; set; }
 
-    public virtual ICollection<Conta> Contas { get; set; } = new List<Conta>();
+    public virtual ICollection<Conta> Conta { get; set; } = new List<Conta>();
 
     public virtual Propriedade IdPropriedadeNavigation { get; set; } = null!;
 

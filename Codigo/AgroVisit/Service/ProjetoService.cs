@@ -170,7 +170,7 @@ namespace Service
         /// <returns> As contas de um projeto </returns>
         public IEnumerable<Conta> GetAllConta(uint id)
         {
-            var query = from conta in _context.Contas
+            var query = from conta in _context.Conta
                         where conta.IdProjeto == id
                         select conta;
             return query.AsNoTracking();

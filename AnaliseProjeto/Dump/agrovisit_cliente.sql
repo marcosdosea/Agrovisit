@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: agrovisit
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	5.7.43-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `cliente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `CPF` varchar(15) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `dataNascimento` date DEFAULT NULL,
@@ -31,14 +31,14 @@ CREATE TABLE `cliente` (
   `bairro` varchar(25) DEFAULT NULL,
   `estado` varchar(2) NOT NULL,
   `rua` varchar(60) DEFAULT NULL,
-  `numeroCasa` int DEFAULT NULL,
+  `numeroCasa` int(11) DEFAULT NULL,
   `telefone` varchar(15) DEFAULT NULL,
-  `idEngenheiro Agronomo` int unsigned NOT NULL,
+  `idEngenheiro Agronomo` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `CPF_UNIQUE` (`CPF`) /*!80000 INVISIBLE */,
+  UNIQUE KEY `CPF_UNIQUE` (`CPF`),
   KEY `fkClienteEngenheiro Agronomo1_idx` (`idEngenheiro Agronomo`),
-  CONSTRAINT `fkClienteEngenheiro Agronomo1` FOREIGN KEY (`idEngenheiro Agronomo`) REFERENCES `engenheiroagronomo` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  CONSTRAINT `fkClienteEngenheiro Agronomo1` FOREIGN KEY (`idEngenheiro Agronomo`) REFERENCES `engenheiroagronomo` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 12:40:04
+-- Dump completed on 2024-11-04 11:55:34

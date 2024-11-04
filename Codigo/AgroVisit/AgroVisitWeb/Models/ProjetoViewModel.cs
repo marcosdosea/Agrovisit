@@ -51,7 +51,7 @@ namespace AgroVisitWeb.Models
         public byte[]? Anexo { get; set; }
 
         [Display(Name = "Data de conclusão")]
-        public DateTime DataConclusao { get; set; }
+        public DateTime dataConclusao { get; set; }
 
         [Display(Name = "Status")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
