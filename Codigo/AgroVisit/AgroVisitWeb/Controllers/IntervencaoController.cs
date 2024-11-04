@@ -14,18 +14,18 @@ namespace AgroVisitWeb.Controllers
         private readonly IIntervencaoService _intervencaoService;
         private readonly IMapper _mapper;
         private readonly IProjetoService _projetoService;
- 
+
         public IntervencaoController(IIntervencaoService intervencaoService, IProjetoService projetoService, IMapper mapper)
         {
             _intervencaoService = intervencaoService;
             _projetoService = projetoService;
             _mapper = mapper;
-            
+
         }
 
         //GET: IntervencaoController
 
-       
+
         // GET: IntevencaoController/Details/5
         public ActionResult Details(uint id)
         {
@@ -38,9 +38,10 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Create()
         {
             IntervencaoViewModel intervencaoModel = new IntervencaoViewModel();
-            IEnumerable<Projeto> listaProjeto = _projetoService.GetAll();
 
-            //intervencaoModel.ListaProjetos = new SelectList(listaProjeto, "Id", "Nome", null);
+            IEnumerable<Projeto> projetos = _projetoService.GetAll();
+            intervencaoModel.Projetos = new SelectList(projetos, "Id", "Nome", null);
+
             return View(intervencaoModel);
         }
 
@@ -49,23 +50,16 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IntervencaoViewModel intervencaoModel)
         {
-            if (ModelState.IsValid)
-            {
-                var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
+            var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
 
-                var projeto = _projetoService.Get(intervencao.IdProjeto);
+            _intervencaoService.Create(intervencao);
 
-                _intervencaoService.Create(intervencao);
-
-                return RedirectToAction("Details", "Projeto", new { id = intervencao.IdProjeto });
-            }
-
-            return View(intervencaoModel);
+            return RedirectToAction("Details", "Projeto", new { id = intervencao.IdProjeto });
         }
 
-            // GET: IntervencaoController/Edit/5
+        // GET: IntervencaoController/Edit/5
 
-            public ActionResult Edit(uint id)
+        public ActionResult Edit(uint id)
         {
             Intervencao intervencao = (Intervencao)_intervencaoService.Get(id);
             IntervencaoViewModel intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
@@ -77,14 +71,14 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(uint id, IntervencaoViewModel intervencaoModel)
         {
-            if (ModelState.IsValid)
-            {
-                var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
-                _intervencaoService.Edit(intervencao);
+            //if (ModelState.IsValid)
+            //{
+            var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
+            _intervencaoService.Edit(intervencao);
 
-                return RedirectToAction("Details", "Projeto", new { id = intervencao.IdProjeto });
-            }
-            return View(intervencaoModel);
+            return RedirectToAction("Details", "Projeto", new { id = intervencao.IdProjeto });
+            //}
+            //return View(intervencaoModel);
         }
 
         // GET: IntervencaoController/Delete/5
@@ -93,6 +87,7 @@ namespace AgroVisitWeb.Controllers
             // TODO mappers implementation
             Intervencao intervencao = _intervencaoService.Get(id);
             IntervencaoViewModel intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
+
             return View(intervencaoModel);
         }
 
@@ -101,8 +96,10 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(uint id, IntervencaoViewModel intervencaoModel)
         {
-            var projeto = _projetoService.Get(intervencaoModel.IdProjeto);
+            var intervencao = _intervencaoService.Get(id);
+            var projeto = _projetoService.Get(intervencao.IdProjeto);
             _intervencaoService.Delete(id);
+
             return RedirectToAction("Details", "Projeto", new { id = projeto.Id });
         }
     }

@@ -1,5 +1,6 @@
 using Core;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.ComponentModel.DataAnnotations;
 
 namespace AgroVisitWeb.Models
@@ -32,7 +33,9 @@ namespace AgroVisitWeb.Models
         
         [Display(Name = "Projeto")]
         public uint IdProjeto { get; set; }
-        
+
+        [Display(Name = "Projetos")]
+        public SelectList Projetos { get; set; }
     }
 }
 
