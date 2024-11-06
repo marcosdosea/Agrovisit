@@ -1,6 +1,4 @@
-using Core;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.ComponentModel.DataAnnotations;
 
 namespace AgroVisitWeb.Models
@@ -13,7 +11,7 @@ namespace AgroVisitWeb.Models
         [Display(Name = "Prática")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Pratica { get; set; } = null!;
-        
+
         [Display(Name = "Descrição")]
         [StringLength(1000)]
         public string? Descricao { get; set; }
@@ -26,11 +24,11 @@ namespace AgroVisitWeb.Models
 
         [Display(Name = "Area Tratada")]
         public float? AreaTratada { get; set; }
-        
+
         [Display(Name = "Status")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Status { get; set; } = null!;
-        
+
         [Display(Name = "Projeto")]
         public uint IdProjeto { get; set; }
 
@@ -39,5 +37,5 @@ namespace AgroVisitWeb.Models
     }
 }
 
-    
+
 

@@ -41,7 +41,7 @@ namespace AgroVisitWeb.Models
         public DateTime DataPrevista { get; set; }
 
         [Display(Name = "Descrição")]
-        [StringLength (200)]
+        [StringLength(200)]
         public string? Descricao { get; set; }
 
         [Display(Name = "Número de visitas")]
@@ -63,7 +63,7 @@ namespace AgroVisitWeb.Models
 
         [Display(Name = "Propriedade")]
         public SelectList? ListaPropriedades { get; set; }
-        
+
         [Display(Name = "Conta")]
         public IEnumerable<Conta>? ListaContas { get; set; }
 

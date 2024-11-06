@@ -3,7 +3,6 @@ using Core.Datatables;
 using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
-using System.Windows.Markup;
 
 namespace Service
 {
@@ -38,11 +37,11 @@ namespace Service
         public void Delete(uint id)
         {
             var projeto = _context.Projetos.Find(id);
-            if (projeto != null) 
+            if (projeto != null)
             {
                 _context.Remove(projeto);
                 _context.SaveChanges();
-            } 
+            }
         }
 
         /// <summary>
@@ -100,30 +99,30 @@ namespace Service
                             NomeCliente = projetos.IdPropriedadeNavigation.IdClienteNavigation.Nome,
                             NomePropriedade = projetos.IdPropriedadeNavigation.Nome
                         };
-            
+
             return query.AsNoTracking();
         }
         public ProjetoAllDto GetDetailsDeleteAll(uint id)
         {
             var query = (from projetos in _context.Projetos
-                        where projetos.Id == id
-                        select new ProjetoAllDto
-                        {
-                            Id = projetos.Id,
-                            Nome = projetos.Nome,
-                            DataInicio = projetos.DataInicio,
-                            Status = projetos.Status,
-                            NomeCliente = projetos.IdPropriedadeNavigation.IdClienteNavigation.Nome,
-                            NomePropriedade = projetos.IdPropriedadeNavigation.Nome,
-                            DataPrevista = projetos.DataPrevista,
-                            DataConclusao = projetos.DataConclusao,
-                            Descricao = projetos.Descricao,
-                            Anexo = projetos.Anexo,
-                            NumeroVisita = projetos.NumeroVisita,
-                            Valor = projetos.Valor,
-                            QuantParcela = projetos.QuantParcela,
-                            Intervencoes = projetos.Intervencoes
-                        });
+                         where projetos.Id == id
+                         select new ProjetoAllDto
+                         {
+                             Id = projetos.Id,
+                             Nome = projetos.Nome,
+                             DataInicio = projetos.DataInicio,
+                             Status = projetos.Status,
+                             NomeCliente = projetos.IdPropriedadeNavigation.IdClienteNavigation.Nome,
+                             NomePropriedade = projetos.IdPropriedadeNavigation.Nome,
+                             DataPrevista = projetos.DataPrevista,
+                             DataConclusao = projetos.DataConclusao,
+                             Descricao = projetos.Descricao,
+                             Anexo = projetos.Anexo,
+                             NumeroVisita = projetos.NumeroVisita,
+                             Valor = projetos.Valor,
+                             QuantParcela = projetos.QuantParcela,
+                             Intervencoes = projetos.Intervencoes
+                         });
 
             return (ProjetoAllDto)query;
         }
@@ -196,17 +195,17 @@ namespace Service
         /// <returns></returns>
         public DatatableResponse<ProjetoDto> GetDataPage(DatatableRequest request)
         {
-            var projetos =  from projeto in _context.Projetos
-                            select new ProjetoDto
-                            {
-                                Id = projeto.Id,
-                                Nome = projeto.Nome, 
-                                DataInicio = projeto.DataInicio,
-                                Status = projeto.Status,
-                                NomeCliente = projeto.IdPropriedadeNavigation.IdClienteNavigation.Nome,
-                                NomePropriedade = projeto.IdPropriedadeNavigation.Nome,
-                                Valor = projeto.Valor
-                            };
+            var projetos = from projeto in _context.Projetos
+                           select new ProjetoDto
+                           {
+                               Id = projeto.Id,
+                               Nome = projeto.Nome,
+                               DataInicio = projeto.DataInicio,
+                               Status = projeto.Status,
+                               NomeCliente = projeto.IdPropriedadeNavigation.IdClienteNavigation.Nome,
+                               NomePropriedade = projeto.IdPropriedadeNavigation.Nome,
+                               Valor = projeto.Valor
+                           };
             // total de registros na tabela
             var totalRecords = projetos.Count();
 
@@ -232,7 +231,7 @@ namespace Service
                 else
                     projetos = projetos.OrderByDescending(projeto => projeto.DataInicio);
             }
-            
+
 
             // total de registros filtrados
             int countRecordsFiltered = projetos.Count();

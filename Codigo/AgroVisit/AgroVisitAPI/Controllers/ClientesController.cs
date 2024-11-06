@@ -1,8 +1,8 @@
-﻿using AutoMapper;
+﻿using AgroVisitAPI.Models;
+using AutoMapper;
 using Core;
 using Core.Service;
 using Microsoft.AspNetCore.Mvc;
-using AgroVisitAPI.Models;
 
 namespace AgroVisitAPI.Controllers
 {

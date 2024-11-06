@@ -39,7 +39,7 @@ namespace AgroVisitWeb.Controllers
         // GET: VisitaController/Details/5
         public ActionResult Details(uint id)
         {
-            Visita visita = _visitaService.Get(id);            
+            Visita visita = _visitaService.Get(id);
             VisitaViewModel visitaModel = _mapper.Map<VisitaViewModel>(visita);
             var idCliente = _propriedadeService.Get(visitaModel.IdPropriedade).IdCliente;
             visitaModel.NomePropriedade = _propriedadeService.Get(visitaModel.IdPropriedade).Nome;
@@ -91,7 +91,7 @@ namespace AgroVisitWeb.Controllers
                 var visita = _mapper.Map<Visita>(visitaModel);
                 _visitaService.Edit(visita);
             }
-            return RedirectToAction(nameof(Index));        
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: VisitaController/Delete/5
@@ -108,7 +108,7 @@ namespace AgroVisitWeb.Controllers
         public ActionResult Delete(uint id, VisitaViewModel visitaModel)
         {
             _visitaService.Delete(id);
-            return RedirectToAction(nameof(Index));           
+            return RedirectToAction(nameof(Index));
         }
     }
 }

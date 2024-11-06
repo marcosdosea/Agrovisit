@@ -3,7 +3,6 @@ using AutoMapper;
 using Core;
 using Core.Service;
 using Microsoft.AspNetCore.Mvc;
-using Service;
 
 
 namespace AgroVisitAPI.Controllers

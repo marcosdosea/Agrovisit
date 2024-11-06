@@ -1,21 +1,21 @@
 ﻿using AgroVisitWeb.Models;
 using AutoMapper;
 using Core;
-using Core.Service;
 using Core.Datatables;
-using Microsoft.AspNetCore.Mvc;
+using Core.Service;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AgroVisitWeb.Controllers
 {
-    [Authorize(Roles ="Agronomo")]
+    [Authorize(Roles = "Agronomo")]
     public class ClienteController : Controller
     {
         private readonly IClienteService _clienteService;
         private readonly IPropriedadeService _propriedadeService;
         private readonly IMapper _mapper;
 
-        public ClienteController(IClienteService clienteService, IPropriedadeService propriedadeService ,IMapper mapper)
+        public ClienteController(IClienteService clienteService, IPropriedadeService propriedadeService, IMapper mapper)
         {
             _clienteService = clienteService;
             _propriedadeService = propriedadeService;

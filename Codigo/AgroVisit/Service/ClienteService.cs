@@ -1,6 +1,5 @@
 ﻿using Core;
 using Core.Datatables;
-using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -123,7 +122,7 @@ namespace Service
             {
                 clientes = clientes.Skip(request.Start).Take(request.Length);
             }
-            
+
             return new DatatableResponse<Cliente>()
             {
                 Data = clientes.ToList(),

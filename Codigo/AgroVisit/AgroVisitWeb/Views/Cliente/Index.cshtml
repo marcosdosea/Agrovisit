@@ -33,8 +33,8 @@
         <div id="containerCards" class="w-100 d-flex flex-column align-items-center"></div>
 
         <div class="row justify-content-center mt-3">
-            <button id="prevPage" type="button" class="btn btn-primary col-auto m-2" aria-label="Página Anterior">Anterior</button>
-            <button id="nextPage" type="button" class="btn btn-primary col-auto m-2" aria-label="Próxima Página">Próximo</button>
+            <button id="prevPage" type="button" class="btn btn-primary col-auto m-2" aria-label="Página Anterior" role="button">Anterior</button>
+            <button id="nextPage" type="button" class="btn btn-primary col-auto m-2" aria-label="Próxima Página" role="button">Próximo</button>
         </div>
     </div>
 
@@ -74,6 +74,12 @@
             function renderCards() {
                 const container = $('#containerCards');
                 container.empty();
+
+                if (filteredItems.length === 0) {
+                    container.append('<p>Nenhum cliente encontrado.</p>');
+                    return;
+                }
+
                 const start = (currentPage - 1) * pageSize;
                 const end = pageSize === -1 ? filteredItems.length : start + pageSize;
                 const paginatedItems = filteredItems.slice(start, end);
@@ -99,6 +105,7 @@
                 updatePaginationButtons();
             }
 
+            // Aplica filtros de pesquisa
             function applyFilters() {
                 const searchText = $('#searchInput').val().toLowerCase();
                 filteredItems = items.filter(item =>
@@ -108,6 +115,15 @@
                 renderCards();
                 updatePaginationButtons();
             }
+
+            // Atualiza páginação
+            function updatePaginationButtons() {
+                var buttonNext = document.getElementById('nextPage');
+                var buttonPrev = document.getElementById('prevPage');
+
+                $(buttonPrev).prop('disabled', currentPage === 1);
+                $(buttonNext).prop('disabled', currentPage * pageSize >= filteredItems.length && pageSize !== -1);
+            };
 
             $('#searchInput').on('input', applyFilters);
 
@@ -119,6 +135,7 @@
                 updatePaginationButtons();
             });
 
+            // Atualiza página ao clicar no botão Anterior
             $('#prevPage').on('click', function () {
                 if (currentPage > 1) {
                     currentPage--;
@@ -128,6 +145,7 @@
                 updatePaginationButtons();
             });
 
+            // Atualiza página ao clicar no botão Próximo
             $('#nextPage').on('click', function () {
                 if (currentPage * pageSize < filteredItems.length || pageSize === -1) {
                     currentPage++;
@@ -136,36 +154,6 @@
 
                 updatePaginationButtons();
             });
-
-            function updatePaginationButtons() {
-                var buttonNext = document.getElementById('nextPage');//$('#nextPage');
-                var buttonPrev = document.getElementById('prevPage');//$('#prevPage');
-
-                $(buttonNext).attr('disabled', 'disabled');
-                $(buttonPrev).attr('disabled', 'disabled');
-
-                if (currentPage === 1) {
-                    $(buttonPrev).removeAttr('enabled');
-
-                    buttonPrev.style.opacity = 0.3;
-                }
-                else {
-                    $(buttonPrev).removeAttr('disabled');
-
-                    buttonPrev.style.opacity = 1;
-                }
-
-                if (currentPage * pageSize >= filteredItems.length && pageSize !== -1) {
-                    $(buttonNext).removeAttr('enabled');
-
-                    buttonNext.style.opacity = 0.3;
-                }
-                else {
-                    $(buttonNext).removeAttr('disabled');
-
-                    buttonNext.style.opacity = 1;
-                }
-            };
 
             // Renderizar pela primeira vez
             renderCards();
