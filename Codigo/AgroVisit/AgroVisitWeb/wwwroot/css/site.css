@@ -57,3 +57,7 @@ form#border select {
     color: black;
     border-color: #B6DDB5;
 }
+
+button:disabled {
+    opacity: 0.3;
+}

@@ -1,10 +1,8 @@
 ﻿using AgroVisitAPI.Models;
 using AutoMapper;
 using Core;
-using Core.DTO;
 using Core.Service;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace AgroVisitAPI.Controllers
 {
@@ -65,7 +63,7 @@ namespace AgroVisitAPI.Controllers
             projeto.Id = id;
             if (projeto == null)
                 return NotFound();
-                
+
             _projetoService.Edit(projeto);
 
             return Ok();

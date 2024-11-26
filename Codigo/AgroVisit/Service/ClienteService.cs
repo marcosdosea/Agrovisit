@@ -1,6 +1,5 @@
 ﻿using Core;
 using Core.Datatables;
-using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -119,7 +118,11 @@ namespace Service
             // total de registros filtrados
             int countRecordsFiltered = clientes.Count();
             // paginação que será exibida
-            clientes = clientes.Skip(request.Start).Take(request.Length);
+            if (request.Length != -1)
+            {
+                clientes = clientes.Skip(request.Start).Take(request.Length);
+            }
+
             return new DatatableResponse<Cliente>()
             {
                 Data = clientes.ToList(),

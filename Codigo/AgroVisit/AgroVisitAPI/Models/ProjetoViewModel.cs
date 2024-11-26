@@ -38,7 +38,7 @@ namespace AgroVisitAPI.Models
         public DateTime? DataConclusao { get; set; }
 
         [Display(Name = "Descrição")]
-        [StringLength (200)]
+        [StringLength(200)]
         public string? Descricao { get; set; }
 
         [Display(Name = "Número de visitas")]

@@ -50,7 +50,7 @@ namespace AgroVisitWeb.Models
         [RegularExpression(@"^(\([1-9]{2}\)|[1-9]{2}) ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$", ErrorMessage = "Número inválido")]
         public string? Telefone { get; set; }
 
-        [Display(Name ="Agrônomo")]
+        [Display(Name = "Agrônomo")]
         [Required]
         public uint IdEngenheiroAgronomo { get; set; }
 

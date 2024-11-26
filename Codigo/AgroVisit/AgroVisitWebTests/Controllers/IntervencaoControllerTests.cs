@@ -36,7 +36,7 @@ namespace AgroVisitWeb.Controllers.Tests
             controller = new IntervencaoController(mockService.Object, projeto.Object, mapper);
         }
 
-     
+
         [TestMethod()]
         public void DetailsTest()
         {
@@ -202,4 +202,4 @@ namespace AgroVisitWeb.Controllers.Tests
         }
     }
 }
-    
+

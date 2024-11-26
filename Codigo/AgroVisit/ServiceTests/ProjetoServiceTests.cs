@@ -9,7 +9,7 @@ namespace Service.Tests
     [TestClass()]
     public class ProjetoServiceTests
     {
-       
+
         private AgroVisitContext _context;
         private IProjetoService _projetoService;
 
@@ -45,7 +45,7 @@ namespace Service.Tests
             var intervencoes = new List<Intervencao>
                 {
                     new Intervencao { Id = 1, Pratica = "Aplicar super fosfato",Status = "A", IdProjeto = 1},
-                    
+
                 };
 
             _context.AddRange(projetos);
@@ -84,7 +84,7 @@ namespace Service.Tests
             Assert.AreEqual("EX", projeto.Status);
             Assert.AreEqual((uint)5, projeto.QuantParcela);
             Assert.AreEqual((uint)2, projeto.IdPropriedade);
-            
+
         }
 
         [TestMethod()]
@@ -230,7 +230,7 @@ namespace Service.Tests
             Assert.IsNotNull(intervencoes);
             Assert.AreEqual(1, intervencoes.Count());
             Assert.AreEqual("Aplicar super fosfato", intervencoes.First().Pratica);
-            
+
         }
 
         /*[TestMethod()]

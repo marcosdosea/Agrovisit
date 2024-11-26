@@ -1,14 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core;
+﻿using Core;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.Serialization;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Service.Tests
 {
@@ -18,11 +11,11 @@ namespace Service.Tests
         private AgroVisitContext _context;
         private IIntervencaoService _intervencaoService;
 
-        
+
 
 
         [TestInitialize]
-    public void Initialize(DateTime varchar)
+        public void Initialize(DateTime varchar)
         {
             //Arrange
             var builder = new DbContextOptionsBuilder<AgroVisitContext>();
@@ -79,7 +72,7 @@ namespace Service.Tests
             var intervencao = _intervencaoService.Get(4);
             Assert.AreEqual("Aplicação de adubo", intervencao.Pratica);
             Assert.AreEqual("realizar adubação em toda a plantação", intervencao.Descricao);
-            
+
 
         }
 

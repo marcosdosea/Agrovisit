@@ -1,6 +1,4 @@
-﻿using Core.DTO;
-
-namespace Core.Service
+﻿namespace Core.Service
 {
     public interface IPropriedadeService
     {

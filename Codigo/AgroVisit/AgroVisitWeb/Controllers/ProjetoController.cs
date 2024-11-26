@@ -2,16 +2,14 @@
 using AutoMapper;
 using Core;
 using Core.Datatables;
-using Core.DTO;
 using Core.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace AgroVisitWeb.Controllers
 {
-    [Authorize(Roles ="Agronomo")]
+    [Authorize(Roles = "Agronomo")]
     public class ProjetoController : Controller
     {
         private readonly IProjetoService _projetoService;

@@ -15,14 +15,14 @@ namespace Core.DTO
 
         public string Status { get; set; } = null!;
 
-        [Display(Name= "Propriedade")]
+        [Display(Name = "Propriedade")]
         public string? NomePropriedade { get; set; }
 
         [Display(Name = "Cliente")]
-        public string? NomeCliente {  get; set; }
+        public string? NomeCliente { get; set; }
 
         [Display(Name = "Valor")]
-        public float Valor {  get; set; }
+        public float Valor { get; set; }
 
     }
 }
