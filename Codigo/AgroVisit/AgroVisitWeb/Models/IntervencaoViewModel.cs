@@ -19,6 +19,7 @@ namespace AgroVisitWeb.Models
         public string? Descricao { get; set; }
 
         [Display(Name = "Data Aplicação")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public DateTime? DataAplicacao { get; set; }
 
         [Display(Name = "Tipo de Produto utilizado")]
