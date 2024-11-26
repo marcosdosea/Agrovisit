@@ -76,7 +76,7 @@ namespace AgroVisitWeb.Controllers
             var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
             _intervencaoService.Edit(intervencao);
 
-            return RedirectToAction("Details", "Projeto", new { id = intervencao.IdProjeto });
+            return RedirectToAction("Details", "Intervencao", new { id = intervencao.Id });
             //}
             //return View(intervencaoModel);
         }
