@@ -5,6 +5,7 @@ using Core.Datatables;
 using Core.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MySqlX.XDevAPI;
 
 namespace AgroVisitWeb.Controllers
 {
@@ -78,10 +79,14 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(uint id, ClienteViewModel clienteModel)
         {
+            
+
             if (ModelState.IsValid)
             {
                 var cliente = _mapper.Map<Cliente>(clienteModel);
                 _clienteService.Edit(cliente);
+
+                return RedirectToAction("Details", "Cliente", new { id = cliente.Id });
             }
             return RedirectToAction(nameof(Index));
         }
