@@ -30,7 +30,7 @@ namespace Service
         /// <param name="id"></param>
         public void Delete(uint id)
         {
-            var visita = _context.Visitas.Find(id);
+            var visita = _context.Visita.Find(id);
             if (visita == null) return;
 
             _context.Remove(visita);
@@ -52,7 +52,7 @@ namespace Service
         /// <returns>Visita</returns>
         public Visita Get(uint id)
         {
-            return _context.Visitas.Find(id);
+            return _context.Visita.Find(id);
         }
         /// <summary>
         /// Obtém todas as visitas da base de dados
@@ -60,7 +60,7 @@ namespace Service
         /// <returns>Dados de todas as visitas</returns>
         public IEnumerable<Visita> GetAll()
         {
-            return _context.Visitas.AsNoTracking();
+            return (IEnumerable<Visita>)_context.Visita.AsNoTracking();
         }
         /// <summary>
         /// Obtém todas as visitas de uma data
@@ -69,7 +69,7 @@ namespace Service
         /// <returns>Todas as visitas de uma data</returns>
         public IEnumerable<VisitaDTO> GetAllByDate(DateTime data)
         {
-            var query = from VisitaDTO in _context.Visitas
+            var query = from VisitaDTO in _context.Visita
                         where VisitaDTO.DataHora.Equals(data)
                         select new VisitaDTO
                         {
@@ -88,11 +88,11 @@ namespace Service
         /// <returns>Todas as visitas para um status</returns>
         public IEnumerable<Visita> GetAllByStatus(string status)
         {
-            var query = from Visita in _context.Visitas
+            var query = from Visita in _context.Visita
                         where Visita.Status.Equals(status)
                         select Visita;
 
-            return query.AsNoTracking();
+            return (IEnumerable<Visita>)query.AsNoTracking();
         }
         /// <summary>
         /// Obtém todas as visitas de uma propriedade
@@ -101,10 +101,10 @@ namespace Service
         /// <returns>Todas as visitas de uma datpropriedade</returns>
         public IEnumerable<Visita> GetByPropriedade(uint idPropriedade)
         {
-            var query = from visita in _context.Visitas
+            var query = from visita in _context.Visita
                         where visita.IdPropriedade == idPropriedade
                         select visita;
-            return query.AsNoTracking();
+            return (IEnumerable<Visita>)query.AsNoTracking();
         }
     }
 }

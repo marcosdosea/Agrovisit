@@ -5,61 +5,67 @@
 }
 <div class="card text-center">
     <div class="card-header">
-		<h3>Deletar Intervenção</h3>
+        <h3>Deletar Intervenção</h3>
     </div>
     <div class="card-body">
         <h5 class="card-title">Tem certeza que deseja realizar esta operação?</h5>
         <div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Pratica)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Pratica)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataAplicacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataAplicacao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TipoProduto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TipoProduto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AreaTratada)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AreaTratada)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-    </dl>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Id)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Id)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Pratica)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Pratica)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Descricao)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DataAplicacao)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DataAplicacao)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.TipoProduto)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.TipoProduto)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.AreaTratada)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.AreaTratada)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.HiddenFor(model => model.IdProjeto)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.HiddenFor(model => model.IdProjeto)
+                </dd>
+            </dl>
         </div>
         <form asp-action="Delete">
             <div class="form-group row m-4">
                 <div class="col-md-4">
-                    <a id="border" class="btn borda-concluir btn-success" asp-action="Index">Não</a>
+                    <a id="border" class="btn borda-concluir btn-success" asp-action="Details" asp-controller="Intervencao" asp-route-id="@Model.Id">Não</a>
                 </div>
                 <div class="col-md-2 offset-md-4">
                     <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim</button>
