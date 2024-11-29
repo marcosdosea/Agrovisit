@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="container d-flex flex-column align-items-center">
+    <div class="container d-flex flex-column">
 
         <div class="row w-75 mb-12">
             <div class="col-md-2">
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div id="containerCards" class="w-100 d-flex flex-column align-items-center"></div>
+        <div id="containerCards" class="w-100 d-flex flex-column"></div>
 
         <div class="row justify-content-center mt-3">
             <button id="prevPage" type="button" class="btn btn-primary col-auto m-2" aria-label="Página Anterior" role="button">Anterior</button>
@@ -86,7 +86,7 @@
 
                 paginatedItems.forEach(item => {
                     container.append(`
-                                <div id="border" class="col-10 card radius-10 border-start border-0 border-5 border-success m-3"
+                                <div id="border" class="col-10 card radius-10 border-start border-0 border-5 border-success m-3 ms-0"
                                         style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); height:min-content">
                                     <div class="card-body row">
                                         <h4 class="card-title col-6 m-2">Cliente: ${item.Nome}</h4>

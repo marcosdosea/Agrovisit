@@ -42,7 +42,7 @@
             </div>
             <div class="form-group col-4 m-2">
                 <label asp-for="Cpf" class="control-label"></label>
-                <input asp-for="Cpf" class="form-control border border-success" />
+                <input asp-for="Cpf" id="cpf" class="form-control border border-success" />
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
         </div>
@@ -54,10 +54,12 @@
             </div>
             <div class="form-group col-4 m-2">
                 <label asp-for="Telefone" class="control-label"></label>
-                <input asp-for="Telefone" class="form-control border border-success" />
+                <input asp-for="Telefone" id="telefone" class="form-control border border-success" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
         </div>
+
+        <br />
 
         <!-- Campos de Endereço -->
         <h4 class="py-3">Endereço</h4>
@@ -91,7 +93,7 @@
             </div>
         </div>
 
-        <!-- Campo de Engenheiro Agrônomo -->
+        <!-- Campo de Engenheiro Agrônomo, será excluido futuramente -->
         <div class="form-group col-3 m-2">
             <label asp-for="IdEngenheiroAgronomo" class="control-label"></label>
             <input asp-for="IdEngenheiroAgronomo" class="form-control border border-success" />
@@ -104,8 +106,12 @@
     </form>
 </div>
 
+
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script src="~/js/validation.js"></script>
 }

@@ -61,3 +61,17 @@ form#border select {
 button:disabled {
     opacity: 0.3;
 }
+
+.flex-grow-1 {
+    overflow: hidden; /* Evita que o conteúdo ultrapasse os limites */
+    word-wrap: break-word; /* Quebra linhas quando necessário */
+}
+
+.container-fluido {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.table-responsive {
+    overflow-x: hidden; /* Remove rolagem horizontal desnecessária */
+}

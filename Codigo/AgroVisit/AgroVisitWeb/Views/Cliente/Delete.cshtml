@@ -14,33 +14,46 @@
 
         <hr />
 
-        <dl class="row text-start">
-            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Nome)</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.Nome)</dd>
+        <dl class="row mt-3">
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
+                <dd>@Html.DisplayFor(model => model.Nome)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.Cpf):</dt>
+                <dd>@Html.DisplayFor(model => model.Cpf)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.DataNascimento):</dt>
+                <dd>@Html.DisplayFor(model => model.DataNascimento)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.Telefone):</dt>
+                <dd>@Html.DisplayFor(model => model.Telefone)</dd>
+            </div>
+        </dl>
 
-            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Cpf)</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cpf)</dd>
-
-            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DataNascimento)</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.DataNascimento)</dd>
-
-            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Cidade)</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cidade)</dd>
-
-            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Bairro)</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.Bairro)</dd>
-
-            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NumeroCasa)</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.NumeroCasa)</dd>
-
-            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Rua)</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.Rua)</dd>
-
-            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Estado)</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.Estado)</dd>
-
-            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Telefone)</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.Telefone)</dd>
+        <dl class="row">
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.Cidade):</dt>
+                <dd>@Html.DisplayFor(model => model.Cidade)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.Bairro):</dt>
+                <dd>@Html.DisplayFor(model => model.Bairro)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.NumeroCasa):</dt>
+                <dd>@Html.DisplayFor(model => model.NumeroCasa)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.Rua):</dt>
+                <dd>@Html.DisplayFor(model => model.Rua)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.Estado):</dt>
+                <dd>@Html.DisplayFor(model => model.Estado)</dd>
+            </div>
         </dl>
 
         <form asp-action="Delete" class="mt-4">
