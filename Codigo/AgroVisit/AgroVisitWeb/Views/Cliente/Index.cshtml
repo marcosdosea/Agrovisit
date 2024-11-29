@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="text-end" style="position: relative; bottom: -30px;">
+    <div class="text-end" style="position: sticky; bottom: 30px;">
         <a asp-action="Create">
             <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 99 99" fill="none">
                 <g filter="url(#filter0_d_375_7800)">
@@ -94,8 +94,8 @@
                                         <h4 class="card-text col-6 m-2">Telefone: ${item.Telefone || "Sem telefone"}</h4>
                                         <h4 class="card-text col-4 m-2">Cidade: ${item.Cidade}</h4>
                                         <div class="row">
-                                            <a href="/Cliente/Details/${item.Id}" id="border" class="btn borda-concluir radius-10 btn-outline-success col-3 m-2">Detalhes</a>
-                                            <a href="/Cliente/Delete/${item.Id}" id="border" class="btn border-danger radius-10 btn-danger col-3 m-2">Excluir</a>
+                                                    <a href="/Cliente/Details/${item.Id}" id="border" class="btn borda-concluir btn-outline-success col-3 m-2">Detalhes</a>
+                                            <a href="/Cliente/Delete/${item.Id}" id="border" class="btn border-danger btn-danger col-3 m-2">Excluir</a>
                                         </div>
                                     </div>
                                 </div>
