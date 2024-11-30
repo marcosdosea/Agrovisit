@@ -1,12 +1,6 @@
 ﻿using Core;
-using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -82,8 +76,8 @@ namespace Service
         public IEnumerable<Intervencao> GetByProjeto(uint IdProjeto)
         {
             var query = from Intervencao in _context.Intervencoes
-                where Intervencao.IdProjeto.Equals(IdProjeto)
-                select Intervencao;
+                        where Intervencao.IdProjeto.Equals(IdProjeto)
+                        select Intervencao;
             return query.AsNoTracking();
 
         }

@@ -1,5 +1,4 @@
-﻿using Core;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AgroVisitWeb.Models
 {

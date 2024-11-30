@@ -1,5 +1,4 @@
 ﻿using Core;
-using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -74,11 +73,11 @@ namespace Service
         /// </summary>
         /// <param name="cliente"></param>
         /// <returns> Propriedades do cliente </returns>
-        public IEnumerable<Propriedade> GetByCliente(string cliente)
+        public IEnumerable<Propriedade> GetByCliente(uint idCliente)
         {
             var query = from Propriedade in _context.Propriedades
-                       where Propriedade.IdClienteNavigation.Nome.StartsWith(cliente)
-                       select Propriedade;
+                        where Propriedade.Id == idCliente
+                        select Propriedade;
 
             return query.AsNoTracking();
         }

@@ -2,13 +2,6 @@
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Service;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Tests
 {
@@ -103,7 +96,7 @@ namespace Service.Tests
         public void GetAllTest()
         {
             var listaVisita = _visitaService.GetAll();
-          
+
             Assert.IsInstanceOfType(listaVisita, typeof(IEnumerable<Visita>));
             Assert.IsNotNull(listaVisita);
             Assert.AreEqual(3, listaVisita.Count());

@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Core.Service;
-using AutoMapper;
-using AgroVisitWeb.Mappers;
-using Core;
-using Microsoft.AspNetCore.Mvc;
+﻿using AgroVisitWeb.Mappers;
 using AgroVisitWeb.Models;
+using AutoMapper;
+using Core;
+using Core.Service;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace AgroVisitWeb.Controllers.Tests
 {

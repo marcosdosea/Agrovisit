@@ -12,6 +12,7 @@ namespace AgroVisitWeb.Models
         [Display(Name = "CPF")]
         [StringLength(15)]
         [Required(ErrorMessage = "Campo obrigatório")]
+        //[RegularExpression(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$", ErrorMessage = "CPF inválido. Use o formato XXX.XXX.XXX-XX.")]
         public string Cpf { get; set; } = null!;
 
         [Display(Name = "Nome")]
@@ -21,7 +22,7 @@ namespace AgroVisitWeb.Models
 
         [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DataNascimento { get; set; }
 
         [Display(Name = "Cidade")]
@@ -47,10 +48,10 @@ namespace AgroVisitWeb.Models
 
         [Display(Name = "Telefone")]
         [StringLength(15)]
-        [RegularExpression(@"^(\([1-9]{2}\)|[1-9]{2}) ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$", ErrorMessage = "Número inválido")]
+        [RegularExpression(@"^\((1[1-9]|2[12478]|3[1-8]|4[1-9]|5[1-5]|6[1-9]|7[134579]|8[1-9]|9[1-9])\) 9\d{4}-\d{4}$", ErrorMessage = "Número inválido")]
         public string? Telefone { get; set; }
 
-        [Display(Name ="Agrônomo")]
+        [Display(Name = "Agrônomo")]
         [Required]
         public uint IdEngenheiroAgronomo { get; set; }
 

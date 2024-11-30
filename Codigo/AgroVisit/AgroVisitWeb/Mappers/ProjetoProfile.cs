@@ -6,7 +6,7 @@ namespace AgroVisitWeb.Mappers
 {
     public class ProjetoProfile : Profile
     {
-        public ProjetoProfile() 
+        public ProjetoProfile()
         {
             CreateMap<ProjetoViewModel, Projeto>().ReverseMap();
         }

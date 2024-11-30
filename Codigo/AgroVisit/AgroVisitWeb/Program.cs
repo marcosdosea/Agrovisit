@@ -1,10 +1,10 @@
+using AgroVisitWeb.Areas.Identity.Data;
 using Core;
 using Core.Service;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Service;
-using Microsoft.AspNetCore.Identity;
-using AgroVisitWeb.Areas.Identity.Data;
-using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace AgroVisitWeb
 {
@@ -91,7 +91,7 @@ namespace AgroVisitWeb
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseAuthentication();;
+            app.UseAuthentication(); ;
 
             app.UseAuthorization();
             app.MapRazorPages();
@@ -103,6 +103,6 @@ namespace AgroVisitWeb
             app.Run();
         }
     }
-    
+
 }
-    
+

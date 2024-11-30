@@ -31,27 +31,44 @@
     </div>
     <form asp-action="Edit" id="border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group col-8 m-2">
-            <label asp-for="Nome" class="control-label"></label>
-            <input asp-for="Nome" class="form-control border border-success" />
-            <span asp-validation-for="Nome" class="text-danger"></span>
-        </div>
-        <div class="form-group col-4 m-2">
-            <label asp-for="Cpf" class="control-label"></label>
-            <input asp-for="Cpf" class="form-control border border-success" />
-            <span asp-validation-for="Cpf" class="text-danger"></span>
-        </div>
-        <div class="form-group col-3 m-2">
-            <label asp-for="DataNascimento" class="control-label"></label>
-            <input asp-for="DataNascimento" class="form-control border border-success" />
-            <span asp-validation-for="DataNascimento" class="text-danger"></span>
-        </div>
-        <div class="form-group col-7 m-2">
-            <label asp-for="Cidade" class="control-label"></label>
-            <input asp-for="Cidade" class="form-control border border-success" />
-            <span asp-validation-for="Cidade" class="text-danger"></span>
+
+        <!-- Campos de Identificação -->
+        <h4 class="py-3">Dados do cliente</h4>
+        <div class="row">
+            <div class="form-group col-8 m-2">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control border border-success" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group col-4 m-2">
+                <label asp-for="Cpf" class="control-label"></label>
+                <input asp-for="Cpf" id="cpf" class="form-control border border-success" />
+                <span asp-validation-for="Cpf" class="text-danger"></span>
+            </div>
         </div>
         <div class="row">
+            <div class="form-group col-3 m-2">
+                <label asp-for="DataNascimento" class="control-label"></label>
+                <input asp-for="DataNascimento" class="form-control border border-success" />
+                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            </div>
+            <div class="form-group col-4 m-2">
+                <label asp-for="Telefone" class="control-label"></label>
+                <input asp-for="Telefone" id="telefone" class="form-control border border-success" />
+                <span asp-validation-for="Telefone" class="text-danger"></span>
+            </div>
+        </div>
+
+        <br />
+
+        <!-- Campos de Endereço -->
+        <h4 class="py-3">Endereço</h4>
+        <div class="row">
+            <div class="form-group col-7 m-2">
+                <label asp-for="Cidade" class="control-label"></label>
+                <input asp-for="Cidade" class="form-control border border-success" />
+                <span asp-validation-for="Cidade" class="text-danger"></span>
+            </div>
             <div class="form-group col-6 m-2">
                 <label asp-for="Bairro" class="control-label"></label>
                 <input asp-for="Bairro" class="form-control border border-success" />
@@ -75,24 +92,26 @@
                 <span asp-validation-for="NumeroCasa" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group col-4 m-2">
-            <label asp-for="Telefone" class="control-label"></label>
-            <input asp-for="Telefone" class="form-control border border-success" />
-            <span asp-validation-for="Telefone" class="text-danger"></span>
-        </div>
+
+        <!-- Campo de Engenheiro Agrônomo -->
         <div class="form-group col-3 m-2">
             <label asp-for="IdEngenheiroAgronomo" class="control-label"></label>
             <input asp-for="IdEngenheiroAgronomo" class="form-control border border-success" />
             <span asp-validation-for="IdEngenheiroAgronomo" class="text-danger"></span>
         </div>
+
         <div class="container text-end">
             <input type="submit" value="Concluir" class="btn btn-success borda-concluir" />
         </div>
     </form>
 </div>
 
+
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script src="~/js/validation.js"></script>
 }
