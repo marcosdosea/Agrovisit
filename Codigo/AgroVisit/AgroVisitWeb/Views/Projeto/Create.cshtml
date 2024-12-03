@@ -51,7 +51,7 @@
         </div>
         
         <div class="row">
-            <div class="form-group col-4 m-2">
+            <div class="form-group col-4 m-2 row">
                 <label asp-for="IdPropriedade" class="control-label"></label>
                 <select asp-for="IdPropriedade" asp-items="@Model.ListaPropriedades" class="form-control border border-success"></select>
                 <span asp-validation-for="IdPropriedade" class="text-danger"></span>
@@ -69,17 +69,20 @@
             <input asp-for="Valor" class="form-control border border-success" />
             <span asp-validation-for="Valor" class="text-danger"></span>
         </div>
-        <div class="form-group col-3 m-2 row">
-            <label asp-for="QuantParcela" class="control-label"></label>
-            <input asp-for="QuantParcela" class="form-control border border-success" />
-            <span asp-validation-for="QuantParcela" class="text-danger"></span>
+
+        <div class="row">
+            <div class="form-group col-3 m-2">
+                <label asp-for="QuantParcela" class="control-label"></label>
+                <input asp-for="QuantParcela" class="form-control border border-success" />
+                <span asp-validation-for="QuantParcela" class="text-danger"></span>
+            </div>
+            <div class="form-group col-3 m-2">
+                <label asp-for="DataPrevista" class="control-label"></label>
+                <input asp-for="DataPrevista" class="form-control border border-success" />
+                <span asp-validation-for="DataPrevista" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group col-4 m-2 row">
-            <label asp-for="DataPrevista" class="control-label"></label>
-            <input asp-for="DataPrevista" class="form-control border border-success" />
-            <span asp-validation-for="DataPrevista" class="text-danger"></span>
-        </div>
-        <div class="form-group col-10 m-2">
+        <div class="form-group col-10 m-2 row">
             <label asp-for="Descricao" class="control-label"></label>
             <textarea asp-for="Descricao" class="form-control border border-success"> </textarea>
             <span asp-validation-for="Descricao" class="text-danger"></span>
