@@ -9,9 +9,10 @@ namespace Core.DTO
         public string? Nome { get; set; }
 
         [Display(Name = "Data de inicio")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{dd/mm/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataInicio { get; set; }
+
+        public string DataInicioFormatada => DataInicio.ToString("dd/MM/yyyy");
 
         public string Status { get; set; } = null!;
 
