@@ -22,6 +22,7 @@ namespace AgroVisitWeb.Models
 
         [Display(Name = "Valor")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
+        [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true)]
         public float Valor { get; set; }
 
         [Display(Name = "Quantidade de parcelas")]

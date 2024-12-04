@@ -1,4 +1,7 @@
-﻿namespace Core;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace Core;
 
 public partial class Intervencao
 {
@@ -8,6 +11,9 @@ public partial class Intervencao
 
     public string? Descricao { get; set; }
 
+    [Display(Name = "Data de Aplicação")]
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
     public DateTime? DataAplicacao { get; set; }
 
     public string? TipoProduto { get; set; }
