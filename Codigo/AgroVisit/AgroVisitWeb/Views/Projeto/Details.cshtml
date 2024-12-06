@@ -1,7 +1,7 @@
 ﻿@model AgroVisitWeb.Models.ProjetoViewModel
 
 @{
-    ViewData["Title"] = "Detalhes do projeto";
+    ViewData["Title"] = "Detalhes do Projeto";
 }
 
 
@@ -42,17 +42,16 @@
                 </div>
                 <div class="col-md-6 d-flex">
                     <dt class="me-2">@Html.DisplayNameFor(model => model.Status):</dt>
-                    <p>
-                        @if (Model.Status.StartsWith('C'))
-                        {
-                            @Html.DisplayName("Concluído")
-                        }
-                        else
-                        {
-                            @Html.DisplayName("Em Execusão")
-                        }
-
-                    </p>
+                    
+                    @if (Model.Status.StartsWith('C'))
+                    {
+                        @Html.DisplayName("Concluído")
+                    }
+                    else
+                    {
+                        @Html.DisplayName("Em Execução")
+                    }
+                   
                     <!--<dd>@Html.DisplayFor(model => model.Status)</dd>-->
                 </div>
                 <div class="col-md-6 d-flex">

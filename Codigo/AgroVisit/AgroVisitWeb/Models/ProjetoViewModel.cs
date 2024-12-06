@@ -33,6 +33,7 @@ namespace AgroVisitWeb.Models
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
         public DateTime DataInicio { get; set; }
 
         [Display(Name = "Data da primeira parcela")]
