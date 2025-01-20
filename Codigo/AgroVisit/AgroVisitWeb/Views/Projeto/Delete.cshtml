@@ -1,87 +1,72 @@
 ﻿@model AgroVisitWeb.Models.ProjetoViewModel
 
 @{
-    ViewData["Title"] = "Deletar projeto";
+    ViewData["Title"] = "Excluir Projeto";
 }
-<div class="card text-center">
-    <div class="card-header">
-        <h3>Deletar projeto</h3>
+
+<div class="card text-center container py-5" style="max-width: 600px;">
+    <div class="card-header bg-danger text-white">
+        <h3>Excluir Projeto</h3>
     </div>
     <div class="card-body">
-        <h5 class="card-title">Tem certeza que deseja realizar esta operação?</h5>
-        <div class ="text-start">
+        <h5 class="card-title text-danger">Tem certeza que deseja excluir este projeto?</h5>
+        <p class="text-muted">Essa ação é irreversível e todos os dados do projeto serão removidos.</p>
+
             <hr />
-            <dl class="row">
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.Nome)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Nome)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.Status)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Status)
-                </dd> 
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.QuantParcela)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.QuantParcela)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.DataPrevista)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DataPrevista)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.DataInicio)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DataInicio)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.Valor)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Valor)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.dataConclusao)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.dataConclusao)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.NumeroVisita)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.NumeroVisita)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.Descricao)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Descricao)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.Anexo)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Anexo)
-                </dd>
+
+            <dl class="row mt-3">
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
+                    <dd>@Html.DisplayFor(model => model.Nome)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Status):</dt>
+                    <dd>
+                        @if (Model.Status.StartsWith('C'))
+                        {
+                            @Html.DisplayName("Concluído")
+                        }
+                        else
+                        {
+                            @Html.DisplayName("Em Execução")
+                        }
+                    </dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.QuantParcela):</dt>
+                    <dd>@Html.DisplayFor(model => model.QuantParcela)</dd>
+                </div>
+                <div class="col-md-8 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.DataPrevista):</dt>
+                    <dd>@Html.DisplayFor(model => model.DataPrevista)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.DataInicio):</dt>
+                    <dd>@Html.DisplayFor(model => model.DataInicio)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Valor):</dt>
+                    <dd>@Html.DisplayFor(model => model.Valor)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.dataConclusao):</dt>
+                    <dd>@Html.DisplayFor(model => model.dataConclusao)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.NumeroVisita):</dt>
+                    <dd>@Html.DisplayFor(model => model.NumeroVisita)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Descricao):</dt>
+                    <dd>@Html.DisplayFor(model => model.Descricao)</dd>
+                </div>
             </dl>
         </div>
-        <form asp-action="Delete">
-            <div class="form-group row m-4">
-                <div class="col-md-6">
-                    <a id="border" class="btn borda-concluir btn-success" asp-action="Index">Não</a>
-                </div>
-                <div class="col-md-2 offset-md-3">
-                    <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim</button>
-                </div>
+
+        <form asp-action="Delete" class="mt-4">
+            <div class="d-flex justify-content-center gap-3">
+                <a id="border" class="btn borda-concluir btn-success" asp-action="Index">Não</a>
+                <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim, excluir</button>
             </div>
         </form>
     </div>

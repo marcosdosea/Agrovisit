@@ -97,7 +97,8 @@ namespace Service
                             DataInicio = projetos.DataInicio,
                             Status = projetos.Status,
                             NomeCliente = projetos.IdPropriedadeNavigation.IdClienteNavigation.Nome,
-                            NomePropriedade = projetos.IdPropriedadeNavigation.Nome
+                            NomePropriedade = projetos.IdPropriedadeNavigation.Nome,
+                            Valor = projetos.Valor
                         };
 
             return query.AsNoTracking();
@@ -236,7 +237,11 @@ namespace Service
             // total de registros filtrados
             int countRecordsFiltered = projetos.Count();
             // paginação que será exibida
-            projetos = projetos.Skip(request.Start).Take(request.Length);
+            if (request.Length != -1)
+            {
+                projetos = projetos.Skip(request.Start).Take(request.Length);
+            }
+
             return new DatatableResponse<ProjetoDto>()
             {
                 Data = projetos.ToList(),

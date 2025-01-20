@@ -31,13 +31,14 @@ namespace AgroVisitWeb.Models
         [Display(Name = "Data de inicio")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
         public DateTime DataInicio { get; set; }
 
-        [Display(Name = "Data da parcela")]
+        [Display(Name = "Data da primeira parcela")]
         [Required(ErrorMessage = "O campo é obrigatótio.")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataPrevista { get; set; }
 
         [Display(Name = "Descrição")]
@@ -51,6 +52,7 @@ namespace AgroVisitWeb.Models
         public byte[]? Anexo { get; set; }
 
         [Display(Name = "Data de conclusão")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime dataConclusao { get; set; }
 
         [Display(Name = "Status")]

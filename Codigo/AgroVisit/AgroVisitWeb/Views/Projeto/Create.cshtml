@@ -4,12 +4,11 @@
     ViewData["Title"] = "Cadastrar projeto";
 }
 
-
-<div class="container p-5">
+<div class="container pt-5">
     <div class="row">
         <h1>Cadastrar projeto</h1>
     </div>
-    <div class="text-end" style="bottom: 30px; position:relative">
+    <div class="text-end" style="bottom: 60px; position:relative">
         <a asp-action="Index">
             <svg position-sticky" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 58 58" fill="none">
                 <g filter="url(#filter0_d_370_6135)">
@@ -31,60 +30,64 @@
         </a>
     </div>
     <form asp-action="Create" id="border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
         <div class="row">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group ">
-                <input type="hidden" asp-for="Id" class="form-control" />
-            </div>
-            <div class="form-group col-md-3 m-0">
+            <div class="form-group col-5 m-2">
                 <label asp-for="Nome" class="control-label "></label>
                 <input asp-for="Nome" class="form-control border border-success" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group col-md-3 m-0">
+            <div class="form-group col-2 m-2">
                 <label asp-for="NumeroVisita" class="control-label"></label>
                 <input asp-for="NumeroVisita" class="form-control border border-success" />
                 <span asp-validation-for="NumeroVisita" class="text-danger"></span>
             </div>
-            <div class="form-group col-md-2 m-0">
+            <div class="form-group col-1 m-2">
                 <label asp-for="Status" class="control-label"></label>
                 <input asp-for="Status" class="form-control  border border-success" />
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
         </div>
         
-        
-        <div class="form-group col-md-4 m-0">
-            <label asp-for="IdPropriedade" class="control-label"></label>
-            <select asp-for="IdPropriedade" asp-items="@Model.ListaPropriedades" class="form-control border border-success"></select>
-            <span asp-validation-for="IdPropriedade" class="text-danger"></span>
+        <div class="row">
+            <div class="form-group col-4 m-2 row">
+                <label asp-for="IdPropriedade" class="control-label"></label>
+                <select asp-for="IdPropriedade" asp-items="@Model.ListaPropriedades" class="form-control border border-success"></select>
+                <span asp-validation-for="IdPropriedade" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group col-md-4 m-0">
+
+        <div class="form-group col-3 m-2 row">
             <label asp-for="DataInicio" class="control-label"></label>
             <input asp-for="DataInicio" class="form-control border border-success" />
             <span asp-validation-for="DataInicio" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-2 m-0">
+       
+        <div class="form-group col-1 m-2 row">
             <label asp-for="Valor" class="control-label"></label>
             <input asp-for="Valor" class="form-control border border-success" />
             <span asp-validation-for="Valor" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-2 m-0">
-            <label asp-for="QuantParcela" class="control-label"></label>
-            <input asp-for="QuantParcela" class="form-control border border-success" />
-            <span asp-validation-for="QuantParcela" class="text-danger"></span>
+
+        <div class="row">
+            <div class="form-group col-3 m-2">
+                <label asp-for="QuantParcela" class="control-label"></label>
+                <input asp-for="QuantParcela" class="form-control border border-success" />
+                <span asp-validation-for="QuantParcela" class="text-danger"></span>
+            </div>
+            <div class="form-group col-3 m-2">
+                <label asp-for="DataPrevista" class="control-label"></label>
+                <input asp-for="DataPrevista" class="form-control border border-success" />
+                <span asp-validation-for="DataPrevista" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group col-md-2 m-0">
-            <label asp-for="DataPrevista" class="control-label"></label>
-            <input asp-for="DataPrevista" class="form-control border border-success" />
-            <span asp-validation-for="DataPrevista" class="text-danger"></span>
-        </div>
-        <div class="form-group col-md-10 m-0">
+        <div class="form-group col-10 m-2 row">
             <label asp-for="Descricao" class="control-label"></label>
             <textarea asp-for="Descricao" class="form-control border border-success"> </textarea>
             <span asp-validation-for="Descricao" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-2 m-0">
+        <div class="form-group col-2 m-2">
             <label asp-for="Anexo" class="control-label border-success"></label>
             <input type="file" name="fileUpload" id="fileUpload" class="noborder" /> 
         </div>
