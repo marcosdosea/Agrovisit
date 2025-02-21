@@ -58,12 +58,8 @@
 
         <form asp-action="Delete" class="mt-4">
             <div class="d-flex justify-content-center gap-3">
-                <a class="btn btn-success" asp-action="Index">
-                    <i class="fas fa-times"></i> Não
-                </a>
-                <button type="submit" value="Delete" class="btn btn-danger">
-                    <i class="fas fa-trash-alt"></i> Sim, excluir
-                </button>
+                <a id="border" class="btn borda-concluir btn-success" asp-action="Index">Não</a>
+                <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim, excluir</button>
             </div>
         </form>
     </div>

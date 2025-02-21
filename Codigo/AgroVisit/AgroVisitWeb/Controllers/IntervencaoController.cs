@@ -35,15 +35,16 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: IntervencaoController/Create
-        public ActionResult Create()
+        public IActionResult Create(int id)
         {
-            IntervencaoViewModel intervencaoModel = new IntervencaoViewModel();
-
-            IEnumerable<Projeto> projetos = _projetoService.GetAll();
-            intervencaoModel.Projetos = new SelectList(projetos, "Id", "Nome", null);
-
-            return View(intervencaoModel);
+            // Lógica para criar uma nova intervenção
+            var model = new IntervencaoViewModel
+            {
+                IdProjeto = id
+            };
+            return PartialView("Create", model);
         }
+
 
         // POST: IntervencaoController/Create
         [HttpPost]
