@@ -31,7 +31,7 @@ namespace AgroVisitWeb.Models
         public string Status { get; set; } = null!;
 
         [Display(Name = "Projeto")]
-        public uint IdProjeto { get; set; }
+        public int IdProjeto { get; set; }
 
         [Display(Name = "Projetos")]
         public SelectList Projetos { get; set; }
