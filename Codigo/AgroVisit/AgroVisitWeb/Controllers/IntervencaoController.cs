@@ -52,11 +52,18 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IntervencaoViewModel intervencaoModel)
         {
-            var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
+            if (!ModelState.IsValid)
+            {
+                // Retorna a PartialView com os erros de validação
+                return PartialView("Create", intervencaoModel);
+            }
 
+            // Mapeia o ViewModel para a entidade e salva no banco de dados
+            var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
             _intervencaoService.Create(intervencao);
 
-            return RedirectToAction("Details", "Projeto", new { id = intervencao.IdProjeto });
+            // Retorna uma resposta JSON indicando sucesso
+            return Json(new { success = true, projetoId = intervencao.IdProjeto });
         }
 
         // GET: IntervencaoController/Edit/5

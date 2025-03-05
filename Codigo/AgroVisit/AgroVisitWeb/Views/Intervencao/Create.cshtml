@@ -4,6 +4,10 @@
     ViewBag.Title = "Criar Intervenção";
 }
 
+@{
+    Layout = null;
+}
+
 <div class="modal-body">
     <form id="createIntervencaoForm" asp-action="Create" asp-controller="Intervencao" method="post">
         @Html.AntiForgeryToken()
@@ -48,13 +52,34 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jQuery Validation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
 
 <script>
     $(document).ready(function () {
+        // Evento quando o modal é fechado
+        $('#intervencaoModal').on('hidden.bs.modal', function () {
+            // Recarrega o conteúdo do modal
+            var projetoId = '@Model.Id'; // Obtém o ID do projeto
+            $.get('@Url.Action("Create", "Intervencao")', { id: projetoId }, function (data) {
+                $('#intervencaoModal .modal-body').html(data);
+            });
+        });
+
+        // Evento de submissão do formulário
         $("#salvarIntervencao").click(function (event) {
             event.preventDefault(); // Impede o comportamento padrão do botão
 
             var form = $("#createIntervencaoForm");
+
+            // Valida o formulário
+            if (!form.valid()) {
+                return; // Se o formulário não for válido, não faz a requisição
+            }
 
             $.ajax({
                 url: form.attr("action"),
@@ -62,12 +87,10 @@
                 data: form.serialize(),
                 success: function (response) {
                     if (response.success) {
-                        // Fecha o modal e recarrega a página
-                        $("#intervencaoModal").modal("hide");
-                        location.reload(); // Ou atualize apenas a parte necessária da página
+                        $("#intervencaoModal").modal("hide"); // Fecha o modal
+                        location.reload(); // Recarrega a página para mostrar os novos dados
                     } else {
-                        // Atualiza o conteúdo do modal com os erros de validação
-                        $(".modal-body").html(response);
+                        $(".modal-body").html(response); // Atualiza a modal com mensagens de erro
                     }
                 },
                 error: function () {
