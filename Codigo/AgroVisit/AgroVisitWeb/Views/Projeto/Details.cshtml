@@ -142,9 +142,27 @@
         </div>
         
     </div>
-    <div>
+    @* <div>
         <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Create", "Intervencao")">Adicionar nova intervenção</a>
+    </div> *@
+    <button id="abrirIntervencaoModal" class="btn btn-success borda-concluir" data-bs-toggle="modal" data-bs-target="#intervencaoModal">
+        Adicionar nova intervenção
+    </button>
+
+    <div class="modal fade" id="intervencaoModal" tabindex="-1" aria-labelledby="intervencaoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="intervencaoModalLabel">Adicionar Nova Intervenção</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- O conteúdo será carregado aqui -->
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
 
 
@@ -174,3 +192,19 @@
                         </table>
 }
 </div>-->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#abrirIntervencaoModal').click(function () {
+            var projetoId = '@Model.Id';
+            $.get('@Url.Action("Create", "Intervencao")', { id: projetoId }, function (data) {
+                $('#intervencaoModal .modal-body').html(data);
+                $('#intervencaoModal').modal('show'); // Abre o modal após carregar o conteúdo
+            });
+        });
+    });
+</script>
+
+
