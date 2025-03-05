@@ -35,13 +35,14 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: IntervencaoController/Create
-        public IActionResult Create(int id)
+        public IActionResult Create(int idProjeto)
         {
-            // Lógica para criar uma nova intervenção
+            // Lógica para criar uma nova intervenção com ID do projeto
             var model = new IntervencaoViewModel
             {
-                IdProjeto = id
+                IdProjeto = idProjeto
             };
+
             return PartialView("Create", model);
         }
 

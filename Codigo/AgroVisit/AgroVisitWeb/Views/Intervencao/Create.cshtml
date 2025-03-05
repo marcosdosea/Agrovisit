@@ -8,6 +8,9 @@
     <form id="createIntervencaoForm" asp-action="Create" asp-controller="Intervencao" method="post">
         @Html.AntiForgeryToken()
 
+        <!-- Campo oculto para o ProjetoId -->
+        @Html.HiddenFor(model => model.IdProjeto)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Pratica, new { @class = "control-label" })
             @Html.EditorFor(model => model.Pratica, new { htmlAttributes = new { @class = "form-control border border-success" } })
@@ -37,9 +40,6 @@
             @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control border border-success" } })
             @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
         </div>
-
-        <!-- Campo oculto para o ProjetoId -->
-        @Html.HiddenFor(model => model.IdProjeto)
 
         <div class="modal-footer">
             <input type="submit" value="Concluir" class="btn btn-success borda-concluir" />

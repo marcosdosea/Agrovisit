@@ -1,11 +1,14 @@
 ﻿@model AgroVisitWeb.Models.IntervencaoViewModel
 
 @{
-    ViewData["Title"] = "Detalhes da Intervenção";
+    ViewData["Title"] = "Detalhes do Intervenção";
 }
-<div class="container p-5">
+
+
+<div class="container pt-5">
+
     <div class="row">
-        <h1>Detalhes da Intervenção</h1>
+        <h1>Detalhes do intervenção</h1>
     </div>
     <div class="text-end" style="bottom: 30px; position:relative">
         <a asp-action="Details" asp-controller="Projeto" asp-route-id="@Model.IdProjeto">
@@ -28,54 +31,46 @@
             </svg>
         </a>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <dl>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Pratica)
-                </dt>
-                <dd class="col-sm-20">
-                    @Html.DisplayFor(model => model.Pratica)
-                </dd>
-                <dt class="col-sm-20">
-                    @Html.DisplayNameFor(model => model.Descricao)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Descricao)
-                </dd>
-                <dt class="col-sm-20">
-                    @Html.DisplayNameFor(model => model.DataAplicacao)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DataAplicacao)
-                </dd>
-                <dt class="col-sm-20">
-                    @Html.DisplayNameFor(model => model.TipoProduto)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.TipoProduto)
-                </dd>
-                <dt class="col-sm-20">
-                    @Html.DisplayNameFor(model => model.AreaTratada)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.AreaTratada)
-                </dd>
-                <div class="col-md-4">
-                    <strong>
-                        @Html.DisplayNameFor(model => model.Status)
-                    </strong>
-                    <p>
+    <div class="card">
 
-                    <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Status)
-                    </dd>
+        <div class="card-body">
+            <h4 class="card-title">Informações da ntervenção</h4>
+            <dl class="row mt-3">
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Pratica):</dt>
+                    <dd>@Html.DisplayFor(model => model.Pratica)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Status):</dt>
+
+                    @if (Model.Status.StartsWith('C'))
+                    {
+                        @Html.DisplayName("Concluído")
+                    }
+                    else
+                    {
+                        @Html.DisplayName("Em Execução")
+                    }
+
+                    <!--<dd>@Html.DisplayFor(model => model.Status)</dd>-->
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.DataAplicacao):</dt>
+                    <dd>@Html.DisplayFor(model => model.DataAplicacao)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.AreaTratada):</dt>
+                    <dd>@Html.DisplayFor(model => model.AreaTratada)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Descricao):</dt>
+                    <dd>@Html.DisplayFor(model => model.Descricao)</dd>
                 </div>
             </dl>
         </div>
-        <div class="row">
-            <a href="@Url.ActionLink("Edit", "Intervencao", new { id = Model.Id })" class="borda-concluir btn btn-outline-success col-5 m-2" id="border">Editar informação</a>
-            <a href="@Url.ActionLink("Delete", "Intervencao", new { id = Model.Id })" class="btn btn-danger col-4 m-2" id="border">Excluir</a>
-        </div>
+    </div>
+    <div class="d-flex justify-content-end gap-3 mt-4">
+        <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Edit", "Intervencao", new { id = Model.Id })">Editar</a>
+        <a id="border" class="btn btn-danger " href="@Url.ActionLink("Delete", "Intervencao", new { id = Model.Id })">Excluir</a>
     </div>
 </div>
