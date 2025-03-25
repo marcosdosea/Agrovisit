@@ -71,12 +71,14 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PropriedadeViewModel propriedadeModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var propriedade = _mapper.Map<Propriedade>(propriedadeModel);
-                propriedade.IdEngenheiroAgronomo = 1;
-                _propriedadeService.Create(propriedade);
+                return View(propriedadeModel);
             }
+            var propriedade = _mapper.Map<Propriedade>(propriedadeModel);
+            propriedade.IdEngenheiroAgronomo = 1;
+            _propriedadeService.Create(propriedade);
+
             return RedirectToAction(nameof(Index));
         }
 

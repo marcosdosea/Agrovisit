@@ -9,13 +9,14 @@ namespace AgroVisitWeb.Models
     {
         [Key]
         public uint Id { get; set; }
-        [Required(ErrorMessage = "O campo é obrigatótio.")]
+        [Display(Name = "Nome da propriedade")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string Nome { get; set; } = null!;
 
-        [Required(ErrorMessage = "O campo é obrigatótio.")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string Estado { get; set; } = null!;
 
-        [Required(ErrorMessage = "O campo é obrigatótio.")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string Cidade { get; set; } = null!;
 
         [Display(Name = "Quantidade de funcionários")]
@@ -27,7 +28,7 @@ namespace AgroVisitWeb.Models
         [Display(Name = "Área de preservação")]
         public float? AreaPreservar { get; set; }
 
-        [Display(Name = "Cadastro Ambiental Rural(CAR)")]
+        [Display(Name = "CAR")]
         public string? Car { get; set; }
 
         [Display(Name = "CCIR")]
@@ -37,25 +38,10 @@ namespace AgroVisitWeb.Models
         public string? Itr { get; set; }
 
         [Display(Name = "Georreferenciamento")]
-        public IFormFile? Georreferenciamento { get; set; }
+        public byte[]? Georreferenciamento { get; set; }
 
         [Display(Name = "Matrícula do imóvel")]
         public byte[]? MatriculaImovel { get; set; }
-
-        [Display(Name = "Número de animais")]
-        public int? NumAnimais { get; set; }
-
-        [Display(Name = "Raça")]
-        public string? Raca { get; set; }
-
-        [Display(Name = "Fonte de alimento")]
-        public string? FonteAlimento { get; set; }
-
-        [Display(Name = "Área de pasto")]
-        public float? AreaPasto { get; set; }
-
-        [Display(Name = "Histórico da produção")]
-        public byte[]? HistoricoProducao { get; set; }
 
         [Display(Name = "Área total")]
         public float? AreaTotal { get; set; }
@@ -63,7 +49,7 @@ namespace AgroVisitWeb.Models
         [Display(Name = "Área cultivada")]
         public float? AreaCultivada { get; set; }
 
-        [Display(Name = "Comércio ou armazenamento")]
+        [Display(Name = "Cultivo para:")]
         public string? Comercializacao { get; set; }
 
         [Display(Name = "Histórico produção agrícola")]
@@ -79,6 +65,7 @@ namespace AgroVisitWeb.Models
         public uint IdCultura { get; set; }
 
         [Display(Name = "Cliente")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public uint IdCliente { get; set; }
 
         [Display(Name = "Engenheiro agrônomo")]

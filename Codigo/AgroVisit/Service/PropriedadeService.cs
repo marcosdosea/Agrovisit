@@ -98,9 +98,9 @@ namespace Service
         }
 
         /// <summary>
-        /// Obter todos os projetosDto
+        /// Obter todos os PropriedadeDto
         /// </summary>
-        /// <returns> todos os projetosDto</returns>
+        /// <returns> todos os PropriedadeDto</returns>
         public IEnumerable<PropriedadeDto> GetAllDto()
         {
             var query = from propriedade in _context.Propriedades

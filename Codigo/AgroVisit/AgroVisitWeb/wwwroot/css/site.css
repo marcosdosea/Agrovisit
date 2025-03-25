@@ -75,3 +75,56 @@ button:disabled {
 .table-responsive {
     overflow-x: hidden; /* Remove rolagem horizontal desnecessária */
 }
+
+
+
+/* Oculta o radio padrão */
+.form-check input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+/* Estiliza o novo radio */
+.form-check label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+    /* Criando um círculo personalizado */
+    .form-check label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 2px solid #76B375; /* Verde */
+        background-color: white;
+    }
+
+/* Quando estiver selecionado, preencher o círculo */
+.form-check input[type="radio"]:checked + label::before {
+    background-color: #76B375;
+    border: 2px solid #76B375;
+}
+
+/* Adiciona um ponto interno para simular o efeito do radio */
+.form-check input[type="radio"]:checked + label::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: white;
+}
+
