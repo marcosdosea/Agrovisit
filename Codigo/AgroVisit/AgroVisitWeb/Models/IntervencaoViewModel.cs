@@ -20,7 +20,7 @@ namespace AgroVisitWeb.Models
         [Required(ErrorMessage = "Campo obrigatório")]
         public DateTime? DataAplicacao { get; set; }
 
-        [Display(Name = "Tipo de Produto utilizado")]
+        [Display(Name = "Produto utilizado")]
         public String? TipoProduto { get; set; }
 
         [Display(Name = "Area Tratada")]
@@ -32,9 +32,6 @@ namespace AgroVisitWeb.Models
 
         [Display(Name = "Projeto")]
         public int IdProjeto { get; set; }
-
-        [Display(Name = "Projetos")]
-        public SelectList Projetos { get; set; }
     }
 }
 

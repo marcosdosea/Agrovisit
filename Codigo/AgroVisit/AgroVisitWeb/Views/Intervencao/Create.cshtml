@@ -52,34 +52,16 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- jQuery Validation -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
-
 <script>
     $(document).ready(function () {
-        // Evento quando o modal é fechado
-        $('#intervencaoModal').on('hidden.bs.modal', function () {
-            // Recarrega o conteúdo do modal
-            var projetoId = '@Model.Id'; // Obtém o ID do projeto
-            $.get('@Url.Action("Create", "Intervencao")', { id: projetoId }, function (data) {
-                $('#intervencaoModal .modal-body').html(data);
-            });
-        });
+        $(document).on('submit', '#createIntervencaoForm', function (event) {
+            event.preventDefault();
+            var form = $(this);
 
-        // Evento de submissão do formulário
-        $("#salvarIntervencao").click(function (event) {
-            event.preventDefault(); // Impede o comportamento padrão do botão
-
-            var form = $("#createIntervencaoForm");
-
-            // Valida o formulário
-            if (!form.valid()) {
-                return; // Se o formulário não for válido, não faz a requisição
-            }
+            if (!form.valid()) return;
 
             $.ajax({
                 url: form.attr("action"),
@@ -87,16 +69,25 @@
                 data: form.serialize(),
                 success: function (response) {
                     if (response.success) {
-                        $("#intervencaoModal").modal("hide"); // Fecha o modal
-                        location.reload(); // Recarrega a página para mostrar os novos dados
+                        var modal = bootstrap.Modal.getInstance(document.getElementById('createIntervencaoModal'));
+                        modal.hide();
+
+                        setTimeout(function() {
+                            location.reload();
+                        }, 500);
                     } else {
-                        $(".modal-body").html(response); // Atualiza a modal com mensagens de erro
+                        $(".modal-body-create").html(response);
                     }
                 },
-                error: function () {
-                    alert("Erro ao salvar intervenção!");
+                error: function (xhr) {
+                    alert("Erro: " + xhr.statusText);
                 }
             });
+        });
+
+        $('#createIntervencaoModal').on('hidden.bs.modal', function () {
+            $(this).find('form')[0].reset();
+            $(this).find('.text-danger').text('');
         });
     });
 </script>

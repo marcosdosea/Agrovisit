@@ -37,7 +37,6 @@ namespace AgroVisitWeb.Controllers
         // GET: IntervencaoController/Create
         public IActionResult Create(int idProjeto)
         {
-            // Lógica para criar uma nova intervenção com ID do projeto
             var model = new IntervencaoViewModel
             {
                 IdProjeto = idProjeto
@@ -54,25 +53,26 @@ namespace AgroVisitWeb.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Retorna a PartialView com os erros de validação
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
                 return PartialView("Create", intervencaoModel);
             }
 
-            // Mapeia o ViewModel para a entidade e salva no banco de dados
             var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
             _intervencaoService.Create(intervencao);
 
-            // Retorna uma resposta JSON indicando sucesso
             return Json(new { success = true, projetoId = intervencao.IdProjeto });
         }
 
         // GET: IntervencaoController/Edit/5
-
         public ActionResult Edit(uint id)
         {
             Intervencao intervencao = (Intervencao)_intervencaoService.Get(id);
             IntervencaoViewModel intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
-            return View(intervencaoModel);
+            return PartialView("Edit", intervencaoModel);
         }
 
         // POST: IntervencaoController/Edit/5
@@ -80,20 +80,25 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(uint id, IntervencaoViewModel intervencaoModel)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
+                return PartialView("Edit", intervencaoModel);
+            }
+
             var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
             _intervencaoService.Edit(intervencao);
 
-            return RedirectToAction("Details", "Intervencao", new { id = intervencao.Id });
-            //}
-            //return View(intervencaoModel);
+            return Json(new { success = true, projetoId = intervencao.IdProjeto });
         }
 
         // GET: IntervencaoController/Delete/5
         public ActionResult Delete(uint id)
         {
-            // TODO mappers implementation
             Intervencao intervencao = _intervencaoService.Get(id);
             IntervencaoViewModel intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
 
