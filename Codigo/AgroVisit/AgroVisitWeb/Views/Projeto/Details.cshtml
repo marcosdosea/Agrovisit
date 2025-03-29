@@ -120,6 +120,22 @@
                                     <div class="col-md-4">
                                         <strong>@Html.DisplayNameFor(model => item.DataAplicacao):</strong> @Html.DisplayFor(model => item.DataAplicacao)
                                     </div>
+                                    @if(item.Status.StartsWith('A')){
+                                        <div class="col-md-4">
+                                            <strong>@Html.DisplayNameFor(model => item.Status):</strong> @Html.DisplayName("Agendado")
+                                        </div>
+                                    }
+                                    else if (item.Status.StartsWith('E'))
+                                    {
+                                        <div class="col-md-4">
+                                            <strong>@Html.DisplayNameFor(model => item.Status):</strong> @Html.DisplayName("Em execução")
+                                        </div>
+                                    } else
+                                    {
+                                        <div class="col-md-4">
+                                            <strong>@Html.DisplayNameFor(model => item.Status):</strong> @Html.DisplayName("Concluido")
+                                        </div>
+                                    }
                                 </div>
                             </div>
 
