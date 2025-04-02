@@ -56,7 +56,7 @@ namespace AgroVisitWeb.Controllers.Tests
         public void CreateTest_Get_Valido()
         {
             // Act
-            var result = controller.Create();
+            var result = controller.Create(1);
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
