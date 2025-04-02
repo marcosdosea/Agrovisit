@@ -50,7 +50,8 @@ namespace AgroVisitWeb.Models
         public float? AreaCultivada { get; set; }
 
         [Display(Name = "Cultivo para:")]
-        public string? Comercializacao { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public string? Comercializacao { get; set; } = null!;
 
         [Display(Name = "Histórico produção agrícola")]
         public byte[]? HistoricoProdAgricola { get; set; }
