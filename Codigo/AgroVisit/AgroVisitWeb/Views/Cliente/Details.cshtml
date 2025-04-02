@@ -80,12 +80,8 @@
     </div>
 
     <div class="d-flex justify-content-end gap-3 mt-4">
-        <a href="@Url.ActionLink("Edit", "Cliente", new { id = Model.Id })" class="btn borda-concluir btn-success">
-            <i class="fas fa-edit"></i> Editar
-        </a>
-        <a href="@Url.ActionLink("Delete", "Cliente", new { id = Model.Id })" class="btn btn-danger">
-            <i class="fas fa-trash-alt"></i> Excluir
-        </a>
+        <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Edit", "Cliente", new { id = Model.Id })">Editar</a>
+        <a id="border" class="btn btn-danger " href="@Url.ActionLink("Delete", "Cliente", new { id = Model.Id })">Excluir</a>
     </div>
 
     <h2 class="mt-5">Propriedades do Cliente</h2>
@@ -114,12 +110,8 @@
 
                             <!-- Botões de ação -->
                             <div class="ms-3">
-                                <a href="@Url.ActionLink("Edit", "Propriedade", new { id = item.Id })" class="btn borda-concluir btn-success me-2">
-                                    <i class="fas fa-info-circle"></i> Editar
-                                </a>
-                                <a href="@Url.ActionLink("Details", "Propriedade", new { id = item.Id })" class="btn borda-concluir btn-success">
-                                    <i class="fas fa-info-circle"></i> Detalhes
-                                </a>
+                                <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Edit", "Intervencao", new { id = item.Id })">Editar</a>
+                                <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Details", "Intervencao", new { id = item.Id })">Detalhes</a>
                             </div>
                         </div>
                     }
