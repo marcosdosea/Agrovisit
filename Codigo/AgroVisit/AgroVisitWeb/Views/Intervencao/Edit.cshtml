@@ -18,7 +18,7 @@
         @Html.HiddenFor(model => model.IdProjeto)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Pratica, new { @class = "control-label" })
+            @Html.LabelFor(model => model.Pratica, new { @class = "control-label" })<span class="text-danger">*</span>
             @Html.EditorFor(model => model.Pratica, new { htmlAttributes = new { @class = "form-control border border-success" } })
             @Html.ValidationMessageFor(model => model.Pratica, "", new { @class = "text-danger" })
         </div>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DataAplicacao, new { @class = "control-label" })
+            @Html.LabelFor(model => model.DataAplicacao, new { @class = "control-label" })<span class="text-danger">*</span>
             @Html.EditorFor(model => model.DataAplicacao, new { htmlAttributes = new { @class = "form-control border border-success" } })
             @Html.ValidationMessageFor(model => model.DataAplicacao, "", new { @class = "text-danger" })
         </div>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Status, new { @class = "control-label" })
+            @Html.LabelFor(model => model.Status, new { @class = "control-label" })<span class="text-danger">*</span>
             @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control border border-success" } })
             @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
         </div>
