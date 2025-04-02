@@ -24,11 +24,15 @@
                 <dd>
                     @if (Model.Status.StartsWith('C'))
                     {
-                        @Html.DisplayName("Concluído")
+                        @Html.DisplayName("Concluída")
                     }
-                    else
+                    else if (Model.Status.StartsWith('E'))
                     {
                         @Html.DisplayName("Em Execução")
+                    } 
+                    else
+                    {
+                        @Html.DisplayName("Agendada")
                     }
                 </dd>
             </div>

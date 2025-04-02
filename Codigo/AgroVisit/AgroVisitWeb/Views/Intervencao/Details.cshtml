@@ -1,7 +1,7 @@
 ﻿@model AgroVisitWeb.Models.IntervencaoViewModel
 
 @{
-    ViewData["Title"] = "Detalhes do Intervenção";
+    ViewData["Title"] = "Detalhes da Intervenção";
 }
 
 
@@ -11,11 +11,11 @@
         <h1>Detalhes da Intervenção</h1>
 
         <div style="position: relative;">
-            <a asp-action="Details" asp-controller="Projeto" asp-route-id="@Model.IdProjeto" title="Voltar para projetos cadastrados"
-               class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
-               style="width: 50px; height: 50px; background-color: #76B375; border: none;
+            <a asp-action="Details" asp-controller="Projeto" asp-route-id="@Model.IdProjeto" title="Voltar para projeto"
+            class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
+            style="width: 50px; height: 50px; background-color: #76B375; border: none;
                position: absolute; top:  -60px; right: 30px;"
-               aria-label="Fechar">
+            aria-label="Fechar">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
                 </svg>
@@ -25,7 +25,7 @@
     <div class="card">
 
         <div class="card-body">
-            <h4 class="card-title">Informações da ntervenção</h4>
+            <h4 class="card-title">Informações da Intervenção</h4>
             <dl class="row mt-3">
                 <div class="col-md-6 d-flex">
                     <dt class="me-2">@Html.DisplayNameFor(model => model.Pratica):</dt>
@@ -36,14 +36,16 @@
 
                     @if (Model.Status.StartsWith('C'))
                     {
-                        @Html.DisplayName("Concluído")
+                        @Html.DisplayName("Concluída")
                     }
-                    else
+                    else if (Model.Status.StartsWith('E'))
                     {
                         @Html.DisplayName("Em Execução")
+                    } 
+                    else
+                    {
+                        @Html.DisplayName("Agendada")
                     }
-
-                    <!--<dd>@Html.DisplayFor(model => model.Status)</dd>-->
                 </div>
                 <div class="col-md-6 d-flex">
                     <dt class="me-2">@Html.DisplayNameFor(model => model.DataAplicacao):</dt>

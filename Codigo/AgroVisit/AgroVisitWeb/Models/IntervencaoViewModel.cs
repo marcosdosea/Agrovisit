@@ -23,7 +23,7 @@ namespace AgroVisitWeb.Models
         [Display(Name = "Produto utilizado")]
         public String? TipoProduto { get; set; }
 
-        [Display(Name = "Area Tratada")]
+        [Display(Name = "Área Tratada")]
         public float? AreaTratada { get; set; }
 
         [Display(Name = "Status")]
