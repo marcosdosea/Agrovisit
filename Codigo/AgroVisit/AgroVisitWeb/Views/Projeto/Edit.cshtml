@@ -1,33 +1,23 @@
 ﻿@model AgroVisitWeb.Models.ProjetoViewModel
 
 @{
-    ViewData["Title"] = "Editar projeto";
+    ViewData["Title"] = "Editar Projeto";
 }
 
 <div class="container pt-5">
     <div class="row">
-        <h1>Editar projeto</h1>
-    </div>
-    <div class="text-end" style="bottom: 60px; position:relative">
-        <a asp-action="Index">
-            <svg position-sticky" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 58 58" fill="none">
-                <g filter="url(#filter0_d_370_6135)">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 25C4 11.1929 15.1929 0 29 0C42.8071 0 54 11.1929 54 25C54 38.8071 42.8071 50 29 50C15.1929 50 4 38.8071 4 25ZM37.4252 16.5748C38.3128 17.4623 38.3128 18.9013 37.4252 19.7889L32.2141 25L37.4252 30.2111C38.3128 31.0987 38.3128 32.5377 37.4252 33.4252C36.5377 34.3128 35.0987 34.3128 34.2111 33.4252L29 28.2141L23.7889 33.4252C22.9013 34.3128 21.4623 34.3128 20.5748 33.4252C19.6872 32.5377 19.6872 31.0987 20.5748 30.2111L25.7859 25L20.5748 19.7889C19.6872 18.9013 19.6872 17.4623 20.5748 16.5748C21.4623 15.6872 22.9013 15.6872 23.7889 16.5748L29 21.7859L34.2111 16.5748C35.0987 15.6872 36.5377 15.6872 37.4252 16.5748Z" fill="#76B375" />
-                </g>
-                <defs>
-                    <filter id="filter0_d_370_6135" x="0" y="0" width="58" height="58" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                        <feOffset dy="4" />
-                        <feGaussianBlur stdDeviation="2" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_370_6135" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_370_6135" result="shape" />
-                    </filter>
-                </defs>
-            </svg>
-        </a>
+        <h1>Editar Projeto</h1>
+        <div style="position: relative;">
+            <a asp-action="Index" title="Voltar para projetos cadastrados"
+               class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
+               style="width: 50px; height: 50px; background-color: #76B375; border: none;
+          position: absolute; top: -60px; right: 30px;"
+               aria-label="Fechar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </a>
+        </div>
     </div>
 
     <form asp-action="Edit" id="border">
@@ -35,7 +25,7 @@
 
         <div class="row"> 
             <div class="form-group col-5 m-2">
-                <label asp-for="Nome" class="control-label"></label>
+                <label asp-for="Nome" class="control-label">Nome<span class="text-danger">*</span></label>
                 <input asp-for="Nome" class="form-control border border-success" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
@@ -45,7 +35,7 @@
                 <span asp-validation-for="NumeroVisita" class="text-danger"></span>
             </div>
             <div class="form-group col-2 m-2">
-                <label asp-for="Status" class="control-label"></label>
+                <label asp-for="Status" class="control-label">Status<span class="text-danger">*</span></label>
                 <input asp-for="Status" class="form-control border border-success" />
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
@@ -58,24 +48,24 @@
         </div>
 
         <div class="form-group col-3 m-2 row">
-            <label asp-for="DataInicio" class="control-label"></label>
+            <label asp-for="DataInicio" class="control-label">Data de inicio<span class="text-danger">*</span></label>
             <input asp-for="DataInicio" class="form-control border border-success" />
             <span asp-validation-for="DataInicio" class="text-danger"></span>
         </div>
         <div class="form-group col-2 m-2 row">
-            <label asp-for="Valor" class="control-label"></label>
+            <label asp-for="Valor" class="control-label">Valor<span class="text-danger">*</span></label>
             <input asp-for="Valor" class="form-control border border-success" />
             <span asp-validation-for="Valor" class="text-danger"></span>
         </div>
         <div class="row">
             <div class="form-group col-3 m-2">
-                <label asp-for="QuantParcela" class="control-label"></label>
+                <label asp-for="QuantParcela" class="control-label">Quantidade de parcelas<span class="text-danger">*</span></label>
                 <input asp-for="QuantParcela" class="form-control border border-success" />
                 <span asp-validation-for="QuantParcela" class="text-danger"></span>
             </div>
 
             <div class="form-group col-3 m-2">
-                <label asp-for="DataPrevista" class="control-label"></label>
+                <label asp-for="DataPrevista" class="control-label">Data da primeira parcela<span class="text-danger">*</span></label>
                 <input asp-for="DataPrevista" class="form-control border border-success" />
                 <span asp-validation-for="DataPrevista" class="text-danger"></span>
             </div>
