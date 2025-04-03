@@ -20,7 +20,7 @@
 
         public string? Telefone { get; set; }
 
-        public virtual ICollection<PropriedadeDTO> Propriedades { get; set; } = new List<PropriedadeDTO>();
+        public virtual ICollection<PropriedadeDto> Propriedades { get; set; } = new List<PropriedadeDto>();
     }
 
 }

@@ -327,7 +327,6 @@ public partial class AgroVisitContext : DbContext
                 .HasColumnType("int(10) unsigned")
                 .HasColumnName("id");
             entity.Property(e => e.AreaCultivada).HasColumnName("areaCultivada");
-            entity.Property(e => e.AreaPasto).HasColumnName("areaPasto");
             entity.Property(e => e.AreaPreservar).HasColumnName("areaPreservar");
             entity.Property(e => e.AreaReserva).HasColumnName("areaReserva");
             entity.Property(e => e.AreaTotal).HasColumnName("areaTotal");
@@ -346,9 +345,6 @@ public partial class AgroVisitContext : DbContext
             entity.Property(e => e.Estado)
                 .HasMaxLength(10)
                 .HasColumnName("estado");
-            entity.Property(e => e.FonteAlimento)
-                .HasMaxLength(50)
-                .HasColumnName("fonteAlimento");
             entity.Property(e => e.Georreferenciamento)
                 .HasColumnType("blob")
                 .HasColumnName("georreferenciamento");
@@ -358,9 +354,6 @@ public partial class AgroVisitContext : DbContext
             entity.Property(e => e.HistoricoProdAgricola)
                 .HasColumnType("blob")
                 .HasColumnName("historicoProdAgricola");
-            entity.Property(e => e.HistoricoProducao)
-                .HasColumnType("blob")
-                .HasColumnName("historicoProducao");
             entity.Property(e => e.IdCliente)
                 .HasColumnType("int(10) unsigned")
                 .HasColumnName("idCliente");
@@ -382,15 +375,9 @@ public partial class AgroVisitContext : DbContext
             entity.Property(e => e.Nome)
                 .HasMaxLength(50)
                 .HasColumnName("nome");
-            entity.Property(e => e.NumAnimais)
-                .HasColumnType("int(11)")
-                .HasColumnName("numAnimais");
             entity.Property(e => e.QuantFuncionario)
                 .HasColumnType("int(11)")
                 .HasColumnName("quantFuncionario");
-            entity.Property(e => e.Raca)
-                .HasMaxLength(50)
-                .HasColumnName("raca");
 
             entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Propriedades)
                 .HasForeignKey(d => d.IdCliente)

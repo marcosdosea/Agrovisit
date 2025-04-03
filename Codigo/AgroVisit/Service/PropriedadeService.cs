@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -92,6 +93,25 @@ namespace Service
             var query = from Propriedade in _context.Propriedades
                         where Propriedade.Nome.Equals(nome)
                         select Propriedade;
+
+            return query.AsNoTracking();
+        }
+
+        /// <summary>
+        /// Obter todos os PropriedadeDto
+        /// </summary>
+        /// <returns> todos os PropriedadeDto</returns>
+        public IEnumerable<PropriedadeDto> GetAllDto()
+        {
+            var query = from propriedade in _context.Propriedades
+                        select new PropriedadeDto
+                        {
+                            Id = propriedade.Id,
+                            Nome = propriedade.Nome,
+                            NomeCliente = propriedade.IdClienteNavigation.Nome,
+                            Cidade = propriedade.Cidade,
+                            Estado = propriedade.Estado
+                        };
 
             return query.AsNoTracking();
         }

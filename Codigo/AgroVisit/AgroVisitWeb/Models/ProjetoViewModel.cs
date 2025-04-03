@@ -10,7 +10,7 @@ namespace AgroVisitWeb.Models
         public uint Id { get; set; }
 
         [Display(Name = "Nome do projeto")]
-        [Required(ErrorMessage = "O campo é obrigatótio.")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [StringLength(50)]
         public string Nome { get; set; } = null!;
 
@@ -21,22 +21,22 @@ namespace AgroVisitWeb.Models
         public string? NomePropriedade { get; set; }
 
         [Display(Name = "Valor")]
-        [Required(ErrorMessage = "O campo é obrigatótio.")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public float Valor { get; set; }
 
         [Display(Name = "Quantidade de parcelas")]
-        [Required(ErrorMessage = "O campo é obrigatótio.")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public uint QuantParcela { get; set; }
 
         [Display(Name = "Data de inicio")]
-        [Required(ErrorMessage = "O campo é obrigatótio.")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 
         public DateTime DataInicio { get; set; }
 
         [Display(Name = "Data da primeira parcela")]
-        [Required(ErrorMessage = "O campo é obrigatótio.")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataPrevista { get; set; }
@@ -56,11 +56,11 @@ namespace AgroVisitWeb.Models
         public DateTime dataConclusao { get; set; }
 
         [Display(Name = "Status")]
-        [Required(ErrorMessage = "O campo é obrigatótio.")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string Status { get; set; } = null!;
 
         [Display(Name = "Propriedade")]
-        [Required(ErrorMessage = "O campo é obrigatótio.")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public uint IdPropriedade { get; set; }
 
         [Display(Name = "Propriedade")]
