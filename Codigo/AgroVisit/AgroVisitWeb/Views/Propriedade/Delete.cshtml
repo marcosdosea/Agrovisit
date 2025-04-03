@@ -1,169 +1,61 @@
-﻿@model Core.PropriedadeViewModel
+﻿@model AgroVisitWeb.Models.PropriedadeViewModel
 
 @{
     ViewData["Title"] = "Deletar propriedade";
 }
 
-<h1>Deletar propriedade</h1>
+<div class="card text-center container py-5" style="max-width: 600px;">
+    <div class="card-header bg-danger text-white">
+        <h3>Excluir Propriedade</h3>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title text-danger">Tem certeza que deseja excluir esta propriedade?</h5>
+        <p class="text-muted">Essa ação é irreversível e todos os dados do propriedade serão removidos.</p>
 
-<h3>Tem certeza que deseja realizar esta operação?</h3>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cidade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cidade)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuantFuncionario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuantFuncionario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AreaReserva)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AreaReserva)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AreaPreservar)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AreaPreservar)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Car)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Car)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ccir)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ccir)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Itr)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Itr)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Georreferenciamento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Georreferenciamento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MatriculaImovel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MatriculaImovel)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumAnimais)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumAnimais)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Raca)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Raca)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FonteAlimento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FonteAlimento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AreaPasto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AreaPasto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HistoricoProducao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HistoricoProducao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AreaTotal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AreaTotal)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AreaCultivada)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AreaCultivada)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comercializacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Comercializacao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HistoricoProdAgricola)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HistoricoProdAgricola)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HistoricoFitossanidade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HistoricoFitossanidade)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeSolo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeSolo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeCultura)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeCultura)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeCliente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeCliente)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdEngenheiroAgronomo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdEngenheiroAgronomo)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="submit" value="Deletar" class="btn btn-danger" /> |
-        <a asp-action="Index">Voltar</a>
+        <hr />
+
+        <dl class="row mt-3">
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
+                <dd>@Html.DisplayFor(model => model.Nome)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.NomeCliente):</dt>
+                <dd>@Html.DisplayFor(model => model.NomeCliente)</dd>
+            </div>
+            <div class="col-md-8 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.Cidade):</dt>
+                <dd>@Html.DisplayFor(model => model.Cidade)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.Estado):</dt>
+                <dd>@Html.DisplayFor(model => model.Estado)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.Comercializacao)</dt>
+                <dd>
+                    @(Model.Comercializacao == "C" ? "Comercialização" : "Armazenamento")
+                </dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.QuantFuncionario):</dt>
+                <dd>@Html.DisplayFor(model => model.QuantFuncionario)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.AreaTotal):</dt>
+                <dd>@Html.DisplayFor(model => model.AreaTotal)</dd>
+            </div>
+            <div class="col-md-6 d-flex">
+                <dt class="me-2">@Html.DisplayNameFor(model => model.AreaCultivada):</dt>
+                <dd>@Html.DisplayFor(model => model.AreaCultivada)</dd>
+            </div>
+        </dl>
+    </div>
+
+    <form asp-action="Delete" class="mt-4">
+        <div class="d-flex justify-content-center gap-3">
+            <a id="border" class="btn borda-concluir btn-success" asp-action="Index">Não</a>
+            <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim, excluir</button>
+        </div>
     </form>
 </div>

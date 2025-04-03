@@ -89,8 +89,10 @@ namespace AgroVisitWeb.Controllers
             PropriedadeViewModel propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
             IEnumerable<Cultura> listaCulturas = _culturaService.GetAll();
             IEnumerable<Solo> listaSolos = _soloService.GetAll();
+            IEnumerable<Cliente> listaClientes = _clienteService.GetAll();
             propriedadeModel.ListaCulturas = new SelectList(listaCulturas, "Id", "Nome", null);
             propriedadeModel.ListaSolos = new SelectList(listaSolos, "Id", "Nome", null);
+            propriedadeModel.ListaClientes = new SelectList(listaClientes, "Id", "Nome", null);
 
             return View(propriedadeModel);
         }
