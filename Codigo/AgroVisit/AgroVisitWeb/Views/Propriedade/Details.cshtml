@@ -129,9 +129,6 @@
                                         <strong>@Html.DisplayNameFor(model => item.Nome):</strong> @Html.DisplayFor(model => item.Nome)
                                     </div>
                                     <div class="col-md-4">
-                                        <strong>@Html.DisplayNameFor(model => item.Descricao):</strong> @Html.DisplayFor(model => item.Descricao)
-                                    </div>
-                                    <div class="col-md-4">
                                         <strong>@Html.DisplayNameFor(model => item.Valor):</strong> @Html.DisplayFor(model => item.Valor)
                                     </div>
                                     <div class="col-md-4">
@@ -177,7 +174,7 @@
                             <div class="flex-grow-1">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <strong>@Html.DisplayNameFor(model => item.DataHora):</strong> @Html.DisplayFor(model => item.DataHora)
+                                        <strong>Data e horário:</strong> @Html.DisplayFor(model => item.DataHora)
                                     </div>
                                     <div class="col-md-4">
                                         <strong>@Html.DisplayNameFor(model => item.Status):</strong> @(item.Status == "C" ? "Concluída" : "Agendada")
