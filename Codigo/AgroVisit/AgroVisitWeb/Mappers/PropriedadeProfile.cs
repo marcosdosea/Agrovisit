@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using AgroVisitWeb.Models;
+using AutoMapper;
 using Core;
 
 namespace AgroVisitWeb.Mappers

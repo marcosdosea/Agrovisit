@@ -1,4 +1,6 @@
-﻿namespace Core;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Core;
 
 public partial class Propriedade
 {
@@ -25,16 +27,6 @@ public partial class Propriedade
     public byte[]? Georreferenciamento { get; set; }
 
     public byte[]? MatriculaImovel { get; set; }
-
-    public int? NumAnimais { get; set; }
-
-    public string? Raca { get; set; }
-
-    public string? FonteAlimento { get; set; }
-
-    public float? AreaPasto { get; set; }
-
-    public byte[]? HistoricoProducao { get; set; }
 
     public float? AreaTotal { get; set; }
 

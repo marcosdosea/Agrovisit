@@ -1,167 +1,168 @@
-﻿@model Core.PropriedadeViewModel
+﻿@model AgroVisitWeb.Models.PropriedadeViewModel
 
 @{
-    ViewData["Title"] = "Cadastrar propriedade";
+    ViewData["Title"] = "Cadastrar Propriedade";
 }
 
-<h1>Cadastrar propriedade</h1>
+<link rel="stylesheet" href="/css/site.css">
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data" asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <!-- label asp-for="Id" class="control-label"></!-->
-                <input type="hidden" asp-for="Id" class="form-control" />
-                <!-- span asp-validation-for="Id" class="text-danger"></!span-->
-            </div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
+<div class="container pt-5">
+    <div class="row">
+        <h1>Cadastrar Propriedade</h1>
+        <div style="position: relative;">
+            <a asp-action="Index" title="Voltar para propriedades cadastradas"
+               class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
+               style="width: 50px; height: 50px; background-color: #76B375; border: none;
+                  position: absolute; top:  -60px; right: 30px;"
+               aria-label="Fechar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data" id="border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row">
+            <div class="form-group col-5 m-2 row">
+                <label asp-for="Nome" class="control-label ">Nome<span class="text-danger">*</span></label>
+                <input asp-for="Nome" class="form-control border border-success" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
-                <span asp-validation-for="Estado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cidade" class="control-label"></label>
-                <input asp-for="Cidade" class="form-control" />
-                <span asp-validation-for="Cidade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="QuantFuncionario" class="control-label"></label>
-                <input asp-for="QuantFuncionario" class="form-control" />
-                <span asp-validation-for="QuantFuncionario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AreaReserva" class="control-label"></label>
-                <input asp-for="AreaReserva" class="form-control" />
-                <span asp-validation-for="AreaReserva" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AreaPreservar" class="control-label"></label>
-                <input asp-for="AreaPreservar" class="form-control" />
-                <span asp-validation-for="AreaPreservar" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Car" class="control-label"></label>
-                <input asp-for="Car" class="form-control" />
-                <span asp-validation-for="Car" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Ccir" class="control-label"></label>
-                <input asp-for="Ccir" class="form-control" />
-                <span asp-validation-for="Ccir" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Itr" class="control-label"></label>
-                <input asp-for="Itr" class="form-control" />
-                <span asp-validation-for="Itr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Georreferenciamento" class="control-label"></label>
-                <input type="file" name="fileUpload" id="fileUpload" />
-                <input type="submit" value="Enviar" />
-                <!-- input asp-for="Georreferenciamento" class="form-control" /-->
-                <!-- span asp-validation-for="Georreferenciamento" class="text-danger"></!span-->
-            </div>
-            <div class="form-group">
-                <label asp-for="MatriculaImovel" class="control-label"></label>
-                <input type="file" name="fileUpload" id="fileUpload" />
-                <input type="submit" value="Enviar" />
-                <!--<input asp-for="MatriculaImovel" class="form-control" />-->
-                <!--<span asp-validation-for="MatriculaImovel" class="text-danger"></span>-->
-            </div>
-            <div class="form-group">
-                <label asp-for="NumAnimais" class="control-label"></label>
-                <input asp-for="NumAnimais" class="form-control" />
-                <span asp-validation-for="NumAnimais" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Raca" class="control-label"></label>
-                <input asp-for="Raca" class="form-control" />
-                <span asp-validation-for="Raca" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FonteAlimento" class="control-label"></label>
-                <input asp-for="FonteAlimento" class="form-control" />
-                <span asp-validation-for="FonteAlimento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AreaPasto" class="control-label"></label>
-                <input asp-for="AreaPasto" class="form-control" />
-                <span asp-validation-for="AreaPasto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HistoricoProducao" class="control-label"></label>
-                <input type="file" name="fileUpload" id="fileUpload" />
-                <input type="submit" value="Enviar" />
-                <!--input asp-for="HistoricoProducao" class="form-control" /-->
-                <!--span-- asp-validation-for="HistoricoProducao" class="text-danger"></!--span-->
-            </div>
-            <div class="form-group">
-                <label asp-for="AreaTotal" class="control-label"></label>
-                <input asp-for="AreaTotal" class="form-control" />
-                <span asp-validation-for="AreaTotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AreaCultivada" class="control-label"></label>
-                <input asp-for="AreaCultivada" class="form-control" />
-                <span asp-validation-for="AreaCultivada" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Comercializacao" class="control-label"></label>
-                <input asp-for="Comercializacao" class="form-control" />
-                <span asp-validation-for="Comercializacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HistoricoProdAgricola" class="control-label"></label>
-                <input type="file" name="fileUpload" id="fileUpload" />
-                <input type="submit" value="Enviar" />
-                <input asp-for="HistoricoProdAgricola" class="form-control" />
-                <span asp-validation-for="HistoricoProdAgricola" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HistoricoFitossanidade" class="control-label"></label>
-                <input type="file" name="fileUpload" id="fileUpload" />
-                <input type="submit" value="Enviar" />
-                <!--input asp-for="HistoricoFitossanidade" class="form-control" /-->
-                <!--span asp-validation-for="HistoricoFitossanidade" class="text-danger"></!--span-->
-            </div>
-            <div class="form-group">
-                <label asp-for="IdSolo" class="control-label"></label>
-                <select asp-for="IdSolo" asp-items="@Model.ListaSolos" class="form-control"></select>
-                <span asp-validation-for="IdSolo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdCultura" class="control-label"></label>
-                <select asp-for="IdCultura" asp-items="@Model.ListaCulturas" class="form-control"></select>
-                <span asp-validation-for="IdCultura" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdCliente" class="control-label"></label>
-                <select asp-for="IdCliente" asp-items="@Model.ListaClientes" class="form-control"></select>
+            <div class="form-group col-3 m-2 row">
+                <label asp-for="IdCliente" class="control-label">Cliente<span class="text-danger">*</span></label>
+                <select asp-for="IdCliente" asp-items="@Model.ListaClientes" class="form-control border border-success"
+                        style="appearance: none; background: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\' width=\'24\' height=\'24\'><path fill=\'%23666666\' d=\'M7 10l5 5 5-5z\'/></svg>') no-repeat right 10px center / 16px;">
+                </select>
                 <span asp-validation-for="IdCliente" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="IdEngenheiroAgronomo" class="control-label"></label>
-                <input asp-for="IdEngenheiroAgronomo" class="form-control" />
-                <span asp-validation-for="IdEngenheiroAgronomo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Concluir" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
 
-<div>
-    <a asp-action="Index">Voltar</a>
+        <div class="row">
+            <div class="form-group col-2 m-2 row">
+                <label asp-for="Cidade" class="control-label">Cidade<span class="text-danger">*</span></label>
+                <input asp-for="Cidade" class="form-control border border-success" />
+                <span asp-validation-for="Cidade" class="text-danger"></span>
+            </div>
+            <div class="form-group col-1 m-2 row">
+                <label asp-for="Estado" class="control-label">Estado<span class="text-danger">*</span></label>
+                <input asp-for="Estado" class="form-control  border border-success" />
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-3 m-2 row">
+                <label asp-for="Car" class="control-label"></label>
+                <input asp-for="Car" class="form-control border border-success" />
+                <span asp-validation-for="Car" class="text-danger"></span>
+            </div>
+            <div class="form-group col-3 m-2 row">
+                <label asp-for="Ccir" class="control-label"></label>
+                <input asp-for="Ccir" class="form-control border border-success" />
+                <span asp-validation-for="Ccir" class="text-danger"></span>
+            </div>
+            <div class="form-group col-3 m-2 row">
+                <label asp-for="Itr" class="control-label"></label>
+                <input asp-for="Itr" class="form-control border border-success" />
+                <span asp-validation-for="Itr" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group col-2 m-2 row">
+            <label>Cultivo para: <span class="text-danger">*</span></label>
+
+            <div class="form-check">
+                <input type="radio" id="comercializacao_radio" asp-for="Comercializacao" class="form-check-input" value="C">
+                <label for="comercializacao_radio" class="form-check-label">Comercialização</label>
+            </div>
+
+            <div class="form-check">
+                <input type="radio" id="armazenamento_radio" asp-for="Comercializacao" class="form-check-input" value="A">
+                <label for="armazenamento_radio" class="form-check-label">Armazenamento</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-3 m-2 row">
+                <label asp-for="QuantFuncionario" class="control-label"></label>
+                <input asp-for="QuantFuncionario" class="form-control border border-success" />
+                <span asp-validation-for="QuantFuncionario" class="text-danger"></span>
+            </div>
+            <div class="form-group col-3 m-2 row">
+                <label asp-for="AreaTotal" class="control-label"></label>
+                <input asp-for="AreaTotal" class="form-control border border-success" />
+                <span asp-validation-for="AreaTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group col-3 m-2 row">
+                <label asp-for="AreaCultivada" class="control-label"></label>
+                <input asp-for="AreaCultivada" class="form-control border border-success" />
+                <span asp-validation-for="AreaCultivada" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-3 m-2 row">
+                <label asp-for="AreaReserva" class="control-label"></label>
+                <input asp-for="AreaReserva" class="form-control border border-success" />
+                <span asp-validation-for="AreaReserva" class="text-danger"></span>
+            </div>
+            <div class="form-group col-3 m-2 row">
+                <label asp-for="AreaPreservar" class="control-label"></label>
+                <input asp-for="AreaPreservar" class="form-control border border-success" />
+                <span asp-validation-for="AreaPreservar" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-3 m-2 row">
+                <label asp-for="IdSolo" class="control-label"></label>
+                <select asp-for="IdSolo" asp-items="@Model.ListaSolos" class="form-control border border-success"
+                        style="appearance: none; background: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\' width=\'24\' height=\'24\'><path fill=\'%23666666\' d=\'M7 10l5 5 5-5z\'/></svg>') no-repeat right 10px center / 16px;">
+                </select>
+                <span asp-validation-for="IdSolo" class="text-danger"></span>
+            </div>
+            <div class="form-group col-3 m-2 row">
+                <label asp-for="IdCultura" class="control-label"></label>
+                <select asp-for="IdCultura" asp-items="@Model.ListaCulturas" class="form-control border border-success"
+                        style="appearance: none; background: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\' width=\'24\' height=\'24\'><path fill=\'%23666666\' d=\'M7 10l5 5 5-5z\'/></svg>') no-repeat right 10px center / 16px;">
+                </select>
+                <span asp-validation-for="IdCultura" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group col-4 m-2 row">
+            <label asp-for="Georreferenciamento" class="control-label text-success"></label>
+            <input type="file" asp-for="Georreferenciamento" class="form-control border border-success" />
+        </div>
+
+        <div class="form-group col-4 m-2 row">
+            <label asp-for="MatriculaImovel" class="control-label text-success"></label>
+            <input type="file" asp-for="MatriculaImovel" class="form-control border border-success" />
+        </div>
+ 
+        <div class="form-group col-4 m-2 row">
+            <label asp-for="HistoricoProdAgricola" class="control-label text-success"></label>
+            <input type="file" asp-for="HistoricoProdAgricola" class="form-control border border-success" />
+        </div>
+        <div class="form-group col-4 m-2 row">
+            <label asp-for="HistoricoFitossanidade" class="control-label text-success"></label>
+            <input type="file" asp-for="HistoricoFitossanidade" class="form-control border border-success" />
+        </div>
+        
+        @Html.HiddenFor(model => model.IdEngenheiroAgronomo)
+        <br />
+        <div class="container text-end">
+            <input type="submit" value="Concluir" class="btn btn-success borda-concluir" title="Salvar nova propriedade" />
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

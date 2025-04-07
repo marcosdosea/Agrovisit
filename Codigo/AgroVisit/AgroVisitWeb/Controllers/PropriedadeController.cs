@@ -1,11 +1,15 @@
-﻿using AutoMapper;
+﻿using AgroVisitWeb.Models;
+using AutoMapper;
 using Core;
+using Core.Datatables;
 using Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AgroVisitWeb.Controllers
 {
+    [Authorize(Roles = "Agronomo")]
     public class PropriedadeController : Controller
     {
         private readonly IPropriedadeService _propriedadeService;
@@ -30,9 +34,9 @@ namespace AgroVisitWeb.Controllers
         // GET: PropriedadeController
         public ActionResult Index()
         {
-            var listaPropriedades = _propriedadeService.GetAll();
-            var listaPropriedadesModel = _mapper.Map<List<PropriedadeViewModel>>(listaPropriedades);
-            return View(listaPropriedadesModel);
+            var listaPropriedades = _propriedadeService.GetAllDto();
+            
+            return View(listaPropriedades);
         }
 
         // GET: PropriedadeController/Details/5
@@ -67,11 +71,14 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PropriedadeViewModel propriedadeModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var propriedade = _mapper.Map<Propriedade>(propriedadeModel);
-                _propriedadeService.Create(propriedade);
+                return View(propriedadeModel);
             }
+            var propriedade = _mapper.Map<Propriedade>(propriedadeModel);
+            propriedade.IdEngenheiroAgronomo = 1;
+            _propriedadeService.Create(propriedade);
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -82,8 +89,10 @@ namespace AgroVisitWeb.Controllers
             PropriedadeViewModel propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
             IEnumerable<Cultura> listaCulturas = _culturaService.GetAll();
             IEnumerable<Solo> listaSolos = _soloService.GetAll();
+            IEnumerable<Cliente> listaClientes = _clienteService.GetAll();
             propriedadeModel.ListaCulturas = new SelectList(listaCulturas, "Id", "Nome", null);
             propriedadeModel.ListaSolos = new SelectList(listaSolos, "Id", "Nome", null);
+            propriedadeModel.ListaClientes = new SelectList(listaClientes, "Id", "Nome", null);
 
             return View(propriedadeModel);
         }
@@ -120,5 +129,27 @@ namespace AgroVisitWeb.Controllers
             _propriedadeService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Upload(IFormFile Georreferenciamento)
+        {
+            if (Georreferenciamento != null && Georreferenciamento.Length > 0)
+            {
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", Georreferenciamento.FileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await Georreferenciamento.CopyToAsync(stream);
+                }
+
+                ViewBag.Message = "Arquivo enviado com sucesso!";
+                return View();
+            }
+
+            ViewBag.Message = "Erro ao enviar arquivo.";
+            return View();
+        }
+
+
     }
 }
