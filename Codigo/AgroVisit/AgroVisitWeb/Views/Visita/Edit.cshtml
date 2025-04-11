@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "Editar Visita";
 }
+
+<head>
+    <link rel="stylesheet" href="~/css/flatpickr-custom.css">
+</head>
 <div class="container pt-5">
     <div class="row">
         <h1>Editar Visita</h1> 
@@ -32,7 +36,9 @@
         <div class="row">
             <div class="form-group col-md-6 m-2">
                 <label asp-for="DataHora" class="control-label">Data e horário<span class="text-danger">*</span></label>
-                <input asp-for="DataHora" class="form-control border border-success" />
+                <input asp-for="DataHora"
+                       class="form-control border border-success datetime-picker flatpickr-input"
+                       value="@(Model.DataHora == default ? "" : Model.DataHora.ToString("yyyy-MM-dd HH:mm"))" />
                 <span asp-validation-for="DataHora" class="text-danger"></span>
             </div>
             <div class="form-group col-md-4 m-2">
@@ -48,7 +54,7 @@
         </div>
         <div class="form-group row">
             <div class="col-md-2 offset-9">
-                <input type="submit" class="btn btn-success borda-concluir" value="Concluir"></input>
+                <input type="submit" class="btn btn-success borda-concluir" value="Concluir">
             </div>
         </div>
     </form>
@@ -57,5 +63,23 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        flatpickr(".datetime-picker", {
+            enableTime: true,
+            dateFormat: "d/m/Y H:i",
+            time_24hr: true,
+            locale: "pt",
+            minDate: "today",
+            defaultDate: "@(Model.DataHora == default ? "" : Model.DataHora.ToString("yyyy-MM-dd HH:mm"))",
+            onReady: function(selectedDates, dateStr, instance) {
+                if (instance.input.value === "") {
+                    instance.clear();
+                }
+            }
+        });
+    </script>
+    
 }

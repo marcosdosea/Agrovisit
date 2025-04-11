@@ -54,6 +54,9 @@ namespace AgroVisitWeb.Controllers
             IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
 
             visitaModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);
+
+            visitaModel.DataHora = DateTime.Now;
+
             return View(visitaModel);
         }
 
@@ -62,6 +65,12 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(VisitaViewModel visitaModel)
         {
+
+            if (visitaModel.DataHora.Year < 2000 || visitaModel.DataHora > DateTime.Now.AddYears(5))
+            {
+                ModelState.AddModelError("DataHora", "Data inválida");
+            }
+
             if (ModelState.IsValid)
             {
                 var visita = _mapper.Map<Visita>(visitaModel);
@@ -86,6 +95,11 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(uint id, VisitaViewModel visitaModel)
         {
+            if (visitaModel.DataHora.Year < 2000)
+            {
+                visitaModel.DataHora = DateTime.Now;
+            }
+
             if (ModelState.IsValid)
             {
                 var visita = _mapper.Map<Visita>(visitaModel);

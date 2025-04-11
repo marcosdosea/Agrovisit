@@ -109,13 +109,11 @@ button:disabled {
         background-color: white;
     }
 
-/* Quando estiver selecionado, preencher o círculo */
 .form-check input[type="radio"]:checked + label::before {
     background-color: #76B375;
     border: 2px solid #76B375;
 }
 
-/* Adiciona um ponto interno para simular o efeito do radio */
 .form-check input[type="radio"]:checked + label::after {
     content: "";
     position: absolute;
@@ -128,3 +126,10 @@ button:disabled {
     background-color: white;
 }
 
+.navbar-nav .nav-item .nav-link.active {
+    background-color: #E8F5E9; /* verde clarinho */
+    font-weight: bold;
+    color: #145A32 !important; /* verde escuro */
+    border-left: 3px solid #145A32;
+    padding-left: 10px;
+}

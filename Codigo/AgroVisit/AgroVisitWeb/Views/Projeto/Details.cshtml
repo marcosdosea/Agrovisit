@@ -128,7 +128,7 @@
                             </div>
 
                             <div class="ms-3">
-                                <a id="border" class="btn btn-success borda-concluir" onclick="carregarModalEdicao('@item.Id')">Editar</a>
+                                <a id="border" class="btn btn-success borda-concluir" data-intervencao-id="@item.Id" data-url-edit="@Url.Action("Edit", "Intervencao")">Editar</a>
                                 <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Details", "Intervencao", new { id = item.Id })">Detalhes</a>
                             </div>
 
@@ -145,15 +145,15 @@
 
     </div>
 
-    <button id="abrirIntervencaoModalCreate" class="btn btn-success borda-concluir" data-bs-toggle="modal" data-bs-target="#createIntervencaoModal">
-        Adicionar nova intervenção
+    <button id="abrirIntervencaoModalCreate" class="btn btn-success borda-concluir" data-projeto-id="@Model.Id" data-url-create="@Url.Action("Create", "Intervencao")">
+        Adicionar intervenção
     </button>
 
-    <div class="modal fade" id="createIntervencaoModal" tabindex="-1" aria-labelledby="createIntervencaoModal" aria-hidden="true">
+    <div class="modal fade" id="createIntervencaoModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createIntervencaoModal">Adicionar Nova Intervenção</h5>
+                    <h5 class="modal-title">Adicionar Nova Intervenção</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -208,26 +208,7 @@
 </div>-->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
 
-<script>
-    function carregarModalEdicao(idIntervencao) {
-        $.get('@Url.Action("Edit", "Intervencao")', { id: idIntervencao }, function (data) {
-            $('#editIntervencaoModal .modal-body').html(data);
-            var modal = new bootstrap.Modal(document.getElementById('editIntervencaoModal'));
-            modal.show();
-        }).fail(function (xhr) {
-            alert("Erro: " + xhr.statusText);
-        });
-    }
-
-    $(document).ready(function () {
-        $('#abrirIntervencaoModalCreate').click(function () {
-            var projetoId = '@Model.Id';
-            $.get('@Url.Action("Create", "Intervencao")', { idProjeto: projetoId }, function (data) {
-                $('#createIntervencaoModal .modal-body').html(data);
-                $('#createIntervencaoModal').modal('show');
-            });
-        });
-    });
-</script>
+<script src="~/js/intervencaoJS.js"></script>

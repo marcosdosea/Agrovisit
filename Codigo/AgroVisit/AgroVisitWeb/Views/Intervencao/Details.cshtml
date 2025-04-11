@@ -4,71 +4,71 @@
     ViewData["Title"] = "Detalhes da Intervenção";
 }
 
+<body>
+    <div class="container pt-5">
 
-<div class="container pt-5">
+        <div class="row">
+            <h1>Detalhes da Intervenção</h1>
 
-    <div class="row">
-        <h1>Detalhes da Intervenção</h1>
-
-        <div style="position: relative;">
-            <a asp-action="Details" asp-controller="Projeto" asp-route-id="@Model.IdProjeto" title="Voltar para projeto"
-            class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
-            style="width: 50px; height: 50px; background-color: #76B375; border: none;
+            <div style="position: relative;">
+                <a asp-action="Details" asp-controller="Projeto" asp-route-id="@Model.IdProjeto" title="Voltar para projeto"
+                   class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
+                   style="width: 50px; height: 50px; background-color: #76B375; border: none;
                position: absolute; top:  -60px; right: 30px;"
-            aria-label="Fechar">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
-                </svg>
-            </a>
+                   aria-label="Fechar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="card">
+
+            <div class="card-body">
+                <h4 class="card-title">Informações da Intervenção</h4>
+                <dl class="row mt-3">
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Pratica):</dt>
+                        <dd>@Html.DisplayFor(model => model.Pratica)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Status):</dt>
+
+                        @if (Model.Status.StartsWith('C'))
+                        {
+                            @Html.DisplayName("Concluída")
+                        }
+                        else if (Model.Status.StartsWith('E'))
+                        {
+                            @Html.DisplayName("Em Execução")
+                        }
+                        else
+                        {
+                            @Html.DisplayName("Agendada")
+                        }
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.DataAplicacao):</dt>
+                        <dd>@Html.DisplayFor(model => model.DataAplicacao)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.TipoProduto):</dt>
+                        <dd>@Html.DisplayFor(model => model.TipoProduto)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Descricao):</dt>
+                        <dd>@Html.DisplayFor(model => model.Descricao)</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end gap-3 mt-4">
+            <a id="border" class="btn btn-success borda-concluir" data-intervencao-id="@Model.Id" data-url-edit="@Url.Action("Edit", "Intervencao")">Editar</a>
+            <a id="border" class="btn btn-danger " href="@Url.ActionLink("Delete", "Intervencao", new { id = Model.Id })">Excluir</a>
         </div>
     </div>
-    <div class="card">
 
-        <div class="card-body">
-            <h4 class="card-title">Informações da Intervenção</h4>
-            <dl class="row mt-3">
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Pratica):</dt>
-                    <dd>@Html.DisplayFor(model => model.Pratica)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Status):</dt>
-
-                    @if (Model.Status.StartsWith('C'))
-                    {
-                        @Html.DisplayName("Concluída")
-                    }
-                    else if (Model.Status.StartsWith('E'))
-                    {
-                        @Html.DisplayName("Em Execução")
-                    } 
-                    else
-                    {
-                        @Html.DisplayName("Agendada")
-                    }
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.DataAplicacao):</dt>
-                    <dd>@Html.DisplayFor(model => model.DataAplicacao)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.AreaTratada):</dt>
-                    <dd>@Html.DisplayFor(model => model.AreaTratada)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Descricao):</dt>
-                    <dd>@Html.DisplayFor(model => model.Descricao)</dd>
-                </div>
-            </dl>
-        </div>
-    </div>
-    <div class="d-flex justify-content-end gap-3 mt-4">
-        <a id="border" class="btn btn-success borda-concluir" onclick="carregarModalEdicao(@Model.Id)">Editar</a>
-        <a id="border" class="btn btn-danger " href="@Url.ActionLink("Delete", "Intervencao", new { id = Model.Id })">Excluir</a>
-    </div>
-</div>
-
-<div class="modal fade" id="editIntervencaoModal" tabindex="-1">
+    <div class="modal fade" id="editIntervencaoModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -81,21 +81,14 @@
             </div>
         </div>
     </div>
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
 
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    function carregarModalEdicao(idIntervencao) {
-        $.get('@Url.Action("Edit", "Intervencao")', { id: idIntervencao }, function (data) {
-            $('#editIntervencaoModal .modal-body').html(data);
-            var modal = new bootstrap.Modal(document.getElementById('editIntervencaoModal'));
-            modal.show();
-        }).fail(function (xhr) {
-            alert("Erro: " + xhr.statusText);
-        });
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/js/intervencaoJS.js"></script>
     }
-
-    $(document).ready(function () {
-    });
-</script>
+</body>

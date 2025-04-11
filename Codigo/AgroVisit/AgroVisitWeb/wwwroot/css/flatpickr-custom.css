@@ -1,0 +1,55 @@
+﻿.flatpickr-input {
+    background-color: #f8f9fa;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.flatpickr-calendar {
+    font-family: 'Arial';
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.flatpickr-day.selected {
+    background: #3498db;
+    border-color: #3498db;
+    color: white;
+}
+
+.flatpickr-months .flatpickr-month {
+    background: #3498db;
+    color: white;
+    border-radius: 8px 8px 0 0;
+}
+
+.flatpickr-calendar .flatpickr-monthDropdown-months,
+.flatpickr-calendar .flatpickr-time {
+    background: #3498db;
+    color: white;
+}
+
+.flatpickr-weekdays {
+    background: #f0f0f0;
+    margin-bottom: 5px;
+}
+
+.flatpickr-day:hover {
+    background: #e6e6e6;
+}
+
+
+.flatpickr-day.today {
+    border: 1px solid #3498db;
+    font-weight: bold;
+}
+
+.flatpickr-calendar .flatpickr-buttons .flatpickr-clear,
+.flatpickr-calendar .flatpickr-buttons .flatpickr-today {
+    color: #3498db;
+    font-weight: bold;
+}
+
+.flatpickr-time input {
+    font-weight: bold;
+}

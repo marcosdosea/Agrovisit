@@ -34,16 +34,24 @@
                         <partial name="_LoginPartial" /><br />
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Cliente</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "") text-dark"
+                                   asp-controller="Home" asp-action="Index">Agenda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Propriedade" asp-action="Index">Propriedade</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Cliente" ? "active" : "") text-dark"
+                                   asp-controller="Cliente" asp-action="Index">Cliente</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Visita" asp-action="Index">Visita</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Propriedade" ? "active" : "") text-dark"
+                                   asp-controller="Propriedade" asp-action="Index">Propriedade</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Projeto" asp-action="Index">Projeto</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Visita" ? "active" : "") text-dark"
+                                   asp-controller="Visita" asp-action="Index">Visita</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Projeto" ? "active" : "") text-dark"
+                                   asp-controller="Projeto" asp-action="Index">Projeto</a>
                             </li>
                         </ul>
                     </div>
@@ -58,13 +66,16 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - AgroVisitWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="text-center container">
+            &copy; 2025 - AgroVisitWeb - Trazendo eficiência e praticidade para sua visita técnica
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

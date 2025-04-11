@@ -8,86 +8,80 @@
     Layout = null;
 }
 
-<div class="modal-body">
-    <form id="createIntervencaoForm" asp-action="Create" asp-controller="Intervencao" method="post">
-        @Html.AntiForgeryToken()
+<head>
+    <link rel="stylesheet" href="~/css/flatpickr-custom.css">
+</head>
+<body>
+    <div class="modal-body">
+        <form id="createIntervencaoForm" asp-action="Create" asp-controller="Intervencao" method="post">
+            @Html.AntiForgeryToken()
 
-        <!-- Campo oculto para o ProjetoId -->
-        @Html.HiddenFor(model => model.IdProjeto)
+            <!-- Campo oculto para o ProjetoId -->
+            @Html.HiddenFor(model => model.IdProjeto)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Pratica, new { @class = "control-label" })<span class="text-danger">*</span>
-            @Html.EditorFor(model => model.Pratica, new { htmlAttributes = new { @class = "form-control border border-success" } })
-            @Html.ValidationMessageFor(model => model.Pratica, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pratica, new { @class = "control-label" })<span class="text-danger">*</span>
+                @Html.EditorFor(model => model.Pratica, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                @Html.ValidationMessageFor(model => model.Pratica, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descricao, new { @class = "control-label" })
-            @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control border border-success" } })
-            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descricao, new { @class = "control-label" })
+                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataAplicacao, new { @class = "control-label" })<span class="text-danger">*</span>
-            @Html.EditorFor(model => model.DataAplicacao, new { htmlAttributes = new { @class = "form-control border border-success" } })
-            @Html.ValidationMessageFor(model => model.DataAplicacao, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DataAplicacao, new { @class = "control-label" })<span class="text-danger">*</span>
+                @Html.EditorFor(model => model.DataAplicacao, new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "form-control border border-success datetime-picker",
+                            @data_date_format = "d/m/Y"
+                        }
+                    })
+                @Html.ValidationMessageFor(model => model.DataAplicacao, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TipoProduto, new { @class = "control-label" })
-            @Html.EditorFor(model => model.TipoProduto, new { htmlAttributes = new { @class = "form-control border border-success" } })
-            @Html.ValidationMessageFor(model => model.TipoProduto, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.TipoProduto, new { @class = "control-label" })
+                @Html.EditorFor(model => model.TipoProduto, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                @Html.ValidationMessageFor(model => model.TipoProduto, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, new { @class = "control-label" })<span class="text-danger">*</span>
-            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control border border-success" } })
-            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, new { @class = "control-label" })<span class="text-danger">*</span>
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="modal-footer">
-            <input type="submit" value="Concluir" class="btn btn-success borda-concluir" />
-        </div>
-    </form>
-</div>
+            <div class="modal-footer">
+                <input type="submit" value="Concluir" class="btn btn-success borda-concluir" />
+            </div>
+        </form>
+    </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+        <script src="~/js/intervencaoJS.js"></script>
+    }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $(document).on('submit', '#createIntervencaoForm', function (event) {
-            event.preventDefault();
-            var form = $(this);
-
-            if (!form.valid()) return;
-
-            $.ajax({
-                url: form.attr("action"),
-                type: "POST",
-                data: form.serialize(),
-                success: function (response) {
-                    if (response.success) {
-                        var modal = bootstrap.Modal.getInstance(document.getElementById('createIntervencaoModal'));
-                        modal.hide();
-
-                        setTimeout(function() {
-                            location.reload();
-                        }, 500);
-                    } else {
-                        $(".modal-body-create").html(response);
-                    }
-                },
-                error: function (xhr) {
-                    alert("Erro: " + xhr.statusText);
+    <script>
+        flatpickr(".datetime-picker", {
+            enableTime: true,
+            dateFormat: "d/m/Y H:i",
+            time_24hr: true,
+            locale: "pt",
+            minDate: "today",
+            defaultDate: "@(Model.DataAplicacao.HasValue == default ? "" : Model.DataAplicacao.Value.ToString("yyyy-MM-dd HH:mm"))",
+            onReady: function(selectedDates, dateStr, instance) {
+                if (instance.input.value === "") {
+                    instance.clear();
                 }
-            });
+            }
         });
-
-        $('#createIntervencaoModal').on('hidden.bs.modal', function () {
-            $(this).find('form')[0].reset();
-            $(this).find('.text-danger').text('');
-        });
-    });
-</script>
+    </script>
+</body>

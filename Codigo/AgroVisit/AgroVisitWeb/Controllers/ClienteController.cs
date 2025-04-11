@@ -50,7 +50,11 @@ namespace AgroVisitWeb.Controllers
         // GET: ClienteController/Create
         public ActionResult Create()
         {
-            return View();
+            var clienteModel = new ClienteViewModel
+            {
+                IdEngenheiroAgronomo = 1
+            };
+            return View(clienteModel);
         }
 
         // POST: ClienteController/Create
@@ -71,6 +75,7 @@ namespace AgroVisitWeb.Controllers
         {
             Cliente cliente = _clienteService.Get(id);
             ClienteViewModel clienteModel = _mapper.Map<ClienteViewModel>(cliente);
+
             return View(clienteModel);
         }
 
@@ -79,8 +84,6 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(uint id, ClienteViewModel clienteModel)
         {
-            
-
             if (ModelState.IsValid)
             {
                 var cliente = _mapper.Map<Cliente>(clienteModel);

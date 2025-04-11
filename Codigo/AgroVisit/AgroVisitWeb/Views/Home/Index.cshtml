@@ -1,8 +1,113 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<AgroVisitWeb.Models.VisitaViewModel>
+
+@{
+    ViewData["Title"] = "Agenda";
+
+
+    var culture = new System.Globalization.CultureInfo("pt-BR");
+
+    var visitasAgrupadas = Model
+    .OrderBy(v => v.DataHora)
+    .GroupBy(v => new
+    {
+        Ano = v.DataHora.Year,
+        Mes = v.DataHora.Month
+    })
+    .OrderByDescending(g => g.Key.Ano)
+    .ThenByDescending(g => g.Key.Mes);
+
+    var mesFiltro = DateTime.Today.Month.ToString() + DateTime.Today.Year.ToString();
+    var mesExibir = culture.DateTimeFormat.GetMonthName(DateTime.Today.Month) + " " + DateTime.Today.Year;
 }
 
-<div class="text-center">
-    <h1 class="display-4">AgroVisit</h1>
-    <p>Trazendo eficiência e praticidade para sua visita técnica</p>
-</div>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+</head>
+<body>
+    <div>
+
+        <div class="month-picker-container">
+            <div id="customMonthDisplay" class="custom-month-display" onclick="document.getElementById('mesAnoInput').click()">
+                @mesExibir
+            </div>
+            <input type="month" id="mesAnoInput" class="custom-month-input" value="@mesFiltro" min="2020-01" max="2030-12">
+        </div>
+
+        <div class="text-end" style="top: 30px; position:sticky">
+            <button id="button_hoje" class="btn borda-concluir btn-outline-success">
+                Hoje
+            </button>
+        </div>
+
+        @foreach (var grupo in visitasAgrupadas)
+        {
+            var dataReferencia = new DateTime(grupo.Key.Ano, grupo.Key.Mes, 1);
+
+            <div class="mes-container" data-mes="@grupo.Key.Ano-@grupo.Key.Mes.ToString("00")">
+                <div class="mes-header">
+                    @{
+                        var nomeMes = culture.DateTimeFormat.GetMonthName(grupo.Key.Mes);
+                        nomeMes = char.ToUpper(nomeMes[0]) + nomeMes.Substring(1);
+                    }
+                    @nomeMes - @grupo.Key.Ano
+                </div>
+
+                @foreach (var item in grupo)
+                {
+                    var diaFormatado = culture.DateTimeFormat.GetDayName(item.DataHora.DayOfWeek);
+                    var diaSemana = diaFormatado.Substring(0, 1).ToUpper() + diaFormatado.Substring(1, 2);
+                    var diaMes = item.DataHora.ToString("dd");
+                    var hora = item.DataHora.ToString("HH:mm");
+
+                    <div class="dia-container">
+                        <div class="dia-info">
+                            <div class="dia-semana">@diaSemana</div>
+                            <div class="circulo">
+                                <div class="conteudo">@diaMes</div>
+                            </div>
+                        </div>
+
+                        <a class="visitas-grid" href="@Url.ActionLink("Details", "Visita", new { id = item.Id })">
+                            <div class="visita-card">
+                                <div class="visita-nome">Visita: @item.NomePropriedade</div>
+                                <div class="visita-hora">@hora</div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+
+        <div id="mensagemSemResultados" style="display: none;">
+            Nenhuma visita encontrada para este período.
+        </div>
+    </div>
+
+    <div class="text-end" style="bottom: 40px; position:sticky">
+        <a asp-controller="Visita" asp-action="Create" )>
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 99 99" fill="none">
+                <g filter="url(#filter0_d_375_7800)">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8662 13.7733C35.4654 -3.77459 63.9578 -3.73301 81.5058 13.8662C99.0537 31.4654 99.0121 59.9578 81.4129 77.5057C63.8137 95.0537 35.3213 95.0121 17.7734 77.4129C0.225422 59.8137 0.266999 31.3213 17.8662 13.7733ZM71.0867 45.6708C71.0834 47.9302 69.2492 49.7591 66.9898 49.7558L53.7245 49.7364L53.7051 63.0018C53.7018 65.2611 51.8676 67.09 49.6083 67.0867C47.3489 67.0834 45.52 65.2492 45.5233 62.9898L45.5427 49.7245L32.2773 49.7051C30.018 49.7018 28.1891 47.8676 28.1924 45.6082C28.1957 43.3489 30.0299 41.52 32.2893 41.5233L45.5546 41.5427L45.574 28.2773C45.5773 26.018 47.4115 24.1891 49.6709 24.1924C51.9302 24.1957 53.7591 26.0299 53.7558 28.2893L53.7364 41.5546L67.0018 41.574C69.2611 41.5773 71.09 43.4115 71.0867 45.6708Z" fill="#76B375" />
+                </g>
+                <defs>
+                    <filter id="filter0_d_375_7800" x="0.639526" y="0.639648" width="98.0001" height="98" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                        <feOffset dy="4" />
+                        <feGaussianBlur stdDeviation="2" />
+                        <feComposite in2="hardAlpha" operator="out" />
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_375_7800" />
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_375_7800" result="shape" />
+                    </filter>
+                </defs>
+            </svg>
+        </a>
+    </div>
+    <link rel="stylesheet" href="~/css/homeStyle.css" />
+    <script src="~/js/homeScript.js"></script>
+</body>
+</html>

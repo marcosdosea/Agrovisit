@@ -4,65 +4,67 @@
     ViewData["Title"] = "Excluir Intervenção";
 }
 
-<div class="card text-center container py-5" style="max-width: 600px;">
-    <div class="card-header bg-danger text-white">
-        <h3>Excluir Intervenção</h3>
-    </div>
-    <div class="card-body">
-        <h5 class="card-title text-danger">Tem certeza que deseja excluir esta intervenção?</h5>
-        <p class="text-muted">Essa ação é irreversível e todos os dados da intervenção serão removidos.</p>
-
-        <hr />
-
-        <dl class="row mt-3">
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Pratica):</dt>
-                <dd>@Html.DisplayFor(model => model.Pratica)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Status):</dt>
-                <dd>
-                    @if (Model.Status.StartsWith('C'))
-                    {
-                        @Html.DisplayName("Concluída")
-                    }
-                    else if (Model.Status.StartsWith('E'))
-                    {
-                        @Html.DisplayName("Em Execução")
-                    } 
-                    else
-                    {
-                        @Html.DisplayName("Agendada")
-                    }
-                </dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Descricao):</dt>
-                <dd>@Html.DisplayFor(model => model.Descricao)</dd>
-            </div>
-            <div class="col-md-8 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.DataAplicacao):</dt>
-                <dd>@Html.DisplayFor(model => model.DataAplicacao)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.TipoProduto):</dt>
-                <dd>@Html.DisplayFor(model => model.TipoProduto)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.AreaTratada):</dt>
-                <dd>@Html.DisplayFor(model => model.AreaTratada)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Descricao):</dt>
-                <dd>@Html.DisplayFor(model => model.Descricao)</dd>
-            </div>
-        </dl>
-    </div>
-
-    <form asp-action="Delete" class="mt-4">
-        <div class="d-flex justify-content-center gap-3">
-            <a id="border" class="btn borda-concluir btn-success" asp-action="Details" asp-route-id="@Model.Id">Não</a>
-            <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim, excluir</button>
+<body>
+    <div class="card text-center container py-5" style="max-width: 600px;">
+        <div class="card-header bg-danger text-white">
+            <h3>Excluir Intervenção</h3>
         </div>
-    </form>
-</div>
+        <div class="card-body">
+            <h5 class="card-title text-danger">Tem certeza que deseja excluir esta intervenção?</h5>
+            <p class="text-muted">Essa ação é irreversível e todos os dados da intervenção serão removidos.</p>
+
+            <hr />
+
+            <dl class="row mt-3">
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Pratica):</dt>
+                    <dd>@Html.DisplayFor(model => model.Pratica)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Status):</dt>
+                    <dd>
+                        @if (Model.Status.StartsWith('C'))
+                        {
+                            @Html.DisplayName("Concluída")
+                        }
+                        else if (Model.Status.StartsWith('E'))
+                        {
+                            @Html.DisplayName("Em Execução")
+                        }
+                        else
+                        {
+                            @Html.DisplayName("Agendada")
+                        }
+                    </dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Descricao):</dt>
+                    <dd>@Html.DisplayFor(model => model.Descricao)</dd>
+                </div>
+                <div class="col-md-8 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.DataAplicacao):</dt>
+                    <dd>@Html.DisplayFor(model => model.DataAplicacao)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.TipoProduto):</dt>
+                    <dd>@Html.DisplayFor(model => model.TipoProduto)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.AreaTratada):</dt>
+                    <dd>@Html.DisplayFor(model => model.AreaTratada)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Descricao):</dt>
+                    <dd>@Html.DisplayFor(model => model.Descricao)</dd>
+                </div>
+            </dl>
+        </div>
+
+        <form asp-action="Delete" class="mt-4">
+            <div class="d-flex justify-content-center gap-3">
+                <a id="border" class="btn borda-concluir btn-success" asp-action="Details" asp-route-id="@Model.Id">Não</a>
+                <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim, excluir</button>
+            </div>
+        </form>
+    </div>
+</body>
