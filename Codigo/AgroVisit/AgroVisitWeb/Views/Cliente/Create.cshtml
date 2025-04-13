@@ -100,14 +100,14 @@
         @{
             await Html.RenderPartialAsync("_ValidationScriptsPartial");
         }
-        <script src="~/js/validation.js"></script>
+        <script src="~/js/validations.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 flatpickr(".date-picker", {
                     enableTime: false,
                     dateFormat: "d/m/Y",
                     locale: "pt",
-                    allowInput: true,
+                    allowInput: false,
                     maxDate: "today",
                     defaultDate: "@(Model.DataNascimento.HasValue ? Model.DataNascimento.Value.ToString("yyyy-MM-dd") : "")",
                     onReady: function(instance) {

@@ -1,7 +1,7 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
     $(document).on('submit', '#createIntervencaoForm', function (e) {
         e.preventDefault();
-        var form = $(this);
+        let form = $(this);
 
         if (typeof form.valid === "function" && !form.valid()) return;
 
@@ -11,7 +11,7 @@
             data: form.serialize(),
             success: function (response) {
                 if (response.success) {
-                    var modal = bootstrap.Modal.getInstance(document.getElementById('createIntervencaoModal'));
+                    let modal = bootstrap.Modal.getInstance(document.getElementById('createIntervencaoModal'));
                     modal.hide();
 
                     setTimeout(function () {
@@ -34,7 +34,7 @@
 
     $(document).on('submit', '#editIntervencaoForm', function (e) {
         e.preventDefault();
-        var form = $(this);
+        let form = $(this);
 
         $.ajax({
             url: form.attr('action'),
@@ -42,7 +42,7 @@
             data: form.serialize(),
             success: function (response) {
                 if (response.success) {
-                    var modal = bootstrap.Modal.getInstance(document.getElementById('editIntervencaoModal'));
+                    let modal = bootstrap.Modal.getInstance(document.getElementById('editIntervencaoModal'));
                     modal.hide();
 
                     setTimeout(function () {

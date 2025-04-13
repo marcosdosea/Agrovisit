@@ -5,7 +5,6 @@ using Core.Datatables;
 using Core.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MySqlX.XDevAPI;
 
 namespace AgroVisitWeb.Controllers
 {
@@ -24,26 +23,29 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: ClienteController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var listaCliente = _clienteService.GetAll();
+            var listaCliente = await _clienteService.GetAll();
             var listaClienteModel = _mapper.Map<List<ClienteViewModel>>(listaCliente);
             return View(listaClienteModel);
         }
 
         [HttpPost]
-        public IActionResult GetDataPage(DatatableRequest request)
+        public async Task<IActionResult> GetDataPage(DatatableRequest request)
         {
-            var response = _clienteService.GetDataPage(request);
+            var response = await _clienteService.GetDataPage(request);
             return Json(response);
         }
 
         // GET: ClienteController/Details/5
-        public ActionResult Details(uint id)
+        public async Task<ActionResult> Details(uint id)
         {
-            Cliente cliente = _clienteService.Get(id);
-            ClienteViewModel clienteModel = _mapper.Map<ClienteViewModel>(cliente);
-            clienteModel.ListaPropriedade = _propriedadeService.GetByCliente(cliente.Id);
+            var cliente = await _clienteService.Get(id);
+            if (cliente == null)
+                return NotFound();
+
+            var clienteModel = _mapper.Map<ClienteViewModel>(cliente);
+            clienteModel.ListaPropriedade = await _propriedadeService.GetByCliente(cliente.Id);
             return View(clienteModel);
         }
 
@@ -60,55 +62,64 @@ namespace AgroVisitWeb.Controllers
         // POST: ClienteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ClienteViewModel clienteModel)
+        public async Task<ActionResult> Create(ClienteViewModel clienteModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var cliente = _mapper.Map<Cliente>(clienteModel);
-                _clienteService.Create(cliente);
+                return View(clienteModel);
             }
+            var cliente = _mapper.Map<Cliente>(clienteModel);
+            await _clienteService.Create(cliente);
+
             return RedirectToAction(nameof(Index));
         }
 
         // GET: ClienteController/Edit/5
-        public ActionResult Edit(uint id)
+        public async Task<ActionResult> Edit(uint id)
         {
-            Cliente cliente = _clienteService.Get(id);
-            ClienteViewModel clienteModel = _mapper.Map<ClienteViewModel>(cliente);
+            var cliente = await _clienteService.Get(id);
+            if (cliente == null)
+                return NotFound();
 
+            var clienteModel = _mapper.Map<ClienteViewModel>(cliente);
             return View(clienteModel);
         }
 
         // POST: ClienteController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(uint id, ClienteViewModel clienteModel)
+        public async Task<ActionResult> Edit(ClienteViewModel clienteModel)
         {
             if (ModelState.IsValid)
             {
-                var cliente = _mapper.Map<Cliente>(clienteModel);
-                _clienteService.Edit(cliente);
-
-                return RedirectToAction("Details", "Cliente", new { id = cliente.Id });
+                return View(clienteModel);
             }
-            return RedirectToAction(nameof(Index));
+
+            var cliente = _mapper.Map<Cliente>(clienteModel);
+            await _clienteService.Edit(cliente);
+
+            return RedirectToAction("Details", new { id = cliente.Id });
         }
 
         // GET: ClienteController/Delete/5
-        public ActionResult Delete(uint id)
+        public async Task<ActionResult> Delete(uint id)
         {
-            Cliente cliente = _clienteService.Get(id);
-            ClienteViewModel clienteModel = _mapper.Map<ClienteViewModel>(cliente);
+            var cliente = await _clienteService.Get(id);
+            if (cliente == null)
+                return NotFound();
+
+            var clienteModel = _mapper.Map<ClienteViewModel>(cliente);
             return View(clienteModel);
         }
 
         // POST: ClienteController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(uint id, ClienteViewModel clienteViewModel)
+        public async Task<ActionResult> Delete(uint id, ClienteViewModel clienteViewModel)
         {
-            _clienteService.Delete(id);
+            await _clienteService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
+
     }
 }

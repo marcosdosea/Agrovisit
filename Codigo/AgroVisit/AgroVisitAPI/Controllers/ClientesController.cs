@@ -31,9 +31,9 @@ namespace AgroVisitAPI.Controllers
 
         // GET api/<ClientesController>/5
         [HttpGet("{id}")]
-        public ActionResult Get(uint id)
+        public async Task<ActionResult> Get(uint id)
         {
-            Cliente cliente = _clienteService.Get(id);
+            Cliente cliente = await _clienteService.Get(id);
             if (cliente == null)
                 return NotFound();
             return Ok(cliente);
@@ -71,13 +71,13 @@ namespace AgroVisitAPI.Controllers
 
         // DELETE api/<ClientesController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(uint id)
+        public async Task<ActionResult> Delete(uint id)
         {
-            Cliente cliente = _clienteService.Get(id);
+            Cliente cliente = await _clienteService.Get(id);
             if (cliente == null)
                 return NotFound();
 
-            _clienteService.Delete(id);
+            await _clienteService.Delete(id);
             return Ok();
         }
     }

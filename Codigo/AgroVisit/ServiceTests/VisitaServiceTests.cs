@@ -2,8 +2,9 @@
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Service;
 
-namespace Service.Tests
+namespace ServiceTests
 {
     [TestClass()]
     public class VisitaServiceTests
@@ -12,18 +13,23 @@ namespace Service.Tests
         private IVisitaService _visitaService;
 
         [TestInitialize()]
-        public void Initialize()
+        public async Task Initialize()
         {
             var builder = new DbContextOptionsBuilder<AgroVisitContext>();
             builder.UseInMemoryDatabase("AgroVisit");
             var options = builder.Options;
 
             _context = new AgroVisitContext(options);
+
             _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
+
             var visitas = new List<Visita>
             {
-                new Visita {Id = 1, Observacoes = "Entregar sementes tratadas",
+                new Visita
+                {
+                    Id = 1,
+                    Observacoes = "Entregar sementes tratadas",
                     DataHora = DateTime.Parse("2023-09-30"),
                     Status = "A",
                     IdPropriedade = 1
@@ -45,57 +51,71 @@ namespace Service.Tests
                     IdPropriedade = 2
                 }
             };
-            _context.AddRange(visitas);
-            _context.SaveChanges();
+
+            await _context.AddRangeAsync(visitas);
+            await _context.SaveChangesAsync();
+
             _visitaService = new VisitaService(_context);
         }
 
         [TestMethod()]
-        public void CreateTest()
+        public async Task CreateTest()
         {
-            _visitaService.Create(new Visita() { Id = 4, Observacoes = "Coletar amostra de solo para análise", DataHora = DateTime.Parse("2023-10-05"), Status = "A" });
-            Assert.AreEqual(4, _visitaService.GetAll().Count());
-            var visita = _visitaService.Get(4);
+            await _visitaService.Create(new Visita
+            {
+                Id = 4,
+                Observacoes = "Coletar amostra de solo para análise",
+                DataHora = DateTime.Parse("2023-10-05"),
+                Status = "A"
+            });
+
+            var all = await _visitaService.GetAll();
+            Assert.AreEqual(4, all.Count());
+
+            var visita = await _visitaService.Get(4);
             Assert.AreEqual("Coletar amostra de solo para análise", visita.Observacoes);
             Assert.AreEqual(DateTime.Parse("2023-10-05"), visita.DataHora);
         }
 
         [TestMethod()]
-        public void DeleteTest()
+        public async Task DeleteTest()
         {
-            _visitaService.Delete(2);
-            Assert.AreEqual(2, _visitaService.GetAll().Count());
-            var visita = _visitaService.Get(2);
-            Assert.AreEqual(null, visita);
+            await _visitaService.Delete(2);
+            var all = await _visitaService.GetAll();
+            Assert.AreEqual(2, all.Count());
+
+            var visita = await _visitaService.Get(2);
+            Assert.IsNull(visita);
         }
 
         [TestMethod()]
-        public void EditTest()
+        public async Task EditTest()
         {
-            var visita = _visitaService.Get(3);
+            var visita = await _visitaService.Get(3);
             visita.Observacoes = "Coletar amostra de solo para análise";
             visita.DataHora = DateTime.Parse("2023-10-11");
-            _visitaService.Edit(visita);
 
-            visita = _visitaService.Get(3);
+            await _visitaService.Edit(visita);
+
+            visita = await _visitaService.Get(3);
             Assert.IsNotNull(visita);
             Assert.AreEqual("Coletar amostra de solo para análise", visita.Observacoes);
             Assert.AreEqual(DateTime.Parse("2023-10-11"), visita.DataHora);
         }
 
         [TestMethod()]
-        public void GetTest()
+        public async Task GetTest()
         {
-            var visita = _visitaService.Get(1);
+            var visita = await _visitaService.Get(1);
             Assert.IsNotNull(visita);
             Assert.AreEqual("Entregar sementes tratadas", visita.Observacoes);
             Assert.AreEqual(DateTime.Parse("2023-09-30"), visita.DataHora);
         }
 
         [TestMethod()]
-        public void GetAllTest()
+        public async Task GetAllTest()
         {
-            var listaVisita = _visitaService.GetAll();
+            var listaVisita = await _visitaService.GetAll();
 
             Assert.IsInstanceOfType(listaVisita, typeof(IEnumerable<Visita>));
             Assert.IsNotNull(listaVisita);
@@ -105,9 +125,9 @@ namespace Service.Tests
         }
 
         [TestMethod()]
-        public void GetAllByDateTest()
+        public async Task GetAllByDateTest()
         {
-            var visitas = _visitaService.GetAllByDate(DateTime.Parse("2023-09-30"));
+            var visitas = await _visitaService.GetAllByDate(DateTime.Parse("2023-09-30"));
 
             Assert.IsNotNull(visitas);
             Assert.AreEqual(1, visitas.Count());
@@ -115,18 +135,18 @@ namespace Service.Tests
         }
 
         [TestMethod()]
-        public void GetAllByStatusTest()
+        public async Task GetAllByStatusTest()
         {
-            var visitas = _visitaService.GetAllByStatus("A");
+            var visitas = await _visitaService.GetAllByStatus("A");
             Assert.IsNotNull(visitas);
             Assert.AreEqual(2, visitas.Count());
             Assert.AreEqual("Entregar sementes tratadas", visitas.First().Observacoes);
         }
 
         [TestMethod()]
-        public void GetByPropriedadeTest()
+        public async Task GetByPropriedadeTest()
         {
-            var visitas = _visitaService.GetByPropriedade(1);
+            var visitas = await _visitaService.GetByPropriedade(1);
 
             Assert.IsNotNull(visitas);
             Assert.AreEqual(2, visitas.Count());

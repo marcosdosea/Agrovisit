@@ -8,11 +8,15 @@ using Service;
 
 namespace AgroVisitWeb
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Configuration
+                .AddUserSecrets<SecretReference>()
+                .AddEnvironmentVariables();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -27,55 +31,41 @@ namespace AgroVisitWeb
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            builder.Services.AddDbContext<AgroVisitContext>(
-                options => options.UseMySQL(builder.Configuration.GetConnectionString("AgroVisitDatabase")));
+            builder.Services.AddDbContext<AgroVisitContext>(options =>
+                options.UseMySQL(builder.Configuration.GetConnectionString("AgroVisitDatabase")));
 
-            builder.Services.AddDbContext<IdentityContext>(
-                options => options.UseMySQL(builder.Configuration.GetConnectionString("AgroVisitDatabase")));
+            builder.Services.AddDbContext<IdentityContext>(options =>
+                options.UseMySQL(builder.Configuration.GetConnectionString("AgroVisitDatabase")));
 
-            //builder.Services.AddDefaultIdentity<UsuarioIdentity>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<IdentityContext>();
+            var connectionString = builder.Configuration.GetConnectionString("AgroVisitDatabase");
+            if (string.IsNullOrWhiteSpace(connectionString))
+            {
+                throw new InvalidOperationException("A string de conexão 'AgroVisitDatabase' está ausente.");
+            }
 
             builder.Services.AddDefaultIdentity<UsuarioIdentity>(options =>
             {
-                // SignIn settings
                 options.SignIn.RequireConfirmedAccount = false;
-                options.SignIn.RequireConfirmedEmail = false;
-                options.SignIn.RequireConfirmedPhoneNumber = false;
-
-                // Password settings
                 options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequiredLength = 6;
-
-                // Default User settings.
-                options.User.AllowedUserNameCharacters =
-                        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.User.RequireUniqueEmail = false;
-
-                // Default Lockout settings
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                options.Lockout.MaxFailedAccessAttempts = 5;
-                options.Lockout.AllowedForNewUsers = true;
-            }).AddRoles<IdentityRole>()
-              .AddEntityFrameworkStores<IdentityContext>();
+            })
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<IdentityContext>();
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-                options.Cookie.Name = "YourAppCookieName";
+                options.Cookie.Name = "AgroVisitCookie";
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                 options.LoginPath = "/Identity/Account/Login";
-                // ReturnUrlParameter requires 
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 options.SlidingExpiration = true;
             });
 
             var app = builder.Build();
-
 
             if (!app.Environment.IsDevelopment())
             {
@@ -85,11 +75,10 @@ namespace AgroVisitWeb
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
             app.UseAuthentication();
-
             app.UseAuthorization();
+
             app.MapRazorPages();
 
             app.MapControllerRoute(
@@ -99,6 +88,4 @@ namespace AgroVisitWeb
             app.Run();
         }
     }
-
 }
-

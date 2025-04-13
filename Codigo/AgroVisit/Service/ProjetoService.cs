@@ -23,10 +23,10 @@ namespace Service
         /// </summary>
         /// <param name="projeto">dados do projeto</param>
         /// <returns>id</returns>
-        public uint Create(Projeto projeto)
+        public async Task<uint> Create(Projeto projeto)
         {
-            _context.Add(projeto);
-            _context.SaveChanges();
+            await _context.AddAsync(projeto);
+            await _context.SaveChangesAsync();
             return projeto.Id;
         }
 
@@ -34,13 +34,13 @@ namespace Service
         /// Excluir projeto da base de dados
         /// </summary>
         /// <param name="id">id projeto excluir</param>
-        public void Delete(uint id)
+        public async Task Delete(uint id)
         {
-            var projeto = _context.Projetos.Find(id);
+            var projeto = await _context.Projetos.FindAsync(id);
             if (projeto != null)
             {
                 _context.Remove(projeto);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
         }
 
@@ -48,10 +48,10 @@ namespace Service
         /// Editar projeto na base de dados
         /// </summary>
         /// <param name="projeto"></param>
-        public void Edit(Projeto projeto)
+        public async Task Edit(Projeto projeto)
         {
             _context.Update(projeto);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -59,73 +59,79 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Dados de um projeto </returns>
-        public Projeto? Get(uint id)
+        public async Task<Projeto?> Get(uint id)
         {
-            return _context.Projetos.Find(id);
+            return await _context.Projetos.FindAsync(id);
         }
+
         /// <summary>
         /// Obter projetos pelo nome
         /// </summary>
         /// <param name="nome"></param>
         /// <returns> Projetos pelo nome </returns>
-        public IEnumerable<Projeto> GetByNome(string nome)
+        public async Task<IEnumerable<Projeto>> GetByNome(string nome)
         {
-            return _context.Projetos.Where(
-                projeto => projeto.Nome.StartsWith(nome)).AsNoTracking();
+            return await _context.Projetos
+                .Where(p => p.Nome.StartsWith(nome))
+                .AsNoTracking()
+                .ToListAsync();
         }
+
         /// <summary>
         /// Obter todos os projetos
         /// </summary>
         /// <returns> Todos os projetos </returns>
         /// 
 
-        public IEnumerable<Projeto> GetAll()
+        public async Task<IEnumerable<Projeto>> GetAll()
         {
-            return _context.Projetos.AsNoTracking();
+            return await _context.Projetos.AsNoTracking().ToListAsync();
         }
+
         /// <summary>
         /// Obter todos os projetosDto
         /// </summary>
         /// <returns> todos os projetosDto</returns>
-        public IEnumerable<ProjetoDto> GetAllDto()
+        public async Task<IEnumerable<ProjetoDto>> GetAllDto()
         {
-            var query = from projetos in _context.Projetos
-                        select new ProjetoDto
-                        {
-                            Id = projetos.Id,
-                            Nome = projetos.Nome,
-                            DataInicio = projetos.DataInicio,
-                            Status = projetos.Status,
-                            NomeCliente = projetos.IdPropriedadeNavigation.IdClienteNavigation.Nome,
-                            NomePropriedade = projetos.IdPropriedadeNavigation.Nome,
-                            Valor = projetos.Valor
-                        };
-
-            return query.AsNoTracking();
+            return await _context.Projetos
+                .Select(p => new ProjetoDto
+                {
+                    Id = p.Id,
+                    Nome = p.Nome,
+                    DataInicio = p.DataInicio,
+                    Status = p.Status,
+                    NomeCliente = p.IdPropriedadeNavigation.IdClienteNavigation.Nome,
+                    NomePropriedade = p.IdPropriedadeNavigation.Nome,
+                    Valor = p.Valor
+                })
+                .AsNoTracking()
+                .ToListAsync();
         }
-        public ProjetoAllDto GetDetailsDeleteAll(uint id)
-        {
-            var query = (from projetos in _context.Projetos
-                         where projetos.Id == id
-                         select new ProjetoAllDto
-                         {
-                             Id = projetos.Id,
-                             Nome = projetos.Nome,
-                             DataInicio = projetos.DataInicio,
-                             Status = projetos.Status,
-                             NomeCliente = projetos.IdPropriedadeNavigation.IdClienteNavigation.Nome,
-                             NomePropriedade = projetos.IdPropriedadeNavigation.Nome,
-                             DataPrevista = projetos.DataPrevista,
-                             DataConclusao = projetos.DataConclusao,
-                             Descricao = projetos.Descricao,
-                             Anexo = projetos.Anexo,
-                             NumeroVisita = projetos.NumeroVisita,
-                             Valor = projetos.Valor,
-                             QuantParcela = projetos.QuantParcela,
-                             Intervencoes = projetos.Intervencoes
-                         });
 
-            return (ProjetoAllDto)query;
+        public async Task<ProjetoAllDto?> GetDetailsDeleteAll(uint id)
+        {
+            return await _context.Projetos
+                .Where(p => p.Id == id)
+                .Select(p => new ProjetoAllDto
+                {
+                    Id = p.Id,
+                    Nome = p.Nome,
+                    DataInicio = p.DataInicio,
+                    Status = p.Status,
+                    NomeCliente = p.IdPropriedadeNavigation.IdClienteNavigation.Nome,
+                    NomePropriedade = p.IdPropriedadeNavigation.Nome,
+                    DataPrevista = p.DataPrevista,
+                    DataConclusao = p.DataConclusao,
+                    Descricao = p.Descricao,
+                    Anexo = p.Anexo,
+                    NumeroVisita = p.NumeroVisita,
+                    Valor = p.Valor,
+                    QuantParcela = p.QuantParcela,
+                    Intervencoes = p.Intervencoes
+                })
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
         }
 
         /// <summary>
@@ -133,13 +139,13 @@ namespace Service
         /// </summary>
         /// <param name="data"></param>
         /// <returns> Projetos ordenados pela data prevista </returns>
-        public IEnumerable<Projeto> GetByData(DateTime data)
+        public async Task<IEnumerable<Projeto>> GetByData(DateTime data)
         {
-            var query = from projeto in _context.Projetos
-                        where projeto.DataPrevista.Equals(data)
-                        orderby projeto.DataPrevista
-                        select projeto;
-            return query.AsNoTracking();
+            return await _context.Projetos
+                .Where(p => p.DataPrevista == data)
+                .OrderBy(p => p.DataPrevista)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         /// <summary>
@@ -147,33 +153,36 @@ namespace Service
         /// </summary>
         /// <param name="status"></param>
         /// <returns> Projeto de acordo com seu status </returns>
-        public IEnumerable<Projeto> GetByStatus(string status)
+        public async Task<IEnumerable<Projeto>> GetByStatus(string status)
         {
-            return _context.Projetos.Where(
-               projeto => projeto.Status.StartsWith(status)).AsNoTracking();
+            return await _context.Projetos
+                .Where(p => p.Status.StartsWith(status))
+                .AsNoTracking()
+                .ToListAsync();
         }
+
         /// <summary>
         /// Obter as intervenções de um projeto
         /// </summary>
         /// <returns> As intervenções de um projeto </returns>
-        public IEnumerable<Intervencao> GetAllIntervencoes(uint id)
+        public async Task<IEnumerable<Intervencao>> GetAllIntervencoes(uint id)
         {
-            var query = from intervencao in _context.Intervencoes
-                        where intervencao.IdProjeto == id
-                        select intervencao;
-            return query.AsNoTracking();
+            return await _context.Intervencoes
+                .Where(i => i.IdProjeto == id)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         /// <summary>
         /// Obter as contas de um projeto
         /// </summary>
         /// <returns> As contas de um projeto </returns>
-        public IEnumerable<Conta> GetAllConta(uint id)
+        public async Task<IEnumerable<Conta>> GetAllContas(uint id)
         {
-            var query = from conta in _context.Conta
-                        where conta.IdProjeto == id
-                        select conta;
-            return query.AsNoTracking();
+            return await _context.Conta
+                .Where(c => c.IdProjeto == id)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         /// <summary>
@@ -181,12 +190,12 @@ namespace Service
         /// </summary>
         /// <param name="idPropriedade"></param>
         /// <returns> Projetos de uma propriedade </returns>
-        public IEnumerable<Projeto> GetByPropriedade(uint idPropriedade)
+        public async Task<IEnumerable<Projeto>> GetByPropriedade(uint idPropriedade)
         {
-            var query = from projeto in _context.Projetos
-                        where projeto.IdPropriedade == idPropriedade
-                        select projeto;
-            return query.AsNoTracking();
+            return await _context.Projetos
+                .Where(p => p.IdPropriedade == idPropriedade)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         /// <summary>
@@ -194,57 +203,49 @@ namespace Service
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public DatatableResponse<ProjetoDto> GetDataPage(DatatableRequest request)
+        public async Task<DatatableResponse<ProjetoDto>> GetDataPage(DatatableRequest request)
         {
-            var projetos = from projeto in _context.Projetos
-                           select new ProjetoDto
-                           {
-                               Id = projeto.Id,
-                               Nome = projeto.Nome,
-                               DataInicio = projeto.DataInicio,
-                               Status = projeto.Status,
-                               NomeCliente = projeto.IdPropriedadeNavigation.IdClienteNavigation.Nome,
-                               NomePropriedade = projeto.IdPropriedadeNavigation.Nome,
-                               Valor = projeto.Valor
-                           };
-            // total de registros na tabela
-            var totalRecords = projetos.Count();
-
-            // filtra pelo campos de busca
-            if (request.Search != null && request.Search.GetValueOrDefault("value") != null)
+            var query = _context.Projetos.Select(projeto => new ProjetoDto
             {
-                projetos = projetos.Where(projeto => projeto.Id.ToString().Contains(request.Search.GetValueOrDefault("value"))
-                                              || projeto.Nome.ToLower().Contains(request.Search.GetValueOrDefault("value")));
+                Id = projeto.Id,
+                Nome = projeto.Nome,
+                DataInicio = projeto.DataInicio,
+                Status = projeto.Status,
+                NomeCliente = projeto.IdPropriedadeNavigation.IdClienteNavigation.Nome,
+                NomePropriedade = projeto.IdPropriedadeNavigation.Nome,
+                Valor = projeto.Valor
+            });
+
+            int totalRecords = await query.CountAsync();
+
+            if (request.Search?.GetValueOrDefault("value") is string searchValue && !string.IsNullOrWhiteSpace(searchValue))
+            {
+                query = query.Where(projeto =>
+                    projeto.Id.ToString().Contains(searchValue) ||
+                    projeto.Nome.ToLower().Contains(searchValue.ToLower()));
             }
 
-            // ordenação pelas colunas permitidas
-            if (request.Order != null && request.Order[0].GetValueOrDefault("column").Equals("0"))
+            int countRecordsFiltered = await query.CountAsync();
+
+            if (request.Order is not null && request.Order[0].TryGetValue("column", out string? column) && request.Order[0].TryGetValue("dir", out string? dir))
             {
-                if (request.Order[0].GetValueOrDefault("dir").Equals("asc"))
-                    projetos = projetos.OrderBy(projeto => projeto.Nome);
-                else
-                    projetos = projetos.OrderByDescending(projeto => projeto.Nome);
-            }
-            else if (request.Order != null && request.Order[0].GetValueOrDefault("column").Equals("3"))
-            {
-                if (request.Order[0].GetValueOrDefault("dir").Equals("asc"))
-                    projetos = projetos.OrderBy(projeto => projeto.DataInicio);
-                else
-                    projetos = projetos.OrderByDescending(projeto => projeto.DataInicio);
+                switch (column)
+                {
+                    case "0":
+                        query = dir == "asc" ? query.OrderBy(p => p.Nome) : query.OrderByDescending(p => p.Nome);
+                        break;
+                    case "3":
+                        query = dir == "asc" ? query.OrderBy(p => p.DataInicio) : query.OrderByDescending(p => p.DataInicio);
+                        break;
+                }
             }
 
-
-            // total de registros filtrados
-            int countRecordsFiltered = projetos.Count();
-            // paginação que será exibida
             if (request.Length != -1)
-            {
-                projetos = projetos.Skip(request.Start).Take(request.Length);
-            }
+                query = query.Skip(request.Start).Take(request.Length);
 
-            return new DatatableResponse<ProjetoDto>()
+            return new DatatableResponse<ProjetoDto>
             {
-                Data = projetos.ToList(),
+                Data = await query.ToListAsync(),
                 Draw = request.Draw,
                 RecordsFiltered = countRecordsFiltered,
                 RecordsTotal = totalRecords

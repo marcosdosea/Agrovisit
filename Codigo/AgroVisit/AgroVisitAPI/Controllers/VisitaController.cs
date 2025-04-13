@@ -35,9 +35,9 @@ namespace AgroVisitAPI.Controllers
 
         // GET api/<VisitaController>/5
         [HttpGet("{id}")]
-        public ActionResult Get(uint id)
+        public async Task<ActionResult> Get(uint id)
         {
-            Visita visita = _visitaService.Get(id);
+            Visita visita = await _visitaService.Get(id);
             if (visita == null)
             {
                 return NotFound();
@@ -76,13 +76,13 @@ namespace AgroVisitAPI.Controllers
 
         // DELETE api/<VisitaController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(uint id)
+        public async Task<ActionResult> Delete(uint id)
         {
-            Visita visita = _visitaService.Get(id);
+            Visita visita = await _visitaService.Get(id);
             if (visita == null)
                 return NotFound();
 
-            _visitaService.Delete(id);
+            await _visitaService.Delete(id);
             return Ok();
         }
     }

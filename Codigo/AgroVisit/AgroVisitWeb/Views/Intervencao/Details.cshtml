@@ -11,7 +11,8 @@
             <h1>Detalhes da Intervenção</h1>
 
             <div style="position: relative;">
-                <a asp-action="Details" asp-controller="Projeto" asp-route-id="@Model.IdProjeto" title="Voltar para projeto"
+                <a asp-action="Details" asp-controller="Projeto" asp-route-id="@Model.IdProjeto" 
+                   title="Voltar para projeto"
                    class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
                    style="width: 50px; height: 50px; background-color: #76B375; border: none;
                position: absolute; top:  -60px; right: 30px;"
@@ -63,8 +64,8 @@
             </div>
         </div>
         <div class="d-flex justify-content-end gap-3 mt-4">
-            <a id="border" class="btn btn-success borda-concluir" data-intervencao-id="@Model.Id" data-url-edit="@Url.Action("Edit", "Intervencao")">Editar</a>
-            <a id="border" class="btn btn-danger " href="@Url.ActionLink("Delete", "Intervencao", new { id = Model.Id })">Excluir</a>
+            <a class="btn btn-success borda-concluir borda" data-intervencao-id="@Model.Id" data-url-edit="@Url.Action("Edit", "Intervencao")">Editar</a>
+            <a class="btn btn-danger borda" href="@Url.ActionLink("Delete", "Intervencao", new { id = Model.Id })">Excluir</a>
         </div>
     </div>
 
@@ -81,14 +82,11 @@
             </div>
         </div>
     </div>
+
     @section Scripts {
         @{
             await Html.RenderPartialAsync("_ValidationScriptsPartial");
         }
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
         <script src="~/js/intervencaoJS.js"></script>
     }
 </body>

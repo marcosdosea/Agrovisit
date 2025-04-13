@@ -1,7 +1,6 @@
 ﻿using AgroVisitWeb.Models;
 using AutoMapper;
 using Core;
-using Core.Datatables;
 using Core.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,101 +31,107 @@ namespace AgroVisitWeb.Controllers
         }
 
         // GET: PropriedadeController
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var listaPropriedades = _propriedadeService.GetAllDto();
-            
+            var listaPropriedades = await _propriedadeService.GetAllDto();
             return View(listaPropriedades);
         }
 
         // GET: PropriedadeController/Details/5
-        public ActionResult Details(uint id)
+        public async Task<IActionResult> Details(uint id)
         {
-            Propriedade propriedade = _propriedadeService.Get(id);
-            PropriedadeViewModel propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
-            propriedadeModel.ListaProjetos = _projetoService.GetByPropriedade(id);
-            propriedadeModel.ListaVisitas = _visitaService.GetByPropriedade(id);
-            propriedadeModel.NomeCultura = _culturaService.Get(propriedadeModel.IdCultura).Nome;
-            propriedadeModel.NomeSolo = _soloService.Get(propriedadeModel.IdSolo).Nome;
-            propriedadeModel.NomeCliente = _clienteService.Get(propriedadeModel.IdCliente).Nome;
+            var propriedade = await _propriedadeService.Get(id);
+            var cliente = await _clienteService.Get(propriedade.IdCliente);
 
+            var propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
+
+            propriedadeModel.ListaProjetos = await _projetoService.GetByPropriedade(id);
+            propriedadeModel.ListaVisitas = await _visitaService.GetByPropriedade(id);
+            propriedadeModel.NomeCultura = (await Task.Run(() => _culturaService.Get(propriedadeModel.IdCultura))).Nome;
+            propriedadeModel.NomeSolo = (await Task.Run(() => _soloService.Get(propriedadeModel.IdSolo))).Nome;
+            propriedadeModel.NomeCliente = cliente.Nome;
             return View(propriedadeModel);
         }
 
         // GET: PropriedadeController/Create
-        public ActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            PropriedadeViewModel propriedadeModel = new PropriedadeViewModel();
-            IEnumerable<Cliente> listaClientes = _clienteService.GetAll();
-            IEnumerable<Cultura> listaCulturas = _culturaService.GetAll();
-            IEnumerable<Solo> listaSolos = _soloService.GetAll();
-            propriedadeModel.ListaClientes = new SelectList(listaClientes, "Id", "Nome", null);
-            propriedadeModel.ListaCulturas = new SelectList(listaCulturas, "Id", "Nome", null);
-            propriedadeModel.ListaSolos = new SelectList(listaSolos, "Id", "Nome", null);
+            var listaClientes = await _clienteService.GetAll();
+
+            var propriedadeModel = new PropriedadeViewModel
+            {
+
+                ListaClientes = new SelectList(listaClientes, "Id", "Nome"),
+                ListaCulturas = new SelectList(await Task.Run(() => _culturaService.GetAll()), "Id", "Nome"),
+                ListaSolos = new SelectList(await Task.Run(() => _soloService.GetAll()), "Id", "Nome")
+            };
             return View(propriedadeModel);
         }
 
         // POST: PropriedadeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PropriedadeViewModel propriedadeModel)
+        public async Task<IActionResult> Create(PropriedadeViewModel propriedadeModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(propriedadeModel);
             }
+
             var propriedade = _mapper.Map<Propriedade>(propriedadeModel);
             propriedade.IdEngenheiroAgronomo = 1;
-            _propriedadeService.Create(propriedade);
+            await _propriedadeService.Create(propriedade);
 
             return RedirectToAction(nameof(Index));
         }
 
         // GET: PropriedadeController/Edit/5
-        public ActionResult Edit(uint id)
+        public async Task<IActionResult> Edit(uint id)
         {
-            Propriedade propriedade = _propriedadeService.Get(id);
-            PropriedadeViewModel propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
-            IEnumerable<Cultura> listaCulturas = _culturaService.GetAll();
-            IEnumerable<Solo> listaSolos = _soloService.GetAll();
-            IEnumerable<Cliente> listaClientes = _clienteService.GetAll();
-            propriedadeModel.ListaCulturas = new SelectList(listaCulturas, "Id", "Nome", null);
-            propriedadeModel.ListaSolos = new SelectList(listaSolos, "Id", "Nome", null);
-            propriedadeModel.ListaClientes = new SelectList(listaClientes, "Id", "Nome", null);
+            var propriedade = await _propriedadeService.Get(id);
+            var propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
 
+            propriedadeModel.ListaCulturas = new SelectList(await Task.Run(() => _culturaService.GetAll()), "Id", "Nome");
+            propriedadeModel.ListaSolos = new SelectList(await Task.Run(() => _soloService.GetAll()), "Id", "Nome");
+            propriedadeModel.ListaClientes = new SelectList(await Task.Run(() => _clienteService.GetAll()), "Id", "Nome");
             return View(propriedadeModel);
         }
 
         // POST: PropriedadeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(uint id, PropriedadeViewModel propriedadeModel)
+        public async Task<IActionResult> Edit(PropriedadeViewModel propriedadeModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var propriedade = _mapper.Map<Propriedade>(propriedadeModel);
-                _propriedadeService.Edit(propriedade);
+                return View(propriedadeModel);
             }
+
+            var propriedade = _mapper.Map<Propriedade>(propriedadeModel);
+            await _propriedadeService.Edit(propriedade);
             return RedirectToAction(nameof(Index));
         }
 
         // GET: PropriedadeController/Delete/5
-        public ActionResult Delete(uint id)
+        public async Task<IActionResult> Delete(uint id)
         {
-            Propriedade propriedade = _propriedadeService.Get(id);
-            PropriedadeViewModel propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
-            propriedadeModel.NomeCultura = _culturaService.Get(propriedadeModel.IdCultura).Nome;
-            propriedadeModel.NomeSolo = _soloService.Get(propriedadeModel.IdSolo).Nome;
-            propriedadeModel.NomeCliente = _clienteService.Get(propriedadeModel.IdCliente).Nome;
+            var propriedade = await _propriedadeService.Get(id);
+            var cliente = await _clienteService.Get(propriedade.IdCliente);
+
+            var propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
+
+            propriedadeModel.NomeCultura = (await Task.Run(() => _culturaService.Get(propriedadeModel.IdCultura))).Nome;
+            propriedadeModel.NomeSolo = (await Task.Run(() => _soloService.Get(propriedadeModel.IdSolo))).Nome;
+            propriedadeModel.NomeCliente = cliente.Nome;
             return View(propriedadeModel);
         }
 
         // POST: PropriedadeController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(uint id, PropriedadeViewModel propriedadeModel)
+        public async Task<IActionResult> Delete(uint id, PropriedadeViewModel propriedadeModel)
         {
-            _propriedadeService.Delete(id);
+            await _propriedadeService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
 

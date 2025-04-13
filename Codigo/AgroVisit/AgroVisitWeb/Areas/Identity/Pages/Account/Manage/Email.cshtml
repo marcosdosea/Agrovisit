@@ -16,7 +16,7 @@
                 @if (Model.IsEmailConfirmed)
                 {
                     <div class="form-floating input-group">
-                        <input id="border" asp-for="Email" class="form-control border border-success" disabled />
+                        <input asp-for="Email" class="form-control border border-success borda" disabled />
                         <div class="input-group-append">
                             <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
                         </div>
@@ -26,18 +26,18 @@
                 else
                 {
                     <div class="form-floating">
-                        <input id="border" asp-for="Email" class="form-control border border-success" disabled />
+                        <input asp-for="Email" class="form-control border border-success borda" disabled />
                         <label asp-for="Email" class="form-label"></label>
                         <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Enviar Email de verificação</button>
                     </div>
                 }
                 <br />
                 <div class="form-floating">
-                    <input id="border" asp-for="Input.NewEmail" class="form-control border border-success" autocomplete="email" aria-required="true" />
+                    <input asp-for="Input.NewEmail" class="form-control border border-success borda" autocomplete="email" aria-required="true" />
                     <label asp-for="Input.NewEmail" class="form-label"></label>
                     <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
                 </div><br />
-                <button id="border" type="submit" asp-page-handler="ChangeEmail" class="col-m-6 btn btn-lg btn-primary borda-concluir">Mudar Email</button>
+                <button type="submit" asp-page-handler="ChangeEmail" class="col-m-6 btn btn-lg btn-primary borda-concluir borda">Mudar Email</button>
             </form>
         </div>
     </div>

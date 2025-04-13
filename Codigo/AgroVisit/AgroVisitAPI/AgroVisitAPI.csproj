@@ -1,9 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>0beb5d1f-4cc0-4779-a697-7717c8ee1c6a</UserSecretsId>
+    <SonarQubeExclude>True</SonarQubeExclude>
   </PropertyGroup>
 
   <ItemGroup>

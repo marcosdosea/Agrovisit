@@ -4,12 +4,12 @@ namespace Core.Service
 {
     public interface IClienteService
     {
-        public uint Create(Cliente cliente);
-        public void Edit(Cliente cliente);
-        public void Delete(uint id);
-        public Cliente? Get(uint id);
-        public IEnumerable<Cliente> GetAll();
-        public IEnumerable<Cliente> GetByNome(string nome);
-        DatatableResponse<Cliente> GetDataPage(DatatableRequest request);
+        Task<uint> Create(Cliente cliente);
+        Task Edit(Cliente cliente);
+        Task Delete(uint id);
+        Task<Cliente?> Get(uint id);
+        Task<IEnumerable<Cliente>> GetAll();
+        Task<IEnumerable<Cliente>> GetByNome(string nome);
+        Task<DatatableResponse<Cliente>> GetDataPage(DatatableRequest request);
     }
 }

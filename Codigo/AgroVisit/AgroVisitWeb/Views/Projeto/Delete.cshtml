@@ -4,13 +4,14 @@
     ViewData["Title"] = "Excluir Projeto";
 }
 
-<div class="card text-center container py-5" style="max-width: 600px;">
-    <div class="card-header bg-danger text-white">
-        <h3>Excluir Projeto</h3>
-    </div>
-    <div class="card-body">
-        <h5 class="card-title text-danger">Tem certeza que deseja excluir este projeto?</h5>
-        <p class="text-muted">Essa ação é irreversível e todos os dados do projeto serão removidos.</p>
+<body>
+    <div class="card text-center container py-5" style="max-width: 600px;">
+        <div class="card-header bg-danger text-white">
+            <h3>Excluir Projeto</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title text-danger">Tem certeza que deseja excluir este projeto?</h5>
+            <p class="text-muted">Essa ação é irreversível e todos os dados do projeto serão removidos.</p>
 
             <hr />
 
@@ -49,10 +50,6 @@
                     <dd>@Html.DisplayFor(model => model.Valor)</dd>
                 </div>
                 <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.dataConclusao):</dt>
-                    <dd>@Html.DisplayFor(model => model.dataConclusao)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
                     <dt class="me-2">@Html.DisplayNameFor(model => model.NumeroVisita):</dt>
                     <dd>@Html.DisplayFor(model => model.NumeroVisita)</dd>
                 </div>
@@ -65,9 +62,9 @@
 
         <form asp-action="Delete" class="mt-4">
             <div class="d-flex justify-content-center gap-3">
-                <a id="border" class="btn borda-concluir btn-success" asp-action="Index">Não</a>
-                <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim, excluir</button>
+                <a class="btn borda-concluir btn-success borda" asp-action="Index">Não</a>
+                <button type="submit" value="Delete borda" class="btn btn-danger ">Sim, excluir</button>
             </div>
         </form>
     </div>
-</div>
+</body>

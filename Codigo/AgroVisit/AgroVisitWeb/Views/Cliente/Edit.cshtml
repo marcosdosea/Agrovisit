@@ -12,7 +12,8 @@
         <div class="row">
             <h1>Editar Cliente</h1>
             <div style="position: relative;">
-                <a asp-action="Detail" asp-route="@Model.Id" title="Voltar para cliente"
+                <a asp-controller="Cliente" asp-action="Details" asp-route-id="@Model.Id"
+                   title="Voltar para cliente"
                    class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
                    style="width: 50px; height: 50px; background-color: #76B375; border: none;
                   position: absolute; top: -60px; right: 30px;"
@@ -100,14 +101,14 @@
         @{
             await Html.RenderPartialAsync("_ValidationScriptsPartial");
         }
-        <script src="~/js/validation.js"></script>
+        <script src="~/js/validations.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 flatpickr(".date-picker", {
                     enableTime: false,
                     dateFormat: "d/m/Y",
                     locale: "pt",
-                    allowInput: true,
+                    allowInput: false,
                     maxDate: "today",
                     defaultDate: "@(Model.DataNascimento.HasValue ? Model.DataNascimento.Value.ToString("yyyy-MM-dd") : "")",
                     onReady: function(instance) {

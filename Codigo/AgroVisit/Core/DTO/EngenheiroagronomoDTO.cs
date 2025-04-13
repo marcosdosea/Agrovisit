@@ -14,7 +14,7 @@
 
         public string? Celular { get; set; }
 
-        public virtual ICollection<AssinaturaDTO> Assinaturas { get; set; } = new List<AssinaturaDTO>();
+        public virtual ICollection<Assinatura> Assinaturas { get; set; } = new List<Assinatura>();
 
         public virtual ICollection<Cliente> Clientes { get; set; } = new List<Cliente>();
 

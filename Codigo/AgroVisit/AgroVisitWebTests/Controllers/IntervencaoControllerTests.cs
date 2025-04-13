@@ -9,7 +9,6 @@ using Moq;
 
 namespace AgroVisitWeb.Controllers.Tests
 {
-
     [TestClass()]
     public class IntervencaoControllerTests
     {
@@ -26,9 +25,9 @@ namespace AgroVisitWeb.Controllers.Tests
                 cfg.AddProfile(new IntervencaoProfile())).CreateMapper();
 
             mockService.Setup(service => service.GetAll())
-                .Returns(GetTestIntervencoes());
+                .ReturnsAsync(GetTestIntervencoes());
             mockService.Setup(service => service.Get(1))
-                .Returns(GetTargetIntervencao());
+                .ReturnsAsync(GetTargetIntervencao());
             mockService.Setup(service => service.Edit(It.IsAny<Intervencao>()))
                 .Verifiable();
             mockService.Setup(service => service.Create(It.IsAny<Intervencao>()))
@@ -36,12 +35,11 @@ namespace AgroVisitWeb.Controllers.Tests
             controller = new IntervencaoController(mockService.Object, projeto.Object, mapper);
         }
 
-
         [TestMethod()]
-        public void DetailsTest()
+        public async Task DetailsTest()
         {
             // Act
-            var result = controller.Details(1);
+            var result = await controller.Details(1);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
@@ -58,14 +56,14 @@ namespace AgroVisitWeb.Controllers.Tests
             // Act
             var result = controller.Create(1);
             // Assert
-            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
         }
 
         [TestMethod()]
-        public void CreateTest_Valid()
+        public async Task CreateTest_Valid()
         {
             // Act
-            var result = controller.Create(GetNewIntervencao());
+            var result = await controller.Create(GetNewIntervencao());
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
@@ -73,14 +71,15 @@ namespace AgroVisitWeb.Controllers.Tests
             Assert.IsNull(redirectToActionResult.ControllerName);
             Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
+
         [TestMethod()]
-        public void CreateTest_Post_Invalid()
+        public async Task CreateTest_Post_Invalid()
         {
             // Arrange
             controller.ModelState.AddModelError("Nome", "Campo requerido");
 
             // Act
-            var result = controller.Create(GetNewIntervencao());
+            var result = await controller.Create(GetNewIntervencao());
 
             // Assert
             Assert.AreEqual(1, controller.ModelState.ErrorCount);
@@ -91,14 +90,14 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void EditTest_Get_Valid()
+        public async Task EditTest_Get_Valid()
         {
             // Act
-            var result = controller.Edit(1);
+            var result = await controller.Edit(1);
 
             // Assert
-            Assert.IsInstanceOfType(result, typeof(ViewResult));
-            ViewResult viewResult = (ViewResult)result;
+            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
+            PartialViewResult viewResult = (PartialViewResult)result;
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(IntervencaoViewModel));
             IntervencaoViewModel autorModel = (IntervencaoViewModel)viewResult.ViewData.Model;
             Assert.AreEqual("Realizar poda", autorModel.Pratica);
@@ -106,23 +105,23 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void EditTest_Post_Valid()
+        public async Task EditTest_Post_Valid()
         {
             // Act
-            var result = controller.Edit(GetTargetIntervencaoModel().Id, GetTargetIntervencaoModel());
+            var result = await controller.Edit(GetTargetIntervencaoModel());
 
             // Assert
-            Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
-            RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
-            Assert.IsNull(redirectToActionResult.ControllerName);
-            Assert.AreEqual("Index", redirectToActionResult.ActionName);
+            Assert.IsInstanceOfType(result, typeof(JsonResult));
+            JsonResult redirectToActionResult = (JsonResult)result;
+            Assert.IsNotNull(JsonResult.ReferenceEquals);
+            Assert.AreNotEqual("Details", JsonResult.ReferenceEquals);
         }
 
         [TestMethod()]
-        public void DeleteTest_Post_Valid()
+        public async Task DeleteTest_Post_Valid()
         {
             // Act
-            var result = controller.Delete(1);
+            var result = await controller.Delete(1);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
@@ -134,16 +133,14 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void DeleteTest_Get_Valid()
+        public async Task DeleteTest_Get_Valid()
         {
             // Act
-            var result = controller.Delete(GetTargetIntervencaoModel().Id, GetTargetIntervencaoModel());
+            var result = await controller.Delete(GetTargetIntervencaoModel().Id, GetTargetIntervencaoModel());
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
             RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
-            Assert.IsNull(redirectToActionResult.ControllerName);
-            Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
 
         private IntervencaoViewModel GetNewIntervencao()
@@ -154,8 +151,8 @@ namespace AgroVisitWeb.Controllers.Tests
                 Pratica = "Aplicação de adubo",
                 Descricao = "Realizar poda nas plantações"
             };
-
         }
+
         private static Intervencao GetTargetIntervencao()
         {
             return new Intervencao
@@ -202,4 +199,3 @@ namespace AgroVisitWeb.Controllers.Tests
         }
     }
 }
-

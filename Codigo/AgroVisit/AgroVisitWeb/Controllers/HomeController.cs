@@ -7,32 +7,35 @@ using System.Diagnostics;
 
 namespace AgroVisitWeb.Controllers
 {
-    //[Authorize(Roles = "Agronomo")]
+    [Authorize(Roles = "Agronomo")]
     public class HomeController : Controller
     {
         private readonly IVisitaService _visitaService;
         private readonly IPropriedadeService _propriedadeService;
         private readonly IMapper _mapper;
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, IVisitaService visitaService, IMapper mapper, IPropriedadeService propriedadeService)
+        public HomeController(IVisitaService visitaService, IMapper mapper, IPropriedadeService propriedadeService)
         {
-            _logger = logger;
             _visitaService = visitaService;
             _propriedadeService = propriedadeService;
             _mapper = mapper;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var listaVisitas = _visitaService.GetAll();
+            var listaVisitas = await _visitaService.GetAll();
             var listaVisitasModel = _mapper.Map<List<VisitaViewModel>>(listaVisitas);
 
             foreach (var item in listaVisitasModel)
             {
-                item.NomePropriedade = _propriedadeService.Get(item.IdPropriedade).Nome;
+                var propriedade = await _propriedadeService.Get(item.IdPropriedade);
+                if (propriedade != null)
+                {
+                    item.NomePropriedade = propriedade.Nome;
+                }
+
             }
-            
+
             return View(listaVisitasModel);
         }
 

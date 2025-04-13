@@ -1,16 +1,13 @@
 html {
     font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
     html {
         font-size: 16px;
     }
-}
-
-html {
-    position: relative;
-    min-height: 100%;
 }
 
 body {
@@ -23,7 +20,7 @@ body {
 
 }
 
-h1 h2 h3 h4 h5 h6 h7 h8 h9 {
+h1 h2 h3 h4 h5 h6 {
     font-family: 'Inter';
 }
 
@@ -32,7 +29,7 @@ ul li {
     color: #165A15;
 }
 
-#border {
+.borda {
     border-radius: 24px !important;
 }
 
@@ -132,4 +129,10 @@ button:disabled {
     color: #145A32 !important; /* verde escuro */
     border-left: 3px solid #145A32;
     padding-left: 10px;
+}
+
+.validation-summary-errors ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
 }

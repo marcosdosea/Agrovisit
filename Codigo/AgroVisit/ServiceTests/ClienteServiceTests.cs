@@ -2,8 +2,9 @@
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Service;
 
-namespace Service.Tests
+namespace ServiceTests
 {
     [TestClass()]
     public class ClienteServiceTests
@@ -14,7 +15,6 @@ namespace Service.Tests
         [TestInitialize]
         public void Initialize()
         {
-            //Arrange
             var builder = new DbContextOptionsBuilder<AgroVisitContext>();
             builder.UseInMemoryDatabase("AgroVisit");
             var options = builder.Options;
@@ -22,12 +22,13 @@ namespace Service.Tests
             _context = new AgroVisitContext(options);
             _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
+
             var clientes = new List<Cliente>
-                {
-                    new Cliente { Id = 1, Cpf = "222.333.555-78", Nome = "Maria do Bairro", DataNascimento = DateTime.Parse("1989-05-30"), Cidade = "Minas Gerais", Estado = "MG", IdEngenheiroAgronomo = 1},
-                    new Cliente { Id = 2, Cpf = "000.111.222-16", Nome = "João Cabral", DataNascimento = DateTime.Parse("1951-02-23"), Cidade = "Itabaiana", Estado = "SE", IdEngenheiroAgronomo = 1},
-                    new Cliente { Id = 3, Cpf = "999.999.999-36", Nome = "Leucides Camargo", DataNascimento = DateTime.Parse("1968-08-13"), Cidade = "Campo do Brito", Estado = "SE", IdEngenheiroAgronomo = 1},
-                };
+            {
+                new Cliente { Id = 1, Cpf = "222.333.555-78", Nome = "Maria do Bairro", DataNascimento = DateTime.Parse("1989-05-30"), Cidade = "Minas Gerais", Estado = "MG", IdEngenheiroAgronomo = 1},
+                new Cliente { Id = 2, Cpf = "000.111.222-16", Nome = "João Cabral", DataNascimento = DateTime.Parse("1951-02-23"), Cidade = "Itabaiana", Estado = "SE", IdEngenheiroAgronomo = 1},
+                new Cliente { Id = 3, Cpf = "999.999.999-36", Nome = "Leucides Camargo", DataNascimento = DateTime.Parse("1968-08-13"), Cidade = "Campo do Brito", Estado = "SE", IdEngenheiroAgronomo = 1},
+            };
 
             _context.AddRange(clientes);
             _context.SaveChanges();
@@ -36,71 +37,88 @@ namespace Service.Tests
         }
 
         [TestMethod()]
-        public void CreateTest()
+        public async Task CreateTest()
         {
             // Act
-            _clienteService.Create(new Cliente() { Id = 4, Cpf = "123.456.678-10", Nome = "Nestor Almeida", DataNascimento = DateTime.Parse("1989-05-30"), Cidade = "Minas Gerais", Estado = "MG", IdEngenheiroAgronomo = 1 });
+            await _clienteService.Create(new Cliente
+            {
+                Id = 4,
+                Cpf = "123.456.678-10",
+                Nome = "Nestor Almeida",
+                DataNascimento = DateTime.Parse("1989-05-30"),
+                Cidade = "Minas Gerais",
+                Estado = "MG",
+                IdEngenheiroAgronomo = 1
+            });
+
             // Assert
-            Assert.AreEqual(4, _clienteService.GetAll().Count());
-            var autor = _clienteService.Get(4);
+            var clientes = await _clienteService.GetAll();
+            Assert.AreEqual(4, clientes.Count());
+
+            var autor = await _clienteService.Get(4);
             Assert.AreEqual("Nestor Almeida", autor.Nome);
             Assert.AreEqual(DateTime.Parse("1989-05-30"), autor.DataNascimento);
         }
 
         [TestMethod()]
-        public void DeleteTest()
+        public async Task DeleteTest()
         {
             // Act
-            _clienteService.Delete(2);
+            await _clienteService.Delete(2);
+
             // Assert
-            Assert.AreEqual(2, _clienteService.GetAll().Count());
-            var cliente = _clienteService.Get(2);
-            Assert.AreEqual(null, cliente);
+            var clientes = await _clienteService.GetAll();
+            Assert.AreEqual(2, clientes.Count());
+
+            var cliente = await _clienteService.Get(2);
+            Assert.IsNull(cliente);
         }
 
         [TestMethod()]
-        public void EditTest()
+        public async Task EditTest()
         {
-            //Act 
-            var cliente = _clienteService.Get(3);
+            // Act
+            var cliente = await _clienteService.Get(3);
             cliente.Nome = "Thiago Fritz";
             cliente.DataNascimento = DateTime.Parse("1998-11-21");
-            _clienteService.Edit(cliente);
-            //Assert
-            cliente = _clienteService.Get(3);
-            Assert.IsNotNull(cliente);
-            Assert.AreEqual("Thiago Fritz", cliente.Nome);
-            Assert.AreEqual(DateTime.Parse("1998-11-21"), cliente.DataNascimento);
+
+            await _clienteService.Edit(cliente);
+
+            // Assert
+            var clienteAtualizado = await _clienteService.Get(3);
+            Assert.IsNotNull(clienteAtualizado);
+            Assert.AreEqual("Thiago Fritz", clienteAtualizado.Nome);
+            Assert.AreEqual(DateTime.Parse("1998-11-21"), clienteAtualizado.DataNascimento);
         }
 
         [TestMethod()]
-        public void GetTest()
+        public async Task GetTest()
         {
-            var cliente = _clienteService.Get(1);
+            var cliente = await _clienteService.Get(1);
             Assert.IsNotNull(cliente);
             Assert.AreEqual("Maria do Bairro", cliente.Nome);
             Assert.AreEqual(DateTime.Parse("1989-05-30"), cliente.DataNascimento);
         }
 
         [TestMethod()]
-        public void GetAllTest()
+        public async Task GetAllTest()
         {
-            // Act
-            var listaAutor = _clienteService.GetAll();
-            // Assert
-            Assert.IsInstanceOfType(listaAutor, typeof(IEnumerable<Cliente>));
-            Assert.IsNotNull(listaAutor);
-            Assert.AreEqual(3, listaAutor.Count());
-            Assert.AreEqual((uint)1, listaAutor.First().Id);
-            Assert.AreEqual("Maria do Bairro", listaAutor.First().Nome);
+            var listaCliente = await _clienteService.GetAll();
+
+            Assert.IsInstanceOfType(listaCliente, typeof(IEnumerable<Cliente>));
+            Assert.IsNotNull(listaCliente);
+            Assert.AreEqual(3, listaCliente.Count());
+
+            var primeiro = listaCliente.First();
+            Assert.AreEqual((uint)1, primeiro.Id);
+            Assert.AreEqual("Maria do Bairro", primeiro.Nome);
         }
 
         [TestMethod()]
-        public void GetByNome()
+        public async Task GetByNomeTest()
         {
-            // Act
-            var cliente = _clienteService.GetByNome("Maria do Bairro");
-            // Assert
+            var cliente = await _clienteService.GetByNome("Maria do Bairro");
+
             Assert.IsInstanceOfType(cliente, typeof(IEnumerable<Cliente>));
             Assert.IsNotNull(cliente);
             Assert.AreEqual("Maria do Bairro", cliente.First().Nome);

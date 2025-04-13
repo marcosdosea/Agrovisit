@@ -13,15 +13,15 @@
             <form id="profile-form" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating">
-                    <input id="border" asp-for="Username" class="form-control border border-success" disabled />
+                    <input asp-for="Username" class="form-control border border-success borda" disabled />
                     <label asp-for="Username" class="form-label"></label>
                 </div><br />
                 <div class="form-floating">
-                    <input id="border" asp-for="Input.PhoneNumber" class="form-control border border-success" />
+                    <input asp-for="Input.PhoneNumber" class="form-control border border-success borda" />
                     <label asp-for="Input.PhoneNumber" class="form-label"></label>
                     <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                 </div><br />
-                <button id="border" type="submit" class="col-m-6 btn btn-lg btn-primary borda-concluir">Salvar</button>
+                <button type="submit" class="col-m-6 btn btn-lg btn-primary borda-concluir borda">Salvar</button>
             </form>
         </div>
     </div>

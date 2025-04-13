@@ -12,7 +12,7 @@ namespace AgroVisitWeb.Models
         [StringLength(200)]
         public string? Observacoes { get; set; }
 
-        [Display(Name = "Data e horário")]
+        [Display(Name = "Data e hora")]
         [DataType(DataType.DateTime, ErrorMessage = "É necessário escolher uma data válida.")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public DateTime DataHora { get; set; }
@@ -23,10 +23,13 @@ namespace AgroVisitWeb.Models
         [Display(Name = "Propriedade")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public uint IdPropriedade { get; set; }
+
         [Display(Name = "Propriedade")]
         public SelectList? ListaPropriedades { get; set; }
+
         [Display(Name = "Propriedade")]
         public string? NomePropriedade { get; set; }
+
         [Display(Name = "Cliente")]
         public string? NomeCliente { get; set; }
     }

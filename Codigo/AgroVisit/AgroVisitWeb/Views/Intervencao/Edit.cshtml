@@ -52,10 +52,28 @@
                 @Html.ValidationMessageFor(model => model.TipoProduto, "", new { @class = "text-danger" })
             </div>
 
+            <br />
             <div class="form-group">
-                @Html.LabelFor(model => model.Status, new { @class = "control-label" })<span class="text-danger">*</span>
-                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control border border-success" } })
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                <label asp-for="Status" class="control-label">Status da Intervenção: <span class="text-danger">*</span></label>
+
+                <div class="d-flex flex-column flex-md-row">
+                    <div class="form-check">
+                        <input type="radio" id="agendado_radio" asp-for="Status" class="form-check-input" value="A" checked="@(Model.Status == "A")">
+                        <label for="agendado_radio" class="form-check-label">Agendada</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="radio" id="execucao_radio" asp-for="Status" class="form-check-input" value="EX" checked="@(Model.Status == "EX")">
+                        <label for="execucao_radio" class="form-check-label">Em Execução</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="radio" id="concluida_radio" asp-for="Status" class="form-check-input" value="C" checked="@(Model.Status == "C")">
+                        <label for="concluida_radio" class="form-check-label">Concluída</label>
+                    </div>
+                </div>
+
+                <span asp-validation-for="Status" class="text-danger"></span>
             </div>
 
             <div class="modal-footer">
@@ -70,7 +88,6 @@
         }
         <script src="~/js/intervencaoJS.js"></script>
     }
-
     <script>
         flatpickr(".datetime-picker", {
             enableTime: true,

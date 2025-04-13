@@ -4,13 +4,13 @@ namespace Core.Service
 {
     public interface IPropriedadeService
     {
-        public uint Create(Propriedade propriedade);
-        public void Edit(Propriedade propriedade);
-        public void Delete(uint id);
-        public Propriedade Get(uint id);
-        public IEnumerable<Propriedade> GetAll();
-        public IEnumerable<PropriedadeDto> GetAllDto();
-        public IEnumerable<Propriedade> GetByCliente(uint idCliente);
-        public IEnumerable<Propriedade> GetByNome(string nome);
+        Task<uint> Create(Propriedade propriedade);
+        Task Edit(Propriedade propriedade);
+        Task Delete(uint id);
+        Task<Propriedade?> Get(uint id);
+        Task<IEnumerable<Propriedade>> GetAll();
+        Task<IEnumerable<PropriedadeDto>> GetAllDto();
+        Task<IEnumerable<Propriedade>> GetByCliente(uint idCliente);
+        Task<IEnumerable<Propriedade>> GetByNome(string nome);
     }
 }

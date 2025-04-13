@@ -1,61 +1,63 @@
 ﻿@model AgroVisitWeb.Models.PropriedadeViewModel
 
 @{
-    ViewData["Title"] = "Deletar Propriedade";
+    ViewData["Title"] = "Excluir Propriedade";
 }
 
-<div class="card text-center container py-5" style="max-width: 800px;">
-    <div class="card-header bg-danger text-white">
-        <h3>Excluir Propriedade</h3>
-    </div>
-    <div class="card-body">
-        <h5 class="card-title text-danger">Tem certeza que deseja excluir esta propriedade?</h5>
-        <p class="text-muted">Essa ação é irreversível e todos os dados do propriedade serão removidos.</p>
-
-        <hr />
-
-        <dl class="row mt-3">
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
-                <dd>@Html.DisplayFor(model => model.Nome)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.NomeCliente):</dt>
-                <dd>@Html.DisplayFor(model => model.NomeCliente)</dd>
-            </div>
-            <div class="col-md-8 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Cidade):</dt>
-                <dd>@Html.DisplayFor(model => model.Cidade)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Estado):</dt>
-                <dd>@Html.DisplayFor(model => model.Estado)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Comercializacao)</dt>
-                <dd>
-                    @(Model.Comercializacao == "C" ? "Comercialização" : "Armazenamento")
-                </dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.QuantFuncionario):</dt>
-                <dd>@Html.DisplayFor(model => model.QuantFuncionario)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.AreaTotal):</dt>
-                <dd>@Html.DisplayFor(model => model.AreaTotal)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.AreaCultivada):</dt>
-                <dd>@Html.DisplayFor(model => model.AreaCultivada)</dd>
-            </div>
-        </dl>
-    </div>
-
-    <form asp-action="Delete" class="mt-4">
-        <div class="d-flex justify-content-center gap-3">
-            <a id="border" class="btn borda-concluir btn-success" asp-action="Index">Não</a>
-            <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim, excluir</button>
+<body>
+    <div class="card text-center container py-5" style="max-width: 800px;">
+        <div class="card-header bg-danger text-white">
+            <h3>Excluir Propriedade</h3>
         </div>
-    </form>
-</div>
+        <div class="card-body">
+            <h5 class="card-title text-danger">Tem certeza que deseja excluir esta propriedade?</h5>
+            <p class="text-muted">Essa ação é irreversível e todos os dados da propriedade serão removidos.</p>
+
+            <hr />
+
+            <dl class="row mt-3">
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
+                    <dd>@Html.DisplayFor(model => model.Nome)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.NomeCliente):</dt>
+                    <dd>@Html.DisplayFor(model => model.NomeCliente)</dd>
+                </div>
+                <div class="col-md-8 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Cidade):</dt>
+                    <dd>@Html.DisplayFor(model => model.Cidade)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Estado):</dt>
+                    <dd>@Html.DisplayFor(model => model.Estado)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Comercializacao)</dt>
+                    <dd>
+                        @(Model.Comercializacao == "C" ? "Comercialização" : "Armazenamento")
+                    </dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.QuantFuncionario):</dt>
+                    <dd>@Html.DisplayFor(model => model.QuantFuncionario)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.AreaTotal):</dt>
+                    <dd>@Html.DisplayFor(model => model.AreaTotal)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.AreaCultivada):</dt>
+                    <dd>@Html.DisplayFor(model => model.AreaCultivada)</dd>
+                </div>
+            </dl>
+        </div>
+
+        <form asp-action="Delete" class="mt-4">
+            <div class="d-flex justify-content-center gap-3">
+                <a class="btn borda-concluir btn-success borda" asp-action="Index">Não</a>
+                <button type="submit" value="Delete" class="btn btn-danger borda">Sim, excluir</button>
+            </div>
+        </form>
+    </div>
+</body>

@@ -51,10 +51,6 @@ namespace AgroVisitWeb.Models
         [Display(Name = "Anexo")]
         public byte[]? Anexo { get; set; }
 
-        [Display(Name = "Data de conclusão")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime dataConclusao { get; set; }
-
         [Display(Name = "Status")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Status { get; set; } = null!;

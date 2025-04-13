@@ -1,5 +1,10 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
+
+/// <summary>
+///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+///     directly from your code. This API may change or be removed in future releases.
+/// </summary>
 #nullable disable
 
 using AgroVisitWeb.Areas.Identity.Data;
@@ -22,59 +27,28 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public string ReturnUrl { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [TempData]
         public string ErrorMessage { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
+
             [Required(ErrorMessage = "Campo obrigatório")]
             [EmailAddress]
             public string Email { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required(ErrorMessage = "Campo obrigatória")]
+            [Required(ErrorMessage = "Campo obrigatório")]
             [DataType(DataType.Password)]
             [Display(Name = "Senha")]
             public string Password { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Display(Name = "Manter Conectado?")]
             public bool RememberMe { get; set; }
         }
@@ -88,7 +62,6 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account
 
             returnUrl ??= Url.Content("~/");
 
-            // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -104,22 +77,11 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("Usuário autenticado.");
                     return LocalRedirect(returnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
                 }
                 else
                 {
@@ -128,7 +90,6 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

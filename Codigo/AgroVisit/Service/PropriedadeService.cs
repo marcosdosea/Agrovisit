@@ -22,10 +22,10 @@ namespace Service
         /// </summary>
         /// <param name="propriedade"></param>
         /// <returns> Id da propriedade </returns>
-        public uint Create(Propriedade propriedade)
+        public async Task<uint> Create(Propriedade propriedade)
         {
-            _context.Add(propriedade);
-            _context.SaveChanges();
+            await _context.AddAsync(propriedade);
+            await _context.SaveChangesAsync();
             return propriedade.Id;
         }
 
@@ -33,21 +33,24 @@ namespace Service
         /// Remove propriedade do banco de dados
         /// </summary>
         /// <param name="id"></param>
-        public void Delete(uint id)
+        public async Task Delete(uint id)
         {
-            var _propriedade = _context.Propriedades.Find(id);
-            _context.Remove(_propriedade);
-            _context.SaveChanges();
+            var _propriedade = await _context.Propriedades.FindAsync(id);
+            if (_propriedade != null)
+            {
+                _context.Remove(_propriedade);
+                await _context.SaveChangesAsync();
+            }
         }
 
         /// <summary>
         /// Altera propriedade do banco de dados
         /// </summary>
         /// <param name="propriedade"></param>
-        public void Edit(Propriedade propriedade)
+        public async Task Edit(Propriedade propriedade)
         {
             _context.Update(propriedade);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -55,18 +58,20 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Propriedade </returns>
-        public Propriedade Get(uint id)
+        public async Task<Propriedade?> Get(uint id)
         {
-            return _context.Propriedades.Find(id);
+            return await _context.Propriedades.FindAsync(id);
         }
 
         /// <summary>
         /// Obtém todas as propriedades do banco de dados
         /// </summary>
         /// <returns> Todas as propriedades </returns>
-        public IEnumerable<Propriedade> GetAll()
+        public async Task<IEnumerable<Propriedade>> GetAll()
         {
-            return _context.Propriedades.AsNoTracking();
+            return await _context.Propriedades
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         /// <summary>
@@ -74,13 +79,12 @@ namespace Service
         /// </summary>
         /// <param name="cliente"></param>
         /// <returns> Propriedades do cliente </returns>
-        public IEnumerable<Propriedade> GetByCliente(uint idCliente)
+        public async Task<IEnumerable<Propriedade>> GetByCliente(uint idCliente)
         {
-            var query = from Propriedade in _context.Propriedades
-                        where Propriedade.Id == idCliente
-                        select Propriedade;
-
-            return query.AsNoTracking();
+            return await _context.Propriedades
+                .Where(p => p.IdCliente == idCliente)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         /// <summary>
@@ -88,32 +92,31 @@ namespace Service
         /// </summary>
         /// <param name="nome"></param>
         /// <returns> Propriedades </returns>
-        public IEnumerable<Propriedade> GetByNome(string nome)
+        public async Task<IEnumerable<Propriedade>> GetByNome(string nome)
         {
-            var query = from Propriedade in _context.Propriedades
-                        where Propriedade.Nome.Equals(nome)
-                        select Propriedade;
-
-            return query.AsNoTracking();
+            return await _context.Propriedades
+                .Where(p => p.Nome == nome)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         /// <summary>
         /// Obter todos os PropriedadeDto
         /// </summary>
         /// <returns> todos os PropriedadeDto</returns>
-        public IEnumerable<PropriedadeDto> GetAllDto()
+        public async Task<IEnumerable<PropriedadeDto>> GetAllDto()
         {
-            var query = from propriedade in _context.Propriedades
-                        select new PropriedadeDto
-                        {
-                            Id = propriedade.Id,
-                            Nome = propriedade.Nome,
-                            NomeCliente = propriedade.IdClienteNavigation.Nome,
-                            Cidade = propriedade.Cidade,
-                            Estado = propriedade.Estado
-                        };
-
-            return query.AsNoTracking();
+            return await _context.Propriedades
+                .Select(propriedade => new PropriedadeDto
+                {
+                    Id = propriedade.Id,
+                    Nome = propriedade.Nome,
+                    NomeCliente = propriedade.IdClienteNavigation.Nome,
+                    Cidade = propriedade.Cidade,
+                    Estado = propriedade.Estado
+                })
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

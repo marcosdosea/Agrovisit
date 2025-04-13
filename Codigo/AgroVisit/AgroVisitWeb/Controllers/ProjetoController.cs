@@ -27,65 +27,78 @@ namespace AgroVisitWeb.Controllers
             _mapper = mapper;
         }
         // GET: ProjetoController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var listaProjetos = _projetoService.GetAllDto();
-
+            var listaProjetos = await _projetoService.GetAllDto();
             return View(listaProjetos);
         }
 
         [HttpPost]
-        public IActionResult GetDataPage(DatatableRequest request)
+        public async Task<IActionResult> GetDataPage(DatatableRequest request)
         {
-            var response = _projetoService.GetDataPage(request);
+            var response = await _projetoService.GetDataPage(request);
             return Json(response);
         }
 
         // GET: ProjetoController/Details/5
-        public ActionResult Details(uint id)
+        public async Task<ActionResult> Details(uint id)
         {
-            Projeto? projeto = _projetoService.Get(id);
-            ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
+            var projeto = await _projetoService.Get(id);
+            if (projeto == null)
+                return NotFound();
 
-            IEnumerable<Intervencao> listaIntervencoes = _intervencaoService.GetAll();
-            var propriedade = _propriedadeService.Get(projeto.IdPropriedade);
-            projetoModel.ListaIntervencoes = _intervencaoService.GetByProjeto(id);
-            projetoModel.NomeCliente = _clienteService.Get(propriedade.IdCliente).Nome;
-            projetoModel.NomePropriedade = _propriedadeService.Get(projeto.IdPropriedade).Nome;
+            var projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
+
+            var listaIntervencoes = await _intervencaoService.GetByProjeto(id);
+            var propriedade = await _propriedadeService.Get(projeto.IdPropriedade);
+            var cliente = await _clienteService.Get(propriedade.IdCliente);
+
+            projetoModel.ListaIntervencoes = listaIntervencoes;
+            projetoModel.NomeCliente = cliente.Nome;
+            projetoModel.NomePropriedade = propriedade.Nome;
 
             return View(projetoModel);
         }
 
         // GET: ProjetoController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            ProjetoViewModel projetoModel = new ProjetoViewModel();
-            IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
-            projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);
+            var projetoModel = new ProjetoViewModel();
+            var listaPropriedades = await _propriedadeService.GetAll();
+
+            projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome");
+
             return View(projetoModel);
         }
 
         // POST: ProjetoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProjetoViewModel projetoModel)
+        public async Task<ActionResult> Create(ProjetoViewModel projetoModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var projeto = _mapper.Map<Projeto>(projetoModel);
-                _projetoService.Create(projeto);
-            }
-            return RedirectToAction(nameof(Index));
 
+                return View(projetoModel);
+            }
+
+            var projeto = _mapper.Map<Projeto>(projetoModel);
+            await _projetoService.Create(projeto);
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: ProjetoController/Edit/5
-        public ActionResult Edit(uint id)
+        public async Task<ActionResult> Edit(uint id)
         {
-            Projeto? projeto = _projetoService.Get(id);
-            ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
-            IEnumerable<Propriedade> listaPropriedades = _propriedadeService.GetAll();
-            projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", null);
+            var projeto = await _projetoService.Get(id);
+            if (projeto == null)
+                return NotFound();
+
+            var projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
+            var listaPropriedades = await _propriedadeService.GetAll();
+
+            projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome");
 
             return View(projetoModel);
         }
@@ -93,30 +106,36 @@ namespace AgroVisitWeb.Controllers
         // POST: ProjetoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(uint id, ProjetoViewModel projetoModel)
+        public async Task<ActionResult> Edit(ProjetoViewModel projetoModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var projeto = _mapper.Map<Projeto>(projetoModel);
-                _projetoService.Edit(projeto);
+                return View(projetoModel);
             }
+
+            var projeto = _mapper.Map<Projeto>(projetoModel);
+            await _projetoService.Edit(projeto);
+
             return RedirectToAction(nameof(Index));
         }
 
         // GET: ProjetoController/Delete/5
-        public ActionResult Delete(uint id)
+        public async Task<ActionResult> Delete(uint id)
         {
-            var projeto = _projetoService.Get(id);
-            ProjetoViewModel projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
+            var projeto = await _projetoService.Get(id);
+            if (projeto == null)
+                return NotFound();
+
+            var projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
             return View(projetoModel);
         }
 
         // POST: ProjetoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(uint id, ProjetoViewModel projetoModel)
+        public async Task<ActionResult> Delete(uint id, ProjetoViewModel projetoModel)
         {
-            _projetoService.Delete(id);
+            await _projetoService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
     }
