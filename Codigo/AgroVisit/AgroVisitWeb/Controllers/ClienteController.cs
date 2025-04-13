@@ -90,7 +90,7 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ClienteViewModel clienteModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(clienteModel);
             }

@@ -10,27 +10,31 @@
 });
 
 document.getElementById('mesAnoInput').addEventListener('change', function (e) {
-    const [year, month] = e.target.value.split('-');
-    const monthNames = [
-        "Janeiro", "Fevereiro", "Março", "Abril",
-        "Maio", "Junho", "Julho", "Agosto",
-        "Setembro", "Outubro", "Novembro", "Dezembro"
-    ];
-    document.getElementById('customMonthDisplay').textContent =
-        `${monthNames[parseInt(month) - 1]} ${year}`;
+    const customMonthDisplay = document.getElementById('customMonthDisplay');
+
+    if (!e.target.value) {
+        customMonthDisplay.textContent = "Todos";
+    } else {
+        const [year, month] = e.target.value.split('-');
+        const monthNames = [
+            "Janeiro", "Fevereiro", "Março", "Abril",
+            "Maio", "Junho", "Julho", "Agosto",
+            "Setembro", "Outubro", "Novembro", "Dezembro"
+        ];
+        customMonthDisplay.textContent = `${monthNames[parseInt(month) - 1]} ${year}`;
+    }
+
+    filtrarVisitas();
 });
 
 document.getElementById('button_hoje').addEventListener('click', function (e) {
     const dataAtual = new Date();
-
     const mesAtual = (dataAtual.getMonth() + 1).toString().padStart(2, '0');
     const valorInput = `${dataAtual.getFullYear()}-${mesAtual}`;
 
     const monthInput = document.getElementById('mesAnoInput');
     monthInput.value = valorInput;
-
-    const event = new Event('change');
-    monthInput.dispatchEvent(event);
+    monthInput.dispatchEvent(new Event('change'));
 });
 
 function filtrarVisitas() {
@@ -51,6 +55,3 @@ function filtrarVisitas() {
     document.getElementById('mensagemSemResultados').style.display =
         visiveis > 0 ? 'none' : 'block';
 }
-
-document.getElementById('mesAnoInput').addEventListener('change', filtrarVisitas);
-document.addEventListener('DOMContentLoaded', filtrarVisitas);

@@ -150,9 +150,6 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(uint id, VisitaViewModel visitaModel)
         {
-            if (!ModelState.IsValid)
-                return NotFound();
-
             await _visitaService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
