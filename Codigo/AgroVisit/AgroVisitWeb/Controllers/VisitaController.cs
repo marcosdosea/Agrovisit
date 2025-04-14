@@ -31,6 +31,9 @@ namespace AgroVisitWeb.Controllers
             var listaVisitas = await _visitaService.GetAll();
             var listaVisitasModel = _mapper.Map<List<VisitaViewModel>>(listaVisitas);
 
+            if (!ModelState.IsValid)
+                return NotFound();
+
             foreach (var item in listaVisitasModel)
             {
                 var propriedade = await _propriedadeService.Get(item.IdPropriedade);
@@ -53,6 +56,9 @@ namespace AgroVisitWeb.Controllers
             var visita = await _visitaService.Get(id);
             var visitaModel = _mapper.Map<VisitaViewModel>(visita);
 
+            if (!ModelState.IsValid)
+                return NotFound();
+
             var propriedade = await _propriedadeService.Get(visitaModel.IdPropriedade);
             var cliente = await _clienteService.Get(propriedade.IdCliente);
 
@@ -68,6 +74,9 @@ namespace AgroVisitWeb.Controllers
             VisitaViewModel visitaModel = new();
             var listaPropriedades = await _propriedadeService.GetAll();
 
+            if (!ModelState.IsValid)
+                return NotFound();
+
             visitaModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome");
             visitaModel.DataHora = DateTime.Now;
 
@@ -80,14 +89,10 @@ namespace AgroVisitWeb.Controllers
         public async Task<ActionResult> Create(VisitaViewModel visitaModel)
         {
             if (visitaModel.DataHora.Year < 2000 || visitaModel.DataHora > DateTime.Now.AddYears(5))
-            {
                 ModelState.AddModelError("DataHora", "Data inválida");
-            }
 
             if (!ModelState.IsValid)
-            {
                 return View(visitaModel);
-            }
 
             var visita = _mapper.Map<Visita>(visitaModel);
             await _visitaService.Create(visita);
@@ -102,6 +107,9 @@ namespace AgroVisitWeb.Controllers
             var visitaModel = _mapper.Map<VisitaViewModel>(visita);
             var listaPropriedades = await _propriedadeService.GetAll();
 
+            if (!ModelState.IsValid)
+                return NotFound();
+
             visitaModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome", visita.IdPropriedade);
 
             return View(visitaModel);
@@ -113,14 +121,10 @@ namespace AgroVisitWeb.Controllers
         public async Task<ActionResult> Edit(VisitaViewModel visitaModel)
         {
             if (visitaModel.DataHora.Year < 2000)
-            {
                 visitaModel.DataHora = DateTime.Now;
-            }
 
             if (!ModelState.IsValid)
-            {
                 return View(visitaModel);
-            }
 
             var visita = _mapper.Map<Visita>(visitaModel);
             await _visitaService.Edit(visita);
@@ -135,9 +139,7 @@ namespace AgroVisitWeb.Controllers
             var visitaModel = _mapper.Map<VisitaViewModel>(visita);
 
             if (!ModelState.IsValid)
-            {
-                return BadRequest("Visita não encontrada");
-            }
+                return NotFound();
 
             var propriedade = await _propriedadeService.Get(visita.IdPropriedade);
 

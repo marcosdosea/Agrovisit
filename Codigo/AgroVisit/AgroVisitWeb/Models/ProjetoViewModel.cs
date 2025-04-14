@@ -6,6 +6,7 @@ namespace AgroVisitWeb.Models
 {
     public class ProjetoViewModel
     {
+        [Required]
         [Key]
         public uint Id { get; set; }
 
@@ -32,7 +33,6 @@ namespace AgroVisitWeb.Models
         [Required(ErrorMessage = "Campo obrigatório")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-
         public DateTime DataInicio { get; set; }
 
         [Display(Name = "Data da primeira parcela")]

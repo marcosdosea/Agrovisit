@@ -30,6 +30,9 @@ namespace AgroVisitWeb.Controllers
         {
             var intervencao = await _intervencaoService.Get(id);
             var intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
+            if (!ModelState.IsValid)
+                return NotFound();
+
             return View(intervencaoModel);
         }
 
@@ -51,9 +54,7 @@ namespace AgroVisitWeb.Controllers
         public async Task<IActionResult> Create(IntervencaoViewModel intervencaoModel)
         {
             if (!ModelState.IsValid)
-            {
                 return PartialView("Create", intervencaoModel);
-            }
 
             var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
             await _intervencaoService.Create(intervencao);
@@ -66,6 +67,10 @@ namespace AgroVisitWeb.Controllers
         {
             var intervencao = await _intervencaoService.Get(id);
             var intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
+
+            if (!ModelState.IsValid)
+                return NotFound();
+
             return PartialView("Edit", intervencaoModel);
         }
 
@@ -75,9 +80,7 @@ namespace AgroVisitWeb.Controllers
         public async Task<IActionResult> Edit(IntervencaoViewModel intervencaoModel)
         {
             if (!ModelState.IsValid)
-            {
                 return PartialView("Edit", intervencaoModel);
-            }
 
             var intervencao = _mapper.Map<Intervencao>(intervencaoModel);
             await _intervencaoService.Edit(intervencao);
@@ -91,6 +94,9 @@ namespace AgroVisitWeb.Controllers
             var intervencao = await _intervencaoService.Get(id);
             var intervencaoModel = _mapper.Map<IntervencaoViewModel>(intervencao);
 
+            if (!ModelState.IsValid)
+                return NotFound();
+
             return View(intervencaoModel);
         }
 
@@ -100,10 +106,9 @@ namespace AgroVisitWeb.Controllers
         public async Task<IActionResult> Delete(uint id, IntervencaoViewModel intervencaoModel)
         {
             var intervencao = await _intervencaoService.Get(id);
-            var projeto = await _projetoService.Get(intervencao.IdProjeto);
-            await _intervencaoService.Delete(id);
 
-            return RedirectToAction("Details", "Projeto", new { id = projeto.Id });
+            await _intervencaoService.Delete(id);
+            return RedirectToAction("Details", "Projeto", new { id = intervencao.IdProjeto });
         }
     }
 }

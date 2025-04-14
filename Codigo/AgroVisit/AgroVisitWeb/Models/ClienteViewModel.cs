@@ -6,6 +6,7 @@ namespace AgroVisitWeb.Models
     public class ClienteViewModel
     {
 
+        [Required]
         [Key]
         public uint Id { get; set; }
 

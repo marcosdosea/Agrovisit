@@ -34,6 +34,10 @@ namespace AgroVisitWeb.Controllers
         public async Task<IActionResult> Index()
         {
             var listaPropriedades = await _propriedadeService.GetAllDto();
+
+            if (!ModelState.IsValid)
+                return NotFound();
+
             return View(listaPropriedades);
         }
 
@@ -44,6 +48,9 @@ namespace AgroVisitWeb.Controllers
             var cliente = await _clienteService.Get(propriedade.IdCliente);
 
             var propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
+
+            if (!ModelState.IsValid)
+                return NotFound();
 
             propriedadeModel.ListaProjetos = await _projetoService.GetByPropriedade(id);
             propriedadeModel.ListaVisitas = await _visitaService.GetByPropriedade(id);
@@ -60,11 +67,14 @@ namespace AgroVisitWeb.Controllers
 
             var propriedadeModel = new PropriedadeViewModel
             {
-
                 ListaClientes = new SelectList(listaClientes, "Id", "Nome"),
                 ListaCulturas = new SelectList(await Task.Run(() => _culturaService.GetAll()), "Id", "Nome"),
                 ListaSolos = new SelectList(await Task.Run(() => _soloService.GetAll()), "Id", "Nome")
             };
+
+            if (!ModelState.IsValid)
+                return NotFound();
+
             return View(propriedadeModel);
         }
 
@@ -91,6 +101,9 @@ namespace AgroVisitWeb.Controllers
             var propriedade = await _propriedadeService.Get(id);
             var propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
 
+            if (!ModelState.IsValid)
+                return NotFound();
+
             propriedadeModel.ListaCulturas = new SelectList(await Task.Run(() => _culturaService.GetAll()), "Id", "Nome");
             propriedadeModel.ListaSolos = new SelectList(await Task.Run(() => _soloService.GetAll()), "Id", "Nome");
             propriedadeModel.ListaClientes = new SelectList(await Task.Run(() => _clienteService.GetAll()), "Id", "Nome");
@@ -103,9 +116,7 @@ namespace AgroVisitWeb.Controllers
         public async Task<IActionResult> Edit(PropriedadeViewModel propriedadeModel)
         {
             if (!ModelState.IsValid)
-            {
                 return View(propriedadeModel);
-            }
 
             var propriedade = _mapper.Map<Propriedade>(propriedadeModel);
             await _propriedadeService.Edit(propriedade);
@@ -119,6 +130,9 @@ namespace AgroVisitWeb.Controllers
             var cliente = await _clienteService.Get(propriedade.IdCliente);
 
             var propriedadeModel = _mapper.Map<PropriedadeViewModel>(propriedade);
+
+            if (!ModelState.IsValid)
+                return NotFound();
 
             propriedadeModel.NomeCultura = (await Task.Run(() => _culturaService.Get(propriedadeModel.IdCultura))).Nome;
             propriedadeModel.NomeSolo = (await Task.Run(() => _soloService.Get(propriedadeModel.IdSolo))).Nome;

@@ -165,10 +165,10 @@ namespace Service
         /// Obter as intervenções de um projeto
         /// </summary>
         /// <returns> As intervenções de um projeto </returns>
-        public async Task<IEnumerable<Intervencao>> GetAllIntervencoes(uint id)
+        public async Task<IEnumerable<Intervencao>> GetAllIntervencoes(uint idProjeto)
         {
             return await _context.Intervencoes
-                .Where(i => i.IdProjeto == id)
+                .Where(i => i.IdProjeto == idProjeto)
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -177,10 +177,10 @@ namespace Service
         /// Obter as contas de um projeto
         /// </summary>
         /// <returns> As contas de um projeto </returns>
-        public async Task<IEnumerable<Conta>> GetAllContas(uint id)
+        public async Task<IEnumerable<Conta>> GetAllContas(uint idPropriedade)
         {
             return await _context.Conta
-                .Where(c => c.IdProjeto == id)
+                .Where(c => c.IdProjeto == idPropriedade)
                 .AsNoTracking()
                 .ToListAsync();
         }

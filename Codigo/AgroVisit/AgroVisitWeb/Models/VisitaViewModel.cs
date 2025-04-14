@@ -5,6 +5,7 @@ namespace AgroVisitWeb.Models
 {
     public class VisitaViewModel
     {
+        [Required]
         [Key]
         public uint Id { get; set; }
 

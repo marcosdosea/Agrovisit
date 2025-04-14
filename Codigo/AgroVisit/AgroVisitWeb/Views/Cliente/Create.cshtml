@@ -44,14 +44,14 @@
             </div>
             <div class="row">
                 <div class="form-group col-3 m-2">
-                    <label asp-for="DataNascimento" class="control-label"></label>
+                    <label asp-for="DataNascimento" class="control-label">Data de Nascimento</label>
                     <input asp-for="DataNascimento"
                            class="form-control border border-success date-picker flatpickr-input"
                            value="@(Model.DataNascimento?.ToString("yyyy-MM-dd"))" /> 
                     <span asp-validation-for="DataNascimento" class="text-danger"></span>
                 </div>
                 <div class="form-group col-4 m-2">
-                    <label asp-for="Telefone" class="control-label"></label>
+                    <label asp-for="Telefone" class="control-label">Telefone</label>
                     <input asp-for="Telefone" id="telefone" class="form-control border border-success" />
                     <span asp-validation-for="Telefone" class="text-danger"></span>
                 </div>
@@ -67,7 +67,7 @@
                     <span asp-validation-for="Cidade" class="text-danger"></span>
                 </div>
                 <div class="form-group col-6 m-2">
-                    <label asp-for="Bairro" class="control-label"></label>
+                    <label asp-for="Bairro" class="control-label">Bairro</label>
                     <input asp-for="Bairro" class="form-control border border-success" />
                     <span asp-validation-for="Bairro" class="text-danger"></span>
                 </div>
@@ -79,12 +79,12 @@
             </div>
             <div class="row">
                 <div class="form-group col-6 m-2">
-                    <label asp-for="Rua" class="control-label"></label>
+                    <label asp-for="Rua" class="control-label">Rua</label>
                     <input asp-for="Rua" class="form-control border border-success" />
                     <span asp-validation-for="Rua" class="text-danger"></span>
                 </div>
                 <div class="form-group col-4 m-2">
-                    <label asp-for="NumeroCasa" class="control-label"></label>
+                    <label asp-for="NumeroCasa" class="control-label">Número da Casa</label>
                     <input asp-for="NumeroCasa" class="form-control border border-success" />
                     <span asp-validation-for="NumeroCasa" class="text-danger"></span>
                 </div>

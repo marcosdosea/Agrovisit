@@ -5,6 +5,7 @@
 /Codigo/AgroVisit/AgroVisitWeb/bin
 /Codigo/AgroVisit/AgroVisitWeb/obj
 /Codigo/AgroVisit/.vs
+/Codigo/AgroVisit/.sonarqube
 /Codigo/AgroVisit/ServiceTests/obj
 /Codigo/AgroVisit/ServiceTests/bin
 /Codigo/AgroVisit/AgroVisitWebTests/bin

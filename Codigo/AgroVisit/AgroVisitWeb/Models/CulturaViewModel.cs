@@ -6,6 +6,8 @@ namespace AgroVisitWeb.Models
     {
         [Key]
         public uint Id { get; set; }
+
+        [StringLength(50)]
         public string Nome { get; set; } = null!;
     }
 }

@@ -44,10 +44,11 @@ namespace AgroVisitWeb.Controllers
         public async Task<ActionResult> Details(uint id)
         {
             var projeto = await _projetoService.Get(id);
-            if (projeto == null)
-                return NotFound();
 
             var projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
+
+            if (!ModelState.IsValid)
+                return NotFound();
 
             var listaIntervencoes = await _intervencaoService.GetByProjeto(id);
             var propriedade = await _propriedadeService.Get(projeto.IdPropriedade);
@@ -77,10 +78,7 @@ namespace AgroVisitWeb.Controllers
         public async Task<ActionResult> Create(ProjetoViewModel projetoModel)
         {
             if (!ModelState.IsValid)
-            {
-
                 return View(projetoModel);
-            }
 
             var projeto = _mapper.Map<Projeto>(projetoModel);
             await _projetoService.Create(projeto);
@@ -109,9 +107,7 @@ namespace AgroVisitWeb.Controllers
         public async Task<ActionResult> Edit(ProjetoViewModel projetoModel)
         {
             if (!ModelState.IsValid)
-            {
                 return View(projetoModel);
-            }
 
             var projeto = _mapper.Map<Projeto>(projetoModel);
             await _projetoService.Edit(projeto);

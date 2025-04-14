@@ -41,11 +41,13 @@ namespace AgroVisitWeb.Controllers
         public async Task<ActionResult> Details(uint id)
         {
             var cliente = await _clienteService.Get(id);
-            if (cliente == null)
-                return NotFound();
 
             var clienteModel = _mapper.Map<ClienteViewModel>(cliente);
             clienteModel.ListaPropriedade = await _propriedadeService.GetByCliente(cliente.Id);
+
+            if (!ModelState.IsValid)
+                return NotFound();
+
             return View(clienteModel);
         }
 
@@ -65,9 +67,8 @@ namespace AgroVisitWeb.Controllers
         public async Task<ActionResult> Create(ClienteViewModel clienteModel)
         {
             if (!ModelState.IsValid)
-            {
                 return View(clienteModel);
-            }
+
             var cliente = _mapper.Map<Cliente>(clienteModel);
             await _clienteService.Create(cliente);
 
@@ -78,10 +79,11 @@ namespace AgroVisitWeb.Controllers
         public async Task<ActionResult> Edit(uint id)
         {
             var cliente = await _clienteService.Get(id);
-            if (cliente == null)
+            var clienteModel = _mapper.Map<ClienteViewModel>(cliente);
+
+            if (!ModelState.IsValid)
                 return NotFound();
 
-            var clienteModel = _mapper.Map<ClienteViewModel>(cliente);
             return View(clienteModel);
         }
 
@@ -91,9 +93,7 @@ namespace AgroVisitWeb.Controllers
         public async Task<ActionResult> Edit(ClienteViewModel clienteModel)
         {
             if (!ModelState.IsValid)
-            {
                 return View(clienteModel);
-            }
 
             var cliente = _mapper.Map<Cliente>(clienteModel);
             await _clienteService.Edit(cliente);
@@ -105,10 +105,11 @@ namespace AgroVisitWeb.Controllers
         public async Task<ActionResult> Delete(uint id)
         {
             var cliente = await _clienteService.Get(id);
-            if (cliente == null)
+            var clienteModel = _mapper.Map<ClienteViewModel>(cliente);
+
+            if (!ModelState.IsValid)
                 return NotFound();
 
-            var clienteModel = _mapper.Map<ClienteViewModel>(cliente);
             return View(clienteModel);
         }
 

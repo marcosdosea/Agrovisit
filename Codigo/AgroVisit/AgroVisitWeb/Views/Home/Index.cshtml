@@ -27,12 +27,18 @@
     <title>Agenda</title>
 </head>
 <body>
-    <div>
-
+    <div class="container py-5">
         <div class="month-picker-container">
-            <div id="customMonthDisplay" class="custom-month-display" onclick="document.getElementById('mesAnoInput').click()">
+            <div id="customMonthDisplay"
+                 class="custom-month-display"
+                 onclick="document.getElementById('mesAnoInput').click()"
+                 role="button"
+                 tabindex="0"
+                 onkeypress="if(event.key === 'Enter' || event.key === ' ') document.getElementById('mesAnoInput').click()"
+                 onkeydown="if(event.key === 'Enter' || event.key === ' ') document.getElementById('mesAnoInput').click()">
                 @mesExibir
             </div>
+
             <input type="month" id="mesAnoInput" class="custom-month-input" value="@mesFiltro" min="2020-01" max="2030-12">
         </div>
 
@@ -86,7 +92,7 @@
         </div>
     </div>
 
-    <div class="text-end" style="bottom: 40px; position:sticky">
+    <div class="text-end" style="bottom: 40px; position:sticky;">
         <a asp-controller="Visita" asp-action="Create" )>
             <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 99 99" fill="none">
                 <g filter="url(#filter0_d_375_7800)">
@@ -107,6 +113,7 @@
             </svg>
         </a>
     </div>
+    
     <link rel="stylesheet" href="~/css/homeStyle.css" />
     <script src="~/js/homeScript.js"></script>
 </body>
