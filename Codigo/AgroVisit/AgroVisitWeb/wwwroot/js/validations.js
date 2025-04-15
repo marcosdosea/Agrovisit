@@ -34,4 +34,22 @@
             inputCpf.value = valor;
         });
     }
+
+    const valorInput = document.getElementById('valorInput');
+
+    if (valorInput) {
+        valorInput.addEventListener('input', function (e) {
+            let value = valorInput.value.replace(/\D/g, '');
+            value = value.padStart(3, '0');
+
+            let floatValue = parseFloat(value) / 100;
+
+            valorInput.value = floatValue.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+        });
+
+        valorInput.dispatchEvent(new Event('input'));
+    }
 });

@@ -6,6 +6,7 @@ using Core.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Globalization;
 
 namespace AgroVisitWeb.Controllers
 {
@@ -80,6 +81,11 @@ namespace AgroVisitWeb.Controllers
             if (!ModelState.IsValid)
                 return View(projetoModel);
 
+            if (float.TryParse(projetoModel.ValorPlaceHolder.Replace("R$", "").Trim(), NumberStyles.Currency, new CultureInfo("pt-BR"), out float valorDecimal))
+            {
+                projetoModel.Valor = valorDecimal;
+            }
+
             var projeto = _mapper.Map<Projeto>(projetoModel);
             await _projetoService.Create(projeto);
 
@@ -90,11 +96,14 @@ namespace AgroVisitWeb.Controllers
         public async Task<ActionResult> Edit(uint id)
         {
             var projeto = await _projetoService.Get(id);
-            if (projeto == null)
+            
+            if (!ModelState.IsValid)
                 return NotFound();
 
             var projetoModel = _mapper.Map<ProjetoViewModel>(projeto);
             var listaPropriedades = await _propriedadeService.GetAll();
+
+            projetoModel.ValorPlaceHolder = projeto.Valor.ToString("C", new CultureInfo("pt-BR"));
 
             projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome");
 
@@ -108,6 +117,11 @@ namespace AgroVisitWeb.Controllers
         {
             if (!ModelState.IsValid)
                 return View(projetoModel);
+
+            if (float.TryParse(projetoModel.ValorPlaceHolder.Replace("R$", "").Trim(), NumberStyles.Currency, new CultureInfo("pt-BR"), out float valorDecimal))
+            {
+                projetoModel.Valor = valorDecimal;
+            }
 
             var projeto = _mapper.Map<Projeto>(projetoModel);
             await _projetoService.Edit(projeto);

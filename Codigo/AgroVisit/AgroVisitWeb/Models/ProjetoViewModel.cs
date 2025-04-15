@@ -25,6 +25,10 @@ namespace AgroVisitWeb.Models
         [Required(ErrorMessage = "Campo obrigatório")]
         public float Valor { get; set; }
 
+        [Display(Name = "Valor")]
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public string ValorPlaceHolder { get; set; }
+
         [Display(Name = "Quantidade de parcelas")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public uint QuantParcela { get; set; }
