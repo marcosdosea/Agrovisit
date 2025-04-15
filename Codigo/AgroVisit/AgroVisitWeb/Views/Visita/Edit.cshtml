@@ -4,10 +4,6 @@
     ViewData["Title"] = "Editar Visita";
 }
 
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="~/css/flatpickr-custom.css">
-</head>
 <body>
     <div class="container pt-5">
         <div class="row">
@@ -44,7 +40,7 @@
                     <label asp-for="DataHora" class="control-label">Data e horário<span class="text-danger">*</span></label>
                     <input asp-for="DataHora"
                            class="form-control border border-success datetime-picker"
-                           value="@Model.DataHora.ToString("yyyy-MM-dd HH:mm")" />
+                           value="@Model.DataHora.ToString("dd-MM-yyyy HH:mm")" />
                     <span asp-validation-for="DataHora" class="text-danger"></span>
                 </div>
             </div>
@@ -89,11 +85,7 @@
                     time_24hr: true,
                     allowInput: false,
                     locale: "pt",
-                    minDate: "today",
-                    defaultDate: "@Model.DataHora.ToString("yyyy-MM-dd HH:mm")",
-                    parseDate: function(dateStr) {
-                        return new Date(dateStr.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
-                    }
+                    defaultDate: "@Model.DataHora.ToString("dd-MM-yyyy HH:mm")"
                 });
             });
         </script>

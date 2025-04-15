@@ -56,8 +56,9 @@ namespace AgroVisitWeb.Controllers
         {
             var clienteModel = new ClienteViewModel
             {
-                IdEngenheiroAgronomo = 1
+                IdEngenheiroAgronomo = 1,
             };
+
             return View(clienteModel);
         }
 

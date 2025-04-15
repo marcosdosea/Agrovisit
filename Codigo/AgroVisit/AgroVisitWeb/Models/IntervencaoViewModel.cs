@@ -19,6 +19,8 @@ namespace AgroVisitWeb.Models
 
         [Display(Name = "Data Aplicação")]
         [Required(ErrorMessage = "Campo obrigatório")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime? DataAplicacao { get; set; }
 
         [Display(Name = "Produto utilizado")]

@@ -94,13 +94,7 @@
             dateFormat: "d/m/Y H:i",
             time_24hr: true,
             locale: "pt",
-            minDate: "today",
-            defaultDate: "@(Model.DataAplicacao.HasValue == default ? "" : Model.DataAplicacao.Value.ToString("yyyy-MM-dd HH:mm"))",
-            onReady: function(selectedDates, dateStr, instance) {
-                if (instance.input.value === "") {
-                    instance.clear();
-                }
-            }
+            defaultDate: "@(Model.DataAplicacao.Value.ToString("dd-MM-yyyy HH:mm"))"
         });
     </script>
 </body>

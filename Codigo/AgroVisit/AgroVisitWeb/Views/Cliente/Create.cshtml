@@ -46,8 +46,7 @@
                 <div class="form-group col-3 m-2">
                     <label asp-for="DataNascimento" class="control-label">Data de Nascimento</label>
                     <input asp-for="DataNascimento"
-                           class="form-control border border-success date-picker flatpickr-input"
-                           value="@(Model.DataNascimento?.ToString("yyyy-MM-dd"))" /> 
+                           class="form-control border border-success date-picker flatpickr-input" />
                     <span asp-validation-for="DataNascimento" class="text-danger"></span>
                 </div>
                 <div class="form-group col-4 m-2">
@@ -108,13 +107,7 @@
                     dateFormat: "d/m/Y",
                     locale: "pt",
                     allowInput: false,
-                    maxDate: "today",
-                    defaultDate: "@(Model.DataNascimento.HasValue ? Model.DataNascimento.Value.ToString("yyyy-MM-dd") : "")",
-                    onReady: function(instance) {
-                        if (!instance.input.value) {
-                            instance.clear();
-                        }
-                    }
+                    maxDate: "today"
                 });
             });
         </script>

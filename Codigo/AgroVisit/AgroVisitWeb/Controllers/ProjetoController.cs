@@ -69,6 +69,8 @@ namespace AgroVisitWeb.Controllers
             var listaPropriedades = await _propriedadeService.GetAll();
 
             projetoModel.ListaPropriedades = new SelectList(listaPropriedades, "Id", "Nome");
+            projetoModel.DataInicio = DateTime.Now;
+            projetoModel.DataPrevista = DateTime.Today;
 
             return View(projetoModel);
         }

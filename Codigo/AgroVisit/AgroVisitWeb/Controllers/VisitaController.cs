@@ -88,9 +88,6 @@ namespace AgroVisitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(VisitaViewModel visitaModel)
         {
-            if (visitaModel.DataHora.Year < 2000 || visitaModel.DataHora > DateTime.Now.AddYears(5))
-                ModelState.AddModelError("DataHora", "Data inválida");
-
             if (!ModelState.IsValid)
                 return View(visitaModel);
 
