@@ -38,7 +38,7 @@ CREATE TABLE `cliente` (
   UNIQUE KEY `CPF_UNIQUE` (`CPF`),
   KEY `fkClienteEngenheiro Agronomo1_idx` (`idEngenheiro Agronomo`),
   CONSTRAINT `fkClienteEngenheiro Agronomo1` FOREIGN KEY (`idEngenheiro Agronomo`) REFERENCES `engenheiroagronomo` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-04 11:55:34
+-- Dump completed on 2025-04-16 19:50:50

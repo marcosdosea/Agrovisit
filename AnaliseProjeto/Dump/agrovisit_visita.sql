@@ -31,7 +31,7 @@ CREATE TABLE `visita` (
   PRIMARY KEY (`id`),
   KEY `fkVisitaPropriedade_idx` (`idPropriedade`),
   CONSTRAINT `fkVisitaPropriedade` FOREIGN KEY (`idPropriedade`) REFERENCES `propriedade` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=351 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-04 11:55:34
+-- Dump completed on 2025-04-16 19:50:50
