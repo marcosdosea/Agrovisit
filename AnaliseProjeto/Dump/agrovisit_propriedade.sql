@@ -35,11 +35,6 @@ CREATE TABLE `propriedade` (
   `itr` varchar(50) DEFAULT NULL,
   `georreferenciamento` blob,
   `matriculaImovel` blob,
-  `numAnimais` int(11) DEFAULT NULL,
-  `raca` varchar(50) DEFAULT NULL,
-  `fonteAlimento` varchar(50) DEFAULT NULL,
-  `areaPasto` float DEFAULT NULL,
-  `historicoProducao` blob,
   `areaTotal` float DEFAULT NULL,
   `areaCultivada` float DEFAULT NULL,
   `comercializacao` enum('C','A') DEFAULT NULL,
@@ -58,7 +53,7 @@ CREATE TABLE `propriedade` (
   CONSTRAINT `fkPropriedadeCultura1` FOREIGN KEY (`idCultura`) REFERENCES `cultura` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fkPropriedadeSolo1` FOREIGN KEY (`idSolo`) REFERENCES `solo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fkPropriedadeUsuario1` FOREIGN KEY (`idEngenheiroAgronomo`) REFERENCES `engenheiroagronomo` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,4 +74,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-04 11:55:34
+-- Dump completed on 2025-04-16 19:50:51

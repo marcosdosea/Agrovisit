@@ -1,4 +1,7 @@
-﻿namespace Core;
+﻿using System;
+using System.Collections.Generic;
+
+namespace Core;
 
 public partial class Cultura
 {

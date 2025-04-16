@@ -13,7 +13,6 @@ namespace AgroVisitWeb.Models
         [Display(Name = "CPF")]
         [StringLength(15)]
         [Required(ErrorMessage = "Campo obrigatório")]
-        //[RegularExpression(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$", ErrorMessage = "CPF inválido. Use o formato XXX.XXX.XXX-XX.")]
         public string Cpf { get; set; } = null!;
 
         [Display(Name = "Nome")]

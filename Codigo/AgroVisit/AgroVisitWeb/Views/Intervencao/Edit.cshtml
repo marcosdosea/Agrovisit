@@ -1,9 +1,4 @@
 ﻿@model AgroVisitWeb.Models.IntervencaoViewModel
-
-@{
-    ViewBag.Title = "Editar Intervenção";
-}
-
 @{
     Layout = null;
 }
@@ -40,7 +35,7 @@
                         htmlAttributes = new
                         {
                             @class = "form-control border border-success datetime-picker",
-                            @data_date_format = "d/m/Y"
+                            @data_date_format = "d/m/Y H:i"
                         }
                     })
                 @Html.ValidationMessageFor(model => model.DataAplicacao, "", new { @class = "text-danger" })

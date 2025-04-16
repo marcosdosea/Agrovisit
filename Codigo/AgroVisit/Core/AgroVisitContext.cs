@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core;
 
@@ -35,8 +37,10 @@ public partial class AgroVisitContext : DbContext
 
     public virtual DbSet<Visita> Visita { get; set; }
 
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
         modelBuilder.Entity<Assinatura>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -220,7 +224,7 @@ public partial class AgroVisitContext : DbContext
                 .HasColumnName("id");
             entity.Property(e => e.AreaTratada).HasColumnName("areaTratada");
             entity.Property(e => e.DataAplicacao)
-                .HasColumnType("date")
+                .HasColumnType("datetime")
                 .HasColumnName("dataAplicacao");
             entity.Property(e => e.Descricao)
                 .HasMaxLength(500)
