@@ -16,7 +16,6 @@ namespace AgroVisitWeb.Controllers.Tests
         private static ProjetoController controller;
 
         [TestInitialize]
-
         public void Initialize()
         {
             // Arrange
@@ -25,44 +24,43 @@ namespace AgroVisitWeb.Controllers.Tests
             var propriedade = new Mock<IPropriedadeService>();
             var cliente = new Mock<IClienteService>();
 
-
             IMapper mapper = new MapperConfiguration(cfg => cfg.AddProfile(new ProjetoProfile())).CreateMapper();
 
-            mockService.Setup(service => service.GetAllDto()).Returns(GetTestProjetos());
-            mockService.Setup(service => service.Get(1)).Returns(GetTargetProjetos());
+            mockService.Setup(service => service.GetAllDto()).ReturnsAsync(GetTestProjetos());
+            mockService.Setup(service => service.Get(1)).ReturnsAsync(GetTargetProjetos());
             mockService.Setup(service => service.Edit(It.IsAny<Projeto>())).Verifiable();
             mockService.Setup(service => service.Create(It.IsAny<Projeto>())).Verifiable();
 
-            propriedade.Setup(service => service.GetAll()).Returns(GetTestsPropriedades());
-            propriedade.Setup(service => service.Get(1)).Returns(GetNewPropriedade());
+            propriedade.Setup(service => service.GetAll()).ReturnsAsync(GetTestsPropriedades());
+            propriedade.Setup(service => service.Get(1)).ReturnsAsync(GetNewPropriedade());
             propriedade.Setup(service => service.Create(It.IsAny<Propriedade>())).Verifiable();
 
-            cliente.Setup(service => service.GetAll()).Returns(GetTestsCliente());
-            cliente.Setup(service => service.Get(1)).Returns(GetNewCliente());
+            cliente.Setup(service => service.GetAll()).ReturnsAsync(GetTestsCliente());
+            cliente.Setup(service => service.Get(1)).ReturnsAsync(GetNewCliente());
             cliente.Setup(service => service.Create(It.IsAny<Cliente>())).Verifiable();
 
             controller = new ProjetoController(mockService.Object, intervencao.Object, propriedade.Object, cliente.Object, mapper);
         }
 
         [TestMethod()]
-        public void IndexTest_Valido()
+        public async Task IndexTest_Valido()
         {
-            var result = controller.Index();
+            var result = await controller.Index();
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(IEnumerable<ProjetoDto>));
 
-            IEnumerable<ProjetoDto>? lista = (IEnumerable<ProjetoDto>)viewResult.ViewData.Model;
+            IEnumerable<ProjetoDto> lista = (IEnumerable<ProjetoDto>)viewResult.ViewData.Model;
             Assert.AreEqual(3, lista.Count());
         }
 
         [TestMethod()]
-        public void DetailsTest_Valido()
+        public async Task DetailsTest_Valido()
         {
             // Act
-            var result = controller.Details(1);
+            var result = await controller.Details(1);
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
@@ -76,21 +74,20 @@ namespace AgroVisitWeb.Controllers.Tests
             Assert.AreEqual(1900, projetoModel.Valor);
         }
 
-
         [TestMethod()]
-        public void CreateTest_Get_Valido()
+        public async Task CreateTest_Get_Valido()
         {
             // Act
-            var result = controller.Create();
+            var result = await controller.Create();
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
 
         [TestMethod()]
-        public void CreateTest_Valid()
+        public async Task CreateTest_Valid()
         {
             // Act
-            var result = controller.Create(GetNewProjeto());
+            var result = await controller.Create(GetNewProjeto());
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
@@ -100,13 +97,13 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void CreateTest_Post_Invalid()
+        public async Task CreateTest_Post_Invalid()
         {
             // Arrange
             controller.ModelState.AddModelError("Nome", "Campo requerido");
 
             // Act
-            var result = controller.Create(GetNewProjeto());
+            var result = await controller.Create(GetNewProjeto());
 
             // Assert
             Assert.AreEqual(1, controller.ModelState.ErrorCount);
@@ -117,10 +114,10 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void EditTest_Get_Valid()
+        public async Task EditTest_Get_Valid()
         {
             // Act
-            var result = controller.Edit(1);
+            var result = await controller.Edit(1);
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
@@ -136,10 +133,10 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void EditTest_Post_Valid()
+        public async Task EditTest_Post_Valid()
         {
             // Act
-            var result = controller.Edit(GetTargetProjetoModel().Id, GetTargetProjetoModel());
+            var result = await controller.Edit(GetTargetProjetoModel());
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
@@ -149,10 +146,10 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void DeleteTest_Post_Valid()
+        public async Task DeleteTest_Post_Valid()
         {
             // Act
-            var result = controller.Delete(1);
+            var result = await controller.Delete(1);
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
@@ -168,10 +165,10 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void DeleteTest_Get_Valid()
+        public async Task DeleteTest_Get_Valid()
         {
             // Act
-            var result = controller.Delete(GetTargetProjetoModel().Id, GetTargetProjetoModel());
+            var result = await controller.Delete(GetTargetProjetoModel().Id, GetTargetProjetoModel());
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
@@ -179,6 +176,9 @@ namespace AgroVisitWeb.Controllers.Tests
             Assert.IsNull(redirectToActionResult.ControllerName);
             Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
+
+        // Métodos auxiliares para criar dados de teste...
+
         private ProjetoViewModel GetNewProjeto()
         {
             return new ProjetoViewModel
@@ -194,8 +194,8 @@ namespace AgroVisitWeb.Controllers.Tests
                 Valor = 100,
                 IdPropriedade = 2
             };
-
         }
+
         private Projeto GetTargetProjetos()
         {
             return new Projeto
@@ -210,7 +210,6 @@ namespace AgroVisitWeb.Controllers.Tests
                 IdPropriedade = 1
             };
         }
-
 
         private static Propriedade GetNewPropriedade()
         {
@@ -268,7 +267,6 @@ namespace AgroVisitWeb.Controllers.Tests
                     Estado = "SE",
                     Cidade = "Itabaiana",
                     IdEngenheiroAgronomo = 1,
-
                 },
                 new Cliente
                 {

@@ -4,113 +4,113 @@
     ViewData["Title"] = "Detalhes de Cliente";
 }
 
-<div class="container pt-5">
-    <div class="row">
-        <h1>Detalhes do Cliente</h1>
-        <div style="position: relative;">
-            <a asp-action="Index" title="Voltar para clientes cadastradas"
-               class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
-               style="width: 50px; height: 50px; background-color: #76B375; border: none;
+<body>
+    <div class="container pt-5">
+        <div class="row">
+            <h1>Detalhes do Cliente</h1>
+            <div style="position: relative;">
+                <a asp-action="Index" title="Voltar para clientes cadastradas"
+                   class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
+                   style="width: 50px; height: 50px; background-color: #76B375; border: none;
                   position: absolute; top: -60px; right: 30px;"
-               aria-label="Fechar">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
-                </svg>
-            </a>
+                   aria-label="Fechar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                    </svg>
+                </a>
+            </div>
         </div>
-    </div>
 
 
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Informações Pessoais</h4>
-            <dl class="row mt-3">
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
-                    <dd>@Html.DisplayFor(model => model.Nome)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Cpf):</dt>
-                    <dd>@Html.DisplayFor(model => model.Cpf)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.DataNascimento):</dt>
-                    <dd>@Html.DisplayFor(model => model.DataNascimento)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Telefone):</dt>
-                    <dd>@Html.DisplayFor(model => model.Telefone)</dd>
-                </div>
-            </dl>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Informações Pessoais</h4>
+                <dl class="row mt-3">
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
+                        <dd>@Html.DisplayFor(model => model.Nome)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Cpf):</dt>
+                        <dd>@Html.DisplayFor(model => model.Cpf)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.DataNascimento):</dt>
+                        <dd>@Html.DisplayFor(model => model.DataNascimento)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Telefone):</dt>
+                        <dd>@Html.DisplayFor(model => model.Telefone)</dd>
+                    </div>
+                </dl>
 
-            <h4 class="mt-4">Endereço</h4>
-            <dl class="row">
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Cidade):</dt>
-                    <dd>@Html.DisplayFor(model => model.Cidade)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Bairro):</dt>
-                    <dd>@Html.DisplayFor(model => model.Bairro)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.NumeroCasa):</dt>
-                    <dd>@Html.DisplayFor(model => model.NumeroCasa)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Rua):</dt>
-                    <dd>@Html.DisplayFor(model => model.Rua)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Estado):</dt>
-                    <dd>@Html.DisplayFor(model => model.Estado)</dd>
-                </div>
-            </dl>
+                <h4 class="mt-4">Endereço</h4>
+                <dl class="row">
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Cidade):</dt>
+                        <dd>@Html.DisplayFor(model => model.Cidade)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Bairro):</dt>
+                        <dd>@Html.DisplayFor(model => model.Bairro)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.NumeroCasa):</dt>
+                        <dd>@Html.DisplayFor(model => model.NumeroCasa)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Rua):</dt>
+                        <dd>@Html.DisplayFor(model => model.Rua)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Estado):</dt>
+                        <dd>@Html.DisplayFor(model => model.Estado)</dd>
+                    </div>
+                </dl>
+            </div>
         </div>
-    </div>
 
-    <div class="d-flex justify-content-end gap-3 mt-4">
-        <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Edit", "Cliente", new { id = Model.Id })">Editar</a>
-        <a id="border" class="btn btn-danger " href="@Url.ActionLink("Delete", "Cliente", new { id = Model.Id })">Excluir</a>
-    </div>
+        <div class="d-flex justify-content-end gap-3 mt-4">
+            <a class="btn btn-success borda-concluir borda" href="@Url.ActionLink("Edit", "Cliente", new { id = Model.Id })">Editar</a>
+            <a class="btn btn-danger borda" href="@Url.ActionLink("Delete", "Cliente", new { id = Model.Id })">Excluir</a>
+        </div>
 
-    <h2 class="mt-5">Propriedades do Cliente</h2>
-    <div class="container-fluido">
-        <div class="table-responsive mt-3">
-            @if (Model.ListaPropriedade != null && Model.ListaPropriedade.Any())
-            {
-                <div class="row">
-                    @foreach (var item in Model.ListaPropriedade)
-                    {
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <!-- Conteúdo dos dados -->
-                            <div class="flex-grow-1">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <strong>@Html.DisplayNameFor(model => item.Nome):</strong> @Html.DisplayFor(model => item.Nome)
-                                    </div>
-                                    <div class="col-md-3">
-                                        <strong>@Html.DisplayNameFor(model => item.Estado):</strong> @Html.DisplayFor(model => item.Estado)
-                                    </div>
-                                    <div class="col-md-4">
-                                        <strong>@Html.DisplayNameFor(model => item.Cidade):</strong> @Html.DisplayFor(model => item.Cidade)
+        <h2 class="mt-5">Propriedades do Cliente</h2>
+        <div class="container-fluido">
+            <div class="table-responsive mt-3">
+                @if (Model.ListaPropriedade != null && Model.ListaPropriedade.Any())
+                {
+                    <div class="row">
+                        @foreach (var item in Model.ListaPropriedade)
+                        {
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <strong>@Html.DisplayNameFor(model => item.Nome):</strong> @Html.DisplayFor(model => item.Nome)
+                                        </div>
+                                        <div class="col-md-3">
+                                            <strong>@Html.DisplayNameFor(model => item.Estado):</strong> @Html.DisplayFor(model => item.Estado)
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>@Html.DisplayNameFor(model => item.Cidade):</strong> @Html.DisplayFor(model => item.Cidade)
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Botões de ação -->
-                            <div class="ms-3">
-                                <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Edit", "Intervencao", new { id = item.Id })">Editar</a>
-                                <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Details", "Intervencao", new { id = item.Id })">Detalhes</a>
+                                <div class="ms-3">
+                                    <a class="btn btn-success borda-concluir borda" href="@Url.ActionLink("Edit", "Propriedade", new { id = item.Id })">Editar</a>
+                                    <a class="btn btn-success borda-concluir borda" href="@Url.ActionLink("Details", "Propriedade", new { id = item.Id })">Detalhes</a>
+                                </div>
                             </div>
-                        </div>
-                    }
-                </div>
-            }
-            else
-            {
-                <p>Nenhuma propriedade encontrada.</p>
-            }
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p>Nenhuma propriedade encontrada.</p>
+                }
+            </div>
         </div>
     </div>
-</div>
+</body>

@@ -4,204 +4,204 @@
     ViewData["Title"] = "Detalhes da Propriedade";
 }
 
-<div class="container pt-5">
-
-    <div class="row">
-        <h1>Detalhes da Propriedade</h1>
-        <div style="position: relative;">
-            <a asp-action="Index" title="Voltar para propriedades cadastradas"
-               class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
-               style="width: 50px; height: 50px; background-color: #76B375; border: none;
+<body>
+    <div class="container pt-5">
+        <div class="row">
+            <h1>Detalhes da Propriedade</h1>
+            <div style="position: relative;">
+                <a asp-action="Index" title="Voltar para propriedades cadastradas"
+                   class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
+                   style="width: 50px; height: 50px; background-color: #76B375; border: none;
                   position: absolute; top: -60px; right: 30px;"
-               aria-label="Fechar">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
-                </svg>
-            </a>
+                   aria-label="Fechar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                    </svg>
+                </a>
+            </div>
         </div>
-    </div>
-    <div class="card">
+        <div class="card">
 
-        <div class="card-body">
-            <h4 class="card-title">Informações da Propriedade</h4>
-            <dl class="row mt-3">
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
-                    <dd>@Html.DisplayFor(model => model.Nome)</dd>
-                </div>
-                
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.NomeCliente):</dt>
-                    <dd>@Html.DisplayFor(model => model.NomeCliente)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Cidade):</dt>
-                    <dd>@Html.DisplayFor(model => model.Cidade)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Estado):</dt>
-                    <dd>@Html.DisplayFor(model => model.Estado)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Car):</dt>
-                    <dd>@Html.DisplayFor(model => model.Car)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Ccir):</dt>
-                    <dd>@Html.DisplayFor(model => model.Ccir)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Itr):</dt>
-                    <dd>@Html.DisplayFor(model => model.Itr)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Comercializacao)</dt>
-                    <dd>
-                        @(Model.Comercializacao == "C" ? "Comercialização" : "Armazenamento")
-                    </dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.QuantFuncionario):</dt>
-                    <dd>@Html.DisplayFor(model => model.QuantFuncionario)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.AreaTotal):</dt>
-                    <dd>@Html.DisplayFor(model => model.AreaTotal)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.AreaCultivada):</dt>
-                    <dd>@Html.DisplayFor(model => model.AreaCultivada)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.AreaReserva):</dt>
-                    <dd>@Html.DisplayFor(model => model.AreaReserva)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.AreaPreservar):</dt>
-                    <dd>@Html.DisplayFor(model => model.AreaPreservar)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.NomeSolo):</dt>
-                    <dd>@Html.DisplayFor(model => model.NomeSolo)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.NomeCultura):</dt>
-                    <dd>@Html.DisplayFor(model => model.NomeCultura)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.Georreferenciamento):</dt>
-                    <dd>@Html.DisplayFor(model => model.Georreferenciamento)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.MatriculaImovel):</dt>
-                    <dd>@Html.DisplayFor(model => model.MatriculaImovel)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.HistoricoProdAgricola):</dt>
-                    <dd>@Html.DisplayFor(model => model.HistoricoProdAgricola)</dd>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <dt class="me-2">@Html.DisplayNameFor(model => model.HistoricoFitossanidade):</dt>
-                    <dd>@Html.DisplayFor(model => model.HistoricoFitossanidade)</dd>
-                </div>
-            </dl>
+            <div class="card-body">
+                <h4 class="card-title">Informações da Propriedade</h4>
+                <dl class="row mt-3">
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
+                        <dd>@Html.DisplayFor(model => model.Nome)</dd>
+                    </div>
+
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.NomeCliente):</dt>
+                        <dd>@Html.DisplayFor(model => model.NomeCliente)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Cidade):</dt>
+                        <dd>@Html.DisplayFor(model => model.Cidade)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Estado):</dt>
+                        <dd>@Html.DisplayFor(model => model.Estado)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Car):</dt>
+                        <dd>@Html.DisplayFor(model => model.Car)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Ccir):</dt>
+                        <dd>@Html.DisplayFor(model => model.Ccir)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Itr):</dt>
+                        <dd>@Html.DisplayFor(model => model.Itr)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Comercializacao)</dt>
+                        <dd>
+                            @(Model.Comercializacao == "C" ? "Comercialização" : "Armazenamento")
+                        </dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.QuantFuncionario):</dt>
+                        <dd>@Html.DisplayFor(model => model.QuantFuncionario)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.AreaTotal):</dt>
+                        <dd>@Html.DisplayFor(model => model.AreaTotal)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.AreaCultivada):</dt>
+                        <dd>@Html.DisplayFor(model => model.AreaCultivada)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.AreaReserva):</dt>
+                        <dd>@Html.DisplayFor(model => model.AreaReserva)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.AreaPreservar):</dt>
+                        <dd>@Html.DisplayFor(model => model.AreaPreservar)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.NomeSolo):</dt>
+                        <dd>@Html.DisplayFor(model => model.NomeSolo)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.NomeCultura):</dt>
+                        <dd>@Html.DisplayFor(model => model.NomeCultura)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Georreferenciamento):</dt>
+                        <dd>@Html.DisplayFor(model => model.Georreferenciamento)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.MatriculaImovel):</dt>
+                        <dd>@Html.DisplayFor(model => model.MatriculaImovel)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.HistoricoProdAgricola):</dt>
+                        <dd>@Html.DisplayFor(model => model.HistoricoProdAgricola)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.HistoricoFitossanidade):</dt>
+                        <dd>@Html.DisplayFor(model => model.HistoricoFitossanidade)</dd>
+                    </div>
+                </dl>
+            </div>
         </div>
-    </div>
-    <div class="d-flex justify-content-end gap-3 mt-4">
-        <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Edit", "Propriedade", new { id = Model.Id })">Editar</a>
-        <a id="border" class="btn btn-danger " href="@Url.ActionLink("Delete", "Propriedade", new { id = Model.Id })">Excluir</a>
-    </div>
-
-
-    <h2 class="mt-5">Projetos da Propriedade</h2>
-    <div class="container-fluido">
-        <div class="table-responsive mt-3">
-            @if (Model.ListaProjetos != null && Model.ListaProjetos.Any())
-            {
-                <div class="row">
-                    @foreach (var item in Model.ListaProjetos)
-                    {
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <!-- Conteúdo dos dados -->
-                            <div class="flex-grow-1">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <strong>@Html.DisplayNameFor(model => item.Nome):</strong> @Html.DisplayFor(model => item.Nome)
-                                    </div>
-                                    <div class="col-md-4">
-                                        <strong>@Html.DisplayNameFor(model => item.Valor):</strong> @Html.DisplayFor(model => item.Valor)
-                                    </div>
-                                    <div class="col-md-4">
-                                        <strong>@Html.DisplayNameFor(model => item.Status):</strong> @(item.Status == "C" ? "Concluído" : "Em execução")
-                                    </div>
-                                    
-                                </div>
-                            </div>
-
-                            <!-- Botões de ação -->
-
-                            <div class="ms-3">
-                                <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Edit", "Projeto", new { id = item.Id })">Editar</a>
-                                <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Details", "Projeto", new { id = item.Id })">Detalhes</a>
-                            </div>
-                            <hr>
-                        </div>
-                    }
-                </div>
-            }
-            else
-            {
-                <p>Nenhum projeto encontrado.</p>
-            }
-
+        <div class="d-flex justify-content-end gap-3 mt-4">
+            <a class="btn btn-success borda-concluir borda" href="@Url.ActionLink("Edit", "Propriedade", new { id = Model.Id })">Editar</a>
+            <a class="btn btn-danger borda" href="@Url.ActionLink("Delete", "Propriedade", new { id = Model.Id })">Excluir</a>
         </div>
 
-    </div>
-    <div>
-        <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Create", "Projeto")">Adicionar novo Projeto</a>
-    </div>
 
-    <h2 class="mt-5">Visitas na Propriedade</h2>
-    <div class="container-fluido">
-        <div class="table-responsive mt-3">
-            @if (Model.ListaVisitas != null && Model.ListaVisitas.Any())
-            {
-                <div class="row">
-                    @foreach (var item in Model.ListaVisitas)
-                    {
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <!-- Conteúdo dos dados -->
-                            <div class="flex-grow-1">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <strong>Data e horário:</strong> @Html.DisplayFor(model => item.DataHora)
-                                    </div>
-                                    <div class="col-md-4">
-                                        <strong>@Html.DisplayNameFor(model => item.Status):</strong> @(item.Status == "C" ? "Concluída" : "Agendada")
+        <h2 class="mt-5">Projetos da Propriedade</h2>
+        <div class="container-fluido">
+            <div class="table-responsive mt-3">
+                @if (Model.ListaProjetos != null && Model.ListaProjetos.Any())
+                {
+                    <div class="row">
+                        @foreach (var item in Model.ListaProjetos)
+                        {
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <!-- Conteúdo dos dados -->
+                                <div class="flex-grow-1">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <strong>@Html.DisplayNameFor(model => item.Nome):</strong> @Html.DisplayFor(model => item.Nome)
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>@Html.DisplayNameFor(model => item.Valor):</strong> @Html.DisplayFor(model => item.Valor)
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>@Html.DisplayNameFor(model => item.Status):</strong> @(item.Status == "C" ? "Concluído" : "Em execução")
+                                        </div>
+
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Botões de ação -->
-                            <div class="ms-3">
-                                <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Edit", "Visita", new { id = item.IdPropriedade })">Editar</a>
-                                <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Details", "Visita", new { id = item.IdPropriedade })">Detalhes</a>
-                            </div>
+                                <!-- Botões de ação -->
 
-                        </div>
-                    }
-                </div>
-            }
-            else
-            {
-                <p>Nenhuma visita encontrada.</p>
-            }
+                                <div class="ms-3">
+                                    <a class="btn btn-success borda-concluir borda" href="@Url.ActionLink("Edit", "Projeto", new { id = item.Id })">Editar</a>
+                                    <a class="btn btn-success borda-concluir borda" href="@Url.ActionLink("Details", "Projeto", new { id = item.Id })">Detalhes</a>
+                                </div>
+                                <hr>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p>Nenhum projeto encontrado.</p>
+                }
+
+            </div>
 
         </div>
+        <div>
+            <a class="btn btn-success borda-concluir" href="@Url.ActionLink("Create", "Projeto")">Adicionar novo Projeto</a>
+        </div>
 
-    </div>
-    <div>
-        <a id="border" class="btn btn-success borda-concluir" href="@Url.ActionLink("Create", "Visita")">Adicionar nova Visita</a>
-    </div>
-</div>
+        <h2 class="mt-5">Visitas na Propriedade</h2>
+        <div class="container-fluido">
+            <div class="table-responsive mt-3">
+                @if (Model.ListaVisitas != null && Model.ListaVisitas.Any())
+                {
+                    <div class="row">
+                        @foreach (var item in Model.ListaVisitas)
+                        {
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <!-- Conteúdo dos dados -->
+                                <div class="flex-grow-1">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <strong>Data e horário:</strong> @Html.DisplayFor(model => item.DataHora)
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>@Html.DisplayNameFor(model => item.Status):</strong> @(item.Status == "C" ? "Concluída" : "Agendada")
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <!-- Botões de ação -->
+                                <div class="ms-3">
+                                    <a class="btn btn-success borda-concluir borda" href="@Url.ActionLink("Edit", "Visita", new { id = item.IdPropriedade })">Editar</a>
+                                    <a class="btn btn-success borda-concluir borda" href="@Url.ActionLink("Details", "Visita", new { id = item.IdPropriedade })">Detalhes</a>
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p>Nenhuma visita encontrada.</p>
+                }
+
+            </div>
+
+        </div>
+        <div>
+            <a class="btn btn-success borda-concluir" href="@Url.ActionLink("Create", "Visita")">Adicionar nova Visita</a>
+        </div>
+    </div>
+</body>

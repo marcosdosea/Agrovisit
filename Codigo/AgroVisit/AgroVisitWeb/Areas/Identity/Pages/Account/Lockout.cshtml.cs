@@ -20,6 +20,7 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account
         /// </summary>
         public void OnGet()
         {
+            throw new NotSupportedException("Este método não deve ser chamado diretamente.");
         }
     }
 }

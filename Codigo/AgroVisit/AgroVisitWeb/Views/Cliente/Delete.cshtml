@@ -4,63 +4,65 @@
     ViewData["Title"] = "Excluir Cliente";
 }
 
-<div class="card text-center container py-5" style="max-width: 600px;">
-    <div class="card-header bg-danger text-white">
-        <h3>Excluir Cliente</h3>
+<body>
+    <div class="card text-center container py-5" style="max-width: 600px;">
+        <div class="card-header bg-danger text-white">
+            <h3>Excluir Cliente</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title text-danger">Tem certeza que deseja excluir este cliente?</h5>
+            <p class="text-muted">Essa ação é irreversível e todos os dados do cliente serão removidos.</p>
+
+            <hr />
+
+            <dl class="row mt-3">
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
+                    <dd>@Html.DisplayFor(model => model.Nome)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Cpf):</dt>
+                    <dd>@Html.DisplayFor(model => model.Cpf)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.DataNascimento):</dt>
+                    <dd>@Html.DisplayFor(model => model.DataNascimento)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Telefone):</dt>
+                    <dd>@Html.DisplayFor(model => model.Telefone)</dd>
+                </div>
+            </dl>
+
+            <dl class="row">
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Cidade):</dt>
+                    <dd>@Html.DisplayFor(model => model.Cidade)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Bairro):</dt>
+                    <dd>@Html.DisplayFor(model => model.Bairro)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.NumeroCasa):</dt>
+                    <dd>@Html.DisplayFor(model => model.NumeroCasa)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Rua):</dt>
+                    <dd>@Html.DisplayFor(model => model.Rua)</dd>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Estado):</dt>
+                    <dd>@Html.DisplayFor(model => model.Estado)</dd>
+                </div>
+            </dl>
+
+            <form asp-action="Delete" class="mt-4">
+                <div class="d-flex justify-content-center gap-3">
+                    <a class="btn borda-concluir btn-success borda" asp-action="Index">Não</a>
+                    <button type="submit" value="Delete" class="btn btn-danger borda">Sim, excluir</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="card-body">
-        <h5 class="card-title text-danger">Tem certeza que deseja excluir este cliente?</h5>
-        <p class="text-muted">Essa ação é irreversível e todos os dados do cliente serão removidos.</p>
-
-        <hr />
-
-        <dl class="row mt-3">
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
-                <dd>@Html.DisplayFor(model => model.Nome)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Cpf):</dt>
-                <dd>@Html.DisplayFor(model => model.Cpf)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.DataNascimento):</dt>
-                <dd>@Html.DisplayFor(model => model.DataNascimento)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Telefone):</dt>
-                <dd>@Html.DisplayFor(model => model.Telefone)</dd>
-            </div>
-        </dl>
-
-        <dl class="row">
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Cidade):</dt>
-                <dd>@Html.DisplayFor(model => model.Cidade)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Bairro):</dt>
-                <dd>@Html.DisplayFor(model => model.Bairro)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.NumeroCasa):</dt>
-                <dd>@Html.DisplayFor(model => model.NumeroCasa)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Rua):</dt>
-                <dd>@Html.DisplayFor(model => model.Rua)</dd>
-            </div>
-            <div class="col-md-6 d-flex">
-                <dt class="me-2">@Html.DisplayNameFor(model => model.Estado):</dt>
-                <dd>@Html.DisplayFor(model => model.Estado)</dd>
-            </div>
-        </dl>
-
-        <form asp-action="Delete" class="mt-4">
-            <div class="d-flex justify-content-center gap-3">
-                <a id="border" class="btn borda-concluir btn-success" asp-action="Index">Não</a>
-                <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim, excluir</button>
-            </div>
-        </form>
-    </div>
-</div>
+</body>

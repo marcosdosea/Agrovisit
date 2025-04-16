@@ -1,162 +1,71 @@
 ﻿@using System.Text.Json;
 @model IEnumerable<AgroVisitWeb.Models.ClienteViewModel>
 
-<link href="~/lib/datatable/css/datatables.min.css" rel="stylesheet" />
-
 @{
     ViewData["Title"] = "Clientes";
 }
 
-<div class="container py-5">
-    <div class="row mb-4">
-        <div class="col-12">
-            <h1 class="text-start">Clientes</h1>
-        </div>
-    </div>
-
-    <div class="container d-flex flex-column">
-
-        <div class="row w-75 mb-12">
-            <div class="col-md-2">
-                <select id="pageSize" class="form-select">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="-1">Todos</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <input type="text" id="searchInput" placeholder="Pesquisar..." class="form-control">
+<body>
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="text-start">Clientes</h1>
             </div>
         </div>
 
-        <div id="containerCards" class="w-100 d-flex flex-column"></div>
+        <div class="container d-flex flex-column">
 
-        <div class="row justify-content-center mt-3">
-            <button id="prevPage" type="button" class="btn btn-primary col-auto m-2" aria-label="Página Anterior" role="button">Anterior</button>
-            <button id="nextPage" type="button" class="btn btn-primary col-auto m-2" aria-label="Próxima Página" role="button">Próximo</button>
+            <div class="row w-75 mb-12">
+                <div class="col-md-2">
+                    <select id="pageSize" class="form-select">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="-1">Todos</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="searchInput" placeholder="Pesquisar..." class="form-control">
+                </div>
+            </div>
+
+            <div id="containerCards" class="w-100 d-flex flex-column"></div>
+
+            <div class="row justify-content-center mt-3">
+                <button id="prevPage" type="button" class="btn btn-primary col-auto m-2" aria-label="Página Anterior">Anterior</button>
+                <button id="nextPage" type="button" class="btn btn-primary col-auto m-2" aria-label="Próxima Página">Próximo</button>
+            </div>
+        </div>
+
+        <div class="text-end" style="position: sticky; bottom: 30px;">
+            <a asp-action="Create">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 99 99" fill="none">
+                    <g filter="url(#filter0_d_375_7800)">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8662 13.7733C35.4654 -3.77459 63.9578 -3.73301 81.5058 13.8662C99.0537 31.4654 99.0121 59.9578 81.4129 77.5057C63.8137 95.0537 35.3213 95.0121 17.7734 77.4129C0.225422 59.8137 0.266999 31.3213 17.8662 13.7733ZM71.0867 45.6708C71.0834 47.9302 69.2492 49.7591 66.9898 49.7558L53.7245 49.7364L53.7051 63.0018C53.7018 65.2611 51.8676 67.09 49.6083 67.0867C47.3489 67.0834 45.52 65.2492 45.5233 62.9898L45.5427 49.7245L32.2773 49.7051C30.018 49.7018 28.1891 47.8676 28.1924 45.6082C28.1957 43.3489 30.0299 41.52 32.2893 41.5233L45.5546 41.5427L45.574 28.2773C45.5773 26.018 47.4115 24.1891 49.6709 24.1924C51.9302 24.1957 53.7591 26.0299 53.7558 28.2893L53.7364 41.5546L67.0018 41.574C69.2611 41.5773 71.09 43.4115 71.0867 45.6708Z" fill="#76B375" />
+                    </g>
+                    <defs>
+                        <filter id="filter0_d_375_7800" x="0.639526" y="0.639648" width="98.0001" height="98" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                            <feOffset dy="4" />
+                            <feGaussianBlur stdDeviation="2" />
+                            <feComposite in2="hardAlpha" operator="out" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_375_7800" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_375_7800" result="shape" />
+                        </filter>
+                    </defs>
+                </svg>
+            </a>
         </div>
     </div>
 
-    <div class="text-end" style="position: sticky; bottom: 30px;">
-        <a asp-action="Create">
-            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 99 99" fill="none">
-                <g filter="url(#filter0_d_375_7800)">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8662 13.7733C35.4654 -3.77459 63.9578 -3.73301 81.5058 13.8662C99.0537 31.4654 99.0121 59.9578 81.4129 77.5057C63.8137 95.0537 35.3213 95.0121 17.7734 77.4129C0.225422 59.8137 0.266999 31.3213 17.8662 13.7733ZM71.0867 45.6708C71.0834 47.9302 69.2492 49.7591 66.9898 49.7558L53.7245 49.7364L53.7051 63.0018C53.7018 65.2611 51.8676 67.09 49.6083 67.0867C47.3489 67.0834 45.52 65.2492 45.5233 62.9898L45.5427 49.7245L32.2773 49.7051C30.018 49.7018 28.1891 47.8676 28.1924 45.6082C28.1957 43.3489 30.0299 41.52 32.2893 41.5233L45.5546 41.5427L45.574 28.2773C45.5773 26.018 47.4115 24.1891 49.6709 24.1924C51.9302 24.1957 53.7591 26.0299 53.7558 28.2893L53.7364 41.5546L67.0018 41.574C69.2611 41.5773 71.09 43.4115 71.0867 45.6708Z" fill="#76B375" />
-                </g>
-                <defs>
-                    <filter id="filter0_d_375_7800" x="0.639526" y="0.639648" width="98.0001" height="98" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                        <feOffset dy="4" />
-                        <feGaussianBlur stdDeviation="2" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_375_7800" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_375_7800" result="shape" />
-                    </filter>
-                </defs>
-            </svg>
-        </a>
-    </div>
-</div>
-
-@section Scripts {
-    <script src="~/lib/datatable/js/datatables.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            const items = @Html.Raw(JsonSerializer.Serialize(Model)); // Obtém os dados do Model
-            let filteredItems = items;
-            let pageSize = 5;
-            let currentPage = 1;
-
-            function renderCards() {
-                const container = $('#containerCards');
-                container.empty();
-
-                if (filteredItems.length === 0) {
-                    container.append('<p>Nenhum cliente encontrado.</p>');
-                    return;
-                }
-
-                const start = (currentPage - 1) * pageSize;
-                const end = pageSize === -1 ? filteredItems.length : start + pageSize;
-                const paginatedItems = filteredItems.slice(start, end);
-
-                paginatedItems.forEach(item => {
-                    container.append(`
-                                <div id="border" class="col-10 card radius-10 border-start border-0 border-5 border-success m-3 ms-0"
-                                        style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); height:min-content">
-                                    <div class="card-body row">
-                                        <h4 class="card-title col-6 m-2">Cliente: ${item.Nome}</h4>
-                                        <h4 class="card-text col-4 m-2">CPF: ${item.Cpf}</h4>
-                                        <h4 class="card-text col-6 m-2">Telefone: ${item.Telefone || "Sem telefone"}</h4>
-                                        <h4 class="card-text col-4 m-2">Cidade: ${item.Cidade}</h4>
-                                        <div class="row">
-                                                    <a href="/Cliente/Details/${item.Id}" id="border" class="btn borda-concluir btn-outline-success col-3 m-2">Detalhes</a>
-                                            <a href="/Cliente/Delete/${item.Id}" id="border" class="btn border-danger btn-danger col-3 m-2">Excluir</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            `);
-                });
-
-                updatePaginationButtons();
-            }
-
-            // Aplica filtros de pesquisa
-            function applyFilters() {
-                const searchText = $('#searchInput').val().toLowerCase();
-                filteredItems = items.filter(item =>
-                    item.Nome.toLowerCase().includes(searchText)
-                );
-                currentPage = 1;
-                renderCards();
-                updatePaginationButtons();
-            }
-
-            // Atualiza páginação
-            function updatePaginationButtons() {
-                var buttonNext = document.getElementById('nextPage');
-                var buttonPrev = document.getElementById('prevPage');
-
-                $(buttonPrev).prop('disabled', currentPage === 1);
-                $(buttonNext).prop('disabled', currentPage * pageSize >= filteredItems.length && pageSize !== -1);
-            };
-
-            $('#searchInput').on('input', applyFilters);
-
-            $('#pageSize').on('change', function () {
-                pageSize = parseInt($(this).val());
-                currentPage = 1;
-
-                renderCards();
-                updatePaginationButtons();
-            });
-
-            // Atualiza página ao clicar no botão Anterior
-            $('#prevPage').on('click', function () {
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderCards();
-                }
-
-                updatePaginationButtons();
-            });
-
-            // Atualiza página ao clicar no botão Próximo
-            $('#nextPage').on('click', function () {
-                if (currentPage * pageSize < filteredItems.length || pageSize === -1) {
-                    currentPage++;
-                    renderCards();
-                }
-
-                updatePaginationButtons();
-            });
-
-            // Renderizar pela primeira vez
-            renderCards();
-        });
-    </script>
-}
+    @section Scripts {
+        <script>
+            window.__INITIAL_DATA__ = @Html.Raw(JsonSerializer.Serialize(Model));
+        </script>
+        <script src="~/lib/datatable/js/datatables.min.js"></script>
+        <script src="~/js/paginationJS.js"></script>
+        <script src="~/js/clienteJS.js"></script>
+    }
+</body>

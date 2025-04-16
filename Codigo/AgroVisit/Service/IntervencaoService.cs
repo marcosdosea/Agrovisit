@@ -15,57 +15,62 @@ namespace Service
         {
             _context = context;
         }
+
         /// <summary>
         /// Inserir Intervencao na base de dados
         /// </summary>
         /// <param name="intervencao">dados da intervencao</param>
         /// <returns>id</returns>
-
-        public uint Create(Intervencao intervencao)
+        public async Task<uint> Create(Intervencao intervencao)
         {
             _context.Add(intervencao);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return intervencao.Id;
         }
+
         /// <summary>
         /// Excluir Intervencao da base de dados
         /// </summary>
         /// <param name="id">id Intervencao excluir</param>
-
-        public void Delete(uint id)
+        public async Task Delete(uint id)
         {
-            var intervencao = _context.Intervencoes.Find(id);
-            _context.Remove(intervencao);
-            _context.SaveChanges();
+            var intervencao = await _context.Intervencoes.FindAsync(id);
+            if (intervencao != null)
+            {
+                _context.Remove(intervencao);
+                await _context.SaveChangesAsync();
+            }
         }
 
         /// <summary>
         /// Editar Intervencao na base de dados
         /// </summary>
         /// <param name="Intervencao"></param>
-        public void Edit(Intervencao intervencao)
+        public async Task Edit(Intervencao intervencao)
         {
             _context.Update(intervencao);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
+
         /// <summary>
         /// Obter dados de uma Intervencao
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Dados de uma Intervencao </returns>
-
-        public Intervencao Get(uint id)
+        public async Task<Intervencao?> Get(uint id)
         {
-            return _context.Intervencoes.Find(id);
+            return await _context.Intervencoes.FindAsync(id);
         }
 
         /// <summary>
         /// Obter todas as Intervencoes
         /// </summary>
         /// <returns> Todos as intervencoes </returns>
-        public IEnumerable<Intervencao> GetAll()
+        public async Task<IEnumerable<Intervencao>> GetAll()
         {
-            return _context.Intervencoes.AsNoTracking();
+            return await _context.Intervencoes
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         /// <summary>
@@ -73,13 +78,12 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Intervencoes pelo nome </returns>
-        public IEnumerable<Intervencao> GetByProjeto(uint IdProjeto)
+        public async Task<IEnumerable<Intervencao>> GetByProjeto(uint idProjeto)
         {
-            var query = from Intervencao in _context.Intervencoes
-                        where Intervencao.IdProjeto.Equals(IdProjeto)
-                        select Intervencao;
-            return query.AsNoTracking();
-
+            return await _context.Intervencoes
+                .Where(i => i.IdProjeto == idProjeto)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
     }

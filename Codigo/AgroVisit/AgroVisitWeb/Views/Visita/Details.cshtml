@@ -4,72 +4,74 @@
     ViewData["Title"] = "Detalhes da visita";
 }
 
-<div class="container p-5">
-    <div class="row">
-        <h1>Detalhes da Visita</h1>
-        <div style="position: relative;">
-            <a asp-action="Index" title="Voltar para visitas cadastradas"
-               class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
-               style="width: 50px; height: 50px; background-color: #76B375; border: none;
+<body>
+    <div class="container p-5">
+        <div class="row">
+            <h1>Detalhes da Visita</h1>
+            <div style="position: relative;">
+                <a asp-action="Index" title="Voltar para visitas cadastradas"
+                   class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
+                   style="width: 50px; height: 50px; background-color: #76B375; border: none;
                   position: absolute; top: -60px; right: 30px;"
-               aria-label="Fechar">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
-                </svg>
-            </a>
+                   aria-label="Fechar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                    </svg>
+                </a>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <hr />
-        <div class="col-md-6">
-            <strong>
-                @Html.DisplayNameFor(model => model.DataHora)
-            </strong>
-            <p>
-                @Html.DisplayFor(model => model.DataHora)
-            </p>
-        </div>
-        <div class="col-md-4">
-            <strong>
-                @Html.DisplayNameFor(model => model.Status)
-            </strong>
-            <p>
-                @if (Model.Status.StartsWith('A'))
-                {
-                    @Html.DisplayName("Agendada")
-                }
-                else
-                {
-                    @Html.DisplayName("Concluida")
-                }
+        <div class="row">
+            <hr />
+            <div class="col-md-6">
+                <strong>
+                    @Html.DisplayNameFor(model => model.DataHora)
+                </strong>
+                <p>
+                    @Html.DisplayFor(model => model.DataHora)
+                </p>
+            </div>
+            <div class="col-md-4">
+                <strong>
+                    @Html.DisplayNameFor(model => model.Status)
+                </strong>
+                <p>
+                    @if (Model.Status.StartsWith('A'))
+                    {
+                        @Html.DisplayName("Agendada")
+                    }
+                    else
+                    {
+                        @Html.DisplayName("Concluida")
+                    }
 
-            </p>
+                </p>
+            </div>
+        </div>
+        <div>
+            <dl>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NomePropriedade)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NomePropriedade)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NomeCliente)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NomeCliente)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Observacoes)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Observacoes)
+                </dd>
+            </dl>
+        </div>
+        <div class="row">
+            <a href="@Url.ActionLink("Edit", "Visita", new { id = Model.Id })" class="borda borda-concluir btn btn-outline-success col-5 m-2">Adicionar informação</a>
+            <a href="@Url.ActionLink("Delete", "Visita", new { id = Model.Id })" class="borda btn btn-danger col-4 m-2">Excluir</a>
         </div>
     </div>
-    <div>
-        <dl>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.NomePropriedade)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.NomePropriedade)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.NomeCliente)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.NomeCliente)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Observacoes)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Observacoes)
-            </dd>
-        </dl>
-    </div>
-    <div class="row">
-        <a id="border" href="@Url.ActionLink("Edit", "Visita", new { id = Model.Id })" class="borda-concluir btn btn-outline-success col-5 m-2">Adicionar informação</a>
-        <a id="border" href="@Url.ActionLink("Delete", "Visita", new { id = Model.Id })" class="btn btn-danger col-4 m-2">Excluir</a>
-    </div>
-</div>
+</body>

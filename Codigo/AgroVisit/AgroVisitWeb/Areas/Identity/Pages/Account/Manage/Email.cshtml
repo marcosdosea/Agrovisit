@@ -11,33 +11,33 @@
     <partial name="_StatusMessage" for="StatusMessage" />
     <div class="row">
         <div>
-            <form id="email-form" method="post">
+            <form id="email-form" method="post" autocomplete="on">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 @if (Model.IsEmailConfirmed)
                 {
                     <div class="form-floating input-group">
-                        <input id="border" asp-for="Email" class="form-control border border-success" disabled />
+                        <input asp-for="Email" class="form-control border border-success borda" disabled />
                         <div class="input-group-append">
                             <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
                         </div>
-                        <label asp-for="Email" class="form-label"></label>
+                        <label asp-for="Email" class="form-label">Email</label>
                     </div>
                 }
                 else
                 {
                     <div class="form-floating">
-                        <input id="border" asp-for="Email" class="form-control border border-success" disabled />
-                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control border border-success borda" disabled />
+                        <label asp-for="Email" class="form-label">Email</label>
                         <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Enviar Email de verificação</button>
                     </div>
                 }
                 <br />
                 <div class="form-floating">
-                    <input id="border" asp-for="Input.NewEmail" class="form-control border border-success" autocomplete="email" aria-required="true" />
-                    <label asp-for="Input.NewEmail" class="form-label"></label>
+                    <input asp-for="Input.NewEmail" class="form-control border border-success borda" autocomplete="email" aria-required="true" />
+                    <label asp-for="Input.NewEmail" class="form-label">Email</label>
                     <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
                 </div><br />
-                <button id="border" type="submit" asp-page-handler="ChangeEmail" class="col-m-6 btn btn-lg btn-primary borda-concluir">Mudar Email</button>
+                <button type="submit" asp-page-handler="ChangeEmail" class="col-m-6 btn btn-lg btn-primary borda-concluir borda">Mudar Email</button>
             </form>
         </div>
     </div>

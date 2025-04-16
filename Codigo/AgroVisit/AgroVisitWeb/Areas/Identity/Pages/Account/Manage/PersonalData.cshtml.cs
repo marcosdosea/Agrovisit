@@ -9,15 +9,16 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account.Manage
 {
     public class PersonalDataModel : PageModel
     {
+
+        /// <summary>
+        /// private readonly ILogger<PersonalDataModel> _logger;
+        /// </summary>
         private readonly UserManager<UsuarioIdentity> _userManager;
-        private readonly ILogger<PersonalDataModel> _logger;
 
         public PersonalDataModel(
-            UserManager<UsuarioIdentity> userManager,
-            ILogger<PersonalDataModel> logger)
+            UserManager<UsuarioIdentity> userManager)
         {
             _userManager = userManager;
-            _logger = logger;
         }
 
         public async Task<IActionResult> OnGet()

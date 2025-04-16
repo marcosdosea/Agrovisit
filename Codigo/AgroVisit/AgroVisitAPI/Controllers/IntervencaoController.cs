@@ -34,9 +34,9 @@ namespace AgroVisitAPI.Controllers
 
         // GET api/<IntervencaoController>/5
         [HttpGet("{id}")]
-        public ActionResult Get(uint id)
+        public async Task<ActionResult> Get(uint id)
         {
-            Intervencao intervencao = _intervencaoService.Get(id);
+            Intervencao intervencao = await _intervencaoService.Get(id);
             if (intervencao == null)
             {
                 return NotFound();
@@ -75,13 +75,13 @@ namespace AgroVisitAPI.Controllers
 
         // DELETE api/<IntervencaoController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(uint id)
+        public async Task<ActionResult> Delete(uint id)
         {
-            Intervencao intervencao = _intervencaoService.Get(id);
+            Intervencao intervencao = await _intervencaoService.Get(id);
             if (intervencao == null)
                 return NotFound();
 
-            _intervencaoService.Delete(id);
+            await _intervencaoService.Delete(id);
             return Ok();
         }
     }

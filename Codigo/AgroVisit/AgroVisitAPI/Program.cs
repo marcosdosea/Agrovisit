@@ -5,11 +5,15 @@ using Service;
 
 namespace AgroVisitAPI
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Configuration
+            .AddUserSecrets<SecretReference>()
+            .AddEnvironmentVariables();
 
             // Add services to the container.
 
@@ -30,6 +34,14 @@ namespace AgroVisitAPI
 
             builder.Services.AddDbContext<AgroVisitContext>(
                 options => options.UseMySQL(builder.Configuration.GetConnectionString("AgroVisitDatabase")));
+
+            var connectionString = builder.Configuration.GetConnectionString("AgroVisitDatabase");
+
+            if (string.IsNullOrWhiteSpace(connectionString))
+            {
+                throw new InvalidOperationException("A String de conexão 'AgroVisitDatabase' está ausente. Verifique o Secret Manager.");
+            }
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

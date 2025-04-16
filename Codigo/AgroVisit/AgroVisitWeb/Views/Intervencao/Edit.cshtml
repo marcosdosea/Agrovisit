@@ -8,87 +8,93 @@
     Layout = null;
 }
 
-<div class="modal-body">
-    <form id="editIntervencaoForm" asp-action="Edit" asp-controller="Intervencao" method="post">
-        @Html.AntiForgeryToken()
+<head>
+    <link rel="stylesheet" href="~/css/flatpickr-custom.css">
+</head>
+<body>
+    <div class="modal-body">
+        <form id="editIntervencaoForm" asp-action="Edit" asp-controller="Intervencao" method="post">
+            @Html.AntiForgeryToken()
 
-        @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Id)
 
-        <!-- Campo oculto para o ProjetoId -->
-        @Html.HiddenFor(model => model.IdProjeto)
+            <!-- Campo oculto para o ProjetoId -->
+            @Html.HiddenFor(model => model.IdProjeto)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Pratica, new { @class = "control-label" })<span class="text-danger">*</span>
-            @Html.EditorFor(model => model.Pratica, new { htmlAttributes = new { @class = "form-control border border-success" } })
-            @Html.ValidationMessageFor(model => model.Pratica, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pratica, new { @class = "control-label" })<span class="text-danger">*</span>
+                @Html.EditorFor(model => model.Pratica, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                @Html.ValidationMessageFor(model => model.Pratica, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descricao, new { @class = "control-label" })
-            @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control border border-success" } })
-            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descricao, new { @class = "control-label" })
+                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataAplicacao, new { @class = "control-label" })<span class="text-danger">*</span>
-            @Html.EditorFor(model => model.DataAplicacao, new { htmlAttributes = new { @class = "form-control border border-success" } })
-            @Html.ValidationMessageFor(model => model.DataAplicacao, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DataAplicacao, new { @class = "control-label" })<span class="text-danger">*</span>
+                @Html.EditorFor(model => model.DataAplicacao, new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "form-control border border-success datetime-picker",
+                            @data_date_format = "d/m/Y"
+                        }
+                    })
+                @Html.ValidationMessageFor(model => model.DataAplicacao, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TipoProduto, new { @class = "control-label" })
-            @Html.EditorFor(model => model.TipoProduto, new { htmlAttributes = new { @class = "form-control border border-success" } })
-            @Html.ValidationMessageFor(model => model.TipoProduto, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.TipoProduto, new { @class = "control-label" })
+                @Html.EditorFor(model => model.TipoProduto, new { htmlAttributes = new { @class = "form-control border border-success" } })
+                @Html.ValidationMessageFor(model => model.TipoProduto, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, new { @class = "control-label" })<span class="text-danger">*</span>
-            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control border border-success" } })
-            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-        </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Status" class="control-label">Status da Intervenção: <span class="text-danger">*</span></label>
 
-        <div class="modal-footer">
-            <input type="submit" value="Concluir" class="btn btn-success borda-concluir" />
-        </div>
-    </form>
-</div>
+                <div class="d-flex flex-column flex-md-row">
+                    <div class="form-check">
+                        <input type="radio" id="agendado_radio" asp-for="Status" class="form-check-input" value="A" checked="@(Model.Status == "A")">
+                        <label for="agendado_radio" class="form-check-label">Agendada</label>
+                    </div>
 
+                    <div class="form-check">
+                        <input type="radio" id="execucao_radio" asp-for="Status" class="form-check-input" value="EX" checked="@(Model.Status == "EX")">
+                        <label for="execucao_radio" class="form-check-label">Em Execução</label>
+                    </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <div class="form-check">
+                        <input type="radio" id="concluida_radio" asp-for="Status" class="form-check-input" value="C" checked="@(Model.Status == "C")">
+                        <label for="concluida_radio" class="form-check-label">Concluída</label>
+                    </div>
+                </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $(document).on('submit', '#editIntervencaoForm', function (e) {
-            e.preventDefault();
-            var form = $(this);
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
 
-            $.ajax({
-                url: form.attr('action'),
-                type: 'POST',
-                data: form.serialize(),
-                success: function (response) {
-                if (response.success) {
-                    var modal = bootstrap.Modal.getInstance(document.getElementById('editIntervencaoModal'));
-                        modal.hide();
+            <div class="modal-footer">
+                <input type="submit" value="Concluir" class="btn btn-success borda-concluir" />
+            </div>
+        </form>
+    </div>
 
-                        setTimeout(function() {
-                            location.reload();
-                        }, 500);
-                } else {
-                    $('.modal-body').html(response);
-                }
-                },
-                error: function (xhr) {
-                    alert('Erro ao salvar: ' + xhr.statusText);
-                }
-            });
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+        <script src="~/js/intervencaoJS.js"></script>
+    }
+    <script>
+        flatpickr(".datetime-picker", {
+            enableTime: true,
+            dateFormat: "d/m/Y H:i",
+            time_24hr: true,
+            locale: "pt",
+            defaultDate: "@(Model.DataAplicacao.Value.ToString("dd-MM-yyyy HH:mm"))"
         });
-
-        $('#editIntervencaoModal').on('hidden.bs.modal', function () {
-            $(this).find('form')[0].reset();
-            $(this).find('.text-danger').text('');
-        });
-    });
-</script>
+    </script>
+</body>

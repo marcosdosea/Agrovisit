@@ -11,14 +11,14 @@
     <hr />
     <div class="row">
         <div>
-            <form method="post">
+            <form method="post" autocomplete="on">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-floating">
-                    <input id="border" asp-for="Input.Email" class="form-control border border-success" aria-required="true" />
-                    <label asp-for="Input.Email" class="form-label"></label>
+                    <input asp-for="Input.Email" class="form-control border border-success borda" aria-required="true" />
+                    <label asp-for="Input.Email" class="form-label">Email</label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div><br />
-                <button id="border" type="submit" class="col-m-6 btn btn-lg btn-primary borda-concluir">Enviar</button>
+                <button type="submit" class="col-m-6 btn btn-lg btn-primary borda-concluir borda">Enviar</button>
             </form>
         </div>
     </div>

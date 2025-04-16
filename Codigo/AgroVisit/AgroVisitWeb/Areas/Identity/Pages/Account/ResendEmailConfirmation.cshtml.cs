@@ -51,6 +51,7 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account
 
         public void OnGet()
         {
+            throw new NotSupportedException("Este método não deve ser chamado diretamente.");
         }
 
         public async Task<IActionResult> OnPostAsync()

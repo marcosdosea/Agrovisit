@@ -5,19 +5,19 @@ namespace Core.Service
 {
     public interface IProjetoService
     {
-        public uint Create(Projeto projeto);
-        public void Edit(Projeto projeto);
-        public void Delete(uint id);
-        public Projeto? Get(uint id);
-        public IEnumerable<Projeto> GetAll();
-        public IEnumerable<ProjetoDto> GetAllDto();
-        public ProjetoAllDto GetDetailsDeleteAll(uint id);
-        public IEnumerable<Projeto> GetByNome(string nome);
-        public IEnumerable<Projeto> GetByData(DateTime data);
-        public IEnumerable<Projeto> GetByStatus(string status);
-        public IEnumerable<Projeto> GetByPropriedade(uint idPropriedade);
-        public IEnumerable<Intervencao> GetAllIntervencoes(uint idPropriedade);
-        public IEnumerable<Conta> GetAllConta(uint idPropriedade);
-        DatatableResponse<ProjetoDto> GetDataPage(DatatableRequest request);
+        Task<uint> Create(Projeto projeto);
+        Task Edit(Projeto projeto);
+        Task Delete(uint id);
+        Task<Projeto?> Get(uint id);
+        Task<IEnumerable<Projeto>> GetAll();
+        Task<IEnumerable<ProjetoDto>> GetAllDto();
+        Task<ProjetoAllDto?> GetDetailsDeleteAll(uint id);
+        Task<IEnumerable<Projeto>> GetByNome(string nome);
+        Task<IEnumerable<Projeto>> GetByData(DateTime data);
+        Task<IEnumerable<Projeto>> GetByStatus(string status);
+        Task<IEnumerable<Projeto>> GetByPropriedade(uint idPropriedade);
+        Task<IEnumerable<Intervencao>> GetAllIntervencoes(uint idPropriedade);
+        Task<IEnumerable<Conta>> GetAllContas(uint idPropriedade);
+        Task<DatatableResponse<ProjetoDto>> GetDataPage(DatatableRequest request);
     }
 }

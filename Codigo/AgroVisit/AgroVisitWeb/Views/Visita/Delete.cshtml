@@ -1,58 +1,44 @@
 ﻿@model AgroVisitWeb.Models.VisitaViewModel
 
 @{
-    ViewData["Title"] = "Deletar Visita";
+    ViewData["Title"] = "Excluir Visita";
 }
-<div class="card text-center">
-    <div class="card-header">
-        <h3>Deletar Visita</h3>
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">Tem certeza que deseja realizar esta operação?</h5>
-        <div>
-            <hr />
-            <dl class="row">
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.Id)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Id)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.Observacoes)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Observacoes)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.DataHora)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DataHora)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.Status)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Status)
-                </dd>
-                <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.IdPropriedade)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.IdPropriedade)
-                </dd>
-            </dl>
+
+<body>
+    <div class="card text-center container py-5" style="max-width: 600px;">
+        <div class="card-header bg-danger text-white">
+            <h3>Excluir Visita</h3>
         </div>
-        <form asp-action="Delete">
-            <div class="form-group row m-4">
-                <div  class="col-md-4">
-                    <a id="border" class="btn borda-concluir btn-success" asp-action="Index">Não</a>
+        <div class="card-body">
+            <h5 class="card-title text-danger">Tem certeza que deseja excluir esta visita?</h5>
+            <p class="text-muted">Essa ação é irreversível e todos os dados da visita serão removidos.</p>
+
+            <hr />
+
+            <dl class="row mt-3">
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.DataHora):</dt>
+                    <dd>@Html.DisplayFor(model => model.DataHora)</dd>
                 </div>
-                <div class="col-md-2 offset-md-4">
-                    <button id="border" type="submit" value="Delete" class="btn btn-danger ">Sim</button>
+                <div class="col-md-6 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Status):</dt>
+                    <dd>@(Model.Status == "A" ? "Agendada" : "Concluída")</dd>
                 </div>
-            </div>
-        </form>      
+                <div class="col-md-12 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.NomePropriedade):</dt>
+                    <dd>@Html.DisplayFor(model => model.NomePropriedade)</dd>
+                </div>
+                <div class="col-md-12 d-flex">
+                    <dt class="me-2">@Html.DisplayNameFor(model => model.Observacoes):</dt>
+                    <dd>@Html.DisplayFor(model => model.Observacoes)</dd>
+                </div>
+            </dl>
+            <form asp-action="Delete" class="mt-4">
+                <div class="d-flex justify-content-center gap-3">
+                    <a class="btn borda-concluir btn-success borda" asp-action="Index">Não</a>
+                    <button type="submit" value="Delete" class="btn btn-danger borda">Sim, excluir</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+</body>

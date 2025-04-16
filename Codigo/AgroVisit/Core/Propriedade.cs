@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace Core;
+﻿namespace Core;
 
 public partial class Propriedade
 {

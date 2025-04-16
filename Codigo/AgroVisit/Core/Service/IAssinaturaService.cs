@@ -1,6 +1,4 @@
-﻿using Core.DTO;
-
-namespace Core.Service
+﻿namespace Core.Service
 {
     public interface IAssinaturaService
     {
@@ -9,7 +7,7 @@ namespace Core.Service
         public void Delete(int id);
         public Assinatura Get(int id);
         public IEnumerable<Assinatura> GetAll();
-        public IEnumerable<AssinaturaDTO> GetAllByPlano(string plano);
-        public IEnumerable<AssinaturaDTO> GetAllByStatus(string status);
+        public IEnumerable<Assinatura> GetAllByPlano(string plano);
+        public IEnumerable<Assinatura> GetAllByStatus(string status);
     }
 }

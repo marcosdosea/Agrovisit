@@ -1,0 +1,112 @@
+﻿.conteudo {
+    color: black;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.dia-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.dia-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.dia-semana {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.circulo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.visitas-grid {
+    flex-grow: 0.96;
+    text-decoration: none;
+}
+
+.visita-card {
+    background-color: #76B275;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.visita-nome {
+    color: white;
+    font-weight: 500;
+}
+
+.visita-hora {
+    color: white;
+    font-size: 0.9em;
+}
+
+.month-picker-container {
+    max-width: 250px;
+    font-family: 'Arial', sans-serif;
+}
+
+.month-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.month-picker-container {
+    position: relative;
+    max-width: 13%;
+}
+
+.custom-month-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-month-display {
+    padding: 12px 15px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    font-weight: bold;
+    text-transform: capitalize;
+    pointer-events: none;
+}
+
+.mes-container {
+    margin: 30px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.mes-header {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+    font-weight: bold;
+}

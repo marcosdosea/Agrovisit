@@ -7,16 +7,21 @@ namespace AgroVisitWeb.Models
 
     public class PropriedadeViewModel
     {
+        [Required]
         [Key]
         public uint Id { get; set; }
+
         [Display(Name = "Nome da propriedade")]
         [Required(ErrorMessage = "Campo obrigatório")]
+        [StringLength(50)]
         public string Nome { get; set; } = null!;
 
         [Required(ErrorMessage = "Campo obrigatório")]
+        [StringLength(2)]
         public string Estado { get; set; } = null!;
 
         [Required(ErrorMessage = "Campo obrigatório")]
+        [StringLength(50)]
         public string Cidade { get; set; } = null!;
 
         [Display(Name = "Quantidade de funcionários")]
@@ -28,12 +33,15 @@ namespace AgroVisitWeb.Models
         [Display(Name = "Área de preservação")]
         public float? AreaPreservar { get; set; }
 
+        [StringLength(50)]
         [Display(Name = "CAR")]
         public string? Car { get; set; }
 
+        [StringLength(50)]
         [Display(Name = "CCIR")]
         public string? Ccir { get; set; }
 
+        [StringLength(50)]
         [Display(Name = "ITR")]
         public string? Itr { get; set; }
 
@@ -59,9 +67,11 @@ namespace AgroVisitWeb.Models
         [Display(Name = "Histórico de fitossanidade")]
         public byte[]? HistoricoFitossanidade { get; set; }
 
+        [Required]
         [Display(Name = "Solo")]
         public uint IdSolo { get; set; }
 
+        [Required]
         [Display(Name = "Cultura")]
         public uint IdCultura { get; set; }
 
@@ -69,6 +79,7 @@ namespace AgroVisitWeb.Models
         [Required(ErrorMessage = "Campo Obrigatório")]
         public uint IdCliente { get; set; }
 
+        [Required]
         [Display(Name = "Engenheiro agrônomo")]
         public uint IdEngenheiroAgronomo { get; set; }
 

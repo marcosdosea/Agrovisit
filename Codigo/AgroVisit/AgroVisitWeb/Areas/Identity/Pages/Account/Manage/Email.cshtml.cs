@@ -16,17 +16,17 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account.Manage
 {
     public class EmailModel : PageModel
     {
+        /// <summary>
+        /// private readonly SignInManager<UsuarioIdentity> _signInManager;
+        /// </summary>
         private readonly UserManager<UsuarioIdentity> _userManager;
-        private readonly SignInManager<UsuarioIdentity> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public EmailModel(
             UserManager<UsuarioIdentity> userManager,
-            SignInManager<UsuarioIdentity> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
             _emailSender = emailSender;
         }
 
@@ -148,7 +148,7 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account.Manage
                 await LoadAsync(user);
                 return Page();
             }
-
+            
             var userId = await _userManager.GetUserIdAsync(user);
             var email = await _userManager.GetEmailAsync(user);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

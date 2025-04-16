@@ -16,13 +16,15 @@ namespace AgroVisitWeb.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {
-        private readonly UserManager<UsuarioIdentity> _userManager;
-        private readonly IEmailSender _sender;
 
-        public RegisterConfirmationModel(UserManager<UsuarioIdentity> userManager, IEmailSender sender)
+        /// <summary>
+        /// private readonly IEmailSender _sender;
+        /// </summary>
+        private readonly UserManager<UsuarioIdentity> _userManager;
+
+        public RegisterConfirmationModel(UserManager<UsuarioIdentity> userManager)
         {
             _userManager = userManager;
-            _sender = sender;
         }
 
         /// <summary>

@@ -22,10 +22,10 @@ namespace Service
         /// </summary>
         /// <param name="cliente"></param>
         /// <returns>Id do cliente cliente criado</returns>
-        public uint Create(Cliente cliente)
+        public async Task<uint> Create(Cliente cliente)
         {
             _context.Add(cliente);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return cliente.Id;
         }
 
@@ -33,21 +33,24 @@ namespace Service
         /// Remove cliente da base de dados
         /// </summary>
         /// <param name="id"></param>
-        public void Delete(uint id)
+        public async Task Delete(uint id)
         {
-            var cliente = _context.Clientes.Find(id);
-            _context.Clientes.Remove(cliente);
-            _context.SaveChanges();
+            var cliente = await _context.Clientes.FindAsync(id);
+            if (cliente != null)
+            {
+                _context.Clientes.Remove(cliente);
+                await _context.SaveChangesAsync();
+            }
         }
 
         /// <summary>
         /// Altera cliente na base de dados
         /// </summary>
         /// <param name="cliente"></param>
-        public void Edit(Cliente cliente)
+        public async Task Edit(Cliente cliente)
         {
             _context.Update(cliente);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -55,18 +58,18 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Cliente</returns>
-        public Cliente? Get(uint id)
+        public async Task<Cliente?> Get(uint id)
         {
-            return _context.Clientes.Find(id);
+            return await _context.Clientes.FindAsync(id);
         }
 
         /// <summary>
         /// Obtém todos os clientes da base de dados
         /// </summary>
         /// <returns>Todos os clientes</returns>
-        public IEnumerable<Cliente> GetAll()
+        public async Task<IEnumerable<Cliente>> GetAll()
         {
-            return _context.Clientes.AsNoTracking();
+            return await _context.Clientes.AsNoTracking().ToListAsync();
         }
 
         /// <summary>
@@ -74,10 +77,12 @@ namespace Service
         /// </summary>
         /// <param name="nome"></param>
         /// <returns>Clientes retornados pelo nome</returns>
-        public IEnumerable<Cliente> GetByNome(string nome)
+        public async Task<IEnumerable<Cliente>> GetByNome(string nome)
         {
-            return (IEnumerable<Cliente>)_context.Clientes.Where(
-                cliente => cliente.Nome.StartsWith(nome)).AsNoTracking();
+            return await _context.Clientes
+                .Where(cliente => cliente.Nome.StartsWith(nome))
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         /// <summary>
@@ -85,39 +90,36 @@ namespace Service
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public DatatableResponse<Cliente> GetDataPage(DatatableRequest request)
+        public async Task<DatatableResponse<Cliente>> GetDataPage(DatatableRequest request)
         {
             var clientes = _context.Clientes.AsNoTracking();
-            // total de registros na tabela
-            var totalRecords = clientes.Count();
 
-            // filtra pelo campos de busca
+            var totalRecords = await clientes.CountAsync();
+
             if (request.Search != null && request.Search.GetValueOrDefault("value") != null)
             {
-                clientes = clientes.Where(cliente => cliente.Id.ToString().Contains(request.Search.GetValueOrDefault("value"))
-                                              || cliente.Nome.ToLower().Contains(request.Search.GetValueOrDefault("value"))
-                                              || cliente.Cidade.ToLower().Contains(request.Search.GetValueOrDefault("value")));
+                var searchValue = request.Search.GetValueOrDefault("value")!.ToLower();
+                clientes = clientes.Where(cliente =>
+                    cliente.Id.ToString().Contains(searchValue) ||
+                    cliente.Nome.ToLower().Contains(searchValue) ||
+                    cliente.Cidade.ToLower().Contains(searchValue));
             }
 
-            // ordenação pelas colunas permitidas
             if (request.Order != null && request.Order[0].GetValueOrDefault("column").Equals("0"))
             {
-                if (request.Order[0].GetValueOrDefault("dir").Equals("asc"))
-                    clientes = clientes.OrderBy(cliente => cliente.Nome);
-                else
-                    clientes = clientes.OrderByDescending(cliente => cliente.Nome);
+                clientes = request.Order[0].GetValueOrDefault("dir").Equals("asc")
+                    ? clientes.OrderBy(cliente => cliente.Nome)
+                    : clientes.OrderByDescending(cliente => cliente.Nome);
             }
             else if (request.Order != null && request.Order[0].GetValueOrDefault("column").Equals("3"))
             {
-                if (request.Order[0].GetValueOrDefault("dir").Equals("asc"))
-                    clientes = clientes.OrderBy(cliente => cliente.Cidade);
-                else
-                    clientes = clientes.OrderByDescending(cliente => cliente.Cidade);
+                clientes = request.Order[0].GetValueOrDefault("dir").Equals("asc")
+                    ? clientes.OrderBy(cliente => cliente.Cidade)
+                    : clientes.OrderByDescending(cliente => cliente.Cidade);
             }
 
-            // total de registros filtrados
-            int countRecordsFiltered = clientes.Count();
-            // paginação que será exibida
+            int countRecordsFiltered = await clientes.CountAsync();
+
             if (request.Length != -1)
             {
                 clientes = clientes.Skip(request.Start).Take(request.Length);
@@ -125,7 +127,7 @@ namespace Service
 
             return new DatatableResponse<Cliente>()
             {
-                Data = clientes.ToList(),
+                Data = await clientes.ToListAsync(),
                 Draw = request.Draw,
                 RecordsFiltered = countRecordsFiltered,
                 RecordsTotal = totalRecords

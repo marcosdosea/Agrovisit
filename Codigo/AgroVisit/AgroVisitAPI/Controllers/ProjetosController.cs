@@ -31,9 +31,9 @@ namespace AgroVisitAPI.Controllers
 
         // GET api/<ProjetosController>/5
         [HttpGet("{id}")]
-        public ActionResult Get(uint id)
+        public async Task<ActionResult> Get(uint id)
         {
-            Projeto projeto = _projetoService.Get(id);
+            Projeto projeto = await _projetoService.Get(id);
             if (projeto == null)
                 return NotFound();
             return Ok(projeto);
@@ -71,13 +71,13 @@ namespace AgroVisitAPI.Controllers
 
         // DELETE api/<ProjetosController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(uint id)
+        public async Task<ActionResult> Delete(uint id)
         {
-            Projeto projeto = _projetoService.Get(id);
+            Projeto projeto = await _projetoService.Get(id);
             if (projeto == null)
                 return NotFound();
 
-            _projetoService.Delete(id);
+            await _projetoService.Delete(id);
             return Ok();
         }
     }

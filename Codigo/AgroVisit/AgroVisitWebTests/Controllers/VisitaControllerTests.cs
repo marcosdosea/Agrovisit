@@ -22,23 +22,23 @@ namespace AgroVisitWeb.Controllers.Tests
             var mockCliente = new Mock<IClienteService>();
             IMapper mapper = new MapperConfiguration(cfg => cfg.AddProfile(new VisitaProfile())).CreateMapper();
 
-            mockService.Setup(service => service.GetAll()).Returns(GetTestVisitas());
-            mockService.Setup(service => service.Get(1)).Returns(GetTargetVisita());
+            mockService.Setup(service => service.GetAll()).ReturnsAsync(GetTestVisitas());
+            mockService.Setup(service => service.Get(1)).ReturnsAsync(GetTargetVisita());
             mockService.Setup(service => service.Edit(It.IsAny<Visita>())).Verifiable();
             mockService.Setup(service => service.Create(It.IsAny<Visita>())).Verifiable();
 
-            mockPropriedade.Setup(service => service.GetAll()).Returns(GetTestPropriedades());
-            mockPropriedade.Setup(service => service.Get(1)).Returns(GetNewPropriedade());
+            mockPropriedade.Setup(service => service.GetAll()).ReturnsAsync(GetTestPropriedades());
+            mockPropriedade.Setup(service => service.Get(1)).ReturnsAsync(GetNewPropriedade());
 
-            mockCliente.Setup(service => service.Get(1)).Returns(GetNewCliente());
+            mockCliente.Setup(service => service.Get(1)).ReturnsAsync(GetNewCliente());
 
             controller = new VisitaController(mockService.Object, mockPropriedade.Object, mockCliente.Object, mapper);
         }
 
         [TestMethod()]
-        public void IndexTest_Valido()
+        public async Task IndexTest_Valido()
         {
-            var result = controller.Index();
+            var result = await controller.Index();
 
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
@@ -49,9 +49,9 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void DetailsTest_Valido()
+        public async Task DetailsTest_Valido()
         {
-            var result = controller.Details(1);
+            var result = await controller.Details(1);
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
             Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(VisitaViewModel));
@@ -61,16 +61,16 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void CreateTest_Get_Valido()
+        public async Task CreateTest_Get_Valido()
         {
-            var result = controller.Create();
+            var result = await controller.Create();
             Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
 
         [TestMethod()]
-        public void CreateTest_Valid()
+        public async Task CreateTest_Valid()
         {
-            var result = controller.Create(GetNewVisita());
+            var result = await controller.Create(GetNewVisita());
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
             RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
             Assert.IsNull(redirectToActionResult.ControllerName);
@@ -78,11 +78,11 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void CreatTest_Post_Invalid()
+        public async Task CreateTest_Post_Invalid()
         {
             controller.ModelState.AddModelError("Nome", "Campo requerido");
 
-            var result = controller.Create(GetNewVisita());
+            var result = await controller.Create(GetNewVisita());
             Assert.AreEqual(1, controller.ModelState.ErrorCount);
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
             RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
@@ -91,9 +91,9 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void EditTest_Get_Valid()
+        public async Task EditTest_Get_Valid()
         {
-            var result = controller.Edit(1);
+            var result = await controller.Edit(1);
 
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
@@ -104,9 +104,9 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void EditTest_Post_Valid()
+        public async Task EditTest_Post_Valid()
         {
-            var result = controller.Edit(GetTargetVisitaModel().Id, GetTargetVisitaModel());
+            var result = await controller.Edit(GetTargetVisitaModel());
 
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
             RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
@@ -115,9 +115,9 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void DeleteTest_Post_Valid()
+        public async Task DeleteTest_Post_Valid()
         {
-            var result = controller.Delete(1);
+            var result = await controller.Delete(1);
 
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
@@ -128,15 +128,16 @@ namespace AgroVisitWeb.Controllers.Tests
         }
 
         [TestMethod()]
-        public void DeleteTest_Get_Valido()
+        public async Task DeleteTest_Get_Valido()
         {
-            var result = controller.Delete(GetTargetVisitaModel().Id, GetTargetVisitaModel());
+            var result = await controller.Delete(GetTargetVisitaModel().Id, GetTargetVisitaModel());
 
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
             RedirectToActionResult redirectToActionResult = (RedirectToActionResult)result;
             Assert.IsNull(redirectToActionResult.ControllerName);
             Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
+
         private static Visita GetTargetVisita()
         {
             return new Visita
@@ -153,24 +154,21 @@ namespace AgroVisitWeb.Controllers.Tests
         {
             return new List<Visita>
             {
-                new Visita
-                {
+                new() {
                     Id = 1,
                     Observacoes = "Entregar sementes tratadas",
                     DataHora = DateTime.Parse("2023-09-30"),
                     Status = "A",
                     IdPropriedade = 1
                 },
-                new Visita
-                {
+                new() {
                     Id = 2,
                     Observacoes = "Verificar como está o andamento do projeto",
                     DataHora = DateTime.Parse("2023-08-05"),
                     Status = "C",
                     IdPropriedade = 1
                 },
-                new Visita
-                {
+                new() {
                     Id = 3,
                     Observacoes = "Coletar amostra de solo para análise",
                     DataHora = DateTime.Parse("2023-10-11"),
@@ -179,9 +177,10 @@ namespace AgroVisitWeb.Controllers.Tests
                 },
             };
         }
+
         private VisitaViewModel GetNewVisita()
         {
-            return new VisitaViewModel
+            return new()
             {
                 Id = 4,
                 Observacoes = "Coletar amostra de solo para análise",
@@ -190,9 +189,10 @@ namespace AgroVisitWeb.Controllers.Tests
                 IdPropriedade = 1
             };
         }
+
         private VisitaViewModel GetTargetVisitaModel()
         {
-            return new VisitaViewModel
+            return new()
             {
                 Id = 2,
                 Observacoes = "Verificar como está o andamento do projeto",
@@ -206,7 +206,7 @@ namespace AgroVisitWeb.Controllers.Tests
 
         private Propriedade GetNewPropriedade()
         {
-            return new Propriedade
+            return new()
             {
                 Id = 1,
                 Nome = "Fazenda",
@@ -223,8 +223,7 @@ namespace AgroVisitWeb.Controllers.Tests
         {
             return new List<Propriedade>
             {
-                new Propriedade
-                {
+                new() {
                     Id = 1,
                     Nome = "Fazenda",
                     Estado = "SE",
@@ -234,8 +233,7 @@ namespace AgroVisitWeb.Controllers.Tests
                     IdSolo = 1,
                     IdCultura = 1
                 },
-                new Propriedade
-                {
+                new() {
                     Id = 2,
                     Nome = "Alegria",
                     Estado = "SE",
@@ -250,7 +248,7 @@ namespace AgroVisitWeb.Controllers.Tests
 
         private Cliente GetNewCliente()
         {
-            return new Cliente
+            return new()
             {
                 Id = 1,
                 Nome = "Janaina Ferreira",
