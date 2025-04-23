@@ -1,45 +1,38 @@
-﻿using AgroVisitWeb.Models;
+﻿using AgroVisitWeb.Areas.Identity.Data;
+using AgroVisitWeb.Models;
 using AutoMapper;
 using Core.Service;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace AgroVisitWeb.Controllers
 {
-    [Authorize(Roles = "Agronomo")]
+    [Authorize]
     public class HomeController : Controller
     {
-        private readonly IVisitaService _visitaService;
-        private readonly IPropriedadeService _propriedadeService;
-        private readonly IMapper _mapper;
+        private readonly UserManager<UsuarioIdentity> _userManager;
 
-        public HomeController(IVisitaService visitaService, IMapper mapper, IPropriedadeService propriedadeService)
+        public HomeController(UserManager<UsuarioIdentity> userManager)
         {
-            _visitaService = visitaService;
-            _propriedadeService = propriedadeService;
-            _mapper = mapper;
+            _userManager = userManager;
         }
 
         public async Task<ActionResult> Index()
         {
-            var listaVisitas = await _visitaService.GetAll();
-            var listaVisitasModel = _mapper.Map<List<VisitaViewModel>>(listaVisitas);
+            var user = await _userManager.GetUserAsync(User);
 
-            if (!ModelState.IsValid)
-                return NotFound();
-
-            foreach (var item in listaVisitasModel)
+            if (await _userManager.IsInRoleAsync(user, "Administrador"))
             {
-                var propriedade = await _propriedadeService.Get(item.IdPropriedade);
-                if (propriedade != null)
-                {
-                    item.NomePropriedade = propriedade.Nome;
-                }
-
+                return RedirectToAction("Index", "Administrador");
+            }
+            else if (await _userManager.IsInRoleAsync(user, "Agronomo"))
+            {
+                return RedirectToAction("Index", "Agronomo");
             }
 
-            return View(listaVisitasModel);
+            return View();
         }
 
         public IActionResult Privacy()
