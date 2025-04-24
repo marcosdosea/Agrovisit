@@ -4,8 +4,8 @@
     {
         Task<uint> Create(Plano plano);
         Task Edit(Plano plano);
-        Task Delete(int id);
-        Task<Plano> Get(int id);
+        Task Delete(uint id);
+        Task<Plano> Get(uint id);
         Task<IEnumerable<Plano>> GetAll();
     }
 }
