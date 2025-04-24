@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Service
 {
-    internal class PlanoService : IPlanoService
+    public class PlanoService : IPlanoService
     {
         private readonly AgroVisitContext _context;
 
@@ -24,7 +24,7 @@ namespace Service
         /// Remove plano da base de dados
         /// </summary>
         /// <param name="id"></param>
-        public async Task Delete(int id)
+        public async Task Delete(uint id)
         {
             var plano = await _context.Planos.FindAsync(id);
             if (plano != null)
@@ -49,7 +49,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Plano</returns>
-        public async Task<Plano> Get(int id)
+        public async Task<Plano> Get(uint id)
         {
             return await _context.Planos.FindAsync(id);
         }
