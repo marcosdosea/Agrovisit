@@ -9,7 +9,7 @@ namespace AgroVisitWeb.Models
         [Required]
         public uint Id { get; set; }
 
-        [Display(Name = "CPF")]
+        [Display(Name = "Nome")]
         [StringLength(50)]
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Nome { get; set; } = null!;
@@ -17,6 +17,10 @@ namespace AgroVisitWeb.Models
         [Display(Name = "Valor")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public float Valor { get; set; }
+
+        [Display(Name = "Valor")]
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public string ValorPlaceHolder { get; set; }
 
         [Display(Name = "Assinaturas")]
         public virtual ICollection<Assinatura> Assinaturas { get; set; } = new List<Assinatura>();

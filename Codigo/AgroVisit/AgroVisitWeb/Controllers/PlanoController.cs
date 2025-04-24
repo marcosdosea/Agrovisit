@@ -5,7 +5,10 @@ using Core.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
+using MySqlX.XDevAPI;
 using Service;
+using System.Globalization;
 
 namespace AgroVisitWeb.Controllers
 {
@@ -57,6 +60,11 @@ namespace AgroVisitWeb.Controllers
             if (!ModelState.IsValid)
                 return View(planoModel);
 
+            if (float.TryParse(planoModel.ValorPlaceHolder.Replace("R$", "").Trim(), NumberStyles.Currency, new CultureInfo("pt-BR"), out float valorDecimal))
+            {
+                planoModel.Valor = valorDecimal;
+            }
+
             var plano = _mapper.Map<Plano>(planoModel);
             await _planoService.Create(plano);
 
@@ -72,6 +80,8 @@ namespace AgroVisitWeb.Controllers
             if (!ModelState.IsValid)
                 return NotFound();
 
+            planoModel.ValorPlaceHolder = plano.Valor.ToString("C", new CultureInfo("pt-BR"));
+
             return View(planoModel);
         }
 
@@ -86,7 +96,7 @@ namespace AgroVisitWeb.Controllers
             var plano = _mapper.Map<Plano>(planoModel);
             await _planoService.Edit(plano);
 
-            return RedirectToAction(nameof(Details));
+            return RedirectToAction("Details", new { id = plano.Id });
         }
 
         // GET: PlanoController/Delete/5

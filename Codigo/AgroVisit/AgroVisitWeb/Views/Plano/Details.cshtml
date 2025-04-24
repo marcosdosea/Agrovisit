@@ -1,0 +1,46 @@
+﻿@model AgroVisitWeb.Models.PlanoViewModel
+
+@{
+    ViewData["Title"] = "Detalhes do Plano";
+}
+
+<body>
+    <div class="container pt-5">
+        <div class="row">
+            <h1>Detalhes do Plano</h1>
+            <div style="position: relative;">
+                <a asp-action="Index" title="Voltar para planos cadastradas"
+                   class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center"
+                   style="width: 50px; height: 50px; background-color: #76B375; border: none;
+                  position: absolute; top: -60px; right: 30px;"
+                   aria-label="Fechar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 6L18 18M6 18L18 6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Informações</h4>
+                <dl class="row mt-3">
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Nome):</dt>
+                        <dd>@Html.DisplayFor(model => model.Nome)</dd>
+                    </div>
+                    <div class="col-md-6 d-flex">
+                        <dt class="me-2">@Html.DisplayNameFor(model => model.Valor):</dt>
+                        <dd>@Html.DisplayFor(model => model.Valor)</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end gap-3 mt-4">
+            <a class="btn btn-success borda-concluir borda" href="@Url.ActionLink("Edit", "Plano", new { id = Model.Id })">Editar</a>
+            <a class="btn btn-danger borda" href="@Url.ActionLink("Delete", "Plano", new { id = Model.Id })">Excluir</a>
+        </div>
+    </div>
+</body>
