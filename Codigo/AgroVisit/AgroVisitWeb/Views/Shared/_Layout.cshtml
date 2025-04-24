@@ -50,8 +50,8 @@
                             {
                                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                     <li class="nav-item">
-                                        <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "") text-dark"
-                                        asp-controller="Home" asp-action="Index">Agenda</a>
+                                        <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Agronomo" ? "active" : "") text-dark"
+                                           asp-controller="Agronomo" asp-action="Index">Agenda</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Cliente" ? "active" : "") text-dark"
@@ -75,8 +75,8 @@
                             {
                                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                     <li class="nav-item">
-                                        <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "") text-dark"
-                                           asp-controller="Home" asp-action="Index">Início</a>
+                                        <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Administrador" ? "active" : "") text-dark"
+                                           asp-controller="Administrador" asp-action="Index">Início</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "#" ? "active" : "") text-dark"
