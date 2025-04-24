@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Service
 {
-    internal class PlanoService : IPlanoService
+    public class PlanoService : IPlanoService
     {
         private readonly AgroVisitContext _context;
 

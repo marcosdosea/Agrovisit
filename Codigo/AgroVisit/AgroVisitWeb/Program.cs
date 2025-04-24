@@ -26,7 +26,7 @@ namespace AgroVisitWeb
             builder.Services.AddTransient<IClienteService, ClienteService>();
             builder.Services.AddTransient<IPropriedadeService, PropriedadeService>();
             builder.Services.AddTransient<IVisitaService, VisitaService>();
-            builder.Services.AddTransient<IPlanoService, IPlanoService>();
+            builder.Services.AddTransient<IPlanoService, PlanoService>();
             builder.Services.AddTransient<ICulturaService, CulturaService>();
             builder.Services.AddTransient<ISoloService, SoloService>();
 
