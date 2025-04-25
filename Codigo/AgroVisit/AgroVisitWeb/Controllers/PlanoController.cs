@@ -93,6 +93,11 @@ namespace AgroVisitWeb.Controllers
             if (!ModelState.IsValid)
                 return View(planoModel);
 
+            if (float.TryParse(planoModel.ValorPlaceHolder.Replace("R$", "").Trim(), NumberStyles.Currency, new CultureInfo("pt-BR"), out float valorDecimal))
+            {
+                planoModel.Valor = valorDecimal;
+            }
+
             var plano = _mapper.Map<Plano>(planoModel);
             await _planoService.Edit(plano);
 
