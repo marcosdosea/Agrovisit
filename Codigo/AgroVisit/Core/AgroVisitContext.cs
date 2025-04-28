@@ -37,7 +37,6 @@ public partial class AgroVisitContext : DbContext
 
     public virtual DbSet<Visita> Visita { get; set; }
 
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 

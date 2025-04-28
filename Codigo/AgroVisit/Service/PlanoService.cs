@@ -8,6 +8,11 @@ namespace Service
     {
         private readonly AgroVisitContext _context;
 
+        public PlanoService(AgroVisitContext context)
+        {
+            _context = context;
+        }
+
         /// <summary>
         /// Insere plano na base de dados
         /// </summary>
